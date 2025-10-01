@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/soywater.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: DevOps + Integration
 
 ### Lew Si Yu
 
@@ -49,3 +49,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Testing + Data
+
+### Camlin
+<img src ="images/camlin-tan.png" width="200px">
+
+[[github](http://github.com/camlin-tan)]
+[[portfolio](team/camlin-tan.md)]
+
+* Role: Deliverables and deadlines
+* Responsibilities: Ensure project deliverables are done on time and in the right format.
