@@ -300,16 +300,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HealthNote` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  HealthNote shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  HealthNote deletes the person
 
     Use case ends.
 
@@ -321,9 +321,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HealthNote shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add a patient**
+
+**MSS**
+
+1.  User requests to add a patient using the add command with required parameters.
+2.  HealthNote adds the patient to the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. One or more required parameters are missing.
+
+    * 1a1. HealthNote shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. Input parameters are in invalid formats (e.g. date, email, gender).
+
+    * 1b1. HealthNote shows an error message.
+    
+      Use case resumes at step 1.
+
+* 1c. Duplicate identity number detected.
+
+    * 1c1. HealthNote shows an error message.
+
+      Use case resumes at step 1.
+
+* 1d. Duplicate email or contact number detected.
+
+    * 1d1. HealthNote shows a warning message.
+
+      Use case resumes at step 2.
+
+**Use case: View all commands**
+
+**MSS**
+
+1.  User types a command to view all available commands
+2.  HealthNote retrieves the list of commands supported
+3.  The list of commands is displayed to the user
+4.  User closes the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of commands cannot be retrieved due to some error
+    
+    * 2a1. HealthNote shows an error message.
+
+      Use case ends
 
 *{More to be added}*
 
