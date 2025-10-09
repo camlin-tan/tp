@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BLOOD_TYPE = "O";
     public static final String DEFAULT_DOB = "01-01-2000";
+    public static final String DEFAULT_ALCOHOLIC_RECORD = "No";
 
     private Name name;
     private Phone phone;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
+    private AlcoholicRecord alcoholicRecord;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +47,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         bloodType = new BloodType(DEFAULT_BLOOD_TYPE);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
+        alcoholicRecord = new AlcoholicRecord(DEFAULT_ALCOHOLIC_RECORD);
     }
 
     /**
@@ -57,6 +61,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         bloodType = personToCopy.getBloodType();
         dateOfBirth = personToCopy.getDateOfBirth();
+        alcoholicRecord = personToCopy.getAlcoholicRecord();
     }
 
     /**
@@ -115,9 +120,15 @@ public class PersonBuilder {
         return this;
     }
 
-
-    public Person build() {
-        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType);
+    /**
+     * Sets the {@code alcoholicRecord} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAlcoholicRecord(String alcoholicRecord) {
+        this.alcoholicRecord = new AlcoholicRecord(alcoholicRecord);
+        return this;
     }
 
+    public Person build() {
+        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord);
+    }
 }
