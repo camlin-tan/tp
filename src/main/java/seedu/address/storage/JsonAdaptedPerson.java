@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BloodType;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -117,7 +118,8 @@ class JsonAdaptedPerson {
         final BloodType modelBloodType = new BloodType(bloodType);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelBloodType);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, new DateOfBirth("01-01-2000"),
+                modelBloodType);
     }
 
 }

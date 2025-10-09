@@ -25,17 +25,21 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final BloodType bloodType;
+    private final DateOfBirth dateOfBirth;
+
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, BloodType bloodType) {
-        requireAllNonNull(name, phone, email, address, tags, bloodType);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DateOfBirth dateOfBirth,
+                  BloodType bloodType) {
+        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
     }
 
@@ -53,6 +57,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public BloodType getBloodType() {
@@ -101,13 +109,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
+                && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && bloodType.equals(otherPerson.bloodType);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, bloodType);
+        return Objects.hash(name, phone, email, address, tags, dateOfBirth, bloodType);
     }
 
     @Override
@@ -118,6 +127,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("dateOfBirth", dateOfBirth)
                 .add("bloodType", bloodType)
                 .toString();
     }
