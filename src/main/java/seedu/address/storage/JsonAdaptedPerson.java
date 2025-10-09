@@ -31,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String dateOfBirth;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String bloodType;
     private final String alcoholicRecord;
@@ -42,12 +43,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("bloodType") String bloodType,
+                             @JsonProperty("bloodType") String bloodType, @JsonProperty("dob") String dateOfBirth,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
         this.alcoholicRecord = alcoholicRecord;
         if (tags != null) {
@@ -63,6 +66,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        dateOfBirth = source.getDateOfBirth().toString();
         bloodType = source.getBloodType().bloodType;
         alcoholicRecord = source.getAlcoholicRecord().alcoholicRecord;
         tags.addAll(source.getTags().stream()
@@ -113,6 +117,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (dateOfBirth == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth dob = new DateOfBirth(dateOfBirth);
+
         if (bloodType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     BloodType.class.getSimpleName()));
@@ -133,7 +146,8 @@ class JsonAdaptedPerson {
 
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, new DateOfBirth("01-01-2000"),
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, dob,
                 modelBloodType, modelAlcoholicRecord);
     }
 
