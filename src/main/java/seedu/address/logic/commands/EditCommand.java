@@ -22,6 +22,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -103,9 +104,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
+        AlcoholicRecord updatedAlcoholicRecord = editPersonDescriptor.getAlcoholicRecord()
+                .orElse(personToEdit.getAlcoholicRecord());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, new DateOfBirth("01-01-2000"), updatedBloodType
+                updatedAddress, updatedTags, new DateOfBirth("01-01-2000"), updatedBloodType, updatedAlcoholicRecord
         );
     }
 
@@ -144,6 +147,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private BloodType bloodType;
+        private AlcoholicRecord alcoholicRecord;
 
         public EditPersonDescriptor() {}
 
@@ -158,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setBloodType(toCopy.bloodType);
+            setAlcoholicRecord(toCopy.alcoholicRecord);
         }
 
         /**
@@ -205,6 +210,12 @@ public class EditCommand extends Command {
 
         public Optional<BloodType> getBloodType() {
             return Optional.ofNullable(bloodType);
+        }
+        public void setAlcoholicRecord(AlcoholicRecord alcoholicRecord) {
+            this.alcoholicRecord = alcoholicRecord;
+        }
+        public Optional<AlcoholicRecord> getAlcoholicRecord() {
+            return Optional.ofNullable(alcoholicRecord);
         }
 
         /**
