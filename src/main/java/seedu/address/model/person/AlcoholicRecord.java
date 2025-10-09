@@ -18,7 +18,7 @@ public class AlcoholicRecord {
      */
     private static final String VALIDATION_REGEX = "^(?i)(Yes|No)$";
 
-    private final String alcoholicRecord;
+    public final String alcoholicRecord;
 
     /**
      * Constructs an {@code AlcoholicRecord}.
