@@ -6,90 +6,62 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tags" : [ "friends" ],
-<<<<<<< HEAD
+    "dob" : "20-05-1998",
     "bloodType" : "O",
     "alcoholicRecord" : "No"
-=======
-    "dob" : "20-05-1998",
-    "bloodType" : "O"
->>>>>>> master
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ],
-<<<<<<< HEAD
+    "dob" : "01-01-2000",
     "bloodType" : "O",
     "alcoholicRecord" : "No"
-=======
-    "dob" : "20-05-2000",
-    "bloodType" : "O"
->>>>>>> master
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
     "tags" : [ ],
-<<<<<<< HEAD
+    "dob" : "20-12-1998",
     "bloodType" : "O",
     "alcoholicRecord" : "No"
-=======
-    "dob" : "20-12-1998",
-    "bloodType" : "O"
->>>>>>> master
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tags" : [ "friends" ],
-<<<<<<< HEAD
+    "dob" : "30-05-1995",
     "bloodType" : "O",
     "alcoholicRecord" : "No"
-=======
-    "dob" : "30-05-1995",
-    "bloodType" : "O"
->>>>>>> master
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tags" : [ ],
-<<<<<<< HEAD
+    "dob" : "20-11-1999",
     "bloodType" : "O",
     "alcoholicRecord" : "No"
-=======
-    "dob" : "20-11-1999",
-    "bloodType" : "O"
->>>>>>> master
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tags" : [ ],
-<<<<<<< HEAD
+    "dob" : "15-08-1997",
     "bloodType" : "O",
     "alcoholicRecord" : "No"
-=======
-    "dob" : "15-08-1997",
-    "bloodType" : "O"
->>>>>>> master
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tags" : [ ],
-<<<<<<< HEAD
+    "tags" : [ "owesMoney", "friends" ],
+    "dob" : "20-05-2000",
     "bloodType" : "O",
     "alcoholicRecord" : "No"
-=======
-    "dob" : "01-01-2000",
-    "bloodType" : "O"
->>>>>>> master
   } ]
 }

@@ -109,11 +109,7 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getAlcoholicRecord());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-<<<<<<< HEAD
-                updatedAddress, updatedTags, new DateOfBirth("01-01-2000"), updatedBloodType, updatedAlcoholicRecord
-=======
-                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType
->>>>>>> master
+                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord
         );
     }
 
@@ -168,11 +164,9 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setBloodType(toCopy.bloodType);
-<<<<<<< HEAD
-            setAlcoholicRecord(toCopy.alcoholicRecord);
-=======
             setDateOfBirth(toCopy.dateOfBirth);
->>>>>>> master
+            setAlcoholicRecord(toCopy.alcoholicRecord);
+            setDateOfBirth(toCopy.dateOfBirth);
         }
 
         /**
