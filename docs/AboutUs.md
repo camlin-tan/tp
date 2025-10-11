@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lew Si Yu
 
-<img src="images/github_bananapielearnsjava.png" width="200px">
+<img src="images/bananapielearnsjava.png" width="200px">
 
 [[github](http://github.com/bananapielearnsjava)]
 [[portfolio](team/bananapielearnsjava.md)]

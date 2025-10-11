@@ -26,14 +26,15 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final BloodType bloodType;
     private final DateOfBirth dateOfBirth;
+    private final AlcoholicRecord alcoholicRecord;
 
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DateOfBirth dateOfBirth,
-                  BloodType bloodType) {
-        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType);
+                  BloodType bloodType, AlcoholicRecord alcoholicRecord) {
+        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -41,6 +42,7 @@ public class Person {
         this.tags.addAll(tags);
         this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
+        this.alcoholicRecord = alcoholicRecord;
     }
 
     public Name getName() {
@@ -65,6 +67,9 @@ public class Person {
 
     public BloodType getBloodType() {
         return bloodType;
+    }
+    public AlcoholicRecord getAlcoholicRecord() {
+        return alcoholicRecord;
     }
 
     /**
@@ -110,13 +115,14 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
-                && bloodType.equals(otherPerson.bloodType);
+                && bloodType.equals(otherPerson.bloodType)
+                && alcoholicRecord.equals(otherPerson.alcoholicRecord);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, dateOfBirth, bloodType);
+        return Objects.hash(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord);
     }
 
     @Override
@@ -129,6 +135,7 @@ public class Person {
                 .add("tags", tags)
                 .add("dateOfBirth", dateOfBirth)
                 .add("bloodType", bloodType)
+                .add("alcoholicRecord", alcoholicRecord)
                 .toString();
     }
 

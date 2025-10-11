@@ -22,6 +22,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -101,11 +102,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
+        AlcoholicRecord updatedAlcoholicRecord = editPersonDescriptor.getAlcoholicRecord()
+                .orElse(personToEdit.getAlcoholicRecord());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, new DateOfBirth("01-01-2000"), updatedBloodType
+                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord
         );
     }
 
@@ -143,7 +147,9 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private DateOfBirth dateOfBirth;
         private BloodType bloodType;
+        private AlcoholicRecord alcoholicRecord;
 
         public EditPersonDescriptor() {}
 
@@ -158,13 +164,17 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setBloodType(toCopy.bloodType);
+            setDateOfBirth(toCopy.dateOfBirth);
+            setAlcoholicRecord(toCopy.alcoholicRecord);
+            setDateOfBirth(toCopy.dateOfBirth);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, dateOfBirth, bloodType,
+                    alcoholicRecord);
         }
 
         public void setName(Name name) {
@@ -199,12 +209,26 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setDateOfBirth(DateOfBirth dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        public Optional<DateOfBirth> getDateOfBirth() {
+            return Optional.ofNullable(dateOfBirth);
+        }
+
         public void setBloodType(BloodType bloodType) {
             this.bloodType = bloodType;
         }
 
         public Optional<BloodType> getBloodType() {
             return Optional.ofNullable(bloodType);
+        }
+        public void setAlcoholicRecord(AlcoholicRecord alcoholicRecord) {
+            this.alcoholicRecord = alcoholicRecord;
+        }
+        public Optional<AlcoholicRecord> getAlcoholicRecord() {
+            return Optional.ofNullable(alcoholicRecord);
         }
 
         /**
@@ -240,7 +264,10 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth)
+                    && Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)
+                    && Objects.equals(alcoholicRecord, otherEditPersonDescriptor.alcoholicRecord);
         }
 
         @Override
@@ -251,6 +278,9 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("dateOfBirth", dateOfBirth)
+                    .add("bloodType", bloodType)
+                    .add("alcoholicRecord", alcoholicRecord)
                     .toString();
         }
     }

@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -152,5 +153,20 @@ public class ParserUtil {
             throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
         }
         return new BloodType(trimmedBloodType);
+    }
+
+    /**
+     * Parses a {@code String alcoholicRecord} into a {@code AlcoholicRecord}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code alcoholicRecord} is invalid.
+     */
+    public static AlcoholicRecord parseAlcoholicRecord(String alcoholicRecord) throws ParseException {
+        requireNonNull(alcoholicRecord);
+        String trimmedAlcoholicRecord = alcoholicRecord.trim();
+        if (!AlcoholicRecord.isValidAlcoholicRecord(trimmedAlcoholicRecord)) {
+            throw new ParseException(AlcoholicRecord.MESSAGE_CONSTRAINTS);
+        }
+        return new AlcoholicRecord(trimmedAlcoholicRecord);
     }
 }

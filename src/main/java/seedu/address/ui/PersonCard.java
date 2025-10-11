@@ -42,7 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label bloodType;
-
+    @FXML
+    private Label alcoholicRecord;
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -58,5 +59,6 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         bloodType.setText(person.getBloodType().bloodType);
+        alcoholicRecord.setText(person.getAlcoholicRecord().alcoholicRecord);
     }
 }

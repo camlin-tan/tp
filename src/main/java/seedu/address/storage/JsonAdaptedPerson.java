@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -30,8 +31,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String dateOfBirth;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String bloodType;
+    private final String alcoholicRecord;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,13 +42,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("bloodType") String bloodType) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("dob") String dateOfBirth,
+                             @JsonProperty("bloodType") String bloodType,
+                             @JsonProperty("alcoholicRecord") String alcoholicRecord) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
+        this.alcoholicRecord = alcoholicRecord;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -59,7 +66,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        dateOfBirth = source.getDateOfBirth().toString();
         bloodType = source.getBloodType().bloodType;
+        alcoholicRecord = source.getAlcoholicRecord().alcoholicRecord;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -108,6 +117,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (dateOfBirth == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth dob = new DateOfBirth(dateOfBirth);
+
         if (bloodType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     BloodType.class.getSimpleName()));
@@ -117,9 +135,20 @@ class JsonAdaptedPerson {
         }
         final BloodType modelBloodType = new BloodType(bloodType);
 
+        if (alcoholicRecord == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AlcoholicRecord.class.getSimpleName()));
+        }
+        if (!AlcoholicRecord.isValidAlcoholicRecord(alcoholicRecord)) {
+            throw new IllegalValueException(AlcoholicRecord.MESSAGE_CONSTRAINTS);
+        }
+        final AlcoholicRecord modelAlcoholicRecord = new AlcoholicRecord(alcoholicRecord);
+
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, new DateOfBirth("01-01-2000"),
-                modelBloodType);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, dob,
+                modelBloodType, modelAlcoholicRecord);
     }
 
 }
