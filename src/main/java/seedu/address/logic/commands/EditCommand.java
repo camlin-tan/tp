@@ -22,6 +22,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BloodType;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -100,10 +102,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         SmokingRecord updatedSmokingRecord = personToEdit.getSmokingRecord();
+        BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSmokingRecord);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedSmokingRecord
+        );
     }
 
     @Override
@@ -140,6 +146,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private DateOfBirth dateOfBirth;
+        private BloodType bloodType;
 
         public EditPersonDescriptor() {}
 
@@ -153,13 +161,15 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setBloodType(toCopy.bloodType);
+            setDateOfBirth(toCopy.dateOfBirth);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, dateOfBirth);
         }
 
         public void setName(Name name) {
@@ -192,6 +202,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setDateOfBirth(DateOfBirth dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        public Optional<DateOfBirth> getDateOfBirth() {
+            return Optional.ofNullable(dateOfBirth);
+        }
+
+        public void setBloodType(BloodType bloodType) {
+            this.bloodType = bloodType;
+        }
+
+        public Optional<BloodType> getBloodType() {
+            return Optional.ofNullable(bloodType);
         }
 
         /**
@@ -227,7 +253,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth);
         }
 
         @Override
@@ -238,6 +265,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("dateOfBirth", dateOfBirth)
                     .toString();
         }
     }
