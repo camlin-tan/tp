@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DATE_OF_BIRTH_DESC_BO
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALCOHOLIC_RECORD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_OF_BIRTH_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -103,6 +104,10 @@ public class AddCommandParserTest {
         assertParseFailure(parser, DATE_OF_BIRTH_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE_OF_BIRTH));
 
+        // multiple alcoholic record
+        assertParseFailure(parser, ALCOHOLIC_RECORD_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ALCOHOLIC_RECORD));
+
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
@@ -153,6 +158,10 @@ public class AddCommandParserTest {
         // invalid date of birth
         assertParseFailure(parser, validExpectedPersonString + INVALID_DATE_OF_BIRTH_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE_OF_BIRTH));
+
+        // invalid alcoholic record
+        assertParseFailure(parser, validExpectedPersonString + INVALID_ALCOHOLIC_RECORD_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ALCOHOLIC_RECORD));
     }
 
     @Test
@@ -225,6 +234,12 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_DATE_OF_BIRTH_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
                 + ALCOHOLIC_RECORD_DESC_BOB,
+                DateOfBirth.MESSAGE_CONSTRAINTS);
+
+        // invalid alcoholic record
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INVALID_DATE_OF_BIRTH_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
+                + INVALID_ALCOHOLIC_RECORD_DESC,
                 DateOfBirth.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only the first invalid value reported
