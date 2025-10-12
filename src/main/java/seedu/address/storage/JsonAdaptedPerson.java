@@ -15,6 +15,7 @@ import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -35,16 +36,18 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String bloodType;
     private final String alcoholicRecord;
+    private final String gender;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("dob") String dateOfBirth,
-                             @JsonProperty("bloodType") String bloodType,
-                             @JsonProperty("alcoholicRecord") String alcoholicRecord) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("dob") String dateOfBirth,
+            @JsonProperty("bloodType") String bloodType,
+            @JsonProperty("alcoholicRecord") String alcoholicRecord,
+            @JsonProperty("gender") String gender) {
 
         this.name = name;
         this.phone = phone;
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
         this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
         this.alcoholicRecord = alcoholicRecord;
+        this.gender = gender;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -69,15 +73,18 @@ class JsonAdaptedPerson {
         dateOfBirth = source.getDateOfBirth().toString();
         bloodType = source.getBloodType().bloodType;
         alcoholicRecord = source.getAlcoholicRecord().alcoholicRecord;
+        gender = source.getGender().gender;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -144,11 +151,19 @@ class JsonAdaptedPerson {
         }
         final AlcoholicRecord modelAlcoholicRecord = new AlcoholicRecord(alcoholicRecord);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, dob,
-                modelBloodType, modelAlcoholicRecord);
+                modelBloodType, modelAlcoholicRecord, modelGender);
     }
 
 }
