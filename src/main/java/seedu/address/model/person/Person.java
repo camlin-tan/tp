@@ -27,14 +27,15 @@ public class Person {
     private final BloodType bloodType;
     private final DateOfBirth dateOfBirth;
     private final AlcoholicRecord alcoholicRecord;
+    private final Gender gender;
 
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DateOfBirth dateOfBirth,
-                  BloodType bloodType, AlcoholicRecord alcoholicRecord) {
-        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord);
+                  BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender) {
+        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,6 +44,7 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
         this.alcoholicRecord = alcoholicRecord;
+        this.gender = gender;
     }
 
     public Name getName() {
@@ -71,6 +73,8 @@ public class Person {
     public AlcoholicRecord getAlcoholicRecord() {
         return alcoholicRecord;
     }
+
+    public Gender getGender() {return gender;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -116,13 +120,14 @@ public class Person {
                 && tags.equals(otherPerson.tags)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && bloodType.equals(otherPerson.bloodType)
-                && alcoholicRecord.equals(otherPerson.alcoholicRecord);
+                && alcoholicRecord.equals(otherPerson.alcoholicRecord)
+                && gender.equals(otherPerson.gender);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord);
+        return Objects.hash(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender);
     }
 
     @Override
@@ -136,6 +141,7 @@ public class Person {
                 .add("dateOfBirth", dateOfBirth)
                 .add("bloodType", bloodType)
                 .add("alcoholicRecord", alcoholicRecord)
+                .add("gender", gender)
                 .toString();
     }
 
