@@ -8,6 +8,7 @@ import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -26,6 +27,7 @@ public class PersonBuilder {
     public static final String DEFAULT_BLOOD_TYPE = "O";
     public static final String DEFAULT_DOB = "01-01-2000";
     public static final String DEFAULT_ALCOHOLIC_RECORD = "No";
+    public static final String DEFAULT_GENDER = "F";
 
     private Name name;
     private Phone phone;
@@ -35,6 +37,7 @@ public class PersonBuilder {
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
     private AlcoholicRecord alcoholicRecord;
+    private Gender gender;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +51,7 @@ public class PersonBuilder {
         bloodType = new BloodType(DEFAULT_BLOOD_TYPE);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
         alcoholicRecord = new AlcoholicRecord(DEFAULT_ALCOHOLIC_RECORD);
+        gender = new Gender(DEFAULT_GENDER);
     }
 
     /**
@@ -62,6 +66,7 @@ public class PersonBuilder {
         bloodType = personToCopy.getBloodType();
         dateOfBirth = personToCopy.getDateOfBirth();
         alcoholicRecord = personToCopy.getAlcoholicRecord();
+        gender = personToCopy.getGender();
     }
 
     /**
@@ -128,7 +133,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord);
+        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender);
     }
 }
