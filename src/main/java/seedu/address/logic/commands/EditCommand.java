@@ -111,9 +111,8 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord, 
-                updatedGender
-        );
+                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
+                updatedGender);
     }
 
     @Override

@@ -74,7 +74,9 @@ public class Person {
         return alcoholicRecord;
     }
 
-    public Gender getGender() {return gender;}
+    public Gender getGender() {
+        return gender;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
