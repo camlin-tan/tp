@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -44,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_BLOOD_TYPE = "AB";
     public static final String VALID_ALCOHOLIC_RECORD_AMY = "No";
     public static final String VALID_ALCOHOLIC_RECORD_BOB = "No";
+    public static final String VALID_GENDER_AMY = "F";
+    public static final String VALID_GENDER_BOB = "M";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -60,6 +63,8 @@ public class CommandTestUtil {
     public static final String BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE + VALID_BLOOD_TYPE;
     public static final String ALCOHOLIC_RECORD_DESC_AMY = " " + PREFIX_ALCOHOLIC_RECORD + VALID_ALCOHOLIC_RECORD_AMY;
     public static final String ALCOHOLIC_RECORD_DESC_BOB = " " + PREFIX_ALCOHOLIC_RECORD + VALID_ALCOHOLIC_RECORD_BOB;
+    public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
+    public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
