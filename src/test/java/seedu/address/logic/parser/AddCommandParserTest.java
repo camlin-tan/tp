@@ -14,8 +14,10 @@ import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALCOHOLIC_RECORD_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BLOOD_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_OF_BIRTH_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -52,8 +54,10 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -260,6 +264,20 @@ public class AddCommandParserTest {
                 + GENDER_DESC_BOB
                 + INVALID_ALCOHOLIC_RECORD_DESC,
                 AlcoholicRecord.MESSAGE_CONSTRAINTS);
+
+        // invalid gender
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
+                        + ALCOHOLIC_RECORD_DESC_BOB
+                        + INVALID_GENDER_DESC,
+                Gender.MESSAGE_CONSTRAINTS);
+
+        // invalid blood type
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_BLOOD_TYPE_DESC
+                        + ALCOHOLIC_RECORD_DESC_BOB
+                        + GENDER_DESC_BOB,
+                BloodType.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only the first invalid value reported
         assertParseFailure(
