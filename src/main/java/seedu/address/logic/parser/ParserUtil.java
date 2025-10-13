@@ -14,6 +14,7 @@ import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -141,7 +142,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String bloodType} into a {@code Name}.
+     * Parses a {@code String bloodType} into a {@code BloodType}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code bloodType} is invalid.
@@ -168,5 +169,20 @@ public class ParserUtil {
             throw new ParseException(AlcoholicRecord.MESSAGE_CONSTRAINTS);
         }
         return new AlcoholicRecord(trimmedAlcoholicRecord);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
     }
 }

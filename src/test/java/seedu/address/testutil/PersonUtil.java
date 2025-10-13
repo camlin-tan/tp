@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,6 +41,7 @@ public class PersonUtil {
         sb.append(PREFIX_BLOOD_TYPE + person.getBloodType().bloodType + " ");
         sb.append(PREFIX_DATE_OF_BIRTH + person.getDateOfBirth().toString() + " ");
         sb.append(PREFIX_ALCOHOLIC_RECORD + person.getAlcoholicRecord().toString() + " ");
+        sb.append(PREFIX_GENDER + person.getGender().gender + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -61,6 +63,8 @@ public class PersonUtil {
                 .append(" "));
         descriptor.getAlcoholicRecord().ifPresent(alcoholicRecord -> sb.append(PREFIX_ALCOHOLIC_RECORD)
                 .append(alcoholicRecord.alcoholicRecord).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender)
+                .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

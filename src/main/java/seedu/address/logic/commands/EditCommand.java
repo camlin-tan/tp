@@ -26,6 +26,7 @@ import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -107,10 +108,11 @@ public class EditCommand extends Command {
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         AlcoholicRecord updatedAlcoholicRecord = editPersonDescriptor.getAlcoholicRecord()
                 .orElse(personToEdit.getAlcoholicRecord());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord
-        );
+                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
+                updatedGender);
     }
 
     @Override
@@ -150,6 +152,7 @@ public class EditCommand extends Command {
         private DateOfBirth dateOfBirth;
         private BloodType bloodType;
         private AlcoholicRecord alcoholicRecord;
+        private Gender gender;
 
         public EditPersonDescriptor() {}
 
@@ -167,6 +170,7 @@ public class EditCommand extends Command {
             setDateOfBirth(toCopy.dateOfBirth);
             setAlcoholicRecord(toCopy.alcoholicRecord);
             setDateOfBirth(toCopy.dateOfBirth);
+            setGender(toCopy.gender);
         }
 
         /**
@@ -231,6 +235,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(alcoholicRecord);
         }
 
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -267,7 +279,8 @@ public class EditCommand extends Command {
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth)
                     && Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)
-                    && Objects.equals(alcoholicRecord, otherEditPersonDescriptor.alcoholicRecord);
+                    && Objects.equals(alcoholicRecord, otherEditPersonDescriptor.alcoholicRecord)
+                    && Objects.equals(gender, otherEditPersonDescriptor.gender);
         }
 
         @Override
@@ -281,6 +294,7 @@ public class EditCommand extends Command {
                     .add("dateOfBirth", dateOfBirth)
                     .add("bloodType", bloodType)
                     .add("alcoholicRecord", alcoholicRecord)
+                    .add("gender", gender)
                     .toString();
         }
     }
