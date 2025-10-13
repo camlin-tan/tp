@@ -18,6 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final IdentityNumber identityNumber;
     private final Phone phone;
     private final Email email;
 
@@ -33,10 +34,31 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DateOfBirth dateOfBirth,
-                  BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender) {
-        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender);
+    public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address, Set<Tag> tags,
+                  DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender) {
+        requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
+                alcoholicRecord, gender);
         this.name = name;
+        this.identityNumber = identityNumber;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.dateOfBirth = dateOfBirth;
+        this.bloodType = bloodType;
+        this.alcoholicRecord = alcoholicRecord;
+        this.gender = gender;
+    }
+
+    /**
+     * Temporary Person stub constructor without identityNumber as parameter.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender) {
+        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType,
+                alcoholicRecord, gender);
+        this.name = name;
+        this.identityNumber = null;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -49,6 +71,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public IdentityNumber getIdentityNumber() {
+        return identityNumber;
     }
 
     public Phone getPhone() {
@@ -70,6 +96,7 @@ public class Person {
     public BloodType getBloodType() {
         return bloodType;
     }
+
     public AlcoholicRecord getAlcoholicRecord() {
         return alcoholicRecord;
     }
@@ -116,6 +143,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+                && identityNumber.equals(otherPerson.identityNumber)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
@@ -129,13 +157,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender);
+        return Objects.hash(name, identityNumber, phone, email, address, tags,
+                dateOfBirth, bloodType, alcoholicRecord, gender);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("identityNumber", identityNumber)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
