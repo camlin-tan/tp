@@ -74,7 +74,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
-                             @JsonProperty("alcoholicRecord") String alcoholicRecord, @JsonProperty("gender") String gender) {
+                             @JsonProperty("alcoholicRecord") String alcoholicRecord,
+                             @JsonProperty("gender") String gender) {
 
         this.name = name;
         this.identityNumber = identityNumber;
