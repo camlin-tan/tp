@@ -46,6 +46,9 @@ public class PersonCard extends UiPart<Region> {
     private Label alcoholicRecord;
     @FXML
     private Label gender;
+    @FXML
+    private Label dateOfBirthAndAge;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -63,5 +66,7 @@ public class PersonCard extends UiPart<Region> {
         bloodType.setText("Blood Type: " + person.getBloodType().bloodType);
         alcoholicRecord.setText("isAlcoholic: " + person.getAlcoholicRecord().alcoholicRecord);
         gender.setText("Gender: " + person.getGender().gender);
+        dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
+                + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
     }
 }

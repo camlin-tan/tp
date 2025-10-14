@@ -103,6 +103,23 @@ public class DateOfBirth {
         return dateOfBirth.equals(otherDate.dateOfBirth);
     }
 
+    /**
+     * Calculates the age based on the date of birth and the current date.
+     *
+     * @return The calculated age as an integer.
+     */
+    public int calculateAge() {
+        LocalDate currentDate = LocalDate.now();
+        int age = currentDate.getYear() - dateOfBirth.getYear();
+
+        // If the birthday hasn't occurred yet this year, subtract one from the age
+        if (currentDate.getDayOfYear() < dateOfBirth.getDayOfYear()) {
+            age--;
+        }
+
+        return age;
+    }
+
     @Override
     public int hashCode() {
         return dateOfBirth.hashCode();
