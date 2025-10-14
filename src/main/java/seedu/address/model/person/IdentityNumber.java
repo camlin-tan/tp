@@ -13,10 +13,10 @@ public class IdentityNumber {
             "ID should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The identity number must consist only of letters, digits, underscores, or hyphens.
+     * It cannot be blank or contain any whitespace characters.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}_-]+$";
 
     public final String identityNumber;
 

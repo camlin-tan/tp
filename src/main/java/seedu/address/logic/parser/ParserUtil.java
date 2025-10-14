@@ -65,7 +65,7 @@ public class ParserUtil {
         requireNonNull(id);
         String trimmedId = id.trim();
         if (!IdentityNumber.isValidId(trimmedId)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(IdentityNumber.MESSAGE_CONSTRAINTS);
         }
         return new IdentityNumber(trimmedId);
     }
