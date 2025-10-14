@@ -21,7 +21,7 @@ public class BloodType {
     public final String bloodType;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code BloodType}.
      *
      * @param bloodType A valid bloodType.
      */
@@ -32,7 +32,7 @@ public class BloodType {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid blood type.
      */
     public static boolean isValidBloodType(String test) {
         return test.matches(VALIDATION_REGEX);

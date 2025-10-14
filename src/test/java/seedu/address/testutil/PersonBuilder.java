@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -25,6 +27,8 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BLOOD_TYPE = "O";
     public static final String DEFAULT_DOB = "01-01-2000";
+    public static final String DEFAULT_ALCOHOLIC_RECORD = "No";
+    public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_SMOKING_RECORD = "no";
 
     private Name name;
@@ -34,6 +38,8 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
+    private AlcoholicRecord alcoholicRecord;
+    private Gender gender;
     private SmokingRecord smokingRecord;
 
     /**
@@ -47,6 +53,8 @@ public class PersonBuilder {
         tags = new HashSet<>();
         bloodType = new BloodType(DEFAULT_BLOOD_TYPE);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
+        alcoholicRecord = new AlcoholicRecord(DEFAULT_ALCOHOLIC_RECORD);
+        gender = new Gender(DEFAULT_GENDER);
         smokingRecord = new SmokingRecord(DEFAULT_SMOKING_RECORD);
     }
 
@@ -61,6 +69,8 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         bloodType = personToCopy.getBloodType();
         dateOfBirth = personToCopy.getDateOfBirth();
+        alcoholicRecord = personToCopy.getAlcoholicRecord();
+        gender = personToCopy.getGender();
         smokingRecord = personToCopy.getSmokingRecord();
     }
 
@@ -121,6 +131,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code alcoholicRecord} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAlcoholicRecord(String alcoholicRecord) {
+        this.alcoholicRecord = new AlcoholicRecord(alcoholicRecord);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+    /**
      * Sets the {@code smokingRecord} of the {@code Person} that we are building.
      */
     public PersonBuilder withSmokingRecord(String smokingRecord) {
@@ -128,8 +153,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the Person object.
+     *
+     * @return The constructed Person object.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType, smokingRecord);
+        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender,
+                smokingRecord);
     }
-
 }

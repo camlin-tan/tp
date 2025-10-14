@@ -8,6 +8,8 @@
     "tags" : [ "friends" ],
     "dob" : "20-05-1998",
     "bloodType" : "O",
+    "alcoholicRecord" : "No",
+    "gender" : "F",
     "smokingRecord" : "yes"
   }, {
     "name" : "Benson Meier",
@@ -15,8 +17,10 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ],
-    "dob" : "20-05-2000",
+    "dob" : "01-01-2000",
     "bloodType" : "O",
+    "alcoholicRecord" : "No",
+    "gender" : "M",
     "smokingRecord" : "no"
   }, {
     "name" : "Carl Kurz",
@@ -26,6 +30,8 @@
     "tags" : [ ],
     "dob" : "20-12-1998",
     "bloodType" : "O",
+    "alcoholicRecord" : "No",
+    "gender" : "M",
     "smokingRecord" : "yes"
   }, {
     "name" : "Daniel Meier",
@@ -35,6 +41,8 @@
     "tags" : [ "friends" ],
     "dob" : "30-05-1995",
     "bloodType" : "O",
+    "alcoholicRecord" : "No",
+    "gender" : "M",
     "smokingRecord" : "yes"
   }, {
     "name" : "Elle Meyer",
@@ -44,6 +52,8 @@
     "tags" : [ ],
     "dob" : "20-11-1999",
     "bloodType" : "O",
+    "alcoholicRecord" : "No",
+    "gender" : "M",
     "smokingRecord" : "no"
   }, {
     "name" : "Fiona Kunz",
@@ -53,15 +63,19 @@
     "tags" : [ ],
     "dob" : "15-08-1997",
     "bloodType" : "O",
+    "alcoholicRecord" : "No",
+    "gender" : "M",
     "smokingRecord" : "no"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tags" : [ ],
-    "dob" : "01-01-2000",
+    "tags" : [ "owesMoney", "friends" ],
+    "dob" : "20-05-2000",
     "bloodType" : "O",
+    "alcoholicRecord" : "No",
+    "gender" : "M",
     "smokingRecord": "yes"
   } ]
 }

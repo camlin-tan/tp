@@ -43,6 +43,12 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label bloodType;
     @FXML
+    private Label alcoholicRecord;
+    @FXML
+    private Label gender;
+    @FXML
+    private Label dateOfBirthAndAge;
+    @FXML
     private Label smokingRecord;
 
     /**
@@ -59,7 +65,11 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        bloodType.setText(person.getBloodType().bloodType);
+        bloodType.setText("Blood Type: " + person.getBloodType().bloodType);
+        alcoholicRecord.setText("isAlcoholic: " + person.getAlcoholicRecord().alcoholicRecord);
+        gender.setText("Gender: " + person.getGender().gender);
+        dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
+                + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
         smokingRecord.setText("Smoker: " + person.getSmokingRecord().toString());
     }
 }

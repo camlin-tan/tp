@@ -10,9 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -141,7 +143,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String bloodType} into a {@code Name}.
+     * Parses a {@code String bloodType} into a {@code BloodType}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code bloodType} is invalid.
@@ -153,6 +155,36 @@ public class ParserUtil {
             throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
         }
         return new BloodType(trimmedBloodType);
+    }
+
+    /**
+     * Parses a {@code String alcoholicRecord} into a {@code AlcoholicRecord}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code alcoholicRecord} is invalid.
+     */
+    public static AlcoholicRecord parseAlcoholicRecord(String alcoholicRecord) throws ParseException {
+        requireNonNull(alcoholicRecord);
+        String trimmedAlcoholicRecord = alcoholicRecord.trim();
+        if (!AlcoholicRecord.isValidAlcoholicRecord(trimmedAlcoholicRecord)) {
+            throw new ParseException(AlcoholicRecord.MESSAGE_CONSTRAINTS);
+        }
+        return new AlcoholicRecord(trimmedAlcoholicRecord);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
     }
 
     /**

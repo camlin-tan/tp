@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
@@ -39,6 +41,8 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_BLOOD_TYPE + person.getBloodType().bloodType + " ");
         sb.append(PREFIX_DATE_OF_BIRTH + person.getDateOfBirth().toString() + " ");
+        sb.append(PREFIX_ALCOHOLIC_RECORD + person.getAlcoholicRecord().toString() + " ");
+        sb.append(PREFIX_GENDER + person.getGender().gender + " ");
         sb.append(PREFIX_SMOKING_RECORD + person.getSmokingRecord().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -58,6 +62,10 @@ public class PersonUtil {
         descriptor.getDateOfBirth().ifPresent(
                 dob -> sb.append(PREFIX_DATE_OF_BIRTH).append(dob.toString()).append(" "));
         descriptor.getBloodType().ifPresent(bloodType -> sb.append(PREFIX_NAME).append(bloodType.bloodType)
+                .append(" "));
+        descriptor.getAlcoholicRecord().ifPresent(alcoholicRecord -> sb.append(PREFIX_ALCOHOLIC_RECORD)
+                .append(alcoholicRecord.alcoholicRecord).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender)
                 .append(" "));
         descriptor.getSmokingRecord().ifPresent(smokingRecord -> sb.append(PREFIX_SMOKING_RECORD)
                 .append(smokingRecord.toString()).append(" "));

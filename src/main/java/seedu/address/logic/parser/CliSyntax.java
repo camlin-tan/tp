@@ -13,5 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_DATE_OF_BIRTH = new Prefix("dob/");
     public static final Prefix PREFIX_BLOOD_TYPE = new Prefix("b/");
+    public static final Prefix PREFIX_ALCOHOLIC_RECORD = new Prefix("ar/");
+    public static final Prefix PREFIX_GENDER = new Prefix("g/");
     public static final Prefix PREFIX_SMOKING_RECORD = new Prefix("s/");
 }
