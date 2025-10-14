@@ -10,6 +10,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SmokingRecord;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BLOOD_TYPE = "O";
     public static final String DEFAULT_DOB = "01-01-2000";
+    public static final String DEFAULT_SMOKING_RECORD = "yes";
 
     private Name name;
     private Phone phone;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
+    private SmokingRecord smokingRecord;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +47,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         bloodType = new BloodType(DEFAULT_BLOOD_TYPE);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
+        smokingRecord = new SmokingRecord(DEFAULT_SMOKING_RECORD);
     }
 
     /**
@@ -57,6 +61,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         bloodType = personToCopy.getBloodType();
         dateOfBirth = personToCopy.getDateOfBirth();
+        smokingRecord = personToCopy.getSmokingRecord();
     }
 
     /**
@@ -115,9 +120,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code smokingRecord} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSmokingRecord(String smokingRecord) {
+        this.smokingRecord = new SmokingRecord(smokingRecord);
+        return this;
+    }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType);
+        return new Person(name, phone, email, address, tags, dateOfBirth, bloodType, smokingRecord);
     }
 
 }

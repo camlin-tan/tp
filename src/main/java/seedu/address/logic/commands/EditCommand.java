@@ -104,7 +104,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        SmokingRecord updatedSmokingRecord = personToEdit.getSmokingRecord();
+        SmokingRecord updatedSmokingRecord = editPersonDescriptor.getSmokingRecord()
+                .orElse(personToEdit.getSmokingRecord());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
@@ -148,6 +149,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private DateOfBirth dateOfBirth;
         private BloodType bloodType;
+        private SmokingRecord smokingRecord;
 
         public EditPersonDescriptor() {}
 
@@ -163,6 +165,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setBloodType(toCopy.bloodType);
             setDateOfBirth(toCopy.dateOfBirth);
+            setSmokingRecord(toCopy.smokingRecord);
         }
 
         /**
@@ -218,6 +221,14 @@ public class EditCommand extends Command {
 
         public Optional<BloodType> getBloodType() {
             return Optional.ofNullable(bloodType);
+        }
+
+        public void setSmokingRecord(SmokingRecord smokingRecord) {
+            this.smokingRecord = smokingRecord;
+        }
+
+        public Optional<SmokingRecord> getSmokingRecord() {
+            return Optional.ofNullable(smokingRecord);
         }
 
         /**
