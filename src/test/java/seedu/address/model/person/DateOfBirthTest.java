@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 public class DateOfBirthTest {
@@ -62,5 +65,28 @@ public class DateOfBirthTest {
         DateOfBirth dob1 = new DateOfBirth("01-01-2000");
         DateOfBirth dob2 = new DateOfBirth("01-01-2000");
         assertEquals(dob1.hashCode(), dob2.hashCode());
+    }
+
+    @Test
+    public void calculateAge_birthdayHasOccurredThisYear_correctAge() {
+        long age = Math.round((Math.random() * 80 + 1));
+        LocalDate dob = LocalDate.now().minusYears(age).minusMonths(1);
+        DateOfBirth dateOfBirth = new DateOfBirth(dob.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        assertEquals(age, dateOfBirth.calculateAge());
+    }
+
+    @Test
+    public void calculateAge_birthdayHasNotOccurredThisYear_correctAge() {
+        long age = Math.round((Math.random() * 80 + 1));
+        LocalDate dob = LocalDate.now().minusYears(age).plusMonths(1);
+        DateOfBirth dateOfBirth = new DateOfBirth(dob.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        assertEquals(age - 1, dateOfBirth.calculateAge());
+    }
+
+    @Test
+    public void calculateAge_birthdayToday_ageIsCorrect() {
+        LocalDate today = LocalDate.now();
+        DateOfBirth dateOfBirth = new DateOfBirth(today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        assertEquals(0, dateOfBirth.calculateAge());
     }
 }

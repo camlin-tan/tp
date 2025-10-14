@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -41,6 +42,7 @@ public class AddCommand extends Command {
             + PREFIX_BLOOD_TYPE + "AB "
             + PREFIX_ALCOHOLIC_RECORD + "No "
             + PREFIX_GENDER + "M "
+            + PREFIX_DATE_OF_BIRTH + "01-01-2000 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
