@@ -16,6 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SmokingRecord;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -35,7 +36,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_BLOOD_TYPE = "AB";
-    private static final String VALID_SMOKING_RECORD = "Yes";
+    private static final String VALID_SMOKING_RECORD = BENSON.getSmokingRecord().toString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -136,7 +137,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB,
                         VALID_BLOOD_TYPE, INVALID_SMOKING_RECORD);
-        String expectedMessage = "Smoking record should be either 'Yes' or 'No'";
+        String expectedMessage = SmokingRecord.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -145,7 +146,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB,
                         VALID_BLOOD_TYPE, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Smoking Record");
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, SmokingRecord.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
