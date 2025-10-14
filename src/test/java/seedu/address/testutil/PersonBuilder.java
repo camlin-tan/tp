@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BLOOD_TYPE = "O";
     public static final String DEFAULT_DOB = "01-01-2000";
-    public static final String DEFAULT_SMOKING_RECORD = "yes";
+    public static final String DEFAULT_SMOKING_RECORD = "no";
 
     private Name name;
     private Phone phone;
