@@ -116,7 +116,6 @@ public class Person {
                 && tags.equals(otherPerson.tags)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && bloodType.equals(otherPerson.bloodType)
-                && tags.equals(otherPerson.tags)
                 && smokingRecord.equals(otherPerson.smokingRecord);
     }
 
