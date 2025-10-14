@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -38,6 +39,7 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_BLOOD_TYPE + person.getBloodType().bloodType + " ");
         sb.append(PREFIX_DATE_OF_BIRTH + person.getDateOfBirth().toString() + " ");
+        sb.append(PREFIX_SMOKING_RECORD + person.getSmokingRecord().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -57,6 +59,8 @@ public class PersonUtil {
                 dob -> sb.append(PREFIX_DATE_OF_BIRTH).append(dob.toString()).append(" "));
         descriptor.getBloodType().ifPresent(bloodType -> sb.append(PREFIX_NAME).append(bloodType.bloodType)
                 .append(" "));
+        descriptor.getSmokingRecord().ifPresent(smokingRecord -> sb.append(PREFIX_SMOKING_RECORD)
+                .append(smokingRecord.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
