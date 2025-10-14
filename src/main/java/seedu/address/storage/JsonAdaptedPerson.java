@@ -16,6 +16,7 @@ import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String identityNumber;
     private final String phone;
     private final String email;
     private final String address;
@@ -40,6 +42,7 @@ class JsonAdaptedPerson {
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Temporary stub constructor.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -50,6 +53,31 @@ class JsonAdaptedPerson {
             @JsonProperty("gender") String gender) {
 
         this.name = name;
+        this.identityNumber = "A89";
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.bloodType = bloodType;
+        this.alcoholicRecord = alcoholicRecord;
+        this.gender = gender;
+        if (tags != null) {
+            this.tags.addAll(tags);
+        }
+    }
+
+    /**
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     */
+    @JsonCreator
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("identityNumber") String identityNumber,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
+                             @JsonProperty("alcoholicRecord") String alcoholicRecord, @JsonProperty("gender") String gender) {
+
+        this.name = name;
+        this.identityNumber = identityNumber;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -67,6 +95,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        identityNumber = source.getIdentityNumber().identityNumber;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -99,6 +128,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (identityNumber == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    IdentityNumber.class.getSimpleName()));
+        }
+        if (!IdentityNumber.isValidId(identityNumber)) {
+            throw new IllegalValueException(IdentityNumber.MESSAGE_CONSTRAINTS);
+        }
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
