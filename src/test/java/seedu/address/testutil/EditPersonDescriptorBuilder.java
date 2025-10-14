@@ -37,6 +37,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+        descriptor.setIdentityNumber(person.getIdentityNumber());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
@@ -52,6 +53,9 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code IdentityNumber} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withIdentityNumber(String id) {
         descriptor.setIdentityNumber(new IdentityNumber(id));
         return this;

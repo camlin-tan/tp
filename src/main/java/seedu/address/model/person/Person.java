@@ -50,25 +50,6 @@ public class Person {
         this.gender = gender;
     }
 
-    /**
-     * Temporary Person stub constructor without identityNumber as parameter.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender) {
-        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType,
-                alcoholicRecord, gender);
-        this.name = name;
-        this.identityNumber = null;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.dateOfBirth = dateOfBirth;
-        this.bloodType = bloodType;
-        this.alcoholicRecord = alcoholicRecord;
-        this.gender = gender;
-    }
-
     public Name getName() {
         return name;
     }

@@ -113,7 +113,7 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getAlcoholicRecord());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
 
-        return new Person(updatedName, updatedPhone, updatedEmail,
+        return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
                 updatedGender);
     }

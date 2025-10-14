@@ -9,8 +9,8 @@ import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -22,7 +22,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ID = "A67";
+    public static final String DEFAULT_ID = "A60";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
@@ -154,7 +154,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Person} with the specified parameters.
+     */
     public Person build() {
-        return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender);
+        return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord,
+                gender);
     }
 }

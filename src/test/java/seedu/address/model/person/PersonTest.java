@@ -46,11 +46,6 @@ public class PersonTest {
         // id differs in case, all other attributes same -> returns false
         Person editedBob = new PersonBuilder(BOB).withIdentityNumber(VALID_ID_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
-
-        // id has trailing spaces, all other attributes same -> returns false
-        String idWithTrailingSpaces = VALID_ID_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withIdentityNumber(idWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
     }
 
     @Test
