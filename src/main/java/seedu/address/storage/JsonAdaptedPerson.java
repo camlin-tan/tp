@@ -42,32 +42,6 @@ class JsonAdaptedPerson {
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
-     * Temporary stub constructor.
-     */
-    @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("dob") String dateOfBirth,
-            @JsonProperty("bloodType") String bloodType,
-            @JsonProperty("alcoholicRecord") String alcoholicRecord,
-            @JsonProperty("gender") String gender) {
-
-        this.name = name;
-        this.identityNumber = "A89";
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.dateOfBirth = dateOfBirth;
-        this.bloodType = bloodType;
-        this.alcoholicRecord = alcoholicRecord;
-        this.gender = gender;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
-    }
-
-    /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("identityNumber") String identityNumber,
@@ -137,6 +111,7 @@ class JsonAdaptedPerson {
         if (!IdentityNumber.isValidId(identityNumber)) {
             throw new IllegalValueException(IdentityNumber.MESSAGE_CONSTRAINTS);
         }
+        final IdentityNumber modelIdentityNumber = new IdentityNumber(identityNumber);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -200,7 +175,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, dob,
+        return new Person(modelName, modelIdentityNumber, modelPhone, modelEmail, modelAddress, modelTags, dob,
                 modelBloodType, modelAlcoholicRecord, modelGender);
     }
 
