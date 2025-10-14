@@ -18,7 +18,7 @@ public class IdentityNumber {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String id;
+    public final String identityNumber;
 
     /**
      * Constructs an {@code Identity number}.
@@ -28,7 +28,7 @@ public class IdentityNumber {
     public IdentityNumber(String id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
-        this.id = id;
+        this.identityNumber = id;
     }
 
     /**
@@ -40,7 +40,7 @@ public class IdentityNumber {
 
     @Override
     public String toString() {
-        return id;
+        return identityNumber;
     }
 
     @Override
@@ -55,12 +55,12 @@ public class IdentityNumber {
         }
 
         IdentityNumber otherId = (IdentityNumber) other;
-        return id.equals(otherId.id);
+        return identityNumber.equals(otherId.identityNumber);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return identityNumber.hashCode();
     }
 
 }
