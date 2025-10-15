@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -36,6 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_BLOOD_TYPE + "BLOOD TYPE "
             + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
             + PREFIX_GENDER + "GENDER "
+            + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -47,6 +49,7 @@ public class AddCommand extends Command {
             + PREFIX_ALCOHOLIC_RECORD + "No "
             + PREFIX_GENDER + "M "
             + PREFIX_DATE_OF_BIRTH + "01-01-2000 "
+            + PREFIX_SMOKING_RECORD + "Yes "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

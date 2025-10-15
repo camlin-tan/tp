@@ -9,7 +9,8 @@
     "dob": "20-05-1998",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "F"
+    "gender" : "F",
+    "smokingRecord": "yes"
   }, {
     "name": "Alice Pauline",
     "identityNumber" : "A23",
@@ -19,6 +20,7 @@
     "dob": "20-05-2000",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "F"
+    "gender" : "F",
+    "smokingRecord": "yes"
   } ]
 }

@@ -10,7 +10,8 @@
     "dob" : "20-05-1998",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "F"
+    "gender" : "F",
+    "smokingRecord" : "yes"
   }, {
     "name" : "Benson Meier",
     "identityNumber" : "BM67",
@@ -21,7 +22,8 @@
     "dob" : "01-01-2000",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "M"
+    "gender" : "M",
+    "smokingRecord" : "no"
   }, {
     "name" : "Carl Kurz",
     "identityNumber" : "CK67",
@@ -32,7 +34,8 @@
     "dob" : "20-12-1998",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "M"
+    "gender" : "M",
+    "smokingRecord" : "yes"
   }, {
     "name" : "Daniel Meier",
     "identityNumber" : "DM67",
@@ -43,7 +46,8 @@
     "dob" : "30-05-1995",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "M"
+    "gender" : "M",
+    "smokingRecord" : "yes"
   }, {
     "name" : "Elle Meyer",
     "identityNumber" : "EM67",
@@ -54,7 +58,8 @@
     "dob" : "20-11-1999",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "M"
+    "gender" : "M",
+    "smokingRecord" : "no"
   }, {
     "name" : "Fiona Kunz",
     "identityNumber" : "FK67",
@@ -65,7 +70,8 @@
     "dob" : "15-08-1997",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "M"
+    "gender" : "M",
+    "smokingRecord" : "no"
   }, {
     "name" : "George Best",
     "identityNumber" : "GB67",
@@ -76,6 +82,7 @@
     "dob" : "20-05-2000",
     "bloodType" : "O",
     "alcoholicRecord" : "No",
-    "gender" : "M"
+    "gender" : "M",
+    "smokingRecord": "yes"
   } ]
 }

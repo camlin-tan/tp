@@ -18,6 +18,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SmokingRecord;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -200,5 +201,20 @@ public class ParserUtil {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String smokingRecord} into a {@code SmokingRecord}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code smokingRecord} is invalid.
+     */
+    public static SmokingRecord parseSmokingRecord(String smokingRecord) throws ParseException {
+        requireNonNull(smokingRecord);
+        String trimmedRecord = smokingRecord.trim();
+        if (!SmokingRecord.isValidSmokingRecord(trimmedRecord)) {
+            throw new ParseException(SmokingRecord.MESSAGE_CONSTRAINTS);
+        }
+        return new SmokingRecord(trimmedRecord);
     }
 }

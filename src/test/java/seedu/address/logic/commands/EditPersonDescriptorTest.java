@@ -70,7 +70,8 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getDateOfBirth().orElse(null) + ", bloodType="
                 + editPersonDescriptor.getBloodType().orElse(null) + ", alcoholicRecord="
                 + editPersonDescriptor.getAlcoholicRecord().orElse(null) + ", gender="
-                + editPersonDescriptor.getGender().orElse(null) + "}";
+                + editPersonDescriptor.getGender().orElse(null) + ", smokingRecord="
+                + editPersonDescriptor.getSmokingRecord().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

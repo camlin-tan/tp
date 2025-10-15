@@ -50,6 +50,8 @@ public class PersonCard extends UiPart<Region> {
     private Label gender;
     @FXML
     private Label dateOfBirthAndAge;
+    @FXML
+    private Label smokingRecord;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -71,5 +73,6 @@ public class PersonCard extends UiPart<Region> {
         gender.setText("Gender: " + person.getGender().gender);
         dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
                 + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
+        smokingRecord.setText("Smoker: " + person.getSmokingRecord().toString());
     }
 }

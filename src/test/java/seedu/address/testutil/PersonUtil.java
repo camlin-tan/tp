@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -44,6 +45,7 @@ public class PersonUtil {
         sb.append(PREFIX_DATE_OF_BIRTH + person.getDateOfBirth().toString() + " ");
         sb.append(PREFIX_ALCOHOLIC_RECORD + person.getAlcoholicRecord().toString() + " ");
         sb.append(PREFIX_GENDER + person.getGender().gender + " ");
+        sb.append(PREFIX_SMOKING_RECORD + person.getSmokingRecord().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -69,6 +71,8 @@ public class PersonUtil {
                 .append(alcoholicRecord.alcoholicRecord).append(" "));
         descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender)
                 .append(" "));
+        descriptor.getSmokingRecord().ifPresent(smokingRecord -> sb.append(PREFIX_SMOKING_RECORD)
+                .append(smokingRecord.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

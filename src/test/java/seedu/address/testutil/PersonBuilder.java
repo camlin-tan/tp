@@ -13,6 +13,7 @@ import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SmokingRecord;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -30,6 +31,7 @@ public class PersonBuilder {
     public static final String DEFAULT_DOB = "01-01-2000";
     public static final String DEFAULT_ALCOHOLIC_RECORD = "No";
     public static final String DEFAULT_GENDER = "F";
+    public static final String DEFAULT_SMOKING_RECORD = "no";
 
     private Name name;
     private IdentityNumber identityNumber;
@@ -41,6 +43,7 @@ public class PersonBuilder {
     private DateOfBirth dateOfBirth;
     private AlcoholicRecord alcoholicRecord;
     private Gender gender;
+    private SmokingRecord smokingRecord;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -56,6 +59,7 @@ public class PersonBuilder {
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
         alcoholicRecord = new AlcoholicRecord(DEFAULT_ALCOHOLIC_RECORD);
         gender = new Gender(DEFAULT_GENDER);
+        smokingRecord = new SmokingRecord(DEFAULT_SMOKING_RECORD);
     }
 
     /**
@@ -72,6 +76,7 @@ public class PersonBuilder {
         dateOfBirth = personToCopy.getDateOfBirth();
         alcoholicRecord = personToCopy.getAlcoholicRecord();
         gender = personToCopy.getGender();
+        smokingRecord = personToCopy.getSmokingRecord();
     }
 
     /**
@@ -153,12 +158,19 @@ public class PersonBuilder {
         this.gender = new Gender(gender);
         return this;
     }
+    /**
+     * Sets the {@code smokingRecord} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSmokingRecord(String smokingRecord) {
+        this.smokingRecord = new SmokingRecord(smokingRecord);
+        return this;
+    }
 
     /**
      * Builds the {@code Person} with the specified parameters.
      */
     public Person build() {
         return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord,
-                gender);
+                gender, smokingRecord);
     }
 }

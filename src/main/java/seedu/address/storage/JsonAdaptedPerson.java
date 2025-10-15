@@ -20,6 +20,7 @@ import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SmokingRecord;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,6 +37,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String dateOfBirth;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String smokingRecord;
     private final String bloodType;
     private final String alcoholicRecord;
     private final String gender;
@@ -49,7 +51,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord,
-                             @JsonProperty("gender") String gender) {
+                             @JsonProperty("gender") String gender,
+                             @JsonProperty("smokingRecord") String smokingRecord) {
 
         this.name = name;
         this.identityNumber = identityNumber;
@@ -63,6 +66,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.smokingRecord = smokingRecord;
     }
 
     /**
@@ -78,6 +82,7 @@ class JsonAdaptedPerson {
         bloodType = source.getBloodType().bloodType;
         alcoholicRecord = source.getAlcoholicRecord().alcoholicRecord;
         gender = source.getGender().gender;
+        smokingRecord = source.getSmokingRecord().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -155,6 +160,15 @@ class JsonAdaptedPerson {
         }
         final BloodType modelBloodType = new BloodType(bloodType);
 
+        if (smokingRecord == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    SmokingRecord.class.getSimpleName()));
+        }
+        if (!SmokingRecord.isValidSmokingRecord(smokingRecord)) {
+            throw new IllegalValueException(SmokingRecord.MESSAGE_CONSTRAINTS);
+        }
+        final SmokingRecord modelSmokingRecord = new SmokingRecord(smokingRecord);
+
         if (alcoholicRecord == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AlcoholicRecord.class.getSimpleName()));
@@ -176,7 +190,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelIdentityNumber, modelPhone, modelEmail, modelAddress, modelTags, dob,
-                modelBloodType, modelAlcoholicRecord, modelGender);
+                modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord);
     }
 
 }

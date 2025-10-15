@@ -2,10 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -32,6 +37,7 @@ import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SmokingRecord;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,6 +56,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DATE_OF_BIRTH + "DATE OF BIRTH] "
+            + "[" + PREFIX_BLOOD_TYPE + "BLOOD TYPE] "
+            + "[" + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD] "
+            + "[" + PREFIX_GENDER + "GENDER] "
+            + "[" + PREFIX_SMOKING_RECORD + "SMOKING RECORD] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -110,6 +121,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        SmokingRecord updatedSmokingRecord = editPersonDescriptor.getSmokingRecord()
+                .orElse(personToEdit.getSmokingRecord());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         AlcoholicRecord updatedAlcoholicRecord = editPersonDescriptor.getAlcoholicRecord()
                 .orElse(personToEdit.getAlcoholicRecord());
@@ -117,7 +130,7 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
-                updatedGender);
+                updatedGender, updatedSmokingRecord);
     }
 
     @Override
@@ -159,6 +172,7 @@ public class EditCommand extends Command {
         private BloodType bloodType;
         private AlcoholicRecord alcoholicRecord;
         private Gender gender;
+        private SmokingRecord smokingRecord;
 
         public EditPersonDescriptor() {}
 
@@ -176,7 +190,9 @@ public class EditCommand extends Command {
             setBloodType(toCopy.bloodType);
             setDateOfBirth(toCopy.dateOfBirth);
             setAlcoholicRecord(toCopy.alcoholicRecord);
+            setDateOfBirth(toCopy.dateOfBirth);
             setGender(toCopy.gender);
+            setSmokingRecord(toCopy.smokingRecord);
         }
 
         /**
@@ -184,7 +200,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth,
-                    bloodType, alcoholicRecord, gender);
+                    bloodType, alcoholicRecord, gender, smokingRecord);
         }
 
         public void setName(Name name) {
@@ -242,6 +258,7 @@ public class EditCommand extends Command {
         public Optional<BloodType> getBloodType() {
             return Optional.ofNullable(bloodType);
         }
+
         public void setAlcoholicRecord(AlcoholicRecord alcoholicRecord) {
             this.alcoholicRecord = alcoholicRecord;
         }
@@ -255,6 +272,14 @@ public class EditCommand extends Command {
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
+        }
+
+        public void setSmokingRecord(SmokingRecord smokingRecord) {
+            this.smokingRecord = smokingRecord;
+        }
+
+        public Optional<SmokingRecord> getSmokingRecord() {
+            return Optional.ofNullable(smokingRecord);
         }
 
         /**
@@ -295,7 +320,8 @@ public class EditCommand extends Command {
                     && Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth)
                     && Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)
                     && Objects.equals(alcoholicRecord, otherEditPersonDescriptor.alcoholicRecord)
-                    && Objects.equals(gender, otherEditPersonDescriptor.gender);
+                    && Objects.equals(gender, otherEditPersonDescriptor.gender)
+                    && Objects.equals(smokingRecord, otherEditPersonDescriptor.smokingRecord);
         }
 
         @Override
@@ -311,6 +337,7 @@ public class EditCommand extends Command {
                     .add("bloodType", bloodType)
                     .add("alcoholicRecord", alcoholicRecord)
                     .add("gender", gender)
+                    .add("smokingRecord", smokingRecord)
                     .toString();
         }
     }

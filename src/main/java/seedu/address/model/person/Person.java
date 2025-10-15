@@ -29,15 +29,16 @@ public class Person {
     private final DateOfBirth dateOfBirth;
     private final AlcoholicRecord alcoholicRecord;
     private final Gender gender;
-
+    private final SmokingRecord smokingRecord;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address, Set<Tag> tags,
-                  DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender) {
+                  DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender,
+                  SmokingRecord smokingRecord) {
         requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
-                alcoholicRecord, gender);
+                alcoholicRecord, gender, smokingRecord);
         this.name = name;
         this.identityNumber = identityNumber;
         this.phone = phone;
@@ -48,6 +49,7 @@ public class Person {
         this.bloodType = bloodType;
         this.alcoholicRecord = alcoholicRecord;
         this.gender = gender;
+        this.smokingRecord = smokingRecord;
     }
 
     public Name getName() {
@@ -94,6 +96,10 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public SmokingRecord getSmokingRecord() {
+        return smokingRecord;
+    }
+
     /**
      * Returns true if both persons have the same identity number.
      * This defines a weaker notion of equality between two persons.
@@ -132,14 +138,15 @@ public class Person {
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && bloodType.equals(otherPerson.bloodType)
                 && alcoholicRecord.equals(otherPerson.alcoholicRecord)
-                && gender.equals(otherPerson.gender);
+                && gender.equals(otherPerson.gender)
+                && smokingRecord.equals(otherPerson.smokingRecord);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, identityNumber, phone, email, address, tags,
-                dateOfBirth, bloodType, alcoholicRecord, gender);
+                dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord);
     }
 
     @Override
@@ -155,6 +162,7 @@ public class Person {
                 .add("bloodType", bloodType)
                 .add("alcoholicRecord", alcoholicRecord)
                 .add("gender", gender)
+                .add("smokingRecord", smokingRecord)
                 .toString();
     }
 

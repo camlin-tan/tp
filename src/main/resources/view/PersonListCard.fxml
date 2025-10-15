@@ -36,6 +36,7 @@
       <Label fx:id="bloodType" styleClass="cell_small_label" text="\$bloodType" />
       <Label fx:id="alcoholicRecord" styleClass="cell_small_label" text="\$alcoholicRecord" />
       <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
+      <Label fx:id="smokingRecord" styleClass="cell_small_label" text="\$smokingRecord" />
     </VBox>
   </GridPane>
 </HBox>
