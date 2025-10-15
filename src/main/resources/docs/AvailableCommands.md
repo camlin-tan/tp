@@ -15,7 +15,7 @@ Adds a patient with the specified fields
 - Smoking Record: `s/`
 - Tags (optional): `t/`
 
-Example: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dob/02-02-2000 b/AB- g/F 
+Example: `add n/Betsy Crowe id/BC67 t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dob/02-02-2000 b/AB- g/F 
 ar/NO s/NO t/criminal`
 <br><br>
 ## Delete a patient: `delete`
