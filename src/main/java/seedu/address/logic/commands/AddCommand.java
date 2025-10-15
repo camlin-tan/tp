@@ -37,6 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_BLOOD_TYPE + "BLOOD TYPE "
             + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
             + PREFIX_GENDER + "GENDER "
+            + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
