@@ -42,6 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setDateOfBirth(person.getDateOfBirth());
+        descriptor.setSmokingRecord(person.getSmokingRecord());
     }
 
     /**
