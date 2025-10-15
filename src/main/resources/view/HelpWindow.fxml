@@ -12,7 +12,7 @@
     <scene>
         <Scene>
             <VBox>
-                <WebView fx:id="helpContent" prefWidth="600" prefHeight="400"/>
+                <WebView fx:id="helpContent" prefWidth="1100" prefHeight="800"/>
             </VBox>
         </Scene>
     </scene>

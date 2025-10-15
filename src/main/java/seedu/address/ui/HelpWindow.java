@@ -55,11 +55,29 @@ public class HelpWindow extends UiPart<Stage> {
             }
 
             String markdown = new String(input.readAllBytes(), StandardCharsets.UTF_8);
-
             Parser parser = Parser.builder().build();
             HtmlRenderer renderer = HtmlRenderer.builder().build();
             Node document = parser.parse(markdown);
-            String html = renderer.render(document);
+            String htmlBody = renderer.render(document);
+
+            InputStream cssStream = getClass().getResourceAsStream("/docs/AvailableCommands.css");
+            String css = "";
+            if (cssStream != null) {
+                css = new String(cssStream.readAllBytes(), StandardCharsets.UTF_8);
+            }
+
+            String html =
+                """
+                <html>
+                    <head>
+                        <meta charset="UTF-8">
+                        <style>%s</style>
+                    </head>
+                    <body>
+                        %s
+                    </body>
+                </html>
+                """.formatted(css, htmlBody);
 
             helpContent.getEngine().loadContent(html);
         } catch (IOException e) {
