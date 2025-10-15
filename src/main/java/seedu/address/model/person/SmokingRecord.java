@@ -32,7 +32,7 @@ public class SmokingRecord {
 
     @Override
     public String toString() {
-        return isSmoker ? "Yes" : "No";
+        return isSmoker ? "YES" : "NO";
     }
 
     @Override

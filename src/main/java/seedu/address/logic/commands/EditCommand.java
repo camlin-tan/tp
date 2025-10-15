@@ -193,7 +193,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, dateOfBirth, bloodType,
-                    alcoholicRecord);
+                    alcoholicRecord, smokingRecord);
         }
 
         public void setName(Name name) {
