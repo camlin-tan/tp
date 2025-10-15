@@ -18,6 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final IdentityNumber identityNumber;
     private final Phone phone;
     private final Email email;
 
@@ -33,11 +34,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DateOfBirth dateOfBirth,
-                  BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender, SmokingRecord smokingRecord) {
-        requireAllNonNull(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender,
-                smokingRecord);
+    public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address, Set<Tag> tags,
+                  DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender,
+                  SmokingRecord smokingRecord) {
+        requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
+                alcoholicRecord, gender, smokingRecord);
         this.name = name;
+        this.identityNumber = identityNumber;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -51,6 +54,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public IdentityNumber getIdentityNumber() {
+        return identityNumber;
     }
 
     public Phone getPhone() {
@@ -72,6 +79,7 @@ public class Person {
     public BloodType getBloodType() {
         return bloodType;
     }
+
     public AlcoholicRecord getAlcoholicRecord() {
         return alcoholicRecord;
     }
@@ -93,7 +101,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same identity number.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -102,7 +110,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getIdentityNumber().equals(getIdentityNumber());
     }
 
     /**
@@ -122,6 +130,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+                && identityNumber.equals(otherPerson.identityNumber)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
@@ -136,14 +145,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord, gender,
-                smokingRecord);
+        return Objects.hash(name, identityNumber, phone, email, address, tags,
+                dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("identityNumber", identityNumber)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)

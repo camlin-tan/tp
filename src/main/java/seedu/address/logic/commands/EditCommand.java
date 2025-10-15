@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
@@ -32,6 +33,7 @@ import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -50,6 +52,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_IDENTITY_NUMBER + "IDENTITY_NUMBER] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -111,6 +114,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        IdentityNumber updatedIdentityNumber = editPersonDescriptor.getIdentityNumber()
+                .orElse(personToEdit.getIdentityNumber());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -123,7 +128,7 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getAlcoholicRecord());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
 
-        return new Person(updatedName, updatedPhone, updatedEmail,
+        return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
                 updatedGender, updatedSmokingRecord);
     }
@@ -158,6 +163,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private IdentityNumber identityNumber;
         private Phone phone;
         private Email email;
         private Address address;
@@ -176,6 +182,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setIdentityNumber(toCopy.identityNumber);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -192,8 +199,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, dateOfBirth, bloodType,
-                    alcoholicRecord, smokingRecord);
+            return CollectionUtil.isAnyNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth,
+                    bloodType, alcoholicRecord, gender, smokingRecord);
         }
 
         public void setName(Name name) {
@@ -202,6 +209,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setIdentityNumber(IdentityNumber identityNumber) {
+            this.identityNumber = identityNumber;
+        }
+
+        public Optional<IdentityNumber> getIdentityNumber() {
+            return Optional.ofNullable(identityNumber);
         }
 
         public void setPhone(Phone phone) {
@@ -297,6 +312,7 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
+                    && Objects.equals(identityNumber, otherEditPersonDescriptor.identityNumber)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
@@ -312,6 +328,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
+                    .add("identityNumber", identityNumber)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
