@@ -15,6 +15,7 @@ import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -52,6 +53,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String id} into an {@code IdentityNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static IdentityNumber parseIdentityNumber(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!IdentityNumber.isValidId(trimmedId)) {
+            throw new ParseException(IdentityNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new IdentityNumber(trimmedId);
     }
 
     /**
