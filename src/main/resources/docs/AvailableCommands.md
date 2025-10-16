@@ -25,6 +25,9 @@ Deletes the person at the specified INDEX
 Format: `delete <INDEX>`
 
 Example: `delete 1`
+## List all patients: `list`
+## Find patients by name: `find KEYWORD [MORE_KEYWORDS]`
 ## View available commands: `help`
 ## Exit the program: `exit`
+
 

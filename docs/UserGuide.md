@@ -89,8 +89,8 @@ ar/ALCOHOLIC_RECORDS(YES/NO) s/SMOKING_RECORDS(YES/NO) [t/TAG]…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dob/01-01-1990 b/O+ g/M ar/NO s/NO`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dob/02-02-2000 b/AB- g/F ar/NO s/NO
+* `add id/A00001234A n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dob/01-01-1990 b/O+ g/M ar/NO s/NO`
+* `add id/B00004567B n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dob/02-02-2000 b/AB- g/F ar/NO s/NO
 t/criminal`
 
 ### Listing all persons : `list`
@@ -198,12 +198,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                                  |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add id/IDENTITY n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS dob/DATE_OF_BIRTH b/BLOOD_TYPE g/GENDER ar/ALCOHOLIC_RECORDS(YES/NO) s/SMOKING_RECORDS(YES/NO) [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dob/01-01-1990 b/O+ g/M ar/NO s/NO` |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                                           |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                               |
-| **Edit**   | `edit INDEX [id/IDENTITY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [dob/DATE_OF_BIRTH] [b/BLOOD_TYPE] [g/GENDER] [ar/ALCOHOLIC_RECORDS(YES/NO)] [s/SMOKING_RECORDS(YES/NO)] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                       |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                        |
-| **List**   | `list`                                                                                                                                                                                                                                                                                            |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                            |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add id/IDENTITY n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS dob/DATE_OF_BIRTH b/BLOOD_TYPE g/GENDER ar/ALCOHOLIC_RECORDS(YES/NO) s/SMOKING_RECORDS(YES/NO) [t/TAG]…​` <br> e.g., `add id/A00001234A n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dob/01-01-1990 b/O+ g/M ar/NO s/NO` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                         |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                             |
+| **Edit**   | `edit INDEX [id/IDENTITY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [dob/DATE_OF_BIRTH] [b/BLOOD_TYPE] [g/GENDER] [ar/ALCOHOLIC_RECORDS(YES/NO)] [s/SMOKING_RECORDS(YES/NO)] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                     |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                      |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                          |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                          |
