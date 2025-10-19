@@ -348,7 +348,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("emergency contact", emergencyContact)
+                    .add("emergencyContact", emergencyContact)
                     .add("tags", tags)
                     .add("dateOfBirth", dateOfBirth)
                     .add("bloodType", bloodType)

@@ -111,8 +111,8 @@ public class ParserUtil {
     public static EmergencyContact parseEmergencyContact(String emergencyContact) throws ParseException {
         requireNonNull(emergencyContact);
         String trimmedEmergencyContact = emergencyContact.trim();
-        if (!Address.isValidAddress(trimmedEmergencyContact)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!EmergencyContact.isValidEmergencyContact(trimmedEmergencyContact)) {
+            throw new ParseException(EmergencyContact.MESSAGE_FORMAT_CONSTRAINTS);
         }
         return new EmergencyContact(trimmedEmergencyContact);
     }
