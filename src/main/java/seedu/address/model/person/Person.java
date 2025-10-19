@@ -24,6 +24,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final EmergencyContact emergencyContact;
     private final Set<Tag> tags = new HashSet<>();
     private final BloodType bloodType;
     private final DateOfBirth dateOfBirth;
@@ -33,6 +34,28 @@ public class Person {
 
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address,
+                  EmergencyContact emergencyContact, Set<Tag> tags, DateOfBirth dateOfBirth, BloodType bloodType,
+                  AlcoholicRecord alcoholicRecord, Gender gender, SmokingRecord smokingRecord) {
+        requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
+                alcoholicRecord, gender, smokingRecord);
+        this.name = name;
+        this.identityNumber = identityNumber;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.emergencyContact = emergencyContact;
+        this.tags.addAll(tags);
+        this.dateOfBirth = dateOfBirth;
+        this.bloodType = bloodType;
+        this.alcoholicRecord = alcoholicRecord;
+        this.gender = gender;
+        this.smokingRecord = smokingRecord;
+    }
+
+    /**
+     * Temporary stub constructor without EmergencyContact as parameter.
      */
     public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address, Set<Tag> tags,
                   DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender,
@@ -44,6 +67,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.emergencyContact = new EmergencyContact("[relationship] 123456789");
         this.tags.addAll(tags);
         this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
@@ -70,6 +94,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public EmergencyContact getEmergencyContact() {
+        return emergencyContact;
     }
 
     public DateOfBirth getDateOfBirth() {
@@ -134,6 +162,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && emergencyContact.equals(otherPerson.emergencyContact)
                 && tags.equals(otherPerson.tags)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && bloodType.equals(otherPerson.bloodType)
@@ -145,7 +174,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, identityNumber, phone, email, address, tags,
+        return Objects.hash(name, identityNumber, phone, email, address, emergencyContact, tags,
                 dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord);
     }
 
@@ -157,6 +186,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("emergencyContact", emergencyContact)
                 .add("tags", tags)
                 .add("dateOfBirth", dateOfBirth)
                 .add("bloodType", bloodType)
