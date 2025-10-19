@@ -14,6 +14,7 @@ import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
@@ -99,6 +100,21 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String emergencyContact} into an {@code EmergencyContact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code emergencyContact} is invalid.
+     */
+    public static EmergencyContact parseEmergencyContact(String emergencyContact) throws ParseException {
+        requireNonNull(emergencyContact);
+        String trimmedEmergencyContact = emergencyContact.trim();
+        if (!Address.isValidAddress(trimmedEmergencyContact)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new EmergencyContact(trimmedEmergencyContact);
     }
 
     /**
