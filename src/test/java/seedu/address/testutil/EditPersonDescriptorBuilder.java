@@ -9,6 +9,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
@@ -42,6 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setEmergencyContact(person.getEmergencyContact());
         descriptor.setTags(person.getTags());
         descriptor.setDateOfBirth(person.getDateOfBirth());
         descriptor.setSmokingRecord(person.getSmokingRecord());
@@ -86,6 +88,15 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(new Address(address));
         return this;
     }
+
+    /**
+     * Sets the {@code EmergencyContact} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withEmergencyContact(String emergencyContact) {
+        descriptor.setEmergencyContact(new EmergencyContact(emergencyContact));
+        return this;
+    }
+
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
