@@ -146,8 +146,11 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
         }
+        if (!DateOfBirth.isValidDate(dateOfBirth)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
+        }
         if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
-            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS);
         }
         final DateOfBirth dob = new DateOfBirth(dateOfBirth);
 

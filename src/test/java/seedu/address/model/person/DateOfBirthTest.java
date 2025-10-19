@@ -24,20 +24,20 @@ public class DateOfBirthTest {
     }
 
     @Test
-    public void isValidDateOfBirth() {
+    public void isValidDate() {
         // null date of birth
-        assertThrows(NullPointerException.class, () -> DateOfBirth.isValidDateOfBirth(null));
+        assertThrows(NullPointerException.class, () -> DateOfBirth.isValidDate(null));
 
         // invalid date of birth
-        assertFalse(DateOfBirth.isValidDateOfBirth("")); // empty string
-        assertFalse(DateOfBirth.isValidDateOfBirth(" ")); // spaces only
-        assertFalse(DateOfBirth.isValidDateOfBirth("not-a-date"));
-        assertFalse(DateOfBirth.isValidDateOfBirth("2020-02-30")); // invalid date
-        assertFalse(DateOfBirth.isValidDateOfBirth("31/14/1999")); // wrong month
+        assertFalse(DateOfBirth.isValidDate("")); // empty string
+        assertFalse(DateOfBirth.isValidDate(" ")); // spaces only
+        assertFalse(DateOfBirth.isValidDate("not-a-date"));
+        assertFalse(DateOfBirth.isValidDate("2020-02-30")); // invalid date
+        assertFalse(DateOfBirth.isValidDate("31/14/1999")); // wrong month
 
         // valid date of birth
-        assertTrue(DateOfBirth.isValidDateOfBirth("31-12-1999"));
-        assertTrue(DateOfBirth.isValidDateOfBirth("01-01-2000"));
+        assertTrue(DateOfBirth.isValidDate("31-12-1999"));
+        assertTrue(DateOfBirth.isValidDate("01-01-2000"));
     }
 
     @Test

@@ -48,6 +48,24 @@ public class DateParserUtil {
     }
 
     /**
+     * Checks if the given {@code LocalDate} is before or equal to the current date.
+     *
+     * @param date The {@code String} to be compared. Must not be null.
+     * @return {@code true} if the given date is before or equal to today's date, {@code false} otherwise.
+     */
+    public static boolean isBeforeOrEqualToday(String date, List<DateTimeFormatter> formatters) {
+        LocalDate now = LocalDate.now();
+        return formatters.stream().anyMatch(formatter -> {
+            try {
+                LocalDate parsedDate = LocalDate.parse(date, formatter);
+                return !parsedDate.isAfter(now);
+            } catch (DateTimeParseException e) {
+                return false;
+            }
+        });
+    }
+
+    /**
      * Checks if a given date string is valid according to any of the specified {@code DateTimeFormatter} formats.
      *
      * @param dateString The date string to be validated. Must not be null.
