@@ -5,6 +5,7 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -158,6 +159,20 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+
+    @Test
+    public void toModelType_futureDateOfBirth_throwsIllegalValueException() {
+        LocalDate future = LocalDate.now().plusDays(1);
+        String futureDateString = future.format(DateOfBirth.DATE_FORMATTER);
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_TAGS, futureDateString, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
+                        VALID_SMOKING_RECORD);
+
+        String expectedMessage = DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
     @Test
     public void toModelType_invalidAlcoholicRecord_throwsIllegalValueException() {
         JsonAdaptedPerson person =
