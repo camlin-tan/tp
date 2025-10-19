@@ -21,7 +21,7 @@ public class EmergencyContact {
      * where the relationship is inside square brackets and the phone number
      * contains at least three digits (e.g. [mother] 91234567).
      */
-    public static final String VALIDATION_REGEX = "\\[[^\\]]+\\]\\s+\\d{3,}";
+    public static final String VALIDATION_REGEX = "^\\[[^\\]]+\\]\\s+\\+?\\d{1,3}?\\s?\\d{3,}$";
     public final Phone phone;
     public final String relationship;
 
