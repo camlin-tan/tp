@@ -45,7 +45,8 @@ public class DateParserUtilTest {
 
     @Test
     public void parseDate_emptyFormatters_throwsDateTimeParseException() {
-        assertThrows(DateTimeParseException.class, () -> DateParserUtil.parseDate("2020-01-01", Collections.emptyList()));
+        assertThrows(DateTimeParseException.class, () ->
+                DateParserUtil.parseDate("2020-01-01", Collections.emptyList()));
     }
 
     @Test

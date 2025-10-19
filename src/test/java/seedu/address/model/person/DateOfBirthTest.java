@@ -41,6 +41,28 @@ public class DateOfBirthTest {
     }
 
     @Test
+    public void isValidDateOfBirth() {
+        // null date of birth
+        assertThrows(NullPointerException.class, () -> DateOfBirth.isValidDateOfBirth(null));
+
+        // invalid date
+        assertFalse(DateOfBirth.isValidDateOfBirth("")); // empty string
+        assertFalse(DateOfBirth.isValidDateOfBirth(" ")); // spaces only
+        assertFalse(DateOfBirth.isValidDateOfBirth("not-a-date"));
+        assertFalse(DateOfBirth.isValidDateOfBirth("2020-02-30")); // invalid date
+        assertFalse(DateOfBirth.isValidDateOfBirth("31/14/1999")); // wrong month
+
+        // future date
+        LocalDate futureDate = LocalDate.now().plusDays(1);
+        String futureDateString = futureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        assertFalse(DateOfBirth.isValidDateOfBirth(futureDateString));
+
+        // valid date of birth
+        assertTrue(DateOfBirth.isValidDateOfBirth("31-12-1999"));
+        assertTrue(DateOfBirth.isValidDateOfBirth("01-01-2000"));
+    }
+
+    @Test
     public void equals() {
         DateOfBirth dob = new DateOfBirth("01-01-2000");
 
