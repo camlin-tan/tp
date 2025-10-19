@@ -11,12 +11,15 @@ import seedu.address.model.util.DateParserUtil;
 
 /**
  * Represents a person's date of birth in the system.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateOfBirth(String)}.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}.
  */
 public class DateOfBirth {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be of the following formats: DD-MM-YYYY, DD/MM/YYYY or DD.MM.YYYY";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS =
+            "Date of birth should be of the following formats: "
+                    + "DD-MM-YYYY, DD/MM/YYYY or DD.MM.YYYY";
+
+    public static final String MESSAGE_PAST_DATE_CONSTRAINTS = "Date of birth should not be a future date.";
 
     /**
      * A list of {@code DateTimeFormatter} objects that define the supported date formats.
@@ -72,15 +75,26 @@ public class DateOfBirth {
      */
     public DateOfBirth(String dateOfBirth) {
         requireNonNull(dateOfBirth);
-        checkArgument(isValidDateOfBirth(dateOfBirth), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(dateOfBirth), MESSAGE_FORMAT_CONSTRAINTS);
+        checkArgument(isValidDateOfBirth(dateOfBirth), MESSAGE_PAST_DATE_CONSTRAINTS);
         this.dateOfBirth = DateParserUtil.parseDate(dateOfBirth, FORMATTERS);
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDateOfBirth(String test) {
+    public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX) && DateParserUtil.isValidDate(test, FORMATTERS);
+    }
+
+    /**
+     * Validates if a given string represents a valid date of birth.
+     * The date must be in an acceptable format and must not be after the current date.
+     *
+     * @param test The date of birth string to validate. Must not be null
+     */
+    public static boolean isValidDateOfBirth(String test) {
+        return DateParserUtil.isBeforeOrEqualToday(test, FORMATTERS);
     }
 
 
