@@ -54,28 +54,6 @@ public class Person {
         this.smokingRecord = smokingRecord;
     }
 
-    /**
-     * Temporary stub constructor without EmergencyContact as parameter.
-     */
-    public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address, Set<Tag> tags,
-                  DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender,
-                  SmokingRecord smokingRecord) {
-        requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
-                alcoholicRecord, gender, smokingRecord);
-        this.name = name;
-        this.identityNumber = identityNumber;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.emergencyContact = new EmergencyContact("[relationship] 123456789");
-        this.tags.addAll(tags);
-        this.dateOfBirth = dateOfBirth;
-        this.bloodType = bloodType;
-        this.alcoholicRecord = alcoholicRecord;
-        this.gender = gender;
-        this.smokingRecord = smokingRecord;
-    }
-
     public Name getName() {
         return name;
     }
