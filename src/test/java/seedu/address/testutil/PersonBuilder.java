@@ -8,6 +8,7 @@ import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_EMERGENCY_CONTACT = "[mother] 123456789";
     public static final String DEFAULT_BLOOD_TYPE = "O";
     public static final String DEFAULT_DOB = "01-01-2000";
     public static final String DEFAULT_ALCOHOLIC_RECORD = "No";
@@ -38,6 +40,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private EmergencyContact emergencyContact;
     private Set<Tag> tags;
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
@@ -54,6 +57,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        emergencyContact = new EmergencyContact(DEFAULT_EMERGENCY_CONTACT);
         tags = new HashSet<>();
         bloodType = new BloodType(DEFAULT_BLOOD_TYPE);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
@@ -71,6 +75,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        emergencyContact = personToCopy.getEmergencyContact();
         tags = new HashSet<>(personToCopy.getTags());
         bloodType = personToCopy.getBloodType();
         dateOfBirth = personToCopy.getDateOfBirth();
@@ -108,6 +113,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmergencyContact(String emergencyContact) {
+        this.emergencyContact = new EmergencyContact(emergencyContact);
         return this;
     }
 
@@ -170,7 +183,7 @@ public class PersonBuilder {
      * Builds the {@code Person} with the specified parameters.
      */
     public Person build() {
-        return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord,
-                gender, smokingRecord);
+        return new Person(name, identityNumber, phone, email, address, emergencyContact, tags, dateOfBirth, bloodType,
+                alcoholicRecord, gender, smokingRecord);
     }
 }
