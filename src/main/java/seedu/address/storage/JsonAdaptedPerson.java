@@ -51,11 +51,11 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("identityNumber") String identityNumber,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("medicines") List<JsonAdaptedMedicine> medicines,
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord,
                              @JsonProperty("gender") String gender,
-                             @JsonProperty("smokingRecord") String smokingRecord) {
+                             @JsonProperty("smokingRecord") String smokingRecord,
+                             @JsonProperty("medicines") List<JsonAdaptedMedicine> medicines) {
 
         this.name = name;
         this.identityNumber = identityNumber;
