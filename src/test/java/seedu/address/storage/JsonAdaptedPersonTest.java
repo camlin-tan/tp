@@ -33,7 +33,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_DOB = "32-13-2020";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_ALCOHOLIC_RECORD = "Maybe";
+    private static final String INVALID_ALCOHOLIC_RECORD = " ";
     private static final String INVALID_BLOOD_TYPE = " ";
     private static final String INVALID_GENDER = " ";
     private static final String INVALID_SMOKING_RECORD = "True";
