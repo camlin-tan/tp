@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's medicineRecord in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidMedicineRecord(String)}
+ * Represents a Person's medicine in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidMedicine(String)}
  */
-public class MedicineRecord {
+public class Medicine {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Medicine record should not be blank or start with whitespace";
@@ -18,30 +18,30 @@ public class MedicineRecord {
      */
     public static final String VALIDATION_REGEX = "^[^\\s].*";
 
-    public final String medicineRecord;
+    public final String medicine;
 
     /**
-     * Constructs a {@code MedicineRecord}.
+     * Constructs a {@code Medicine}.
      *
-     * @param medicineRecord A valid medicineRecord.
+     * @param medicine A valid medicine.
      */
-    public MedicineRecord(String medicineRecord) {
-        requireNonNull(medicineRecord);
-        checkArgument(isValidMedicineRecord(medicineRecord), MESSAGE_CONSTRAINTS);
-        this.medicineRecord = medicineRecord;
+    public Medicine(String medicine) {
+        requireNonNull(medicine);
+        checkArgument(isValidMedicine(medicine), MESSAGE_CONSTRAINTS);
+        this.medicine = medicine;
     }
 
     /**
      * Returns true if a given string is a valid blood type.
      */
-    public static boolean isValidMedicineRecord(String test) {
+    public static boolean isValidMedicine(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        return medicineRecord;
+        return medicine;
     }
 
     @Override
@@ -51,17 +51,17 @@ public class MedicineRecord {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MedicineRecord)) {
+        if (!(other instanceof Medicine)) {
             return false;
         }
 
-        MedicineRecord otherMedicineRecord = (MedicineRecord) other;
-        return medicineRecord.equals(otherMedicineRecord.medicineRecord);
+        Medicine otherMedicine = (Medicine) other;
+        return medicine.equals(otherMedicine.medicine);
     }
 
     @Override
     public int hashCode() {
-        return medicineRecord.hashCode();
+        return medicine.hashCode();
     }
 
 }
