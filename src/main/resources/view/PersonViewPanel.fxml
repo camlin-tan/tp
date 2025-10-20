@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="10"
+      style="-fx-padding: 15;">
+    <Label fx:id="nameLabel" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white;" />
+    <Label fx:id="phoneLabel" style="-fx-text-fill: white;"/>
+    <Label fx:id="emailLabel" style="-fx-text-fill: white;"/>
+    <Label fx:id="addressLabel" wrapText="true" style="-fx-text-fill: white;"/>
+</VBox>

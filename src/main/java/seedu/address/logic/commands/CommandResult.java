@@ -1,10 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.Objects;
-
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,46 +8,39 @@ import seedu.address.model.person.Person;
 public class CommandResult {
 
     private final String feedbackToUser;
-
-    /** Help information should be shown to the user. */
     private final boolean showHelp;
-
-    /** The application shows the user to view */
-    private final boolean isView;
-
+    private final boolean exit;
     private final Person personToView;
 
-    /** The application should exit. */
-    private final boolean exit;
-
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean isView, Person personToView) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = false;
-        this.exit = false;
-        this.isView = isView;
-        this.personToView = personToView;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.isView = false;
-        this.personToView = null;
-        this.exit = exit;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructor for most commands.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, null);
+    }
+
+    /**
+     * Constructor for help and exit command.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, null);
+    }
+
+    /**
+     * Constructor for view command.
+     */
+    public CommandResult(String feedbackToUser, Person personToView) {
+        this(feedbackToUser, false, false, personToView);
+    }
+
+    /**
+     * Full constructor.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Person personToView) {
+        this.feedbackToUser = feedbackToUser;
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.personToView = personToView;
     }
 
     public String getFeedbackToUser() {
@@ -67,43 +55,29 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isView() {
-        return isView;
-    }
-
     public Person getPersonToView() {
         return personToView;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
-            return false;
-        }
-
-        CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+    public boolean isView() {
+        return personToView != null;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof CommandResult
+                && feedbackToUser.equals(((CommandResult) other).feedbackToUser)
+                && showHelp == ((CommandResult) other).showHelp
+                && exit == ((CommandResult) other).exit
+                && ((personToView == null && ((CommandResult) other).personToView == null)
+                || (personToView != null && personToView.equals(((CommandResult) other).personToView))));
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("feedbackToUser", feedbackToUser)
-                .add("showHelp", showHelp)
-                .add("exit", exit)
-                .toString();
+        return String.format("%s (help: %b, exit: %b, view: %s)",
+                feedbackToUser, showHelp, exit,
+                personToView == null ? "none" : personToView.getName());
     }
-
 }

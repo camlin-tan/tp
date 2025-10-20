@@ -49,7 +49,11 @@ public class ViewCommand extends Command {
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
         this.personToView = personToView;
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
+
+        return new CommandResult(
+                String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)),
+                personToView
+        );
     }
 
     @Override
