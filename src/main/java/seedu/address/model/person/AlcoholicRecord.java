@@ -9,21 +9,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class AlcoholicRecord {
     public static final String MESSAGE_CONSTRAINTS =
-            "Alcoholic record should be 'Yes' or 'No'.";
-
-    /**
-     * The regular expression used to validate the alcoholic record.
-     * Ensures the input is exactly "Yes" or "No" (case-insensitive) and does not allow
-     * blank strings or strings starting with whitespace.
-     */
-    private static final String VALIDATION_REGEX = "^(?i)(Yes|No)$";
-
+            "Alcoholic record cannot be null or empty.";
+    
     public final String alcoholicRecord;
 
     /**
      * Constructs an {@code AlcoholicRecord}.
      *
-     * @param alcoholicRecord A valid alcoholic record ("Yes" or "No").
+     * @param alcoholicRecord An alcoholic record string.
      */
     public AlcoholicRecord(String alcoholicRecord) {
         requireNonNull(alcoholicRecord);
@@ -35,11 +28,11 @@ public class AlcoholicRecord {
      * Returns true if a given string is a valid alcoholic record.
      */
     public static boolean isValidAlcoholicRecord(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test != null && !test.trim().isEmpty();
     }
 
     /**
-     * Returns the string representation ("Yes" or "No") for display.
+     * Returns the string representation for display.
      */
     @Override
     public String toString() {
