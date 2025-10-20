@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AlcoholicRecord {
     public static final String MESSAGE_CONSTRAINTS =
             "Alcoholic record cannot be null or empty.";
-    
+
     public final String alcoholicRecord;
 
     /**
