@@ -27,8 +27,15 @@ public class ViewCommand extends Command {
 
     private final Index targetIndex;
 
+    private Person personToView;
+
     public ViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.personToView = null;
+    }
+
+    public Person getPersonToView() {
+        return this.personToView;
     }
 
     @Override
@@ -41,6 +48,7 @@ public class ViewCommand extends Command {
         }
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
+        this.personToView = personToView;
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
     }
 
