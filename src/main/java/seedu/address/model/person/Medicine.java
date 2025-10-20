@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's medicine in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidMedicine(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidMedicineName(String)}
  */
 public class Medicine {
 
@@ -27,22 +27,17 @@ public class Medicine {
      */
     public Medicine(String medicine) {
         requireNonNull(medicine);
-        checkArgument(isValidMedicine(medicine), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMedicineName(medicine), MESSAGE_CONSTRAINTS);
         this.medicine = medicine;
     }
 
     /**
-     * Returns true if a given string is a valid blood type.
+     * Returns true if a given string is a valid medicine.
      */
-    public static boolean isValidMedicine(String test) {
+    public static boolean isValidMedicineName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
-
-    @Override
-    public String toString() {
-        return medicine;
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -62,6 +57,13 @@ public class Medicine {
     @Override
     public int hashCode() {
         return medicine.hashCode();
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return '[' + medicine + ']';
     }
 
 }
