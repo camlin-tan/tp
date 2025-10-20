@@ -52,6 +52,8 @@ public class Messages {
                 .append(person.getGender())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Medicines: ");
+        person.getMedicines().forEach(builder::append);
         return builder.toString();
     }
 
