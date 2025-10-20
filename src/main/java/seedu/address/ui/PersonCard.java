@@ -69,7 +69,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         bloodType.setText("Blood Type: " + person.getBloodType().bloodType);
-        alcoholicRecord.setText("isAlcoholic: " + person.getAlcoholicRecord().alcoholicRecord.toUpperCase());
+        alcoholicRecord.setText("Alcoholic Record: " + person.getAlcoholicRecord().alcoholicRecord);
         gender.setText("Gender: " + person.getGender().gender);
         dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
                 + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
