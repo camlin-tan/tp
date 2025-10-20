@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -44,6 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_DATE_OF_BIRTH_AMY = "01-01-1990";
     public static final String VALID_DATE_OF_BIRTH_BOB = "02-02-1992";
+    public static final String VALID_ALLERGY_NUTS = "nuts";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_BLOOD_TYPE = "AB";
@@ -66,6 +68,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String DATE_OF_BIRTH_DESC_AMY = " " + PREFIX_DATE_OF_BIRTH + VALID_DATE_OF_BIRTH_AMY;
     public static final String DATE_OF_BIRTH_DESC_BOB = " " + PREFIX_DATE_OF_BIRTH + VALID_DATE_OF_BIRTH_BOB;
+    public static final String ALLERGY_DESC_NUTS = " " + PREFIX_ALLERGY + VALID_ALLERGY_NUTS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE + VALID_BLOOD_TYPE;
@@ -99,11 +102,13 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
-                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withSmokingRecord(VALID_SMOKING_RECORD_NO).build();
+                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withSmokingRecord(VALID_SMOKING_RECORD_NO)
+                .withAllergies(VALID_ALLERGY_NUTS).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
-                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_BOB).withSmokingRecord(VALID_SMOKING_RECORD_YES).build();
+                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_BOB).withSmokingRecord(VALID_SMOKING_RECORD_YES)
+                .withAllergies(VALID_ALLERGY_NUTS).build();
     }
 
     /**
