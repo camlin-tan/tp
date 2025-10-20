@@ -34,6 +34,7 @@ import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -121,6 +122,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Medicine> updatedMedicines = editPersonDescriptor.getMedicines().orElse(personToEdit.getMedicines());
         SmokingRecord updatedSmokingRecord = editPersonDescriptor.getSmokingRecord()
                 .orElse(personToEdit.getSmokingRecord());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
@@ -130,7 +132,7 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
-                updatedGender, updatedSmokingRecord);
+                updatedGender, updatedSmokingRecord, updatedMedicines);
     }
 
     @Override
@@ -168,6 +170,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Medicine> medicines;
         private DateOfBirth dateOfBirth;
         private BloodType bloodType;
         private AlcoholicRecord alcoholicRecord;
@@ -193,6 +196,7 @@ public class EditCommand extends Command {
             setDateOfBirth(toCopy.dateOfBirth);
             setGender(toCopy.gender);
             setSmokingRecord(toCopy.smokingRecord);
+            setMedicines(toCopy.medicines);
         }
 
         /**
@@ -297,6 +301,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code medicines} to this object's {@code medicines}.
+         * A defensive copy of {@code medicines} is used internally.
+         */
+        public void setMedicines(Set<Medicine> medicines) {
+            this.medicines = (medicines != null) ? new HashSet<>(medicines) : null;
+        }
+
+        /**
+         * Returns an unmodifiable medicine set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code medicines} is null.
+         */
+        public Optional<Set<Medicine>> getMedicines() {
+            return (medicines != null) ? Optional.of(Collections.unmodifiableSet(medicines)) : Optional.empty();
         }
 
         @Override
