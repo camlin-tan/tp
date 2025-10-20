@@ -24,6 +24,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final String emergencyContact = "[STUB EMERGENCY CONTACT] 123456789"; // stub emergency contact
     private final Set<Tag> tags = new HashSet<>();
     private final BloodType bloodType;
     private final DateOfBirth dateOfBirth;
@@ -70,6 +71,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public String getEmergencyContact() {
+        return emergencyContact;
     }
 
     public DateOfBirth getDateOfBirth() {
