@@ -3,6 +3,8 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,26 +29,38 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextArea.textProperty().addListener(
-                (unused1, unused2, unused3) -> setStyleToDefault());
+
+        commandTextArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
+                event.consume(); // stop TextArea from inserting newline
+                handleCommandEntered(event);
+            }
+        });
+
+        // Reset style when user types
+        commandTextArea.textProperty().addListener((
+                unused1, unused2, unused3) -> setStyleToDefault());
     }
 
     /**
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() {
-        String commandText = commandTextArea.getText();
-        if (commandText.equals("")) {
-            return;
-        }
+    private void handleCommandEntered(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
+            String commandText = commandTextArea.getText().trim();
 
-        try {
-            commandExecutor.execute(commandText);
-            commandTextArea.setText("");
-        } catch (CommandException | ParseException e) {
-            setStyleToIndicateCommandFailure();
+            if (commandText.isEmpty()) {
+                commandTextArea.clear();
+                return;
+            }
+
+            try {
+                commandExecutor.execute(commandText);
+                commandTextArea.clear();
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
         }
     }
 

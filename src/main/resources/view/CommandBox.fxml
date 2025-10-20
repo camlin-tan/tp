@@ -9,5 +9,5 @@
               onKeyPressed="#handleCommandEntered"
               wrapText="true"
               promptText="Enter command here..."
-              prefRowCount="2"/>
+              prefHeight="100"/>
 </StackPane>
