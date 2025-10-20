@@ -176,9 +176,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AlcoholicRecord.class.getSimpleName()));
         }
-        if (!AlcoholicRecord.isValidAlcoholicRecord(alcoholicRecord)) {
-            throw new IllegalValueException(AlcoholicRecord.MESSAGE_CONSTRAINTS);
-        }
         final AlcoholicRecord modelAlcoholicRecord = new AlcoholicRecord(alcoholicRecord);
 
         if (gender == null) {
