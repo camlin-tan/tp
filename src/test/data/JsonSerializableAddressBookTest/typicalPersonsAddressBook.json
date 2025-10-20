@@ -11,7 +11,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "F",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "allergies": [ "nuts" ]
   }, {
     "name" : "Benson Meier",
     "identityNumber" : "BM67",
@@ -23,7 +24,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "allergies": [ "nuts" ]
   }, {
     "name" : "Carl Kurz",
     "identityNumber" : "CK67",
@@ -35,7 +37,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "allergies": [ "nuts" ]
   }, {
     "name" : "Daniel Meier",
     "identityNumber" : "DM67",
@@ -47,7 +50,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "allergies": [ "nuts" ]
   }, {
     "name" : "Elle Meyer",
     "identityNumber" : "EM67",
@@ -59,7 +63,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "allergies": [ "nuts" ]
   }, {
     "name" : "Fiona Kunz",
     "identityNumber" : "FK67",
@@ -71,7 +76,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "allergies": [ "nuts" ]
   }, {
     "name" : "George Best",
     "identityNumber" : "GB67",
@@ -83,6 +89,7 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "allergies": [ "nuts" ]
   } ]
 }
