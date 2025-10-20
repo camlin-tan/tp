@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
@@ -39,6 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_GENDER + "GENDER "
             + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_IDENTITY_NUMBER + "A91234567 "
@@ -51,7 +53,9 @@ public class AddCommand extends Command {
             + PREFIX_DATE_OF_BIRTH + "01-01-2000 "
             + PREFIX_SMOKING_RECORD + "Yes "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_MEDICINE + "100mg painkillers/day "
+            + PREFIX_MEDICINE + "100mg Panadol/day";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with this ID already exists";
