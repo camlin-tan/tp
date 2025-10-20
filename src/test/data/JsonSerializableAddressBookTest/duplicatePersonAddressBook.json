@@ -10,7 +10,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "F",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "medicines" : ["antidepressants"]
   }, {
     "name": "Alice Pauline",
     "identityNumber" : "A23",
@@ -21,6 +22,7 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "F",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "medicines" : ["antidepressants"]
   } ]
 }

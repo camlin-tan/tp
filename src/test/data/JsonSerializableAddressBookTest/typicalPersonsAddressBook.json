@@ -11,7 +11,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "F",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Benson Meier",
     "identityNumber" : "BM67",
@@ -23,7 +24,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Carl Kurz",
     "identityNumber" : "CK67",
@@ -35,7 +37,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Daniel Meier",
     "identityNumber" : "DM67",
@@ -47,7 +50,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Elle Meyer",
     "identityNumber" : "EM67",
@@ -59,7 +63,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Fiona Kunz",
     "identityNumber" : "FK67",
@@ -71,7 +76,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "George Best",
     "identityNumber" : "GB67",
@@ -83,6 +89,7 @@
     "bloodType" : "O",
     "alcoholicRecord" : "No",
     "gender" : "M",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "medicines" : ["antidepressants"]
   } ]
 }
