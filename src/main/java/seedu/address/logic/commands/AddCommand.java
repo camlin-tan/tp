@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -38,7 +39,8 @@ public class AddCommand extends Command {
             + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_IDENTITY_NUMBER + "A91234567 "
@@ -50,6 +52,7 @@ public class AddCommand extends Command {
             + PREFIX_GENDER + "M "
             + PREFIX_DATE_OF_BIRTH + "01-01-2000 "
             + PREFIX_SMOKING_RECORD + "Yes "
+            + PREFIX_ALLERGY + "nuts "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
