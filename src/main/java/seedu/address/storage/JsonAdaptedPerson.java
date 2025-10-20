@@ -92,6 +92,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        allergies.addAll(source.getAllergies().stream()
+                .map(JsonAdaptedAllergy::new)
+                .collect(Collectors.toList()));
     }
 
     /**
