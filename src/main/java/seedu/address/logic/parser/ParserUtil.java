@@ -16,6 +16,7 @@ import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -159,6 +160,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String medicine} into a {@code Medicine}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medicine} is invalid.
+     */
+    public static Medicine parseMedicine(String medicine) throws ParseException {
+        requireNonNull(medicine);
+        String trimmedMedicine = medicine.trim();
+        if (!Medicine.isValidMedicineName(trimmedMedicine)) {
+            throw new ParseException(Medicine.MESSAGE_CONSTRAINTS);
+        }
+        return new Medicine(trimmedMedicine);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Medicine> parseMedicines(Collection<String> medicines) throws ParseException {
+        requireNonNull(medicines);
+        final Set<Medicine> medicineSet = new HashSet<>();
+        for (String medicineName : medicines) {
+            medicineSet.add(parseMedicine(medicineName));
+        }
+        return medicineSet;
     }
 
     /**
