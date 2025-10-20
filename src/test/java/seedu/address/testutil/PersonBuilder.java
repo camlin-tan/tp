@@ -10,6 +10,7 @@ import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -39,6 +40,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Medicine> medicines;
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
     private AlcoholicRecord alcoholicRecord;
@@ -60,6 +62,7 @@ public class PersonBuilder {
         alcoholicRecord = new AlcoholicRecord(DEFAULT_ALCOHOLIC_RECORD);
         gender = new Gender(DEFAULT_GENDER);
         smokingRecord = new SmokingRecord(DEFAULT_SMOKING_RECORD);
+        medicines = new HashSet<>();
     }
 
     /**
@@ -77,6 +80,7 @@ public class PersonBuilder {
         alcoholicRecord = personToCopy.getAlcoholicRecord();
         gender = personToCopy.getGender();
         smokingRecord = personToCopy.getSmokingRecord();
+        medicines = new HashSet<>(personToCopy.getMedicines());
     }
 
     /**
@@ -100,6 +104,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code medicines} into a {@code Set<Medicine>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withMedicines(String ... medicines) {
+        this.medicines = SampleDataUtil.getMedicineSet(medicines);
         return this;
     }
 
@@ -171,6 +183,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord,
-                gender, smokingRecord);
+                gender, smokingRecord, medicines);
     }
 }
