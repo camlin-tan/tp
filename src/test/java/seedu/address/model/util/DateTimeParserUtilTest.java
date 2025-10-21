@@ -1,6 +1,9 @@
 package seedu.address.model.util;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +11,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class DateTimeParserUtilTest {
     private static final List<DateTimeFormatter> FORMATTERS = Arrays.asList(
@@ -84,7 +87,7 @@ public class DateTimeParserUtilTest {
     @Test
     public void isValidDateTime_nullArguments_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> DateTimeParserUtil.isValidDateTime(null, FORMATTERS));
-        assertThrows(NullPointerException.class,
-                () -> DateTimeParserUtil.isValidDateTime("2020-12-31 12:30", null));
+        assertThrows(NullPointerException.class, () ->
+                DateTimeParserUtil.isValidDateTime("2020-12-31 12:30", null));
     }
 }
