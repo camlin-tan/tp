@@ -26,6 +26,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -72,7 +73,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         SmokingRecord smokingRecord = ParserUtil.parseSmokingRecord(argMultimap.getValue(PREFIX_SMOKING_RECORD).get());
 
         Person person = new Person(name, identityNumber, phone, email, address, tagList, dateOfBirth,
-                bloodType, alcoholicRecord, gender, smokingRecord);
+                bloodType, alcoholicRecord, gender, smokingRecord, new PastDiagnoses(""));
 
         return new AddCommand(person);
     }

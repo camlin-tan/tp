@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -45,6 +46,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
         descriptor.setDateOfBirth(person.getDateOfBirth());
         descriptor.setSmokingRecord(person.getSmokingRecord());
+        descriptor.setPastDiagnoses(person.getPastDiagnoses());
     }
 
     /**
@@ -125,6 +127,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withSmokingRecord(String smokingRecord) {
         descriptor.setSmokingRecord(new SmokingRecord(smokingRecord));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PastDiagnoses} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPastDiagnoses(String pastDiagnoses) {
+        descriptor.setPastDiagnoses(new PastDiagnoses(pastDiagnoses));
         return this;
     }
 
