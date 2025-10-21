@@ -59,6 +59,18 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_validAlcoholicRecordVariations_returnsAlcoholicRecord() throws Exception {
+        String[] validAlcoholicRecord = {"Social drinker", "Occasional", "Never"};
+        for (String record : validAlcoholicRecord) {
+            JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE,
+                    VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, record,
+                    VALID_GENDER, VALID_SMOKING_RECORD);
+            AlcoholicRecord expected = new AlcoholicRecord(record);
+            assertEquals(expected, person.toModelType().getAlcoholicRecord());
+        }
+    }
+
+    @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(INVALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
