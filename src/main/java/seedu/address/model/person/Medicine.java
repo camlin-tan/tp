@@ -10,10 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Medicine {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Medicine record should not be blank or start with whitespace";
+            "Medicine field should not be blank or start with whitespace";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the medicine name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^[^\\s].*";
