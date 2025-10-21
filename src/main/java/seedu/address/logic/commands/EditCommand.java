@@ -190,7 +190,6 @@ public class EditCommand extends Command {
             setBloodType(toCopy.bloodType);
             setDateOfBirth(toCopy.dateOfBirth);
             setAlcoholicRecord(toCopy.alcoholicRecord);
-            setDateOfBirth(toCopy.dateOfBirth);
             setGender(toCopy.gender);
             setSmokingRecord(toCopy.smokingRecord);
         }
