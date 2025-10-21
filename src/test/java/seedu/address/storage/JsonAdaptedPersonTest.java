@@ -190,7 +190,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullAlcoholicRecord_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, null, VALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES);
+                VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, null, VALID_GENDER,
+                VALID_SMOKING_RECORD, VALID_ALLERGIES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AlcoholicRecord.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -199,7 +200,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullBloodType_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_TAGS, VALID_DOB, null, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES);
+                VALID_ADDRESS, VALID_TAGS, VALID_DOB, null, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
+                VALID_SMOKING_RECORD, VALID_ALLERGIES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
