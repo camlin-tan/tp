@@ -11,6 +11,7 @@ public class AlcoholicRecord {
     public static final String MESSAGE_CONSTRAINTS =
             "Alcoholic record cannot be null or empty.";
 
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String alcoholicRecord;
 
     /**
@@ -28,7 +29,7 @@ public class AlcoholicRecord {
      * Returns true if a given string is a valid alcoholic record.
      */
     public static boolean isValidAlcoholicRecord(String test) {
-        return test != null && !test.trim().isEmpty();
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

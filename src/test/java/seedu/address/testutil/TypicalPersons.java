@@ -53,7 +53,8 @@ public class TypicalPersons {
             .withSmokingRecord("yes").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withIdentityNumber("EM67")
             .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave")
-            .withDateOfBirth("20-11-1999").withBloodType("O").withAlcoholicRecord("Social drinker").withGender("M").build();
+            .withDateOfBirth("20-11-1999").withBloodType("O").withAlcoholicRecord("Social drinker")
+            .withGender("M").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withIdentityNumber("FK67")
             .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo")
             .withDateOfBirth("15-08-1997").withBloodType("O").withAlcoholicRecord("Never").withGender("M")
