@@ -9,7 +9,7 @@
     "tags" : [ "friends" ],
     "dob" : "20-05-1998",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Social drinker",
     "gender" : "F",
     "smokingRecord" : "yes"
   }, {
@@ -21,7 +21,7 @@
     "tags" : [ "owesMoney", "friends" ],
     "dob" : "01-01-2000",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Occasional",
     "gender" : "M",
     "smokingRecord" : "no"
   }, {
@@ -33,7 +33,7 @@
     "tags" : [ ],
     "dob" : "20-12-1998",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Never",
     "gender" : "M",
     "smokingRecord" : "yes"
   }, {
@@ -45,7 +45,7 @@
     "tags" : [ "friends" ],
     "dob" : "30-05-1995",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Yes",
     "gender" : "M",
     "smokingRecord" : "yes"
   }, {
@@ -57,7 +57,7 @@
     "tags" : [ ],
     "dob" : "20-11-1999",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Social drinker",
     "gender" : "M",
     "smokingRecord" : "no"
   }, {
@@ -69,7 +69,7 @@
     "tags" : [ ],
     "dob" : "15-08-1997",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Never",
     "gender" : "M",
     "smokingRecord" : "no"
   }, {
@@ -81,7 +81,7 @@
     "tags" : [ "owesMoney", "friends" ],
     "dob" : "20-05-2000",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Never",
     "gender" : "M",
     "smokingRecord": "yes"
   } ]
