@@ -73,6 +73,6 @@ public class PersonCard extends UiPart<Region> {
         gender.setText("Gender: " + person.getGender().gender);
         dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
                 + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
-        smokingRecord.setText("Smoker: " + person.getSmokingRecord().toString().toUpperCase());
+        smokingRecord.setText("Smoking Record: " + person.getSmokingRecord().smokingRecord);
     }
 }
