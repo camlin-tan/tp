@@ -10,7 +10,8 @@
     "bloodType" : "O",
     "alcoholicRecord" : "Social drinker",
     "gender" : "F",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "pastDiagnoses" : "Diabetes"
   }, {
     "name": "Alice Pauline",
     "identityNumber" : "A23",
@@ -21,6 +22,7 @@
     "bloodType" : "O",
     "alcoholicRecord" : "Social drinker",
     "gender" : "F",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "pastDiagnoses" : "Diabetes"
   } ]
 }

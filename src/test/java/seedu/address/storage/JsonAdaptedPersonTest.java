@@ -20,6 +20,7 @@ import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
 
@@ -37,6 +38,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_BLOOD_TYPE = " ";
     private static final String INVALID_GENDER = " ";
     private static final String INVALID_SMOKING_RECORD = "True";
+    private static final String INVALID_PAST_DIAGNOSES = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_IDENTITY_NUMBER = BENSON.getIdentityNumber().toString();
@@ -51,6 +53,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ALCOHOLIC_RECORD = BENSON.getAlcoholicRecord().toString();
     private static final String VALID_GENDER = BENSON.getGender().toString();
     private static final String VALID_SMOKING_RECORD = BENSON.getSmokingRecord().toString();
+    private static final String VALID_PAST_DIAGNOSES = BENSON.getPastDiagnoses().toString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -64,7 +67,7 @@ public class JsonAdaptedPersonTest {
         for (String record : validAlcoholicRecord) {
             JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE,
                     VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, record,
-                    VALID_GENDER, VALID_SMOKING_RECORD);
+                    VALID_GENDER, VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
             AlcoholicRecord expected = new AlcoholicRecord(record);
             assertEquals(expected, person.toModelType().getAlcoholicRecord());
         }
@@ -74,7 +77,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(INVALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -83,7 +86,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -93,7 +96,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, INVALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -103,7 +106,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, null, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -113,7 +116,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, INVALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -123,7 +126,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, null,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -133,7 +136,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                 INVALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -144,7 +147,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                         null, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                        VALID_SMOKING_RECORD);
+                        VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -155,7 +158,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_TAGS, INVALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                        VALID_SMOKING_RECORD);
+                        VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -166,7 +169,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_TAGS, null, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                        VALID_SMOKING_RECORD);
+                        VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -179,7 +182,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_TAGS, futureDateString, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                        VALID_SMOKING_RECORD);
+                        VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -190,7 +193,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, INVALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                        VALID_SMOKING_RECORD);
+                        VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = AlcoholicRecord.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -199,7 +202,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullAlcoholicRecord_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, null, VALID_GENDER, VALID_SMOKING_RECORD);
+                VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, null, VALID_GENDER, VALID_SMOKING_RECORD,
+                VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AlcoholicRecord.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -208,7 +212,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullBloodType_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_TAGS, VALID_DOB, null, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD);
+                VALID_ADDRESS, VALID_TAGS, VALID_DOB, null, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD,
+                VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -218,7 +223,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullGender_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, null,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -229,7 +234,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                        INVALID_SMOKING_RECORD);
+                        INVALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
         String expectedMessage = SmokingRecord.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -239,8 +244,28 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
                         VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_ALCOHOLIC_RECORD,
-                        VALID_GENDER, VALID_BLOOD_TYPE, null);
+                        VALID_GENDER, VALID_BLOOD_TYPE, null, VALID_PAST_DIAGNOSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, SmokingRecord.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPastDiagnoses_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE,
+                        VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, INVALID_PAST_DIAGNOSES);
+        String expectedMessage = PastDiagnoses.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullPastDiagnoses_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE,
+                        VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PastDiagnoses.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -250,7 +275,7 @@ public class JsonAdaptedPersonTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, invalidTags, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER,
-                VALID_SMOKING_RECORD);
+                VALID_SMOKING_RECORD, VALID_PAST_DIAGNOSES);
 
         assertThrows(IllegalValueException.class, person::toModelType);
     }

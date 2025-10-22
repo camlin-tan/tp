@@ -18,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -41,6 +42,7 @@ class JsonAdaptedPerson {
     private final String bloodType;
     private final String alcoholicRecord;
     private final String gender;
+    private final String pastDiagnoses;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,8 +53,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord,
-                             @JsonProperty("gender") String gender,
-                             @JsonProperty("smokingRecord") String smokingRecord) {
+                             @JsonProperty("gender") String gender, @JsonProperty("smokingRecord") String smokingRecord,
+                             @JsonProperty("pastDiagnoses") String pastDiagnoses) {
 
         this.name = name;
         this.identityNumber = identityNumber;
@@ -67,6 +69,7 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
         this.smokingRecord = smokingRecord;
+        this.pastDiagnoses = pastDiagnoses;
     }
 
     /**
@@ -83,6 +86,7 @@ class JsonAdaptedPerson {
         alcoholicRecord = source.getAlcoholicRecord().alcoholicRecord;
         gender = source.getGender().gender;
         smokingRecord = source.getSmokingRecord().toString();
+        pastDiagnoses = source.getPastDiagnoses().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -190,10 +194,19 @@ class JsonAdaptedPerson {
         }
         final Gender modelGender = new Gender(gender);
 
+        if (pastDiagnoses == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PastDiagnoses.class.getSimpleName()));
+        }
+        if (!PastDiagnoses.isValidPastDiagnoses(pastDiagnoses)) {
+            throw new IllegalValueException(PastDiagnoses.MESSAGE_CONSTRAINTS);
+        }
+        final PastDiagnoses modelPastDiagnoses = new PastDiagnoses(pastDiagnoses);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelIdentityNumber, modelPhone, modelEmail, modelAddress, modelTags, dob,
-                modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord);
+                modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord, modelPastDiagnoses);
     }
 
 }

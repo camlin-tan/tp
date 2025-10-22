@@ -11,6 +11,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -32,6 +33,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ALCOHOLIC_RECORD = "Social drinker";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_SMOKING_RECORD = "no";
+    public static final String DEFAULT_PAST_DIAGNOSES = "";
 
     private Name name;
     private IdentityNumber identityNumber;
@@ -44,6 +46,7 @@ public class PersonBuilder {
     private AlcoholicRecord alcoholicRecord;
     private Gender gender;
     private SmokingRecord smokingRecord;
+    private PastDiagnoses pastDiagnoses;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -60,6 +63,7 @@ public class PersonBuilder {
         alcoholicRecord = new AlcoholicRecord(DEFAULT_ALCOHOLIC_RECORD);
         gender = new Gender(DEFAULT_GENDER);
         smokingRecord = new SmokingRecord(DEFAULT_SMOKING_RECORD);
+        pastDiagnoses = new PastDiagnoses(DEFAULT_PAST_DIAGNOSES);
     }
 
     /**
@@ -77,6 +81,7 @@ public class PersonBuilder {
         alcoholicRecord = personToCopy.getAlcoholicRecord();
         gender = personToCopy.getGender();
         smokingRecord = personToCopy.getSmokingRecord();
+        pastDiagnoses = personToCopy.getPastDiagnoses();
     }
 
     /**
@@ -158,6 +163,7 @@ public class PersonBuilder {
         this.gender = new Gender(gender);
         return this;
     }
+
     /**
      * Sets the {@code smokingRecord} of the {@code Person} that we are building.
      */
@@ -167,10 +173,18 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code pastDiagnoses} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPastDiagnoses(String pastDiagnoses) {
+        this.pastDiagnoses = new PastDiagnoses(pastDiagnoses);
+        return this;
+    }
+
+    /**
      * Builds the {@code Person} with the specified parameters.
      */
     public Person build() {
         return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord,
-                gender, smokingRecord);
+                gender, smokingRecord, pastDiagnoses);
     }
 }
