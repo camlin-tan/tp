@@ -29,6 +29,9 @@ public class ViewCommand extends Command {
 
     private Person personToView;
 
+    /**
+     * @param targetIndex index of the person in the filtered person list to view
+     */
     public ViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.personToView = null;

@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import java.util.Objects;
+
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 
 /**
@@ -65,19 +68,35 @@ public class CommandResult {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof CommandResult
-                && feedbackToUser.equals(((CommandResult) other).feedbackToUser)
-                && showHelp == ((CommandResult) other).showHelp
-                && exit == ((CommandResult) other).exit
-                && ((personToView == null && ((CommandResult) other).personToView == null)
-                || (personToView != null && personToView.equals(((CommandResult) other).personToView))));
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof CommandResult)) {
+            return false;
+        }
+
+        CommandResult otherCommandResult = (CommandResult) other;
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && showHelp == otherCommandResult.showHelp
+                && exit == otherCommandResult.exit
+                && ((personToView == null && otherCommandResult.personToView == null)
+                || (personToView != null && personToView.equals(otherCommandResult.personToView)));
     }
 
     @Override
     public String toString() {
-        return String.format("%s (help: %b, exit: %b, view: %s)",
-                feedbackToUser, showHelp, exit,
-                personToView == null ? "none" : personToView.getName());
+        return new ToStringBuilder(this)
+                .add("feedbackToUser", feedbackToUser)
+                .add("showHelp", showHelp)
+                .add("exit", exit)
+                .add("personToView", personToView)
+                .toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(feedbackToUser, showHelp, exit, personToView);
     }
 }

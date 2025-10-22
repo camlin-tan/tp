@@ -6,6 +6,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
+/**
+ * Panel containing the viewed person's details.
+ */
 public class PersonViewPanel extends UiPart<Region> {
 
     private static final String FXML = "PersonViewPanel.fxml";
@@ -26,12 +29,18 @@ public class PersonViewPanel extends UiPart<Region> {
     @FXML
     private Label addressLabel;
 
+    /**
+     * Creates a {@code PersonViewPanel} with the given {@code Person}.
+     */
     public PersonViewPanel(Person person) {
         super(FXML);
         this.person = person;
         fillPersonDetails();
     }
 
+    /**
+     * Fills in the person's details for viewing.
+     */
     private void fillPersonDetails() {
         nameLabel.setText(person.getName().fullName);
         phoneLabel.setText(person.getPhone().value);
