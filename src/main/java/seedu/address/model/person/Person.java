@@ -39,7 +39,7 @@ public class Person {
                   DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender,
                   SmokingRecord smokingRecord, PastDiagnoses pastDiagnoses) {
         requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
-                alcoholicRecord, gender, smokingRecord);
+                alcoholicRecord, gender, smokingRecord, pastDiagnoses);
         this.name = name;
         this.identityNumber = identityNumber;
         this.phone = phone;
@@ -145,14 +145,15 @@ public class Person {
                 && bloodType.equals(otherPerson.bloodType)
                 && alcoholicRecord.equals(otherPerson.alcoholicRecord)
                 && gender.equals(otherPerson.gender)
-                && smokingRecord.equals(otherPerson.smokingRecord);
+                && smokingRecord.equals(otherPerson.smokingRecord)
+                && pastDiagnoses.equals(otherPerson.pastDiagnoses);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, identityNumber, phone, email, address, tags,
-                dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord);
+                dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord, pastDiagnoses);
     }
 
     @Override
@@ -169,6 +170,7 @@ public class Person {
                 .add("alcoholicRecord", alcoholicRecord)
                 .add("gender", gender)
                 .add("smokingRecord", smokingRecord)
+                .add("pastDiagnoses", pastDiagnoses)
                 .toString();
     }
 

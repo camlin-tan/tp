@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -46,6 +47,7 @@ public class PersonUtil {
         sb.append(PREFIX_ALCOHOLIC_RECORD + person.getAlcoholicRecord().toString() + " ");
         sb.append(PREFIX_GENDER + person.getGender().gender + " ");
         sb.append(PREFIX_SMOKING_RECORD + person.getSmokingRecord().toString() + " ");
+        sb.append(PREFIX_PAST_DIAGNOSES + person.getPastDiagnoses().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -73,6 +75,8 @@ public class PersonUtil {
                 .append(" "));
         descriptor.getSmokingRecord().ifPresent(smokingRecord -> sb.append(PREFIX_SMOKING_RECORD)
                 .append(smokingRecord.toString()).append(" "));
+        descriptor.getPastDiagnoses().ifPresent(pastDiagnoses -> sb.append(PREFIX_PAST_DIAGNOSES)
+                .append(pastDiagnoses.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
