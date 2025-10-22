@@ -67,7 +67,7 @@ public class JsonAdaptedPersonTest {
         for (String record : validAlcoholicRecord) {
             JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE,
                     VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, record,
-                    VALID_GENDER, VALID_SMOKING_RECORD);
+                    VALID_GENDER, VALID_SMOKING_RECORD, VALID_MEDICINES);
             AlcoholicRecord expected = new AlcoholicRecord(record);
             assertEquals(expected, person.toModelType().getAlcoholicRecord());
         }
