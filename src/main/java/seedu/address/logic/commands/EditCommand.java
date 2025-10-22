@@ -36,6 +36,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -129,10 +130,12 @@ public class EditCommand extends Command {
         AlcoholicRecord updatedAlcoholicRecord = editPersonDescriptor.getAlcoholicRecord()
                 .orElse(personToEdit.getAlcoholicRecord());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
+        PastDiagnoses updatedPastDiagnoses = editPersonDescriptor.getPastDiagnoses()
+                .orElse(personToEdit.getPastDiagnoses());
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
-                updatedGender, updatedSmokingRecord, updatedAllergies);
+                updatedGender, updatedSmokingRecord, updatedAllergies, updatedPastDiagnoses);
     }
 
     @Override
@@ -176,6 +179,7 @@ public class EditCommand extends Command {
         private AlcoholicRecord alcoholicRecord;
         private Gender gender;
         private SmokingRecord smokingRecord;
+        private PastDiagnoses pastDiagnoses;
 
         public EditPersonDescriptor() {}
 
@@ -196,6 +200,7 @@ public class EditCommand extends Command {
             setAlcoholicRecord(toCopy.alcoholicRecord);
             setGender(toCopy.gender);
             setSmokingRecord(toCopy.smokingRecord);
+            setPastDiagnoses(toCopy.pastDiagnoses);
         }
 
         /**
@@ -285,6 +290,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(smokingRecord);
         }
 
+        public void setPastDiagnoses(PastDiagnoses pastDiagnoses) {
+            this.pastDiagnoses = pastDiagnoses;
+        }
+
+        public Optional<PastDiagnoses> getPastDiagnoses() {
+            return Optional.ofNullable(pastDiagnoses);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -341,7 +354,9 @@ public class EditCommand extends Command {
                     && Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)
                     && Objects.equals(alcoholicRecord, otherEditPersonDescriptor.alcoholicRecord)
                     && Objects.equals(gender, otherEditPersonDescriptor.gender)
-                    && Objects.equals(smokingRecord, otherEditPersonDescriptor.smokingRecord);
+                    && Objects.equals(smokingRecord, otherEditPersonDescriptor.smokingRecord)
+                    && Objects.equals(allergies, otherEditPersonDescriptor.allergies)
+                    && Objects.equals(pastDiagnoses, otherEditPersonDescriptor.pastDiagnoses);
         }
 
         @Override
@@ -358,6 +373,8 @@ public class EditCommand extends Command {
                     .add("alcoholicRecord", alcoholicRecord)
                     .add("gender", gender)
                     .add("smokingRecord", smokingRecord)
+                    .add("allergies", allergies)
+                    .add("pastDiagnoses", pastDiagnoses)
                     .toString();
         }
     }

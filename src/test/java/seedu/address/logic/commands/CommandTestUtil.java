@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -55,11 +56,15 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_SMOKING_RECORD_NO = "no";
     public static final String VALID_SMOKING_RECORD_YES = "yes";
+    public static final String VALID_PAST_DIAGNOSES_AMY = "Diabetes";
+    public static final String VALID_PAST_DIAGNOSES_BOB = "Hypertension";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String IDENTITY_NUMBER_DESC_AMY = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_AMY;
     public static final String IDENTITY_NUMBER_DESC_BOB = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_BOB;
+    public static final String PAST_DIAGNOSES_DESC_AMY = " " + PREFIX_PAST_DIAGNOSES + VALID_PAST_DIAGNOSES_AMY;
+    public static final String PAST_DIAGNOSES_DESC_BOB = " " + PREFIX_PAST_DIAGNOSES + VALID_PAST_DIAGNOSES_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -104,17 +109,20 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
                 .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withSmokingRecord(VALID_SMOKING_RECORD_NO)
-                .withAllergies(VALID_ALLERGY_NUTS).build();
+                .withAllergies(VALID_ALLERGY_NUTS)
+                .withPastDiagnoses(VALID_PAST_DIAGNOSES_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
                 .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_BOB).withSmokingRecord(VALID_SMOKING_RECORD_YES)
-                .withAllergies(VALID_ALLERGY_NUTS).build();
+                .withAllergies(VALID_ALLERGY_NUTS)
+                .withPastDiagnoses(VALID_PAST_DIAGNOSES_BOB).build();
     }
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult}
+     * <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
@@ -129,7 +137,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to
+     * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
@@ -142,7 +151,8 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered person list and selected person in
+     * {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -154,8 +164,10 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the person at the given
+     * {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {

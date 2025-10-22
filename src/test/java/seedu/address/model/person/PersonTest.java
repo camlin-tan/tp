@@ -96,7 +96,8 @@ public class PersonTest {
                 + ", alcoholicRecord=" + ALICE.getAlcoholicRecord()
                 + ", gender=" + ALICE.getGender() + ", smokingRecord="
                 + ALICE.getSmokingRecord() + ", allergies="
-                + ALICE.getAllergies() + "}";
+                + ALICE.getAllergies()
+                + ", pastDiagnoses=" + ALICE.getPastDiagnoses() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

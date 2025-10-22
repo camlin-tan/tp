@@ -31,6 +31,7 @@ public class Person {
     private final AlcoholicRecord alcoholicRecord;
     private final Gender gender;
     private final SmokingRecord smokingRecord;
+    private final PastDiagnoses pastDiagnoses;
 
     /**
      * Every field must be present and not null.
@@ -38,9 +39,9 @@ public class Person {
     public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address, Set<Tag> tags,
                   DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender,
                   SmokingRecord smokingRecord,
-                  Set<Allergy> allergies) {
+                  Set<Allergy> allergies, PastDiagnoses pastDiagnoses) {
         requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
-                alcoholicRecord, gender, smokingRecord, allergies);
+                alcoholicRecord, gender, smokingRecord, allergies, pastDiagnoses);
         this.name = name;
         this.identityNumber = identityNumber;
         this.phone = phone;
@@ -53,6 +54,7 @@ public class Person {
         this.alcoholicRecord = alcoholicRecord;
         this.gender = gender;
         this.smokingRecord = smokingRecord;
+        this.pastDiagnoses = pastDiagnoses;
     }
 
     public Name getName() {
@@ -111,6 +113,10 @@ public class Person {
         return smokingRecord;
     }
 
+    public PastDiagnoses getPastDiagnoses() {
+        return pastDiagnoses;
+    }
+
     /**
      * Returns true if both persons have the same identity number.
      * This defines a weaker notion of equality between two persons.
@@ -151,7 +157,8 @@ public class Person {
                 && bloodType.equals(otherPerson.bloodType)
                 && alcoholicRecord.equals(otherPerson.alcoholicRecord)
                 && gender.equals(otherPerson.gender)
-                && smokingRecord.equals(otherPerson.smokingRecord);
+                && smokingRecord.equals(otherPerson.smokingRecord)
+                && pastDiagnoses.equals(otherPerson.pastDiagnoses);
     }
 
     @Override
@@ -159,7 +166,7 @@ public class Person {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, identityNumber, phone, email, address, tags,
                 dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord,
-                allergies);
+                allergies, pastDiagnoses);
     }
 
     @Override
@@ -177,6 +184,7 @@ public class Person {
                 .add("gender", gender)
                 .add("smokingRecord", smokingRecord)
                 .add("allergies", allergies)
+                .add("pastDiagnoses", pastDiagnoses)
                 .toString();
     }
 

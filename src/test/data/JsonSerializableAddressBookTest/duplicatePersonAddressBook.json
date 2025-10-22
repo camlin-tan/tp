@@ -11,7 +11,8 @@
     "alcoholicRecord" : "Social drinker",
     "gender" : "F",
     "smokingRecord": "yes",
-    "allergies": [ "nuts" ]
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "Diabetes"
   }, {
     "name": "Alice Pauline",
     "identityNumber" : "A23",
@@ -23,6 +24,7 @@
     "alcoholicRecord" : "Social drinker",
     "gender" : "F",
     "smokingRecord": "yes",
-    "allergies": [ "nuts" ]
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "Diabetes"
   } ]
 }
