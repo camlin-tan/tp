@@ -7,12 +7,14 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -45,8 +47,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setEmergencyContact(person.getEmergencyContact());
         descriptor.setTags(person.getTags());
+        descriptor.setAllergies(person.getAllergies());
         descriptor.setDateOfBirth(person.getDateOfBirth());
         descriptor.setSmokingRecord(person.getSmokingRecord());
+        descriptor.setPastDiagnoses(person.getPastDiagnoses());
     }
 
     /**
@@ -109,6 +113,17 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withAllergies(String... allergies) {
+        Set<Allergy> allerySet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
+        descriptor.setAllergies(allerySet);
+        return this;
+    }
+
+
+    /**
      * Sets the {@code bloodType} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withBloodType(String bloodType) {
@@ -136,6 +151,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withSmokingRecord(String smokingRecord) {
         descriptor.setSmokingRecord(new SmokingRecord(smokingRecord));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PastDiagnoses} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPastDiagnoses(String pastDiagnoses) {
+        descriptor.setPastDiagnoses(new PastDiagnoses(pastDiagnoses));
         return this;
     }
 

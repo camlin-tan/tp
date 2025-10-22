@@ -30,6 +30,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -37,6 +38,7 @@ import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -126,16 +128,19 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getEmergencyContact());
         DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
         SmokingRecord updatedSmokingRecord = editPersonDescriptor.getSmokingRecord()
                 .orElse(personToEdit.getSmokingRecord());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         AlcoholicRecord updatedAlcoholicRecord = editPersonDescriptor.getAlcoholicRecord()
                 .orElse(personToEdit.getAlcoholicRecord());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
+        PastDiagnoses updatedPastDiagnoses = editPersonDescriptor.getPastDiagnoses()
+                .orElse(personToEdit.getPastDiagnoses());
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedEmergencyContact, updatedTags, updatedDateOfBirth, updatedBloodType,
-                updatedAlcoholicRecord, updatedGender, updatedSmokingRecord);
+                updatedAlcoholicRecord, updatedGender, updatedSmokingRecord, updatedAllergies, updatedPastDiagnoses);
     }
 
     @Override
@@ -174,11 +179,13 @@ public class EditCommand extends Command {
         private Address address;
         private EmergencyContact emergencyContact;
         private Set<Tag> tags;
+        private Set<Allergy> allergies;
         private DateOfBirth dateOfBirth;
         private BloodType bloodType;
         private AlcoholicRecord alcoholicRecord;
         private Gender gender;
         private SmokingRecord smokingRecord;
+        private PastDiagnoses pastDiagnoses;
 
         public EditPersonDescriptor() {}
 
@@ -194,12 +201,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setEmergencyContact(toCopy.emergencyContact);
             setTags(toCopy.tags);
+            setAllergies(toCopy.allergies);
             setBloodType(toCopy.bloodType);
             setDateOfBirth(toCopy.dateOfBirth);
             setAlcoholicRecord(toCopy.alcoholicRecord);
             setDateOfBirth(toCopy.dateOfBirth);
             setGender(toCopy.gender);
             setSmokingRecord(toCopy.smokingRecord);
+            setPastDiagnoses(toCopy.pastDiagnoses);
         }
 
         /**
@@ -207,7 +216,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, identityNumber, phone, email, address, emergencyContact, tags,
-                    dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord);
+                    allergies, dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord, pastDiagnoses);
         }
 
         public void setName(Name name) {
@@ -297,6 +306,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(smokingRecord);
         }
 
+        public void setPastDiagnoses(PastDiagnoses pastDiagnoses) {
+            this.pastDiagnoses = pastDiagnoses;
+        }
+
+        public Optional<PastDiagnoses> getPastDiagnoses() {
+            return Optional.ofNullable(pastDiagnoses);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -312,6 +329,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code allergies} to this object's {@code allergies}.
+         * A defensive copy of {@code allergies} is used internally.
+         */
+        public void setAllergies(Set<Allergy> allergies) {
+            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
+        }
+
+        /**
+         * Returns an unmodifiable allergy set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code allergies} is null.
+         */
+        public Optional<Set<Allergy>> getAllergies() {
+            return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
         }
 
         @Override
@@ -337,7 +371,9 @@ public class EditCommand extends Command {
                     && Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)
                     && Objects.equals(alcoholicRecord, otherEditPersonDescriptor.alcoholicRecord)
                     && Objects.equals(gender, otherEditPersonDescriptor.gender)
-                    && Objects.equals(smokingRecord, otherEditPersonDescriptor.smokingRecord);
+                    && Objects.equals(smokingRecord, otherEditPersonDescriptor.smokingRecord)
+                    && Objects.equals(allergies, otherEditPersonDescriptor.allergies)
+                    && Objects.equals(pastDiagnoses, otherEditPersonDescriptor.pastDiagnoses);
         }
 
         @Override
@@ -355,6 +391,8 @@ public class EditCommand extends Command {
                     .add("alcoholicRecord", alcoholicRecord)
                     .add("gender", gender)
                     .add("smokingRecord", smokingRecord)
+                    .add("allergies", allergies)
+                    .add("pastDiagnoses", pastDiagnoses)
                     .toString();
         }
     }

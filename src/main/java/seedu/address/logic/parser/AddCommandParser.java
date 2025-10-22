@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,6 +23,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -28,6 +31,7 @@ import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
@@ -47,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_EMERGENCY_CONTACT, PREFIX_TAG, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE, PREFIX_ALCOHOLIC_RECORD,
-                PREFIX_GENDER, PREFIX_SMOKING_RECORD
+                PREFIX_GENDER, PREFIX_SMOKING_RECORD, PREFIX_ALLERGY, PREFIX_PAST_DIAGNOSES
         );
 
         if (!arePrefixesPresent(argMultimap,
@@ -60,8 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE,
-                PREFIX_ALCOHOLIC_RECORD, PREFIX_GENDER, PREFIX_SMOKING_RECORD);
-
+                PREFIX_ALCOHOLIC_RECORD, PREFIX_GENDER, PREFIX_SMOKING_RECORD, PREFIX_PAST_DIAGNOSES);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         IdentityNumber identityNumber = ParserUtil.parseIdentityNumber(
                 argMultimap.getValue(PREFIX_IDENTITY_NUMBER).get());
@@ -71,15 +74,19 @@ public class AddCommandParser implements Parser<AddCommand> {
         EmergencyContact emergencyContact = ParserUtil
                 .parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Allergy> allergyList = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGY));
         DateOfBirth dateOfBirth = ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DATE_OF_BIRTH).get());
         BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOOD_TYPE).get());
         AlcoholicRecord alcoholicRecord = ParserUtil.parseAlcoholicRecord(
                 argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         SmokingRecord smokingRecord = ParserUtil.parseSmokingRecord(argMultimap.getValue(PREFIX_SMOKING_RECORD).get());
+        PastDiagnoses pastDiagnoses = ParserUtil.parsePastDiagnoses(
+                argMultimap.getValue(PREFIX_PAST_DIAGNOSES).orElse("")
+        );
 
         Person person = new Person(name, identityNumber, phone, email, address, emergencyContact, tagList, dateOfBirth,
-                bloodType, alcoholicRecord, gender, smokingRecord);
+                bloodType, alcoholicRecord, gender, smokingRecord, allergyList, pastDiagnoses);
 
         return new AddCommand(person);
     }

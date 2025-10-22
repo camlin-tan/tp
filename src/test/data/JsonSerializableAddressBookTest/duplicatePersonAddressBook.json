@@ -9,9 +9,11 @@
     "tags": [ "friends" ],
     "dob": "20-05-1998",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Social drinker",
     "gender" : "F",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "Diabetes"
   }, {
     "name": "Alice Pauline",
     "identityNumber" : "A23",
@@ -21,8 +23,10 @@
     "emergencyContact": "[mother] 83123123",
     "dob": "20-05-2000",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Social drinker",
     "gender" : "F",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "Diabetes"
   } ]
 }

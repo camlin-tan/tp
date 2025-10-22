@@ -10,9 +10,11 @@
     "tags" : [ "friends" ],
     "dob" : "20-05-1998",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Social drinker",
     "gender" : "F",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "Diabetes"
   }, {
     "name" : "Benson Meier",
     "identityNumber" : "BM67",
@@ -23,9 +25,11 @@
     "tags" : [ "owesMoney", "friends" ],
     "dob" : "01-01-2000",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Occasional",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "None"
   }, {
     "name" : "Carl Kurz",
     "identityNumber" : "CK67",
@@ -36,9 +40,11 @@
     "tags" : [ ],
     "dob" : "20-12-1998",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Never",
     "gender" : "M",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "None"
   }, {
     "name" : "Daniel Meier",
     "identityNumber" : "DM67",
@@ -49,9 +55,11 @@
     "tags" : [ "friends" ],
     "dob" : "30-05-1995",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Yes",
     "gender" : "M",
-    "smokingRecord" : "yes"
+    "smokingRecord" : "yes",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "None"
   }, {
     "name" : "Elle Meyer",
     "identityNumber" : "EM67",
@@ -62,9 +70,11 @@
     "tags" : [ ],
     "dob" : "20-11-1999",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Social drinker",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "None"
   }, {
     "name" : "Fiona Kunz",
     "identityNumber" : "FK67",
@@ -75,9 +85,11 @@
     "tags" : [ ],
     "dob" : "15-08-1997",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Never",
     "gender" : "M",
-    "smokingRecord" : "no"
+    "smokingRecord" : "no",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "None"
   }, {
     "name" : "George Best",
     "identityNumber" : "GB67",
@@ -88,8 +100,10 @@
     "tags" : [ "owesMoney", "friends" ],
     "dob" : "20-05-2000",
     "bloodType" : "O",
-    "alcoholicRecord" : "No",
+    "alcoholicRecord" : "Never",
     "gender" : "M",
-    "smokingRecord": "yes"
+    "smokingRecord": "yes",
+    "allergies": [ "nuts" ],
+    "pastDiagnoses" : "None"
   } ]
 }

@@ -5,6 +5,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDE
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ALCOHOLIC_RECORD_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_NUTS;
 import static seedu.address.logic.commands.CommandTestUtil.BLOOD_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_OF_BIRTH_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -12,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMERGENCY_CONTACT_DES
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.IDENTITY_NUMBER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PAST_DIAGNOSES_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SMOKING_RECORD_DESC_NO;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -175,7 +177,8 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY
-                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_NO;
+                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_NO
+                + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
