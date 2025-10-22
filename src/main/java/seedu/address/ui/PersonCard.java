@@ -52,6 +52,8 @@ public class PersonCard extends UiPart<Region> {
     private Label dateOfBirthAndAge;
     @FXML
     private Label smokingRecord;
+    @FXML
+    private Label pastDiagnoses;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -74,5 +76,6 @@ public class PersonCard extends UiPart<Region> {
         dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
                 + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
         smokingRecord.setText("Smoker: " + person.getSmokingRecord().toString().toUpperCase());
+        pastDiagnoses.setText("Past Diagnoses: " + person.getPastDiagnoses().toString());
     }
 }

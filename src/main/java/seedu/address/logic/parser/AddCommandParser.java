@@ -72,7 +72,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         SmokingRecord smokingRecord = ParserUtil.parseSmokingRecord(argMultimap.getValue(PREFIX_SMOKING_RECORD).get());
 
         Person person = new Person(name, identityNumber, phone, email, address, tagList, dateOfBirth,
-                bloodType, alcoholicRecord, gender, smokingRecord);
+                bloodType, alcoholicRecord, gender, smokingRecord, null);
 
         return new AddCommand(person);
     }

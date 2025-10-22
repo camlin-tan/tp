@@ -130,7 +130,7 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
-                updatedGender, updatedSmokingRecord);
+                updatedGender, updatedSmokingRecord, null);
     }
 
     @Override

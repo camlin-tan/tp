@@ -30,13 +30,14 @@ public class Person {
     private final AlcoholicRecord alcoholicRecord;
     private final Gender gender;
     private final SmokingRecord smokingRecord;
+    private final PastDiagnoses pastDiagnoses;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address, Set<Tag> tags,
                   DateOfBirth dateOfBirth, BloodType bloodType, AlcoholicRecord alcoholicRecord, Gender gender,
-                  SmokingRecord smokingRecord) {
+                  SmokingRecord smokingRecord, PastDiagnoses pastDiagnoses) {
         requireAllNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType,
                 alcoholicRecord, gender, smokingRecord);
         this.name = name;
@@ -50,6 +51,7 @@ public class Person {
         this.alcoholicRecord = alcoholicRecord;
         this.gender = gender;
         this.smokingRecord = smokingRecord;
+        this.pastDiagnoses = pastDiagnoses;
     }
 
     public Name getName() {
@@ -98,6 +100,10 @@ public class Person {
 
     public SmokingRecord getSmokingRecord() {
         return smokingRecord;
+    }
+
+    public PastDiagnoses getPastDiagnoses() {
+        return pastDiagnoses;
     }
 
     /**

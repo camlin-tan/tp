@@ -171,6 +171,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord,
-                gender, smokingRecord);
+                gender, smokingRecord, null);
     }
 }
