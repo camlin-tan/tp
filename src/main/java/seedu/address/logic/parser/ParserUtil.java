@@ -11,13 +11,16 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
 import seedu.address.model.tag.Tag;
@@ -103,6 +106,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String emergencyContact} into an {@code EmergencyContact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code emergencyContact} is invalid.
+     */
+    public static EmergencyContact parseEmergencyContact(String emergencyContact) throws ParseException {
+        requireNonNull(emergencyContact);
+        String trimmedEmergencyContact = emergencyContact.trim();
+        if (!EmergencyContact.isValidEmergencyContact(trimmedEmergencyContact)) {
+            throw new ParseException(EmergencyContact.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new EmergencyContact(trimmedEmergencyContact);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -133,6 +151,32 @@ public class ParserUtil {
             throw new ParseException(DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS);
         }
         return new DateOfBirth(trimmedDateOfBirth);
+    }
+    /**
+     * Parses a {@code String allergy} into a {@code Allergy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code allergy} is invalid.
+     */
+    public static Allergy parseAllergy(String allergy) throws ParseException {
+        requireNonNull(allergy);
+        String trimmedAllergy = allergy.trim();
+        if (!Allergy.isValidAllergyName(trimmedAllergy)) {
+            throw new ParseException(Allergy.MESSAGE_CONSTRAINTS);
+        }
+        return new Allergy(trimmedAllergy);
+    }
+
+    /**
+     * Parses {@code Collection<String> allergies} into a {@code Set<Tag>}.
+     */
+    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException {
+        requireNonNull(allergies);
+        final Set<Allergy> allergySet = new HashSet<>();
+        for (String allergyName : allergies) {
+            allergySet.add(parseAllergy(allergyName));
+        }
+        return allergySet;
     }
 
     /**
@@ -247,5 +291,20 @@ public class ParserUtil {
             throw new ParseException(SmokingRecord.MESSAGE_CONSTRAINTS);
         }
         return new SmokingRecord(trimmedRecord);
+    }
+
+    /**
+     * Parses a {@code String pastDiagnoses} into a {@code PastDiagnoses}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code pastDiagnoses} is invalid.
+     */
+    public static PastDiagnoses parsePastDiagnoses(String pastDiagnoses) throws ParseException {
+        requireNonNull(pastDiagnoses);
+        String trimmedPastDiagnoses = pastDiagnoses.trim();
+        if (!PastDiagnoses.isValidPastDiagnoses(trimmedPastDiagnoses)) {
+            throw new ParseException(PastDiagnoses.MESSAGE_CONSTRAINTS);
+        }
+        return new PastDiagnoses(trimmedPastDiagnoses);
     }
 }
