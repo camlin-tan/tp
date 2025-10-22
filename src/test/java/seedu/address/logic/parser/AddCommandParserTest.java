@@ -64,8 +64,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.BloodType;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
@@ -270,22 +272,23 @@ public class AddCommandParserTest {
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
-                + INVALID_EMAIL_DESC + INVALID_ADDRESS_DESC + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
+                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+                + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND
+                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND
                 + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES
                 + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid date of birth
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_DATE_OF_BIRTH_DESC + INVALID_TAG_DESC
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_DATE_OF_BIRTH_DESC + VALID_TAG_FRIEND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+                + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
+                DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
 
         // invalid alcoholic record
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
