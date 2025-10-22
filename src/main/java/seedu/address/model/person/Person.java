@@ -32,6 +32,7 @@ public class Person {
     private final AlcoholicRecord alcoholicRecord;
     private final Gender gender;
     private final SmokingRecord smokingRecord;
+    private final Set<Medicine> medicines = new HashSet<>();
     private final PastDiagnoses pastDiagnoses;
 
     /**
@@ -40,9 +41,10 @@ public class Person {
     public Person(Name name, IdentityNumber identityNumber, Phone phone, Email email, Address address,
                   EmergencyContact emergencyContact, Set<Tag> tags, DateOfBirth dateOfBirth, BloodType bloodType,
                   AlcoholicRecord alcoholicRecord, Gender gender, SmokingRecord smokingRecord,
-                  Set<Allergy> allergies, PastDiagnoses pastDiagnoses) {
+                  Set<Allergy> allergies, PastDiagnoses pastDiagnoses,
+                  Set<Medicine> medicines) {
         requireAllNonNull(name, identityNumber, phone, email, address, emergencyContact, tags, dateOfBirth, bloodType,
-                alcoholicRecord, gender, smokingRecord, allergies, pastDiagnoses);
+                alcoholicRecord, gender, smokingRecord, allergies, pastDiagnoses, medicines);
         this.name = name;
         this.identityNumber = identityNumber;
         this.phone = phone;
@@ -56,6 +58,7 @@ public class Person {
         this.alcoholicRecord = alcoholicRecord;
         this.gender = gender;
         this.smokingRecord = smokingRecord;
+        this.medicines.addAll(medicines);
         this.pastDiagnoses = pastDiagnoses;
     }
 
@@ -115,6 +118,14 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns an immutable medicine set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Medicine> getMedicines() {
+        return Collections.unmodifiableSet(medicines);
+    }
+
     public SmokingRecord getSmokingRecord() {
         return smokingRecord;
     }
@@ -159,6 +170,7 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && emergencyContact.equals(otherPerson.emergencyContact)
                 && tags.equals(otherPerson.tags)
+                && medicines.equals(otherPerson.medicines)
                 && allergies.equals(otherPerson.allergies)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && bloodType.equals(otherPerson.bloodType)
@@ -173,7 +185,7 @@ public class Person {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, identityNumber, phone, email, address, emergencyContact, tags,
                 dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord,
-                allergies, pastDiagnoses);
+                allergies, pastDiagnoses, medicines);
     }
 
     @Override
@@ -193,6 +205,7 @@ public class Person {
                 .add("smokingRecord", smokingRecord)
                 .add("allergies", allergies)
                 .add("pastDiagnoses", pastDiagnoses)
+                .add("medicines", medicines)
                 .toString();
     }
 

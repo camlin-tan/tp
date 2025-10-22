@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -52,6 +53,7 @@ public class CommandTestUtil {
     public static final String VALID_ALLERGY_NUTS = "nuts";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_MEDICINE_ANTIDEPRESSANT = "antidepressant";
     public static final String VALID_BLOOD_TYPE = "AB";
     public static final String VALID_ALCOHOLIC_RECORD_AMY = "Social drinker";
     public static final String VALID_ALCOHOLIC_RECORD_BOB = "Never";
@@ -83,6 +85,7 @@ public class CommandTestUtil {
     public static final String ALLERGY_DESC_NUTS = " " + PREFIX_ALLERGY + VALID_ALLERGY_NUTS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String MEDICINE_DESC_ANTIDEPRESSANT = " " + PREFIX_MEDICINE + VALID_MEDICINE_ANTIDEPRESSANT;
     public static final String BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE + VALID_BLOOD_TYPE;
     public static final String ALCOHOLIC_RECORD_DESC_AMY = " " + PREFIX_ALCOHOLIC_RECORD + VALID_ALCOHOLIC_RECORD_AMY;
     public static final String ALCOHOLIC_RECORD_DESC_BOB = " " + PREFIX_ALCOHOLIC_RECORD + VALID_ALCOHOLIC_RECORD_BOB;

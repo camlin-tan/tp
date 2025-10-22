@@ -56,6 +56,8 @@ public class Messages {
         person.getTags().forEach(builder::append);
         builder.append("; Allergies: ");
         person.getAllergies().forEach(builder::append);
+        builder.append("; Medicines: ");
+        person.getMedicines().forEach(builder::append);
         return builder.toString();
     }
 

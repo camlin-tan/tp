@@ -19,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
@@ -42,6 +43,7 @@ class JsonAdaptedPerson {
     private final String emergencyContact;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
+    private final List<JsonAdaptedMedicine> medicines = new ArrayList<>();
     private final String smokingRecord;
     private final String bloodType;
     private final String alcoholicRecord;
@@ -62,7 +64,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("gender") String gender,
                              @JsonProperty("smokingRecord") String smokingRecord,
                              @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
-                             @JsonProperty("pastDiagnoses") String pastDiagnoses) {
+                             @JsonProperty("pastDiagnoses") String pastDiagnoses,
+                             @JsonProperty("medicines") List<JsonAdaptedMedicine> medicines) {
 
         this.name = name;
         this.identityNumber = identityNumber;
@@ -79,6 +82,9 @@ class JsonAdaptedPerson {
         }
         if (allergies != null) {
             this.allergies.addAll(allergies);
+        }
+        if (medicines != null) {
+            this.medicines.addAll(medicines);
         }
         this.smokingRecord = smokingRecord;
         this.pastDiagnoses = pastDiagnoses;
@@ -106,6 +112,9 @@ class JsonAdaptedPerson {
         allergies.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
+        medicines.addAll(source.getMedicines().stream()
+                .map(JsonAdaptedMedicine::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -124,6 +133,11 @@ class JsonAdaptedPerson {
         final List<Allergy> personAllergies = new ArrayList<>();
         for (JsonAdaptedAllergy allergy : allergies) {
             personAllergies.add(allergy.toModelType());
+        }
+
+        final List<Medicine> personMedicines = new ArrayList<>();
+        for (JsonAdaptedMedicine medicine : medicines) {
+            personMedicines.add(medicine.toModelType());
         }
 
         if (name == null) {
@@ -235,11 +249,13 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final Set<Medicine> modelMedicines = new HashSet<>(personMedicines);
+
         final Set<Allergy> modelAllergies = new HashSet<>(personAllergies);
 
         return new Person(modelName, modelIdentityNumber, modelPhone, modelEmail, modelAddress, modelEmergencyContact,
                 modelTags, dob, modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord,
-                modelAllergies, modelPastDiagnoses);
+                modelAllergies, modelPastDiagnoses, modelMedicines);
     }
 
 }
