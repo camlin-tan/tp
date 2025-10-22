@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -38,6 +39,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String dateOfBirth;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
     private final String smokingRecord;
     private final String bloodType;
     private final String alcoholicRecord;
@@ -53,7 +55,9 @@ class JsonAdaptedPerson {
                              @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord,
-                             @JsonProperty("gender") String gender, @JsonProperty("smokingRecord") String smokingRecord,
+                             @JsonProperty("gender") String gender,
+                             @JsonProperty("smokingRecord") String smokingRecord,
+                             @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
                              @JsonProperty("pastDiagnoses") String pastDiagnoses) {
 
         this.name = name;
@@ -67,6 +71,9 @@ class JsonAdaptedPerson {
         this.gender = gender;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (allergies != null) {
+            this.allergies.addAll(allergies);
         }
         this.smokingRecord = smokingRecord;
         this.pastDiagnoses = pastDiagnoses;
@@ -90,6 +97,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        allergies.addAll(source.getAllergies().stream()
+                .map(JsonAdaptedAllergy::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -103,6 +113,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Allergy> personAllergies = new ArrayList<>();
+        for (JsonAdaptedAllergy allergy : allergies) {
+            personAllergies.add(allergy.toModelType());
         }
 
         if (name == null) {
@@ -205,8 +220,11 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final Set<Allergy> modelAllergies = new HashSet<>(personAllergies);
+
         return new Person(modelName, modelIdentityNumber, modelPhone, modelEmail, modelAddress, modelTags, dob,
-                modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord, modelPastDiagnoses);
+                modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord,
+                modelAllergies, modelPastDiagnoses);
     }
 
 }

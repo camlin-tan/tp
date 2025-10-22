@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -44,6 +45,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setAllergies(person.getAllergies());
         descriptor.setDateOfBirth(person.getDateOfBirth());
         descriptor.setSmokingRecord(person.getSmokingRecord());
         descriptor.setPastDiagnoses(person.getPastDiagnoses());
@@ -98,6 +100,17 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
+
+    /**
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withAllergies(String... allergies) {
+        Set<Allergy> allerySet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
+        descriptor.setAllergies(allerySet);
+        return this;
+    }
+
 
     /**
      * Sets the {@code bloodType} of the {@code EditPersonDescriptor} that we are building.

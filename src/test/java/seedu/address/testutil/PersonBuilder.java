@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -41,6 +42,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Allergy> allergies;
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
     private AlcoholicRecord alcoholicRecord;
@@ -58,6 +60,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        allergies = new HashSet<>();
         bloodType = new BloodType(DEFAULT_BLOOD_TYPE);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
         alcoholicRecord = new AlcoholicRecord(DEFAULT_ALCOHOLIC_RECORD);
@@ -76,6 +79,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        allergies = new HashSet<>(personToCopy.getAllergies());
         bloodType = personToCopy.getBloodType();
         dateOfBirth = personToCopy.getDateOfBirth();
         alcoholicRecord = personToCopy.getAlcoholicRecord();
@@ -105,6 +109,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withAllergies(String ... allergies) {
+        this.allergies = SampleDataUtil.getAllergySet(allergies);
         return this;
     }
 
@@ -185,6 +197,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, identityNumber, phone, email, address, tags, dateOfBirth, bloodType, alcoholicRecord,
-                gender, smokingRecord, pastDiagnoses);
+                gender, smokingRecord, allergies, pastDiagnoses);
     }
 }

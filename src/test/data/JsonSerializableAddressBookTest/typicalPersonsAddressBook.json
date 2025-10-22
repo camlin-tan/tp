@@ -12,6 +12,7 @@
     "alcoholicRecord" : "Social drinker",
     "gender" : "F",
     "smokingRecord" : "yes",
+    "allergies": [ "nuts" ],
     "pastDiagnoses" : "Diabetes"
   }, {
     "name" : "Benson Meier",
@@ -25,6 +26,7 @@
     "alcoholicRecord" : "Occasional",
     "gender" : "M",
     "smokingRecord" : "no",
+    "allergies": [ "nuts" ],
     "pastDiagnoses" : "None"
   }, {
     "name" : "Carl Kurz",
@@ -38,6 +40,7 @@
     "alcoholicRecord" : "Never",
     "gender" : "M",
     "smokingRecord" : "yes",
+    "allergies": [ "nuts" ],
     "pastDiagnoses" : "None"
   }, {
     "name" : "Daniel Meier",
@@ -51,6 +54,7 @@
     "alcoholicRecord" : "Yes",
     "gender" : "M",
     "smokingRecord" : "yes",
+    "allergies": [ "nuts" ],
     "pastDiagnoses" : "None"
   }, {
     "name" : "Elle Meyer",
@@ -64,6 +68,7 @@
     "alcoholicRecord" : "Social drinker",
     "gender" : "M",
     "smokingRecord" : "no",
+    "allergies": [ "nuts" ],
     "pastDiagnoses" : "None"
   }, {
     "name" : "Fiona Kunz",
@@ -77,6 +82,7 @@
     "alcoholicRecord" : "Never",
     "gender" : "M",
     "smokingRecord" : "no",
+    "allergies": [ "nuts" ],
     "pastDiagnoses" : "None"
   }, {
     "name" : "George Best",
@@ -90,6 +96,7 @@
     "alcoholicRecord" : "Never",
     "gender" : "M",
     "smokingRecord": "yes",
+    "allergies": [ "nuts" ],
     "pastDiagnoses" : "None"
   } ]
 }

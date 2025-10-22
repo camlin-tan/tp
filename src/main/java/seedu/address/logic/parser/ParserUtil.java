@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -133,6 +134,32 @@ public class ParserUtil {
             throw new ParseException(DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS);
         }
         return new DateOfBirth(trimmedDateOfBirth);
+    }
+    /**
+     * Parses a {@code String allergy} into a {@code Allergy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code allergy} is invalid.
+     */
+    public static Allergy parseAllergy(String allergy) throws ParseException {
+        requireNonNull(allergy);
+        String trimmedAllergy = allergy.trim();
+        if (!Allergy.isValidAllergyName(trimmedAllergy)) {
+            throw new ParseException(Allergy.MESSAGE_CONSTRAINTS);
+        }
+        return new Allergy(trimmedAllergy);
+    }
+
+    /**
+     * Parses {@code Collection<String> allergies} into a {@code Set<Tag>}.
+     */
+    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException {
+        requireNonNull(allergies);
+        final Set<Allergy> allergySet = new HashSet<>();
+        for (String allergyName : allergies) {
+            allergySet.add(parseAllergy(allergyName));
+        }
+        return allergySet;
     }
 
     /**

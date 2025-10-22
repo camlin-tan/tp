@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -17,6 +18,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -51,6 +53,9 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        person.getAllergies().stream().forEach(
+                s -> sb.append(PREFIX_ALLERGY + s.allergyName + " ")
+        );
         return sb.toString();
     }
 
@@ -83,6 +88,15 @@ public class PersonUtil {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        sb.append(" ");
+        if (descriptor.getAllergies().isPresent()) {
+            Set<Allergy> allergy = descriptor.getAllergies().get();
+            if (allergy.isEmpty()) {
+                sb.append(PREFIX_ALLERGY);
+            } else {
+                allergy.forEach(s -> sb.append(PREFIX_ALLERGY).append(s.allergyName).append(" "));
             }
         }
         return sb.toString();

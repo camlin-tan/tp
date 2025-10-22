@@ -8,6 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -31,29 +32,32 @@ public class SampleDataUtil {
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"), new DateOfBirth("01-01-1998"), new BloodType("AB"),
                 new AlcoholicRecord("Social drinker"), new Gender("M"), new SmokingRecord("yes"),
-                new PastDiagnoses("Diabetes")),
+                getAllergySet("nuts"), new PastDiagnoses("Diabetes")),
             new Person(new Name("Bernice Yu"), new IdentityNumber("BY6767"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"), new DateOfBirth("02-02-1999"), new BloodType("AB"),
-                new AlcoholicRecord("Occasional"), new Gender("F"), new SmokingRecord("no"), new PastDiagnoses("")),
+                new AlcoholicRecord("Occasional"), new Gender("F"), new SmokingRecord("no"),
+                getAllergySet("nuts"), new PastDiagnoses("")),
             new Person(new Name("Charlotte Oliveiro"), new IdentityNumber("CO6969"), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"), new DateOfBirth("03-03-2000"), new BloodType("AB"),
                 new AlcoholicRecord("Never"), new Gender("F"), new SmokingRecord("yes"),
-                new PastDiagnoses("Hypertension")),
+                getAllergySet("nuts"), new PastDiagnoses("Hypertension")),
             new Person(new Name("David Li"), new IdentityNumber("DL6767"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"), new DateOfBirth("04-04-2001"), new BloodType("AB"),
-                new AlcoholicRecord("Yes"), new Gender("M"), new SmokingRecord("yes"), new PastDiagnoses("Asthma")),
+                new AlcoholicRecord("Yes"), new Gender("M"), new SmokingRecord("yes"),
+                getAllergySet("nuts"), new PastDiagnoses("Asthma")),
             new Person(new Name("Irfan Ibrahim"), new IdentityNumber("II6767"), new Phone("92492021"),
                 new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"), new DateOfBirth("05-05-2002"), new BloodType("AB"),
                 new AlcoholicRecord("Former drinker"), new Gender("M"), new SmokingRecord("yes"),
-                new PastDiagnoses("")),
+                getAllergySet("nuts"), new PastDiagnoses("")),
             new Person(new Name("Roy Balakrishnan"), new IdentityNumber("RB6767"),
                 new Phone("92624417"), new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"), new DateOfBirth("06-06-2003"), new BloodType("AB"),
-                new AlcoholicRecord("Yes"), new Gender("M"), new SmokingRecord("no"), new PastDiagnoses(""))
+                new AlcoholicRecord("Yes"), new Gender("M"), new SmokingRecord("no"),
+                getAllergySet("nuts"), new PastDiagnoses(""))
         };
     }
 
@@ -71,6 +75,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a allergy set containing the list of strings given.
+     */
+    public static Set<Allergy> getAllergySet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Allergy::new)
                 .collect(Collectors.toSet());
     }
 
