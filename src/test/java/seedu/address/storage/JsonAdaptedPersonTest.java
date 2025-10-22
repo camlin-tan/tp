@@ -20,6 +20,7 @@ import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
 
@@ -37,6 +38,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_BLOOD_TYPE = " ";
     private static final String INVALID_GENDER = " ";
     private static final String INVALID_SMOKING_RECORD = "True";
+    private static final String INVALID_PAST_DIAGNOSES = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_IDENTITY_NUMBER = BENSON.getIdentityNumber().toString();
@@ -244,6 +246,26 @@ public class JsonAdaptedPersonTest {
                         VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_ALCOHOLIC_RECORD,
                         VALID_GENDER, VALID_BLOOD_TYPE, null, VALID_PAST_DIAGNOSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, SmokingRecord.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPastDiagnoses_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE,
+                        VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, INVALID_PAST_DIAGNOSES);
+        String expectedMessage = PastDiagnoses.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullPastDiagnoses_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE,
+                        VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PastDiagnoses.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

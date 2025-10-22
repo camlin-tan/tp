@@ -39,4 +39,26 @@ public class PastDiagnosesTest {
         assertFalse(PastDiagnoses.isValidPastDiagnoses(" ")); // only whitespace
         assertFalse(PastDiagnoses.isValidPastDiagnoses("   ")); // multiple whitespaces
     }
+
+    @Test
+    public void equals() {
+        PastDiagnoses pd1 = new PastDiagnoses("Diabetes");
+        PastDiagnoses pd2 = new PastDiagnoses("Diabetes");
+        PastDiagnoses pd3 = new PastDiagnoses("Hypertension");
+
+        // same object -> returns true
+        assertTrue(pd1.equals(pd1));
+
+        // same values -> returns true
+        assertTrue(pd1.equals(pd2));
+
+        // different values -> returns false
+        assertFalse(pd1.equals(pd3));
+
+        // different types -> returns false
+        assertFalse(pd1.equals(5));
+
+        // null -> returns false
+        assertFalse(pd1.equals(null));
+    }
 }

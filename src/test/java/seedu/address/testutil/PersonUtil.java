@@ -47,6 +47,7 @@ public class PersonUtil {
         sb.append(PREFIX_ALCOHOLIC_RECORD + person.getAlcoholicRecord().toString() + " ");
         sb.append(PREFIX_GENDER + person.getGender().gender + " ");
         sb.append(PREFIX_SMOKING_RECORD + person.getSmokingRecord().toString() + " ");
+        sb.append(PREFIX_PAST_DIAGNOSES + person.getPastDiagnoses().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
