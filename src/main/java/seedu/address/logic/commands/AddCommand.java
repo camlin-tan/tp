@@ -48,7 +48,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_BLOOD_TYPE + "AB "
-            + PREFIX_ALCOHOLIC_RECORD + "No "
+            + PREFIX_ALCOHOLIC_RECORD + "Social drinker "
             + PREFIX_GENDER + "M "
             + PREFIX_DATE_OF_BIRTH + "01-01-2000 "
             + PREFIX_SMOKING_RECORD + "Yes "
