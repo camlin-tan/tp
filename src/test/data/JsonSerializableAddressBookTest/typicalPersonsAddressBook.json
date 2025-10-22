@@ -14,7 +14,8 @@
     "gender" : "F",
     "smokingRecord" : "Non-smoker",
     "allergies": [ "nuts" ],
-    "pastDiagnoses" : "Diabetes"
+    "pastDiagnoses" : "Diabetes",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Benson Meier",
     "identityNumber" : "BM67",
@@ -29,7 +30,8 @@
     "gender" : "M",
     "smokingRecord" : "Heavy smoker",
     "allergies": [ "nuts" ],
-    "pastDiagnoses" : "None"
+    "pastDiagnoses" : "None",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Carl Kurz",
     "identityNumber" : "CK67",
@@ -44,7 +46,8 @@
     "gender" : "M",
     "smokingRecord" : "Non-smoker",
     "allergies": [ "nuts" ],
-    "pastDiagnoses" : "None"
+    "pastDiagnoses" : "None",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Daniel Meier",
     "identityNumber" : "DM67",
@@ -59,7 +62,8 @@
     "gender" : "M",
     "smokingRecord" : "Quitter",
     "allergies": [ "nuts" ],
-    "pastDiagnoses" : "None"
+    "pastDiagnoses" : "None",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Elle Meyer",
     "identityNumber" : "EM67",
@@ -74,7 +78,8 @@
     "gender" : "M",
     "smokingRecord" : "Non-smoker",
     "allergies": [ "nuts" ],
-    "pastDiagnoses" : "None"
+    "pastDiagnoses" : "None",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "Fiona Kunz",
     "identityNumber" : "FK67",
@@ -89,7 +94,8 @@
     "gender" : "M",
     "smokingRecord" : "Heavy smoker",
     "allergies": [ "nuts" ],
-    "pastDiagnoses" : "None"
+    "pastDiagnoses" : "None",
+    "medicines" : ["antidepressants"]
   }, {
     "name" : "George Best",
     "identityNumber" : "GB67",
@@ -104,6 +110,7 @@
     "gender" : "M",
     "smokingRecord": "Occasional smoker",
     "allergies": [ "nuts" ],
-    "pastDiagnoses" : "None"
+    "pastDiagnoses" : "None",
+    "medicines" : ["antidepressants"]
   } ]
 }

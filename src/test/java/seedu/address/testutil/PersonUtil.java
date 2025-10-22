@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Allergy;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -57,6 +59,9 @@ public class PersonUtil {
         );
         person.getAllergies().stream().forEach(
                 s -> sb.append(PREFIX_ALLERGY + s.allergyName + " ")
+        );
+        person.getMedicines().stream().forEach(
+                s -> sb.append(PREFIX_ALLERGY + s.medicine + " ")
         );
         return sb.toString();
     }
@@ -102,6 +107,15 @@ public class PersonUtil {
                 sb.append(PREFIX_ALLERGY);
             } else {
                 allergy.forEach(s -> sb.append(PREFIX_ALLERGY).append(s.allergyName).append(" "));
+            }
+        }
+        sb.append(" ");
+        if (descriptor.getMedicines().isPresent()) {
+            Set<Medicine> medicine = descriptor.getMedicines().get();
+            if (medicine.isEmpty()) {
+                sb.append(PREFIX_MEDICINE);
+            } else {
+                medicine.forEach(s -> sb.append(PREFIX_MEDICINE).append(s.medicine).append(" "));
             }
         }
         return sb.toString();

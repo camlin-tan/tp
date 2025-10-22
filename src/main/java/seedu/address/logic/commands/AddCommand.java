@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
@@ -43,6 +44,8 @@ public class AddCommand extends Command {
             + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_IDENTITY_NUMBER + "A91234567 "
@@ -57,7 +60,9 @@ public class AddCommand extends Command {
             + PREFIX_SMOKING_RECORD + "Heavy smoker "
             + PREFIX_ALLERGY + "nuts "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_MEDICINE + "100mg painkillers/day "
+            + PREFIX_MEDICINE + "100mg Panadol/day";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with this ID already exists";

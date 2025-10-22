@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
@@ -46,6 +47,7 @@ public class PersonBuilder {
     private EmergencyContact emergencyContact;
     private Set<Tag> tags;
     private Set<Allergy> allergies;
+    private Set<Medicine> medicines;
     private BloodType bloodType;
     private DateOfBirth dateOfBirth;
     private AlcoholicRecord alcoholicRecord;
@@ -71,6 +73,7 @@ public class PersonBuilder {
         gender = new Gender(DEFAULT_GENDER);
         smokingRecord = new SmokingRecord(DEFAULT_SMOKING_RECORD);
         pastDiagnoses = new PastDiagnoses(DEFAULT_PAST_DIAGNOSES);
+        medicines = new HashSet<>();
     }
 
     /**
@@ -91,6 +94,7 @@ public class PersonBuilder {
         gender = personToCopy.getGender();
         smokingRecord = personToCopy.getSmokingRecord();
         pastDiagnoses = personToCopy.getPastDiagnoses();
+        medicines = new HashSet<>(personToCopy.getMedicines());
     }
 
     /**
@@ -122,6 +126,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAllergies(String ... allergies) {
         this.allergies = SampleDataUtil.getAllergySet(allergies);
+        return this;
+    }
+
+    /**
+     * Parses the {@code medicines} into a {@code Set<Medicine>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withMedicines(String ... medicines) {
+        this.medicines = SampleDataUtil.getMedicineSet(medicines);
         return this;
     }
 
@@ -210,6 +222,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, identityNumber, phone, email, address, emergencyContact, tags, dateOfBirth, bloodType,
-                alcoholicRecord, gender, smokingRecord, allergies, pastDiagnoses);
+                alcoholicRecord, gender, smokingRecord, allergies, pastDiagnoses, medicines);
     }
 }

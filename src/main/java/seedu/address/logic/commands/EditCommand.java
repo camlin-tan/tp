@@ -37,6 +37,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
@@ -129,6 +130,7 @@ public class EditCommand extends Command {
         DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
+        Set<Medicine> updatedMedicines = editPersonDescriptor.getMedicines().orElse(personToEdit.getMedicines());
         SmokingRecord updatedSmokingRecord = editPersonDescriptor.getSmokingRecord()
                 .orElse(personToEdit.getSmokingRecord());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
@@ -140,7 +142,8 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedEmergencyContact, updatedTags, updatedDateOfBirth, updatedBloodType,
-                updatedAlcoholicRecord, updatedGender, updatedSmokingRecord, updatedAllergies, updatedPastDiagnoses);
+                updatedAlcoholicRecord, updatedGender, updatedSmokingRecord, updatedAllergies, updatedPastDiagnoses,
+                updatedMedicines);
     }
 
     @Override
@@ -179,6 +182,7 @@ public class EditCommand extends Command {
         private Address address;
         private EmergencyContact emergencyContact;
         private Set<Tag> tags;
+        private Set<Medicine> medicines;
         private Set<Allergy> allergies;
         private DateOfBirth dateOfBirth;
         private BloodType bloodType;
@@ -209,6 +213,7 @@ public class EditCommand extends Command {
             setGender(toCopy.gender);
             setSmokingRecord(toCopy.smokingRecord);
             setPastDiagnoses(toCopy.pastDiagnoses);
+            setMedicines(toCopy.medicines);
         }
 
         /**
@@ -346,6 +351,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Allergy>> getAllergies() {
             return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code medicines} to this object's {@code medicines}.
+         * A defensive copy of {@code medicines} is used internally.
+         */
+        public void setMedicines(Set<Medicine> medicines) {
+            this.medicines = (medicines != null) ? new HashSet<>(medicines) : null;
+        }
+
+        /**
+         * Returns an unmodifiable medicine set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code medicines} is null.
+         */
+        public Optional<Set<Medicine>> getMedicines() {
+            return (medicines != null) ? Optional.of(Collections.unmodifiableSet(medicines)) : Optional.empty();
         }
 
         @Override

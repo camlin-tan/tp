@@ -29,6 +29,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SMOKING_RECORD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICINE_DESC_ANTIDEPRESSANT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PAST_DIAGNOSES_DESC_AMY;
@@ -92,7 +93,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + TAG_DESC_FRIEND
                 + DATE_OF_BIRTH_DESC_BOB + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
+                + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT,
                 new AddCommand(expectedPerson));
 
 
@@ -102,7 +103,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
+                + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -111,7 +112,7 @@ public class AddCommandParserTest {
         String validExpectedPersonString = NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_BOB + PAST_DIAGNOSES_DESC_BOB;
+                + SMOKING_RECORD_DESC_BOB + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -228,7 +229,7 @@ public class AddCommandParserTest {
                 NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC
                         + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
-                        + PAST_DIAGNOSES_DESC_AMY, new AddCommand(expectedPerson));
+                        + PAST_DIAGNOSES_DESC_AMY + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
     }
 
     @Test

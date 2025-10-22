@@ -13,6 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PastDiagnoses;
 import seedu.address.model.person.Person;
@@ -48,6 +49,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmergencyContact(person.getEmergencyContact());
         descriptor.setTags(person.getTags());
         descriptor.setAllergies(person.getAllergies());
+        descriptor.setMedicines(person.getMedicines());
         descriptor.setDateOfBirth(person.getDateOfBirth());
         descriptor.setSmokingRecord(person.getSmokingRecord());
         descriptor.setPastDiagnoses(person.getPastDiagnoses());
@@ -109,6 +111,16 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code medicines} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withMedicines(String... medicines) {
+        Set<Medicine> medicinesSet = Stream.of(medicines).map(Medicine::new).collect(Collectors.toSet());
+        descriptor.setMedicines(medicinesSet);
         return this;
     }
 
