@@ -5,9 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -303,15 +301,7 @@ public class ParserUtil {
      */
     public static PastDiagnoses parsePastDiagnoses(String pastDiagnoses) throws ParseException {
         requireNonNull(pastDiagnoses);
-        Logger logger = LogsCenter.getLogger(ParserUtil.class);
         String trimmedPastDiagnoses = pastDiagnoses.trim();
-        if (!PastDiagnoses.isValidPastDiagnoses(trimmedPastDiagnoses)) {
-            // Log invalid past diagnoses input at WARNING (do not include full raw input)
-            String preview = trimmedPastDiagnoses.length() > 40 ? trimmedPastDiagnoses.substring(0, 40) + "…"
-                    : trimmedPastDiagnoses;
-            logger.warning(() -> "parsePastDiagnoses: invalid input preview='" + preview + "'");
-            throw new ParseException(PastDiagnoses.MESSAGE_CONSTRAINTS);
-        }
         return new PastDiagnoses(trimmedPastDiagnoses);
     }
 }

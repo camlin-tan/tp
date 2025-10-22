@@ -247,9 +247,6 @@ class JsonAdaptedPerson {
                     PastDiagnoses.class.getSimpleName()));
         }
         if (!PastDiagnoses.isValidPastDiagnoses(pastDiagnoses)) {
-            String preview = pastDiagnoses.length() > 40 ? pastDiagnoses.substring(0, 40) + "…" : pastDiagnoses;
-            logger.warning(() -> "JsonAdaptedPerson: invalid PastDiagnoses preview='" + preview + "' for name='"
-                    + name + "'");
             throw new IllegalValueException(PastDiagnoses.MESSAGE_CONSTRAINTS);
         }
         final PastDiagnoses modelPastDiagnoses = new PastDiagnoses(pastDiagnoses);

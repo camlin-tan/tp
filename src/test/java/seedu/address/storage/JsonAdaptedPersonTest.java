@@ -282,25 +282,6 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidPastDiagnoses_triggersWarningPreview() {
-        // invalid pastDiagnoses (blank) should trigger the warning branch inside JsonAdaptedPerson
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
-                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB,
-                        VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD,
-                        VALID_ALLERGIES, "   ", VALID_MEDICINES);
-        Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
-        Level old = logger.getLevel();
-        try {
-            logger.setLevel(Level.WARNING);
-            String expectedMessage = PastDiagnoses.MESSAGE_CONSTRAINTS;
-            assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-        } finally {
-            logger.setLevel(old);
-        }
-    }
-
-    @Test
     public void toModelType_nullPastDiagnoses_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
