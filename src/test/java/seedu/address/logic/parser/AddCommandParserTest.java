@@ -38,8 +38,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.SMOKING_RECORD_DESC_NO;
-import static seedu.address.logic.commands.CommandTestUtil.SMOKING_RECORD_DESC_YES;
+import static seedu.address.logic.commands.CommandTestUtil.SMOKING_RECORD_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SMOKING_RECORD_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -93,7 +93,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + TAG_DESC_FRIEND
                 + DATE_OF_BIRTH_DESC_BOB + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT,
+                + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT,
                 new AddCommand(expectedPerson));
 
 
@@ -103,7 +103,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT,
+                + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -112,7 +112,7 @@ public class AddCommandParserTest {
         String validExpectedPersonString = NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT;
+                + SMOKING_RECORD_DESC_BOB + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -151,14 +151,14 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_GENDER));
 
         // multiple smoking records
-        assertParseFailure(parser, SMOKING_RECORD_DESC_NO + validExpectedPersonString,
+        assertParseFailure(parser, SMOKING_RECORD_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SMOKING_RECORD));
 
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + NAME_DESC_AMY + ADDRESS_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC
-                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_NO
+                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
                         + PAST_DIAGNOSES_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_IDENTITY_NUMBER,
                         PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_DATE_OF_BIRTH,
@@ -228,7 +228,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                 NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC
-                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_NO
+                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
                         + PAST_DIAGNOSES_DESC_AMY + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
     }
 
@@ -263,13 +263,13 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB
-                + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES, Name.MESSAGE_CONSTRAINTS);
+                + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid identity number
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_IDENTITY_NUMBER_DESC + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
-                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES
+                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB
                 + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 IdentityNumber.MESSAGE_CONSTRAINTS);
 
@@ -277,7 +277,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + INVALID_PHONE_DESC
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
-                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES
+                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB
                 + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 Phone.MESSAGE_CONSTRAINTS);
 
@@ -285,22 +285,23 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
                 + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
-                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES
+                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB
                 + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
-                + TAG_DESC_HUSBAND
-                + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB
+                + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
+                Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB
                 + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB
                 + INVALID_TAG_DESC + TAG_DESC_FRIEND
-                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES
+                + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB
                 + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS);
 
@@ -309,13 +310,15 @@ public class AddCommandParserTest {
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + INVALID_DATE_OF_BIRTH_DESC
                 + VALID_TAG_FRIEND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES, DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
+                + SMOKING_RECORD_DESC_BOB,
+                DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
+
 
         // invalid alcoholic record
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
-                + GENDER_DESC_BOB + INVALID_ALCOHOLIC_RECORD_DESC + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS
+                + GENDER_DESC_BOB + INVALID_ALCOHOLIC_RECORD_DESC + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS
                 + PAST_DIAGNOSES_DESC_BOB,
                 AlcoholicRecord.MESSAGE_CONSTRAINTS);
 
@@ -323,7 +326,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
-                + ALCOHOLIC_RECORD_DESC_BOB + INVALID_GENDER_DESC + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS
+                + ALCOHOLIC_RECORD_DESC_BOB + INVALID_GENDER_DESC + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS
                 + PAST_DIAGNOSES_DESC_BOB,
                 Gender.MESSAGE_CONSTRAINTS);
 
@@ -331,7 +334,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND
-                + INVALID_BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES
+                + INVALID_BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB
                 + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 BloodType.MESSAGE_CONSTRAINTS);
 
@@ -349,7 +352,7 @@ public class AddCommandParserTest {
                 parser, INVALID_NAME_DESC + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + INVALID_ADDRESS_DESC + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + BLOOD_TYPE_DESC
                 + ALCOHOLIC_RECORD_DESC_BOB
-                + GENDER_DESC_BOB + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
+                + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS
         );
 
@@ -357,7 +360,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                + SMOKING_RECORD_DESC_YES + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
+                + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

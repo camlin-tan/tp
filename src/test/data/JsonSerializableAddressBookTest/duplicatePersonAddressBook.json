@@ -11,7 +11,7 @@
     "bloodType" : "O",
     "alcoholicRecord" : "Social drinker",
     "gender" : "F",
-    "smokingRecord": "yes",
+    "smokingRecord": "Non-smoker",
     "allergies": [ "nuts" ],
     "pastDiagnoses" : "Diabetes",
     "medicines" : ["antidepressants"]
@@ -26,7 +26,7 @@
     "bloodType" : "O",
     "alcoholicRecord" : "Social drinker",
     "gender" : "F",
-    "smokingRecord": "yes",
+    "smokingRecord": "Non-smoker",
     "allergies": [ "nuts" ],
     "pastDiagnoses" : "Diabetes",
     "medicines" : ["antidepressants"]

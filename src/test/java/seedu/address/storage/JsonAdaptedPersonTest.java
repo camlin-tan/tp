@@ -37,9 +37,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ALCOHOLIC_RECORD = " ";
     private static final String INVALID_BLOOD_TYPE = " ";
     private static final String INVALID_GENDER = " ";
-    private static final String INVALID_SMOKING_RECORD = "True";
+    private static final String INVALID_SMOKING_RECORD = " ";
     private static final String INVALID_PAST_DIAGNOSES = " ";
-
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_IDENTITY_NUMBER = BENSON.getIdentityNumber().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();

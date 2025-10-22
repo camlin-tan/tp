@@ -59,11 +59,10 @@ public class CommandTestUtil {
     public static final String VALID_ALCOHOLIC_RECORD_BOB = "Never";
     public static final String VALID_GENDER_AMY = "F";
     public static final String VALID_GENDER_BOB = "M";
-    public static final String VALID_SMOKING_RECORD_NO = "no";
-    public static final String VALID_SMOKING_RECORD_YES = "yes";
+    public static final String VALID_SMOKING_RECORD_AMY = "Non-smoker";
+    public static final String VALID_SMOKING_RECORD_BOB = "Occasional smoker";
     public static final String VALID_PAST_DIAGNOSES_AMY = "Diabetes";
     public static final String VALID_PAST_DIAGNOSES_BOB = "Hypertension";
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String IDENTITY_NUMBER_DESC_AMY = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_AMY;
@@ -91,8 +90,8 @@ public class CommandTestUtil {
     public static final String ALCOHOLIC_RECORD_DESC_BOB = " " + PREFIX_ALCOHOLIC_RECORD + VALID_ALCOHOLIC_RECORD_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
-    public static final String SMOKING_RECORD_DESC_YES = " " + PREFIX_SMOKING_RECORD + VALID_SMOKING_RECORD_YES;
-    public static final String SMOKING_RECORD_DESC_NO = " " + PREFIX_SMOKING_RECORD + VALID_SMOKING_RECORD_NO;
+    public static final String SMOKING_RECORD_DESC_AMY = " " + PREFIX_SMOKING_RECORD + VALID_SMOKING_RECORD_AMY;
+    public static final String SMOKING_RECORD_DESC_BOB = " " + PREFIX_SMOKING_RECORD + VALID_SMOKING_RECORD_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_IDENTITY_NUMBER_DESC = " "
@@ -108,7 +107,8 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER; // empty string not allowed for gender
     public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE; // invalid blood type
-    public static final String INVALID_SMOKING_RECORD_DESC = " " + PREFIX_SMOKING_RECORD + "maybe"; // not yes/no
+    public static final String INVALID_SMOKING_RECORD_DESC = " "
+            + PREFIX_SMOKING_RECORD + " "; // empty string not allowed for smoking record
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -121,7 +121,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY).withGender(VALID_GENDER_AMY)
                 .withTags(VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
-                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withSmokingRecord(VALID_SMOKING_RECORD_NO)
+                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withSmokingRecord(VALID_SMOKING_RECORD_AMY)
                 .withAllergies(VALID_ALLERGY_NUTS)
                 .withPastDiagnoses(VALID_PAST_DIAGNOSES_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -129,7 +129,7 @@ public class CommandTestUtil {
                 .withIdentityNumber(VALID_ID_BOB).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
-                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_BOB).withSmokingRecord(VALID_SMOKING_RECORD_YES)
+                .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_BOB).withSmokingRecord(VALID_SMOKING_RECORD_BOB)
                 .withAllergies(VALID_ALLERGY_NUTS)
                 .withPastDiagnoses(VALID_PAST_DIAGNOSES_BOB).build();
     }

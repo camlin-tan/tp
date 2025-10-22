@@ -57,7 +57,7 @@ public class AddCommand extends Command {
             + PREFIX_ALCOHOLIC_RECORD + "Social drinker "
             + PREFIX_GENDER + "M "
             + PREFIX_DATE_OF_BIRTH + "01-01-2000 "
-            + PREFIX_SMOKING_RECORD + "Yes "
+            + PREFIX_SMOKING_RECORD + "Heavy smoker "
             + PREFIX_ALLERGY + "nuts "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
