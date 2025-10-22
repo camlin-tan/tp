@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -62,6 +63,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_SMOKING_RECORD + "SMOKING RECORD] "
+            + "[" + PREFIX_PAST_DIAGNOSES + "PAST DIAGNOSES] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "

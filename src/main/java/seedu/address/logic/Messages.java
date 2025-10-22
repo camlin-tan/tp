@@ -50,6 +50,8 @@ public class Messages {
                 .append(person.getBloodType())
                 .append("; Gender: ")
                 .append(person.getGender())
+                .append("; Past Diagnoses: ")
+                .append(person.getPastDiagnoses())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
