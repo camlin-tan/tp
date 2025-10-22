@@ -43,6 +43,8 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Address: ")
+                .append("; Emergency Contact: ")
+                .append(person.getEmergencyContact())
                 .append(person.getAddress())
                 .append("; Date of Birth: ")
                 .append(person.getDateOfBirth())
@@ -54,6 +56,10 @@ public class Messages {
                 .append(person.getPastDiagnoses())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Allergies: ");
+        person.getAllergies().forEach(builder::append);
+        builder.append("; Medicines: ");
+        person.getMedicines().forEach(builder::append);
         return builder.toString();
     }
 

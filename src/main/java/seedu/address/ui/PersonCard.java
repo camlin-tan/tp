@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -43,10 +43,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label bloodType;
-    @FXML
-    private Label alcoholicRecord;
-    @FXML
     private Label gender;
     @FXML
     private Label dateOfBirthAndAge;
@@ -61,21 +57,18 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         identityNumber.setText("Identity Number: " + person.getIdentityNumber().identityNumber);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        gender.setText("Gender: " + person.getGender().gender);
+        dateOfBirthAndAge.setText("Date of Birth: " + person.getDateOfBirth().toString()
+                + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
+        phone.setText("Phone Number: " + person.getPhone().value);
+        address.setText("Home Address: " + person.getAddress().value);
+        email.setText("Email Address: " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        bloodType.setText("Blood Type: " + person.getBloodType().bloodType);
-        alcoholicRecord.setText("Alcoholic Record: " + person.getAlcoholicRecord().alcoholicRecord);
-        gender.setText("Gender: " + person.getGender().gender);
-        dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
-                + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
-        smokingRecord.setText("Smoker: " + person.getSmokingRecord().toString().toUpperCase());
-        pastDiagnoses.setText("Past Diagnoses: " + person.getPastDiagnoses().toString());
     }
 }
