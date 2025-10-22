@@ -71,7 +71,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getBloodType().orElse(null) + ", alcoholicRecord="
                 + editPersonDescriptor.getAlcoholicRecord().orElse(null) + ", gender="
                 + editPersonDescriptor.getGender().orElse(null) + ", smokingRecord="
-                + editPersonDescriptor.getSmokingRecord().orElse(null )+ ", allergies="
+                + editPersonDescriptor.getSmokingRecord().orElse(null ) + ", allergies="
                 + editPersonDescriptor.getAllergies().orElse(null) + ", pastDiagnoses="
                 + editPersonDescriptor.getPastDiagnoses().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
