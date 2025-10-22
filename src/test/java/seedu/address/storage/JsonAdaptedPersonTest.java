@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -8,10 +9,13 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
@@ -278,6 +282,25 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_invalidPastDiagnoses_triggersWarningPreview() {
+        // invalid pastDiagnoses (blank) should trigger the warning branch inside JsonAdaptedPerson
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB,
+                        VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD,
+                        VALID_ALLERGIES, "   ", VALID_MEDICINES);
+        Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
+        Level old = logger.getLevel();
+        try {
+            logger.setLevel(Level.WARNING);
+            String expectedMessage = PastDiagnoses.MESSAGE_CONSTRAINTS;
+            assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        } finally {
+            logger.setLevel(old);
+        }
+    }
+
+    @Test
     public void toModelType_nullPastDiagnoses_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
@@ -286,6 +309,27 @@ public class JsonAdaptedPersonTest {
                         null, VALID_MEDICINES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PastDiagnoses.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_longPastDiagnoses_triggersFinePreview() {
+        Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
+        Level old = logger.getLevel();
+        try {
+            logger.setLevel(Level.FINE);
+            // Build a JsonAdaptedPerson with valid fields and a long pastDiagnoses string (over 80 chars)
+            JsonAdaptedPerson person =
+                    new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
+                            VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB,
+                            VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD,
+                            VALID_ALLERGIES, "DiagnosisA, DiagnosisB, DiagnosisC, DiagnosisD, DiagnosisE, DiagnosisF,"
+                            + " DiagnosisG", VALID_MEDICINES);
+            // We only need to ensure toModelType runs (and exercises logger.fine). The toModelType method throws
+            // IllegalValueException on invalid input, but here the input is valid.
+            assertDoesNotThrow(() -> person.toModelType());
+        } finally {
+            logger.setLevel(old);
+        }
     }
 
     @Test
