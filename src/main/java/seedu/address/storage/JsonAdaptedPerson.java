@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
@@ -100,6 +102,7 @@ class JsonAdaptedPerson {
      *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        final Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
@@ -195,10 +198,14 @@ class JsonAdaptedPerson {
         final Gender modelGender = new Gender(gender);
 
         if (pastDiagnoses == null) {
+            logger.warning(() -> String.format("JsonAdaptedPerson: missing PastDiagnoses for name='%s'", name));
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PastDiagnoses.class.getSimpleName()));
         }
         if (!PastDiagnoses.isValidPastDiagnoses(pastDiagnoses)) {
+            String preview = pastDiagnoses.length() > 40 ? pastDiagnoses.substring(0, 40) + "…" : pastDiagnoses;
+            logger.warning(() -> "JsonAdaptedPerson: invalid PastDiagnoses preview='" + preview + "' for name='"
+                    + name + "'");
             throw new IllegalValueException(PastDiagnoses.MESSAGE_CONSTRAINTS);
         }
         final PastDiagnoses modelPastDiagnoses = new PastDiagnoses(pastDiagnoses);
