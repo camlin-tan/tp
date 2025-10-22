@@ -39,21 +39,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label emergencyContact;
-    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
     @FXML
-    private Label bloodType;
-    @FXML
-    private Label alcoholicRecord;
-    @FXML
     private Label gender;
     @FXML
     private Label dateOfBirthAndAge;
-    @FXML
-    private Label smokingRecord;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -61,21 +53,18 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         identityNumber.setText("Identity Number: " + person.getIdentityNumber().identityNumber);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        emergencyContact.setText(person.getEmergencyContact());
-        email.setText(person.getEmail().value);
+        gender.setText("Gender: " + person.getGender().gender);
+        dateOfBirthAndAge.setText("Date of Birth: " + person.getDateOfBirth().toString()
+                + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
+        phone.setText("Phone Number: " + person.getPhone().value);
+        address.setText("Home Address: " + person.getAddress().value);
+        email.setText("Email Address: " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        bloodType.setText("Blood Type: " + person.getBloodType().bloodType);
-        alcoholicRecord.setText("isAlcoholic: " + person.getAlcoholicRecord().alcoholicRecord.toUpperCase());
-        gender.setText("Gender: " + person.getGender().gender);
-        dateOfBirthAndAge.setText(person.getDateOfBirth().toString()
-                + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
-        smokingRecord.setText("Smoker: " + person.getSmokingRecord().toString().toUpperCase());
     }
 }
