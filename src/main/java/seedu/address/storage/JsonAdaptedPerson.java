@@ -16,6 +16,7 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
@@ -38,6 +39,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String dateOfBirth;
+    private final String emergencyContact;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
     private final String smokingRecord;
@@ -52,7 +54,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("identityNumber") String identityNumber,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("emergencyContact") String emergencyContact,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord,
                              @JsonProperty("gender") String gender,
@@ -65,6 +69,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.emergencyContact = emergencyContact;
         this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
         this.alcoholicRecord = alcoholicRecord;
@@ -88,6 +93,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        emergencyContact = source.getEmergencyContact().toString();
         dateOfBirth = source.getDateOfBirth().toString();
         bloodType = source.getBloodType().bloodType;
         alcoholicRecord = source.getAlcoholicRecord().alcoholicRecord;
@@ -161,6 +167,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (emergencyContact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EmergencyContact.class.getSimpleName()));
+        }
+        if (!EmergencyContact.isValidEmergencyContact(emergencyContact)) {
+            throw new IllegalValueException(EmergencyContact.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergencyContact);
+
         if (dateOfBirth == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
@@ -222,8 +237,8 @@ class JsonAdaptedPerson {
 
         final Set<Allergy> modelAllergies = new HashSet<>(personAllergies);
 
-        return new Person(modelName, modelIdentityNumber, modelPhone, modelEmail, modelAddress, modelTags, dob,
-                modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord,
+        return new Person(modelName, modelIdentityNumber, modelPhone, modelEmail, modelAddress, modelEmergencyContact,
+                modelTags, dob, modelBloodType, modelAlcoholicRecord, modelGender, modelSmokingRecord,
                 modelAllergies, modelPastDiagnoses);
     }
 

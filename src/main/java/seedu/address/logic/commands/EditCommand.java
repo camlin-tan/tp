@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -33,6 +34,7 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Name;
@@ -58,6 +60,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY_CONTACT] "
             + "[" + PREFIX_DATE_OF_BIRTH + "DATE OF BIRTH] "
             + "[" + PREFIX_BLOOD_TYPE + "BLOOD TYPE] "
             + "[" + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD] "
@@ -121,6 +124,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        EmergencyContact updatedEmergencyContact = editPersonDescriptor.getEmergencyContact()
+                .orElse(personToEdit.getEmergencyContact());
         DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
@@ -134,8 +139,8 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getPastDiagnoses());
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedDateOfBirth, updatedBloodType, updatedAlcoholicRecord,
-                updatedGender, updatedSmokingRecord, updatedAllergies, updatedPastDiagnoses);
+                updatedAddress, updatedEmergencyContact, updatedTags, updatedDateOfBirth, updatedBloodType,
+                updatedAlcoholicRecord, updatedGender, updatedSmokingRecord, updatedAllergies, updatedPastDiagnoses);
     }
 
     @Override
@@ -172,6 +177,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private EmergencyContact emergencyContact;
         private Set<Tag> tags;
         private Set<Allergy> allergies;
         private DateOfBirth dateOfBirth;
@@ -193,11 +199,13 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setEmergencyContact(toCopy.emergencyContact);
             setTags(toCopy.tags);
             setAllergies(toCopy.allergies);
             setBloodType(toCopy.bloodType);
             setDateOfBirth(toCopy.dateOfBirth);
             setAlcoholicRecord(toCopy.alcoholicRecord);
+            setDateOfBirth(toCopy.dateOfBirth);
             setGender(toCopy.gender);
             setSmokingRecord(toCopy.smokingRecord);
             setPastDiagnoses(toCopy.pastDiagnoses);
@@ -207,8 +215,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, identityNumber, phone, email, address, tags, dateOfBirth,
-                    bloodType, alcoholicRecord, gender, smokingRecord);
+            return CollectionUtil.isAnyNonNull(name, identityNumber, phone, email, address, emergencyContact, tags,
+                    allergies, dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord, pastDiagnoses);
         }
 
         public void setName(Name name) {
@@ -249,6 +257,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setEmergencyContact(EmergencyContact emergencyContact) {
+            this.emergencyContact = emergencyContact;
+        }
+
+        public Optional<EmergencyContact> getEmergencyContact() {
+            return Optional.ofNullable(emergencyContact);
         }
 
         public void setDateOfBirth(DateOfBirth dateOfBirth) {
@@ -349,6 +365,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(emergencyContact, otherEditPersonDescriptor.emergencyContact)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth)
                     && Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)
@@ -367,6 +384,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("emergencyContact", emergencyContact)
                     .add("tags", tags)
                     .add("dateOfBirth", dateOfBirth)
                     .add("bloodType", bloodType)

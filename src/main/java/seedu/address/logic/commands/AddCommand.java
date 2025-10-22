@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -34,6 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT "
             + PREFIX_DATE_OF_BIRTH + "DATE OF BIRTH "
             + PREFIX_BLOOD_TYPE + "BLOOD TYPE "
             + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
@@ -47,6 +49,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_EMERGENCY_CONTACT + "[Mother] +6591234567 "
             + PREFIX_BLOOD_TYPE + "AB "
             + PREFIX_ALCOHOLIC_RECORD + "Social drinker "
             + PREFIX_GENDER + "M "

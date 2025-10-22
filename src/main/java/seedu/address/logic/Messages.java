@@ -43,6 +43,8 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Address: ")
+                .append("; Emergency Contact: ")
+                .append(person.getEmergencyContact())
                 .append(person.getAddress())
                 .append("; Date of Birth: ")
                 .append(person.getDateOfBirth())
