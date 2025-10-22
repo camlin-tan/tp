@@ -49,8 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MEDICINE_ANTIDEPRESSANT = "antidepressant";
     public static final String VALID_BLOOD_TYPE = "AB";
-    public static final String VALID_ALCOHOLIC_RECORD_AMY = "No";
-    public static final String VALID_ALCOHOLIC_RECORD_BOB = "No";
+    public static final String VALID_ALCOHOLIC_RECORD_AMY = "Social drinker";
+    public static final String VALID_ALCOHOLIC_RECORD_BOB = "Never";
     public static final String VALID_GENDER_AMY = "F";
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_SMOKING_RECORD_NO = "no";
@@ -86,7 +86,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_DATE_OF_BIRTH_DESC = " " + PREFIX_DATE_OF_BIRTH + "41-01-2000"; // invalid date
-    public static final String INVALID_ALCOHOLIC_RECORD_DESC = " " + PREFIX_ALCOHOLIC_RECORD + "Maybe";
+    public static final String INVALID_ALCOHOLIC_RECORD_DESC = " "
+            + PREFIX_ALCOHOLIC_RECORD + " "; // empty string not allowed for alcoholic record
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER; // empty string not allowed for gender
     public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE; // invalid blood type

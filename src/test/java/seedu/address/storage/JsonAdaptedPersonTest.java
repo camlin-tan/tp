@@ -33,7 +33,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_DOB = "32-13-2020";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_ALCOHOLIC_RECORD = "Maybe";
+    private static final String INVALID_ALCOHOLIC_RECORD = " ";
     private static final String INVALID_BLOOD_TYPE = " ";
     private static final String INVALID_GENDER = " ";
     private static final String INVALID_SMOKING_RECORD = "True";
@@ -59,6 +59,18 @@ public class JsonAdaptedPersonTest {
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_validAlcoholicRecordVariations_returnsAlcoholicRecord() throws Exception {
+        String[] validAlcoholicRecord = {"Social drinker", "Occasional", "Never"};
+        for (String record : validAlcoholicRecord) {
+            JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE,
+                    VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, record,
+                    VALID_GENDER, VALID_SMOKING_RECORD);
+            AlcoholicRecord expected = new AlcoholicRecord(record);
+            assertEquals(expected, person.toModelType().getAlcoholicRecord());
+        }
     }
 
     @Test
