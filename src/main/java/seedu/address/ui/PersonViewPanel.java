@@ -82,7 +82,6 @@ public class PersonViewPanel extends UiPart<Region> {
         medicineLabel.setText(person.getMedicines().toString());
         pastDiagnosisLabel.setText(person.getPastDiagnoses().toString());
         allergiesLabel.setText(person.getAllergies().toString());
-
     }
 }
 

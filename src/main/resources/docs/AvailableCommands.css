@@ -30,6 +30,14 @@ h4 {
     margin-bottom: 0;
 }
 
+
+h5 {
+    font-size: 1em;
+    font-weight: 400;
+    margin-top: 0.2em;
+    margin-bottom: 0;
+}
+
 ul, ol {
     font-weight: 100;
     font-size: 0.9em;
@@ -59,5 +67,15 @@ code {
     border-radius: 4px;
     font-size: 0.9em;
     font-weight: 700;
+    width: 200px;
+}
+
+pre {
+    max-width: 1600px;
+    width: 100%;
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
