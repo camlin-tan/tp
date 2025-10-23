@@ -302,9 +302,6 @@ public class ParserUtil {
     public static PastDiagnoses parsePastDiagnoses(String pastDiagnoses) throws ParseException {
         requireNonNull(pastDiagnoses);
         String trimmedPastDiagnoses = pastDiagnoses.trim();
-        if (!PastDiagnoses.isValidPastDiagnoses(trimmedPastDiagnoses)) {
-            throw new ParseException(PastDiagnoses.MESSAGE_CONSTRAINTS);
-        }
         return new PastDiagnoses(trimmedPastDiagnoses);
     }
 }

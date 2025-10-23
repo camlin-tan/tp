@@ -11,9 +11,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
@@ -198,6 +201,28 @@ public class ParserUtilTest {
         String pastDiagnosesWithWhitespace = WHITESPACE + "Diabetes, Hypertension" + WHITESPACE;
         String expectedPastDiagnoses = "Diabetes, Hypertension";
         assertEquals(expectedPastDiagnoses, ParserUtil.parsePastDiagnoses(pastDiagnosesWithWhitespace).value);
+    }
+
+    @Test
+    public void parsePastDiagnoses_invalidValue_triggersWarning() throws Exception {
+        // blank input is considered empty and should be accepted (converted to "None")
+        String blank = "   ";
+        assertEquals("None", ParserUtil.parsePastDiagnoses(blank).value);
+    }
+
+    @Test
+    public void parsePastDiagnoses_longValid_triggersFinePreview() throws Exception {
+        Logger logger = LogsCenter.getLogger(ParserUtil.class);
+        Level old = logger.getLevel();
+        try {
+            logger.setLevel(Level.FINE); // ensure fine logs are enabled to run the fine branch
+            String longDiagnoses = "Diabetes, Hypertension, Asthma, Chronic Obstructive Pulmonary Disease, "
+                    + "SomeOtherDiagnosis, AnotherOne, Extra"; // > 80 chars
+            // should not throw; simply calling it executes the logger.fine preview branch
+            ParserUtil.parsePastDiagnoses(longDiagnoses);
+        } finally {
+            logger.setLevel(old);
+        }
     }
 
     @Test

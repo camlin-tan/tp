@@ -154,6 +154,10 @@ public class AddCommandParserTest {
         assertParseFailure(parser, SMOKING_RECORD_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SMOKING_RECORD));
 
+        // multiple past diagnoses
+        assertParseFailure(parser, PAST_DIAGNOSES_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PAST_DIAGNOSES));
+
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
