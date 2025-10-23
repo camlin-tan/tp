@@ -47,9 +47,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label dateOfBirthAndAge;
     @FXML
-    private Label smokingRecord;
-    @FXML
-    private Label pastDiagnoses;
+    private Label emergencyContact;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -67,6 +65,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText("Phone Number: " + person.getPhone().value);
         address.setText("Home Address: " + person.getAddress().value);
         email.setText("Email Address: " + person.getEmail().value);
+        emergencyContact.setText("Emergency Contact: " + person.getEmergencyContact().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

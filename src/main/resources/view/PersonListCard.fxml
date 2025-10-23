@@ -35,11 +35,6 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
         <Label fx:id="emergencyContact" styleClass="cell_small_label" text="\$emergencyContact" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="bloodType" styleClass="cell_small_label" text="\$bloodType" />
-      <Label fx:id="alcoholicRecord" styleClass="cell_small_label" text="\$alcoholic record" />
-      <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
-      <Label fx:id="smokingRecord" styleClass="cell_small_label" text="\$smokingRecord" />
-      <Label fx:id="pastDiagnoses" styleClass="cell_small_label" text="\$pastDiagnoses" />
     </VBox>
   </GridPane>
 </HBox>
