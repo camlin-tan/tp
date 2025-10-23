@@ -21,6 +21,9 @@ public class PersonViewPanel extends UiPart<Region> {
     private Label nameLabel;
 
     @FXML
+    private Label identityNumberLabel;
+
+    @FXML
     private Label phoneLabel;
 
     @FXML
@@ -28,6 +31,30 @@ public class PersonViewPanel extends UiPart<Region> {
 
     @FXML
     private Label addressLabel;
+
+    @FXML
+    private Label bloodTypeLabel;
+
+    @FXML
+    private Label alcoholicRecordLabel;
+
+    @FXML
+    private Label gender;
+
+    @FXML
+    private Label dateOfBirthAndAgeLabel;
+
+    @FXML
+    private Label smokingRecordLabel;
+
+    @FXML
+    private Label medicineLabel;
+
+    @FXML
+    private Label pastDiagnosisLabel;
+
+    @FXML
+    private Label allergiesLabel;
 
     /**
      * Creates a {@code PersonViewPanel} with the given {@code Person}.
@@ -43,9 +70,19 @@ public class PersonViewPanel extends UiPart<Region> {
      */
     private void fillPersonDetails() {
         nameLabel.setText(person.getName().fullName);
+        identityNumberLabel.setText(person.getIdentityNumber().identityNumber);
         phoneLabel.setText(person.getPhone().value);
         emailLabel.setText(person.getEmail().value);
         addressLabel.setText(person.getAddress().value);
+        bloodTypeLabel.setText(person.getBloodType().toString());
+        alcoholicRecordLabel.setText(person.getAlcoholicRecord().toString());
+        gender.setText(person.getGender().toString());
+        dateOfBirthAndAgeLabel.setText(person.getDateOfBirth().toString());
+        smokingRecordLabel.setText(person.getSmokingRecord().toString());
+        medicineLabel.setText(person.getMedicines().toString());
+        pastDiagnosisLabel.setText(person.getPastDiagnoses().toString());
+        allergiesLabel.setText(person.getAllergies().toString());
+
     }
 }
 
