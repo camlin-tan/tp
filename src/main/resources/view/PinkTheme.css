@@ -1,0 +1,23 @@
+.root {
+    -fx-background-color: #ffebee;
+    -fx-font-family: "Segoe UI";
+}
+
+.label {
+    -fx-text-fill: #c2185b;
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.list-view {
+    -fx-background-color: #fce4ec;
+}
+
+.button {
+    -fx-background-color: #f8bbd9;
+    -fx-text-fill: #880e4f;
+}
+
+.button:hover {
+    -fx-background-color: #f48fb1;
+}
