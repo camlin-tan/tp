@@ -1,18 +1,15 @@
-/* This applies to the whole TextArea component */
 .text-area {
-    -fx-font-family: "Consolas", "Monaco", monospace;
+    -fx-font-family: "Monaco", "Consolas", monospace;
     -fx-font-size: 14px;
-    -fx-text-fill: #E0E0E0; /* Light gray text */
-    -fx-background-color: #2B2B2B; /* Dark background */
+    -fx-text-fill: #E0E0E0;
+    -fx-background-color: #2B2B2B;
 }
 
-/* Style the content area inside the text area */
 .text-area .content {
     -fx-background-color: #2B2B2B;
     -fx-padding: 10px;
 }
 
-/* Style the scroll-bar (optional, but looks nice) */
 .text-area .scroll-pane .scroll-bar:vertical,
 .text-area .scroll-pane .scroll-bar:horizontal {
     -fx-background-color: #2B2B2B;
