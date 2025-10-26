@@ -128,6 +128,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        handleDefaultView();
     }
 
     /**
@@ -179,6 +181,14 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    /**
+     * Resets the view to the default single-panel layout (shows only the person list).
+     */
+    private void handleDefaultView() {
+        personSplitPane.setDividerPositions(1.0);
+        personViewPanelPlaceholder.getChildren().clear();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -204,6 +214,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isView()) {
                 handleView();
+            } else {
+                handleDefaultView(); // Revert to single-panel
             }
 
             return commandResult;
