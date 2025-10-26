@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.jetbrains.annotations.UnknownNullability;
 import seedu.address.model.util.DateTimeParserUtil;
 
 /**
@@ -52,6 +53,14 @@ public class AppointmentTime {
      */
     public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX) && DateTimeParserUtil.isValidDateTime(test, FORMATTERS);
+    }
+
+    public boolean isBefore(LocalDateTime other) {
+        return this.dateTime.isBefore(other);
+    }
+
+    public boolean isAfter(LocalDateTime other) {
+        return this.dateTime.isAfter(other);
     }
 
     public LocalDateTime getDateTime() {

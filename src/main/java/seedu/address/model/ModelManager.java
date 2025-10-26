@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
@@ -24,6 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointments;
+    private final SortedList<Appointment> sortedPastAppointments;
+    private final SortedList<Appointment> sortedUpcomingAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +40,11 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        FilteredList<Appointment> upcomingAppointments =
+                new FilteredList<>(filteredAppointments, Appointment::isAfterNow);
+        FilteredList<Appointment> pastAppointments = new FilteredList<>(filteredAppointments, Appointment::isBeforeNow);
+        sortedPastAppointments = new SortedList<>(pastAppointments, Appointment::compareByDateTime);
+        sortedUpcomingAppointments = new SortedList<>(upcomingAppointments, Appointment::compareByDateTime);
     }
 
     public ModelManager() {
@@ -188,4 +196,11 @@ public class ModelManager implements Model {
                 && filteredAppointments.equals(otherModelManager.filteredAppointments);
     }
 
+    public SortedList<Appointment> getPastAppointments() {
+        return sortedPastAppointments;
+    }
+
+    public SortedList<Appointment> getUpcomingAppointments() {
+        return sortedUpcomingAppointments;
+    }
 }

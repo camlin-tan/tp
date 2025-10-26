@@ -21,7 +21,7 @@ class AppointmentNotesTest {
     }
 
     @Test
-    void isValidNotes_annyNotes_returnsTrue() {
+    void isValidNotes_anyNotes_returnsTrue() {
         assertTrue(AppointmentNotes.isValidNotes("Some notes here."));
         assertTrue(AppointmentNotes.isValidNotes("123456"));
         assertTrue(AppointmentNotes.isValidNotes("!@#$%^&*()"));

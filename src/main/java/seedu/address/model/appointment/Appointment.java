@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.model.person.IdentityNumber;
@@ -89,6 +90,18 @@ public class Appointment {
                 .append(" Notes: ")
                 .append(getNotes().toString());
         return builder.toString();
+    }
+
+    public boolean isAfterNow() {
+        return dateTime.isAfter(LocalDateTime.now());
+    }
+
+    public boolean isBeforeNow() {
+        return dateTime.isBefore(LocalDateTime.now());
+    }
+
+    public static int compareByDateTime(Appointment a1, Appointment a2) {
+        return a1.dateTime.isBefore(a2.dateTime.getDateTime()) ? -1 : 1;
     }
 
     @Override
