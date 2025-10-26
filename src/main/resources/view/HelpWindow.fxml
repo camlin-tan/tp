@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.stage.Stage?>
-
 <?import javafx.scene.Scene?>
+
 <fx:root title="Help" type="javafx.stage.Stage"
+         width="1200" height="800"
          xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
 
     <scene>
         <Scene>
-            <VBox>
-                <WebView fx:id="helpContent" prefWidth="1200" prefHeight="800"/>
-            </VBox>
+            <StackPane>
+                <TextArea fx:id="helpContent" />
+            </StackPane>
         </Scene>
     </scene>
 </fx:root>

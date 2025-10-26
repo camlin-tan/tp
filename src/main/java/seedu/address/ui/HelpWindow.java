@@ -5,26 +5,22 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
-import com.vladsch.flexmark.html.HtmlRenderer;
-import com.vladsch.flexmark.parser.Parser;
-import com.vladsch.flexmark.util.ast.Node;
-
 import javafx.fxml.FXML;
-import javafx.scene.web.WebView;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page that shows Markdown content.
+ * Controller for a help page that shows help content.
  */
 public class HelpWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-    private static final String AVAILABLECOMMANDSPATH = "/docs/AvailableCommands.md";
+    private static final String AVAILABLECOMMANDSPATH = "/docs/AvailableCommands.txt";
 
     @FXML
-    private WebView helpContent;
+    private TextArea helpContent;
 
     /**
      * Creates a HelpWindow using the given Stage as the root.
@@ -33,7 +29,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        loadMarkdownFile();
+        loadHelpContent();
     }
 
     /**
@@ -44,44 +40,30 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Loads the Available Commands Markdown file into the WebView.
+     * Loads the Available Commands text file into the TextArea.
      * If the file is not found or an error occurs, an error message is displayed.
      */
-    private void loadMarkdownFile() {
+    private void loadHelpContent() {
+        helpContent.getStylesheets().add(getClass().getResource("/view/HelpWindow.css").toExternalForm());
+
         try (InputStream input = getClass().getResourceAsStream(AVAILABLECOMMANDSPATH)) {
             if (input == null) {
-                helpContent.getEngine().loadContent("<p>Available Commands file not found</p>");
+                helpContent.setText("Available Commands file not found");
                 return;
             }
 
-            String markdown = new String(input.readAllBytes(), StandardCharsets.UTF_8);
-            Parser parser = Parser.builder().build();
-            HtmlRenderer renderer = HtmlRenderer.builder().build();
-            Node document = parser.parse(markdown);
-            String htmlBody = renderer.render(document);
+            // Read the raw text file
+            String helpText = new String(input.readAllBytes(), StandardCharsets.UTF_8);
 
-            InputStream cssStream = getClass().getResourceAsStream("/docs/AvailableCommands.css");
-            String css = "";
-            if (cssStream != null) {
-                css = new String(cssStream.readAllBytes(), StandardCharsets.UTF_8);
-            }
+            // Set the raw text directly into the TextArea
+            helpContent.setText(helpText);
 
-            String html =
-                """
-                <html>
-                    <head>
-                        <meta charset="UTF-8">
-                        <style>%s</style>
-                    </head>
-                    <body>
-                        %s
-                    </body>
-                </html>
-                """.formatted(css, htmlBody);
+            // Make the TextArea read-only and wrap text
+            helpContent.setEditable(false);
+            helpContent.setWrapText(true);
 
-            helpContent.getEngine().loadContent(html);
         } catch (IOException e) {
-            helpContent.getEngine().loadContent("<p>Error loading Available Commands file.</p>");
+            helpContent.setText("Error loading Available Commands file.");
         }
     }
 
