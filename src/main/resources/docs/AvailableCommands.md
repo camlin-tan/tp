@@ -24,7 +24,7 @@ Adds a patient with the specified fields
 - Allergies: `al/`
 - Medicines: `m/`;
 
-#### Example: 
+#### Example:
 ```
 add n/Betsy Crowe id/BC67 dob/02-02-2000 p/+65 12345678 e/betsycrowe@example.com a/67 Yishun Street ec/[mother] +60 12-123-4567 b/AB g/Female ar/NO s/NO t/Yishun t/HighPriority al/Pollen al/Nuts m/Amlodepine m/Bisoprolol
 ```

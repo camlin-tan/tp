@@ -1,19 +1,25 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
+/* This applies to the whole TextArea component */
+.text-area {
+    -fx-font-family: "Consolas", "Monaco", monospace;
+    -fx-font-size: 14px;
+    -fx-text-fill: #E0E0E0; /* Light gray text */
+    -fx-background-color: #2B2B2B; /* Dark background */
 }
 
-#copyButton {
-    -fx-background-color: dimgray;
+/* Style the content area inside the text area */
+.text-area .content {
+    -fx-background-color: #2B2B2B;
+    -fx-padding: 10px;
 }
 
-#copyButton:hover {
-    -fx-background-color: gray;
+/* Style the scroll-bar (optional, but looks nice) */
+.text-area .scroll-pane .scroll-bar:vertical,
+.text-area .scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: #2B2B2B;
 }
 
-#copyButton:armed {
-    -fx-background-color: darkgray;
-}
-
-#helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+.text-area .scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #555555;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
 }
