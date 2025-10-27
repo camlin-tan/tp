@@ -4,29 +4,29 @@
 Adds a patient with the specified fields
 #### Patient fields
 ##### Must contain:
-- Name: `n/`
-- Identity Number: `id/`
-- Date of Birth: `dob/`
-- Contact Number: `p/`
-- Email: `e/`
-- Home Address: `a/`
-- Emergency Contact: `ec/`
-- Blood Type: `b/`
-- Gender: `g/`
-- Alcoholic Record: `ar/`
-- Smoking Record: `sr/`
-- Past Diagnoses: `pd/`
+- Name: `n\`
+- Identity Number: `id\`
+- Date of Birth: `dob\`
+- Contact Number: `p\`
+- Email: `e\`
+- Home Address: `a\`
+- Emergency Contact: `ec\`
+- Blood Type: `b\`
+- Gender: `g\`
+- Alcoholic Record: `ar\`
+- Smoking Record: `sr\`
+- Past Diagnoses: `pd\`
 
 
 
 ##### Optional, can have multiple:
-- Tags: `t/`
-- Allergies: `al/`
-- Medicines: `m/`;
+- Tags: `t\`
+- Allergies: `al\`
+- Medicines: `m\`;
 
 #### Example:
 ```
-add n/Betsy Crowe id/BC67 dob/02-02-2000 p/+65 12345678 e/betsycrowe@example.com a/67 Yishun Street ec/[mother] +60 12-123-4567 b/AB g/Female ar/NO sr/NO t/Yishun t/HighPriority al/Pollen al/Nuts m/Amlodepine m/Bisoprolol
+add n\Betsy Crowe id\BC67 dob\02-02-2000 p\+65 12345678 e\betsycrowe@example.com a\67 Yishun Street ec\[mother] +60 12-123-4567 b\AB g\Female ar\NO sr\NO t\Yishun t\HighPriority al\Pollen al\Nuts m\Amlodepine m\Bisoprolol
 ```
 
 
