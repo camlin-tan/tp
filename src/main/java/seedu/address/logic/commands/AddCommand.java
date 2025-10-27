@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
-            + PREFIX_PAST_DIAGNOSES + "None"
+            + PREFIX_PAST_DIAGNOSES + "None "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -63,7 +63,7 @@ public class AddCommand extends Command {
             + PREFIX_ALLERGY + "nuts "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_PAST_DIAGNOSES + "Diabetes"
+            + PREFIX_PAST_DIAGNOSES + "Diabetes "
             + PREFIX_MEDICINE + "100mg painkillers/day "
             + PREFIX_MEDICINE + "100mg Panadol/day" + "\n"
             + "Notes: \\ is preserved for internal usage and should not be used in any field other than prefix.";
