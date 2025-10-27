@@ -39,6 +39,7 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static UiManager uiManagerInstance;
 
     protected Ui ui;
     protected Logic logic;
@@ -65,6 +66,7 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+        uiManagerInstance = (UiManager) ui;
     }
 
     /**
@@ -182,5 +184,15 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+    }
+
+    /**
+     * Returns the UiManager instance.
+     */
+    public static synchronized UiManager getUiManager() {
+        if (uiManagerInstance == null) {
+            throw new IllegalStateException("UiManager has not been initialized. Ensure the app is fully started.");
+        }
+        return uiManagerInstance;
     }
 }
