@@ -196,6 +196,16 @@ public class AddAppointmentCommandTest {
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Appointment> getUpcomingAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Appointment> getPastAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

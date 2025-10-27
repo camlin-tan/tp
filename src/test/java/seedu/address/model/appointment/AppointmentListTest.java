@@ -193,17 +193,17 @@ public class AppointmentListTest {
 
     @Test
     public void equals_sameObject_returnsTrue() {
-        assertTrue(appointmentList.equals(appointmentList));
+        assertEquals(appointmentList, appointmentList);
     }
 
     @Test
     public void equals_differentType_returnsFalse() {
-        assertFalse(appointmentList.equals("not an appointment list"));
+        assertNotEquals("not an appointment list", appointmentList);
     }
 
     @Test
     public void equals_null_returnsFalse() {
-        assertFalse(appointmentList.equals(null));
+        assertNotEquals(null, appointmentList);
     }
 
     @Test
@@ -221,7 +221,7 @@ public class AppointmentListTest {
         AppointmentList list2 = new AppointmentList();
         list1.add(APPT_ALICE);
         list2.add(APPT_BENSON);
-        assertFalse(list1.equals(list2));
+        assertNotEquals(list1, list2);
     }
 
     @Test
