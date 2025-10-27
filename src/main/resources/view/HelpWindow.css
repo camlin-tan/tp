@@ -1,19 +1,22 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
+.text-area {
+    -fx-font-family: "Monaco", "Consolas", monospace;
+    -fx-font-size: 14px;
+    -fx-text-fill: #E0E0E0;
+    -fx-background-color: #2B2B2B;
 }
 
-#copyButton {
-    -fx-background-color: dimgray;
+.text-area .content {
+    -fx-background-color: #2B2B2B;
+    -fx-padding: 10px;
 }
 
-#copyButton:hover {
-    -fx-background-color: gray;
+.text-area .scroll-pane .scroll-bar:vertical,
+.text-area .scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: #2B2B2B;
 }
 
-#copyButton:armed {
-    -fx-background-color: darkgray;
-}
-
-#helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+.text-area .scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #555555;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
 }
