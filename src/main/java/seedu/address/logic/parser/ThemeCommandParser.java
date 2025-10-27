@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.MainApp;
 import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -18,6 +17,6 @@ public class ThemeCommandParser implements Parser<ThemeCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ThemeCommand.MESSAGE_USAGE));
         }
-        return new ThemeCommand(trimmedArgs, MainApp.getUiManager()); // Access UiManager from MainApp
+        return new ThemeCommand(trimmedArgs);
     }
 }

@@ -21,8 +21,6 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
-    private static final String THEMES_PATH = "/view/";
-    private static String currentTheme = "dark"; // Default theme
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -45,7 +43,6 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            applyTheme(currentTheme, primaryStage);
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -68,7 +65,6 @@ public class UiManager implements Ui {
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
         final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/dark.css");
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
@@ -87,37 +83,4 @@ public class UiManager implements Ui {
         Platform.exit();
         System.exit(1);
     }
-
-    /**
-     * Applies the specified theme to the given stage.
-     */
-    private void applyTheme(String themeName, Stage stage) {
-        if (stage.getScene() == null) {
-            return;
-        }
-        String cssPath = THEMES_PATH + themeName + ".css";
-        stage.getScene().getStylesheets().clear(); // Clear existing styles
-        stage.getScene().getStylesheets().add(cssPath);
-    }
-
-    /**
-     * Switches the current theme to the specified theme.
-     */
-    public void switchTheme(String themeName) {
-        this.currentTheme = themeName.toLowerCase();
-        applyTheme(currentTheme, mainWindow.getPrimaryStage());
-        updateCurrentThemeStatic();
-    }
-
-    // Static method to access current theme (corrected approach)
-
-    public static String getCurrentTheme() {
-        return currentTheme;
-    }
-
-    // Update currentThemeStatic when switching themes
-    private void updateCurrentThemeStatic() {
-        currentTheme = this.currentTheme;
-    }
-
 }

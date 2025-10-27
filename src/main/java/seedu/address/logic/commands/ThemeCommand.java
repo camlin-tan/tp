@@ -2,9 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Map;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.ui.UiManager;
 
 /**
  * Changes the UI theme of the application.
@@ -17,33 +18,35 @@ public class ThemeCommand extends Command {
             + "Example: " + COMMAND_WORD + " light";
 
     public static final String MESSAGE_SUCCESS = "Theme changed to %s.";
+    public static final String MESSAGE_UNKNOWN_THEME = "Unknown theme. " + MESSAGE_USAGE;
+    private static final Map<String, String> THEME_MAP = Map.of(
+            "light", "/view/light.css",
+            "dark", "/view/dark.css",
+            "pink", "/view/pink.css",
+            "blue", "/view/blue.css"
+    );
 
     private final String theme;
-    private final UiManager uiManager;
 
     /**
      * Creates a ThemeCommand to change the UI theme.
      *
      * @param theme The theme to switch to.
-     * @param uiManager The UiManager instance to handle the theme change.
      */
-    public ThemeCommand(String theme, UiManager uiManager) {
+    public ThemeCommand(String theme) {
         requireNonNull(theme);
         this.theme = theme.toLowerCase();
-        this.uiManager = uiManager;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!isValidTheme(theme)) {
-            throw new CommandException(MESSAGE_USAGE);
+            throw new CommandException(MESSAGE_UNKNOWN_THEME);
         }
-        if (uiManager == null) {
-            throw new CommandException("UI Manager not provided.");
-        }
-        uiManager.switchTheme(theme);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, theme));
+
+        String themePath = THEME_MAP.get(theme);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, theme), themePath);
     }
 
     private boolean isValidTheme(String theme) {
