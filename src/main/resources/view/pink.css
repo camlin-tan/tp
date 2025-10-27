@@ -1,23 +1,73 @@
 .root {
-    -fx-background-color: #ffebee;
-    -fx-font-family: "Segoe UI";
+    -fx-background-color: #DDA0DD; /* Plum for soft pink-purple background */
 }
 
 .label {
-    -fx-text-fill: #c2185b;
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #C71585; /* Medium violet red for brighter purple text */
+}
+
+.cell-big-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C71585; /* Medium violet red text */
+}
+
+.cell-small-label {
+    -fx-text-fill: #C71585; /* Medium violet red text */
+}
+
+.tags .label {
+    -fx-text-fill: #C71585; /* Medium violet red text */
+    -fx-background-color: #E6E6FA; /* Lavender for tags */
+    -fx-padding: 2px 6px;
+}
+
+.view-panel {
+    -fx-background-color: #DDA0DD; /* Plum background */
+}
+
+.view-label {
+    -fx-text-fill: #C71585; /* Medium violet red text */
+}
+
+.view-label-bold {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C71585; /* Medium violet red text */
 }
 
 .list-view {
-    -fx-background-color: #fce4ec;
+    -fx-background-color: #DDA0DD; /* Plum background */
+    -fx-control-inner-background: #DDA0DD;
 }
 
-.button {
-    -fx-background-color: #f8bbd9;
-    -fx-text-fill: #880e4f;
+.list-cell {
+    -fx-background-color: #F0E6F0; /* Very light plum */
+    -fx-text-fill: #C71585; /* Medium violet red text */
 }
 
-.button:hover {
-    -fx-background-color: #f48fb1;
+.list-cell:filled:selected {
+    -fx-background-color: #E6E6FA; /* Lavender for selection */
+    -fx-text-fill: #C71585; /* Medium violet red text */
+}
+
+.menu-bar {
+    -fx-background-color: #DDA0DD; /* Match root background */
+    -fx-border-color: transparent;
+}
+
+.menu .label {
+    -fx-text-fill: #C71585; /* Match text color */
+}
+
+.menu-item .label {
+    -fx-text-fill: #C71585; /* Match text color */
+}
+
+.menu-item:focused {
+    -fx-background-color: #E6E6FA; /* Light highlight */
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: #C71585; /* Ensure text color on focus */
 }

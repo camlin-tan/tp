@@ -1,23 +1,73 @@
 .root {
-    -fx-background-color: #e3f2fd;
-    -fx-font-family: "Segoe UI";
+    -fx-background-color: #87CEEB; /* Light sky blue background */
 }
 
 .label {
-    -fx-text-fill: #0277bd;
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #4682B4; /* Steel blue text for contrast */
+}
+
+.cell-big-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4682B4; /* Steel blue text */
+}
+
+.cell-small-label {
+    -fx-text-fill: #4682B4; /* Steel blue text */
+}
+
+.tags .label {
+    -fx-text-fill: #4682B4; /* Steel blue text */
+    -fx-background-color: #B0E0E6; /* Powder blue for tags */
+    -fx-padding: 2px 6px;
+}
+
+.view-panel {
+    -fx-background-color: #87CEEB; /* Light sky blue background */
+}
+
+.view-label {
+    -fx-text-fill: #4682B4; /* Steel blue text */
+}
+
+.view-label-bold {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4682B4; /* Steel blue text */
 }
 
 .list-view {
-    -fx-background-color: #e1f5fe;
+    -fx-background-color: #87CEEB; /* Light sky blue background */
+    -fx-control-inner-background: #87CEEB;
 }
 
-.button {
-    -fx-background-color: #bbdefb;
-    -fx-text-fill: #01579b;
+.list-cell {
+    -fx-background-color: #ADD8E6; /* Light blue for list cells */
+    -fx-text-fill: #4682B4; /* Steel blue text */
 }
 
-.button:hover {
-    -fx-background-color: #90caf9;
+.list-cell:filled:selected {
+    -fx-background-color: #B0E0E6; /* Powder blue for selection */
+    -fx-text-fill: #4682B4; /* Steel blue text */
+}
+
+.menu-bar {
+    -fx-background-color: #87CEEB; /* Match root background */
+    -fx-border-color: transparent; /* Remove default border */
+}
+
+.menu .label {
+    -fx-text-fill: #4682B4; /* Match text color */
+}
+
+.menu-item .label {
+    -fx-text-fill: #4682B4; /* Match text color */
+}
+
+.menu-item:focused {
+    -fx-background-color: #B0E0E6; /* Light highlight */
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: #4682B4; /* Ensure text color on focus */
 }
