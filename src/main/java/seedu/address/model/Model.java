@@ -109,6 +109,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();
 
+    /** Returns an unmodifiable view of the filtered upcoming appointment list */
+    ObservableList<Appointment> getUpcomingAppointmentList();
+
+    /** Returns an unmodifiable view of the filtered past appointment list */
+    ObservableList<Appointment> getPastAppointmentList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

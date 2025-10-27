@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 class AppointmentTest {
@@ -63,5 +66,43 @@ class AppointmentTest {
         assertTrue(result.contains(ALICE.getIdentityNumber().toString()));
         assertTrue(result.contains("Test notes"));
     }
-}
 
+    @Test
+    void isBeforeNow_isAfterNow_withRelativeTimes() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+
+        // one minute in the past
+        String pastStr = now.minusMinutes(1).format(fmt);
+        Appointment pastAppointment = new Appointment(new AppointmentNotes("past"),
+                new AppointmentTime(pastStr), ALICE.getIdentityNumber());
+        assertTrue(pastAppointment.isBeforeNow());
+        assertFalse(pastAppointment.isAfterNow());
+
+        // one minute in the future
+        String futureStr = now.plusMinutes(1).format(fmt);
+        Appointment futureAppointment = new Appointment(new AppointmentNotes("future"),
+                new AppointmentTime(futureStr), ALICE.getIdentityNumber());
+        assertTrue(futureAppointment.isAfterNow());
+        assertFalse(futureAppointment.isBeforeNow());
+
+    }
+
+    @Test
+    void compareByDateTime_earlierLaterAndEqual() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime base = LocalDateTime.now();
+
+        Appointment earlier = new Appointment(new AppointmentNotes("e"),
+                new AppointmentTime(base.minusDays(1).format(fmt)), ALICE.getIdentityNumber());
+        Appointment later = new Appointment(new AppointmentNotes("l"),
+                new AppointmentTime(base.plusDays(1).format(fmt)), ALICE.getIdentityNumber());
+
+        // earlier vs later
+        assertEquals(-1, Appointment.compareByDateTime(earlier, later));
+        // later vs earlier
+        assertEquals(1, Appointment.compareByDateTime(later, earlier));
+        // equal times
+        assertEquals(1, Appointment.compareByDateTime(earlier, earlier));
+    }
+}

@@ -198,11 +198,13 @@ public class ModelManager implements Model {
                 && filteredAppointments.equals(otherModelManager.filteredAppointments);
     }
 
-    public SortedList<Appointment> getPastAppointments() {
+    @Override
+    public SortedList<Appointment> getPastAppointmentList() {
         return sortedPastAppointments;
     }
 
-    public SortedList<Appointment> getUpcomingAppointments() {
+    @Override
+    public SortedList<Appointment> getUpcomingAppointmentList() {
         return sortedUpcomingAppointments;
     }
 }

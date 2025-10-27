@@ -92,14 +92,34 @@ public class Appointment {
         return builder.toString();
     }
 
+    /**
+     * Checks if the appointment's date and time is after the current system date and time.
+     *
+     * @return true if the appointment's date and time is after the current system date and time;
+     *         false otherwise.
+     */
     public boolean isAfterNow() {
         return dateTime.isAfter(LocalDateTime.now());
     }
 
+    /**
+     * Checks if the appointment's date and time is before the current system date and time.
+     *
+     * @return true if the appointment's date and time is before the current system date and time;
+     *         false otherwise.
+     */
     public boolean isBeforeNow() {
         return dateTime.isBefore(LocalDateTime.now());
     }
 
+    /**
+     * Compares two {@code Appointment} instances based on their date and time.
+     *
+     * @param a1 The first {@code Appointment} to compare. Must not be null.
+     * @param a2 The second {@code Appointment} to compare. Must not be null.
+     * @return -1 if {@code a1}'s date and time is before {@code a2}'s;
+     *         1 if {@code a1}'s date and time is after or equal to {@code a2}'s.
+     */
     public static int compareByDateTime(Appointment a1, Appointment a2) {
         return a1.dateTime.isBefore(a2.dateTime.getDateTime()) ? -1 : 1;
     }

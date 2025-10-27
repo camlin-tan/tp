@@ -144,6 +144,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         appointments.remove(key);
     }
 
+    /**
+     * Removes the specified appointments from the address book.
+     * The appointments to be removed must already exist in the address book.
+     *
+     * @param appointmentsToRemove The appointments to be removed. Each appointment must not be null.
+     */
     public void removeAppointments(Appointment... appointmentsToRemove) {
         appointments.removeAll(appointmentsToRemove);
     }
