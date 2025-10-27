@@ -144,6 +144,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         appointments.remove(key);
     }
 
+    public void removeAppointments(Appointment... appointmentsToRemove) {
+        appointments.removeAll(appointmentsToRemove);
+    }
 
     //// util methods
 

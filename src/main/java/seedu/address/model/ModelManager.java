@@ -113,6 +113,8 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        addressBook.removeAppointments((new FilteredList<Appointment>(filteredAppointments, a ->
+                a.getPatientId().equals(target.getIdentityNumber())).toArray(Appointment[]::new)));
     }
 
     @Override
