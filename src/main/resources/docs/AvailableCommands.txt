@@ -19,7 +19,7 @@ Patient Fields:
     b/BLOOD_TYPE
     g/GENDER
     ar/ALCOHOLIC_RECORD (e.g., YES or NO)
-    s/SMOKING_RECORD (e.g., YES or NO)
+    sr/SMOKING_RECORD (e.g., YES or NO)
     pd/PAST_DIAGNOSES
 
   [Optional - Can have multiple]
@@ -28,7 +28,7 @@ Patient Fields:
     m/MEDICINE
 
 Example:
-  add n/Betsy Crowe id/BC67 dob/02-02-2000 p/+65 12345678 e/betsycrowe@example.com a/67 Yishun Street ec/[mother] +60 12-123-4567 b/AB g/Female ar/NO s/NO pd/None t/Yishun t/HighPriority al/Pollen al/Nuts m/Amlodepine m/Bisoprolol
+  add n/Betsy Crowe id/BC67 dob/02-02-2000 p/+65 12345678 e/betsycrowe@example.com a/67 Yishun Street ec/[mother] +60 12-123-4567 b/AB g/Female ar/NO sr/NO pd/None t/Yishun t/HighPriority al/Pollen al/Nuts m/Amlodepine m/Bisoprolol
 
 
 ---
