@@ -54,6 +54,30 @@ public class AppointmentTime {
         return test.matches(VALIDATION_REGEX) && DateTimeParserUtil.isValidDateTime(test, FORMATTERS);
     }
 
+    /**
+     * Determines if the current {@code AppointmentTime} is before the specified {@code LocalDateTime}.
+     *
+     * @param other The {@code LocalDateTime} to compare with the current {@code AppointmentTime}.
+     *              Must not be null.
+     * @return {@code true} if the current {@code AppointmentTime} is before the specified {@code LocalDateTime};
+     *         {@code false} otherwise.
+     */
+    public boolean isBefore(LocalDateTime other) {
+        return this.dateTime.isBefore(other);
+    }
+
+    /**
+     * Determines if the current {@code AppointmentTime} is after the specified {@code LocalDateTime}.
+     *
+     * @param other The {@code LocalDateTime} to compare with the current {@code AppointmentTime}.
+     *              Must not be null.
+     * @return {@code true} if the current {@code AppointmentTime} is after the specified {@code LocalDateTime};
+     *         {@code false} otherwise.
+     */
+    public boolean isAfter(LocalDateTime other) {
+        return this.dateTime.isAfter(other);
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }

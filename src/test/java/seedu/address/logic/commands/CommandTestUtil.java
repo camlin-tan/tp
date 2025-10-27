@@ -27,6 +27,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.NameOrIdContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -63,6 +64,14 @@ public class CommandTestUtil {
     public static final String VALID_SMOKING_RECORD_BOB = "Occasional smoker";
     public static final String VALID_PAST_DIAGNOSES_AMY = "Diabetes";
     public static final String VALID_PAST_DIAGNOSES_BOB = "Hypertension";
+    public static final String VALID_SMOKING_RECORD_NO = "no";
+    public static final String VALID_SMOKING_RECORD_YES = "yes";
+
+    public static final String VALID_APPOINTMENT_TIME_AMY = "01-01-2025 10:00";
+    public static final String VALID_APPOINTMENT_TIME_BOB = "02-02-2025 11:00";
+    public static final String VALID_APPOINTMENT_NOTES_AMY = "Amy's appointment";
+    public static final String VALID_APPOINTMENT_NOTES_BOB = "Bob's appointment";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String IDENTITY_NUMBER_DESC_AMY = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_AMY;
@@ -181,7 +190,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given
+     * Updates {@code model}'s filtered person list to show only the person at the given
      * {@code targetIndex} in the
      * {@code model}'s address book.
      */
@@ -193,6 +202,16 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameOrIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered appointment list to show only the appointment with the given
+     * {@code patientId} in the
+     * {@code model}'s address book.
+     */
+    public static void showAppointmentWithId(Model model, IdentityNumber patientId) {
+        model.updateFilteredAppointmentList(a -> a.getPatientId().equals(patientId));
+        assertEquals(1, model.getFilteredAppointmentList().size());
     }
 
 }

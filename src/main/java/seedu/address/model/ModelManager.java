@@ -9,8 +9,10 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +24,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointments;
+    private final SortedList<Appointment> sortedPastAppointments;
+    private final SortedList<Appointment> sortedUpcomingAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +39,12 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        FilteredList<Appointment> upcomingAppointments =
+                new FilteredList<>(filteredAppointments, Appointment::isAfterNow);
+        FilteredList<Appointment> pastAppointments = new FilteredList<>(filteredAppointments, Appointment::isBeforeNow);
+        sortedPastAppointments = new SortedList<>(pastAppointments, Appointment::compareByDateTime);
+        sortedUpcomingAppointments = new SortedList<>(upcomingAppointments, Appointment::compareByDateTime);
     }
 
     public ModelManager() {
@@ -94,8 +105,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        addressBook.removeAppointments((new FilteredList<Appointment>(filteredAppointments, a ->
+                a.getPatientId().equals(target.getIdentityNumber())).toArray(Appointment[]::new)));
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        addressBook.removeAppointment(target);
     }
 
     @Override
@@ -105,10 +129,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addAppointment(Appointment appointment) {
+        addressBook.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        addressBook.setAppointment(target, editedAppointment);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -122,10 +159,25 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -142,7 +194,17 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredAppointments.equals(otherModelManager.filteredAppointments);
     }
 
+    @Override
+    public SortedList<Appointment> getPastAppointmentList() {
+        return sortedPastAppointments;
+    }
+
+    @Override
+    public SortedList<Appointment> getUpcomingAppointmentList() {
+        return sortedUpcomingAppointments;
+    }
 }
