@@ -1,73 +1,87 @@
 .root {
-    -fx-background-color: #DDA0DD; /* Plum for soft pink-purple background */
+    -fx-background-color: #DDA0DD;
 }
 
 .label {
-    -fx-text-fill: #C71585; /* Medium violet red for brighter purple text */
+    -fx-text-fill: #C71585;
 }
 
 .cell-big-label {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #C71585; /* Medium violet red text */
+    -fx-text-fill: #C71585;
 }
 
 .cell-small-label {
-    -fx-text-fill: #C71585; /* Medium violet red text */
+    -fx-text-fill: #C71585;
 }
 
 .tags .label {
-    -fx-text-fill: #C71585; /* Medium violet red text */
-    -fx-background-color: #E6E6FA; /* Lavender for tags */
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #A52A2A;
+    -fx-background-radius: 5px;
     -fx-padding: 2px 6px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-alignment: center;
 }
 
 .view-panel {
-    -fx-background-color: #DDA0DD; /* Plum background */
+    -fx-background-color: #DDA0DD;
 }
 
 .view-label {
-    -fx-text-fill: #C71585; /* Medium violet red text */
+    -fx-text-fill: #C71585;
 }
 
 .view-label-bold {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #C71585; /* Medium violet red text */
+    -fx-text-fill: #C71585;
 }
 
 .list-view {
-    -fx-background-color: #DDA0DD; /* Plum background */
+    -fx-background-color: #DDA0DD;
     -fx-control-inner-background: #DDA0DD;
 }
 
 .list-cell {
-    -fx-background-color: #F0E6F0; /* Very light plum */
-    -fx-text-fill: #C71585; /* Medium violet red text */
+    -fx-background-color: #F0E6F0;
+    -fx-text-fill: #C71585;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #E6E6FA; /* Lavender for selection */
-    -fx-text-fill: #C71585; /* Medium violet red text */
+    -fx-background-color: #E6E6FA;
+    -fx-text-fill: #C71585;
 }
 
 .menu-bar {
-    -fx-background-color: #DDA0DD; /* Match root background */
+    -fx-background-color: #DDA0DD;
     -fx-border-color: transparent;
 }
 
 .menu .label {
-    -fx-text-fill: #C71585; /* Match text color */
+    -fx-text-fill: #C71585;
 }
 
 .menu-item .label {
-    -fx-text-fill: #C71585; /* Match text color */
+    -fx-text-fill: #C71585;
 }
 
 .menu-item:focused {
-    -fx-background-color: #E6E6FA; /* Light highlight */
+    -fx-background-color: #E6E6FA;
 }
 
 .menu-item:focused .label {
-    -fx-text-fill: #C71585; /* Ensure text color on focus */
+    -fx-text-fill: #C71585;
+}
+
+.tags .label {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #800000;
+    -fx-background-radius: 50%;
+    -fx-padding: 2px 6px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-alignment: center;
 }

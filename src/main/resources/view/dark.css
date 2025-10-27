@@ -1,76 +1,81 @@
 .root {
-    -fx-background-color: #4a4a4a; /* Dark grey background */
+    -fx-background-color: #333333;
 }
 
 .label {
-    -fx-text-fill: #ffffff; /* White text for contrast */
+    -fx-text-fill: #e0e0e0;
 }
 
 .cell-big-label {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #e0e0e0;
 }
 
 .cell-small-label {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #e0e0e0;
 }
 
 .tags .label {
     -fx-text-fill: #ffffff;
-    -fx-background-color: #666666; /* Medium dark grey for tags */
+    -fx-background-color: #800000;
+    -fx-background-radius: 5px;
     -fx-padding: 2px 6px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-alignment: center;
 }
 
 .view-panel {
-    -fx-background-color: #4a4a4a; /* Dark grey background */
+    -fx-background-color: #333333;
 }
 
 .view-label {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #e0e0e0;
 }
 
 .view-label-bold {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #e0e0e0;
 }
 
 .list-view {
-    -fx-background-color: #4a4a4a;
-    -fx-control-inner-background: #4a4a4a;
+    -fx-background-color: #333333;
+    -fx-control-inner-background: #333333;
 }
 
 .list-cell {
-    -fx-background-color: #5e5e5e; /* Slightly lighter dark grey */
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #4a4a4a;
+    -fx-text-fill: #e0e0e0;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #808080; /* Grey for selection */
+    -fx-background-color: #666666;
     -fx-text-fill: #ffffff;
 }
 
+/* MenuBar styling */
 .menu-bar {
-    -fx-background-color: #4a4a4a; /* Match root background */
+    -fx-background-color: #333333;
     -fx-border-color: transparent;
     -fx-padding: 0;
 }
 
 .menu-bar .menu-button {
-    -fx-background-color: #4a4a4a;
+    -fx-background-color: #333333;
 }
 
 .menu .label {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #e0e0e0;
 }
 
 .menu-item .label {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #e0e0e0;
 }
 
 .menu-item:focused {
-    -fx-background-color: #808080;
+    -fx-background-color: #666666;
 }
 
 .menu-item:focused .label {
@@ -78,5 +83,5 @@
 }
 
 .menu-bar > .container {
-    -fx-background-color: #4a4a4a;
+    -fx-background-color: #333333;
 }

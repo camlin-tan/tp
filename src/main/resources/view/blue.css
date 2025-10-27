@@ -1,73 +1,87 @@
 .root {
-    -fx-background-color: #87CEEB; /* Light sky blue background */
+    -fx-background-color: #4682B4;
 }
 
 .label {
-    -fx-text-fill: #4682B4; /* Steel blue text for contrast */
+    -fx-text-fill: #F0F8FF;
 }
 
 .cell-big-label {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4682B4; /* Steel blue text */
+    -fx-text-fill: #F0F8FF;
 }
 
 .cell-small-label {
-    -fx-text-fill: #4682B4; /* Steel blue text */
+    -fx-text-fill: #F0F8FF;
 }
 
 .tags .label {
-    -fx-text-fill: #4682B4; /* Steel blue text */
-    -fx-background-color: #B0E0E6; /* Powder blue for tags */
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #A52A2A;
+    -fx-background-radius: 5px;
     -fx-padding: 2px 6px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-alignment: center;
 }
 
 .view-panel {
-    -fx-background-color: #87CEEB; /* Light sky blue background */
+    -fx-background-color: #4682B4;
 }
 
 .view-label {
-    -fx-text-fill: #4682B4; /* Steel blue text */
+    -fx-text-fill: #F0F8FF;
 }
 
 .view-label-bold {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4682B4; /* Steel blue text */
+    -fx-text-fill: #F0F8FF;
 }
 
 .list-view {
-    -fx-background-color: #87CEEB; /* Light sky blue background */
-    -fx-control-inner-background: #87CEEB;
+    -fx-background-color: #4682B4;
+    -fx-control-inner-background: #4682B4;
 }
 
 .list-cell {
-    -fx-background-color: #ADD8E6; /* Light blue for list cells */
-    -fx-text-fill: #4682B4; /* Steel blue text */
+    -fx-background-color: #5E9CC1;
+    -fx-text-fill: #F0F8FF;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #B0E0E6; /* Powder blue for selection */
-    -fx-text-fill: #4682B4; /* Steel blue text */
+    -fx-background-color: #87CEEB;
+    -fx-text-fill: #4682B4;
 }
 
+/* MenuBar styling */
 .menu-bar {
-    -fx-background-color: #87CEEB; /* Match root background */
-    -fx-border-color: transparent; /* Remove default border */
+    -fx-background-color: #4682B4;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.menu-bar .menu-button {
+    -fx-background-color: #4682B4;
 }
 
 .menu .label {
-    -fx-text-fill: #4682B4; /* Match text color */
+    -fx-text-fill: #F0F8FF;
 }
 
 .menu-item .label {
-    -fx-text-fill: #4682B4; /* Match text color */
+    -fx-text-fill: #F0F8FF;
 }
 
 .menu-item:focused {
-    -fx-background-color: #B0E0E6; /* Light highlight */
+    -fx-background-color: #87CEEB;
 }
 
 .menu-item:focused .label {
-    -fx-text-fill: #4682B4; /* Ensure text color on focus */
+    -fx-text-fill: #4682B4;
+}
+
+.menu-bar > .container {
+    -fx-background-color: #4682B4;
 }
