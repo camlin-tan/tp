@@ -14,7 +14,7 @@ Adds a patient with the specified fields
 - Blood Type: `b/`
 - Gender: `g/`
 - Alcoholic Record: `ar/`
-- Smoking Record: `s/`
+- Smoking Record: `sr/`
 - Past Diagnoses: `pd/`
 
 
@@ -26,7 +26,7 @@ Adds a patient with the specified fields
 
 #### Example:
 ```
-add n/Betsy Crowe id/BC67 dob/02-02-2000 p/+65 12345678 e/betsycrowe@example.com a/67 Yishun Street ec/[mother] +60 12-123-4567 b/AB g/Female ar/NO s/NO t/Yishun t/HighPriority al/Pollen al/Nuts m/Amlodepine m/Bisoprolol
+add n/Betsy Crowe id/BC67 dob/02-02-2000 p/+65 12345678 e/betsycrowe@example.com a/67 Yishun Street ec/[mother] +60 12-123-4567 b/AB g/Female ar/NO sr/NO t/Yishun t/HighPriority al/Pollen al/Nuts m/Amlodepine m/Bisoprolol
 ```
 
 
