@@ -18,7 +18,7 @@
 
 .tags .label {
     -fx-text-fill: #ffffff;
-    -fx-background-color: #A52A2A;
+    -fx-background-color: #B22222;
     -fx-background-radius: 5px;
     -fx-padding: 2px 6px;
     -fx-min-width: 20px;
@@ -74,14 +74,4 @@
 
 .menu-item:focused .label {
     -fx-text-fill: #C71585;
-}
-
-.tags .label {
-    -fx-text-fill: #ffffff;
-    -fx-background-color: #800000;
-    -fx-background-radius: 50%;
-    -fx-padding: 2px 6px;
-    -fx-min-width: 20px;
-    -fx-min-height: 20px;
-    -fx-alignment: center;
 }
