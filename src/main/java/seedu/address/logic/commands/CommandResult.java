@@ -20,7 +20,7 @@ public class CommandResult {
      * Constructor for most commands.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null,false, false, false);
+        this(feedbackToUser, null, false, false, false);
     }
 
     /**
