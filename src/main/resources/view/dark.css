@@ -88,8 +88,12 @@
 }
 
 .list-view {
-    -fx-background-insets: 0;
     -fx-padding: 0;
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-control-inner-background: derive(#1d1d1d, 20%);
+}
+
+.list-view:empty {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
@@ -339,6 +343,12 @@
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
+}
+
+#personListPanel {
+    -fx-background-color: derive(#1d1d1d, 20%); /* or #383838 */
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
 #tags {
