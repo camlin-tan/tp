@@ -14,9 +14,9 @@ public class GenderTest {
 
     @Test
     public void constructor_validString_setsValueCorrectly() {
-        String validDiagnoses = "Male, Female";
-        Gender g = new Gender(validDiagnoses);
-        assertTrue(g.gender.equals(validDiagnoses));
+        String validGenders = "Male, Female";
+        Gender g = new Gender(validGenders);
+        assertTrue(g.gender.equals(validGenders));
     }
 
     @Test
