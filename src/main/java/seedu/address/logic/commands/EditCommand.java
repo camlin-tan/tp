@@ -3,12 +3,14 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -70,6 +72,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SMOKING_RECORD + "SMOKING RECORD] "
             + "[" + PREFIX_PAST_DIAGNOSES + "PAST DIAGNOSES] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
+            + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com" + "\n"
@@ -224,7 +228,8 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, identityNumber, phone, email, address, emergencyContact, tags,
-                    allergies, dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord, pastDiagnoses);
+                    allergies, dateOfBirth, bloodType, alcoholicRecord, gender, smokingRecord, pastDiagnoses,
+                    medicines);
         }
 
         public void setName(Name name) {
@@ -398,6 +403,7 @@ public class EditCommand extends Command {
                     && Objects.equals(gender, otherEditPersonDescriptor.gender)
                     && Objects.equals(smokingRecord, otherEditPersonDescriptor.smokingRecord)
                     && Objects.equals(allergies, otherEditPersonDescriptor.allergies)
+                    && Objects.equals(medicines, otherEditPersonDescriptor.medicines)
                     && Objects.equals(pastDiagnoses, otherEditPersonDescriptor.pastDiagnoses);
         }
 
@@ -417,6 +423,7 @@ public class EditCommand extends Command {
                     .add("gender", gender)
                     .add("smokingRecord", smokingRecord)
                     .add("allergies", allergies)
+                    .add("medicines", medicines)
                     .add("pastDiagnoses", pastDiagnoses)
                     .toString();
         }
