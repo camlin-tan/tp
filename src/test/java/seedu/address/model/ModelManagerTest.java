@@ -12,13 +12,19 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.NameOrIdContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.AppointmentBuilder;
 
 public class ModelManagerTest {
 
@@ -91,6 +97,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deletePerson_personExists_removesPersonAndAssociatedAppointments() {
+        modelManager.addPerson(ALICE);
+        Appointment appointmentForAlice =
+                new AppointmentBuilder(APPT_ALICE).withPatientId(ALICE.getIdentityNumber()).build();
+        Appointment appointmentForBenson =
+                new AppointmentBuilder(APPT_BENSON).withPatientId(BENSON.getIdentityNumber()).build();
+        modelManager.addAppointment(appointmentForAlice);
+        modelManager.addAppointment(appointmentForBenson);
+
+        assertTrue(modelManager.hasPerson(ALICE));
+        assertTrue(modelManager.hasAppointment(appointmentForAlice));
+        assertTrue(modelManager.hasAppointment(appointmentForBenson));
+
+        modelManager.deletePerson(ALICE);
+
+        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasAppointment(appointmentForAlice));
+        assertTrue(modelManager.hasAppointment(appointmentForBenson));
+    }
+
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
@@ -113,13 +141,130 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAppointmentList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> modelManager.getFilteredAppointmentList().remove(0));
     }
 
     @Test
     public void addAppointment_appointmentAddedSuccessfully() {
         modelManager.addAppointment(APPT_BENSON);
         assertTrue(modelManager.hasAppointment(APPT_BENSON));
+    }
+
+    @Test
+    public void updateViewedPersonAppointmentList_nullList_throwsNullPointerException() {
+        assertThrows(
+                NullPointerException.class, () -> modelManager.updateViewedPersonAppointmentList(null));
+    }
+
+    @Test
+    public void updateViewedPersonAppointmentList_emptyList_clearsBothLists() {
+        Appointment future = new AppointmentBuilder()
+                .withTime(LocalDateTime.now().plusDays(1).format(AppointmentBuilder.FORMATTER))
+                .build();
+        Appointment past = new AppointmentBuilder()
+                .withTime(LocalDateTime.now().minusDays(1).format(AppointmentBuilder.FORMATTER))
+                .build();
+        modelManager.updateViewedPersonAppointmentList(Arrays.asList(future, past));
+        assertFalse(modelManager.getViewedPersonUpcomingAppointmentList().isEmpty());
+        assertFalse(modelManager.getViewedPersonPastAppointmentList().isEmpty());
+
+        // Update with empty list
+        modelManager.updateViewedPersonAppointmentList(Collections.emptyList());
+        assertTrue(modelManager.getViewedPersonUpcomingAppointmentList().isEmpty());
+        assertTrue(modelManager.getViewedPersonPastAppointmentList().isEmpty());
+    }
+
+    @Test
+    public void updateViewedPersonAppointmentList_onlyUpcoming_populatesUpcomingCorrectly() {
+        Appointment future1 = new AppointmentBuilder()
+                .withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().plusDays(2).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Future 1").build();
+        Appointment future2 = new AppointmentBuilder()
+                .withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().plusDays(1).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Future 2").build(); // Earlier future
+        List<Appointment> appointments = Arrays.asList(future1, future2);
+
+        modelManager.updateViewedPersonAppointmentList(appointments);
+
+        ObservableList<Appointment> upcoming = modelManager.getViewedPersonUpcomingAppointmentList();
+        assertEquals(2, upcoming.size());
+        assertEquals(future2, upcoming.get(0)); // Should be sorted chronologically
+        assertEquals(future1, upcoming.get(1));
+        assertTrue(modelManager.getViewedPersonPastAppointmentList().isEmpty());
+    }
+
+    @Test
+    public void updateViewedPersonAppointmentList_onlyPast_populatesPastCorrectly() {
+        Appointment past1 = new AppointmentBuilder()
+                .withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().minusDays(2).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Past 1").build(); // Older past
+        Appointment past2 = new AppointmentBuilder()
+                .withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().minusDays(1).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Past 2").build();
+        List<Appointment> appointments = Arrays.asList(past1, past2);
+
+        modelManager.updateViewedPersonAppointmentList(appointments);
+
+        ObservableList<Appointment> past = modelManager.getViewedPersonPastAppointmentList();
+        assertEquals(2, past.size());
+        assertEquals(past2, past.get(0)); // Should be sorted reverse chronologically (most recent first)
+        assertEquals(past1, past.get(1));
+        assertTrue(modelManager.getViewedPersonUpcomingAppointmentList().isEmpty());
+    }
+
+
+    @Test
+    public void updateViewedPersonAppointmentList_mixedAppointments_populatesBothCorrectly() {
+        Appointment future1 = new AppointmentBuilder()
+                .withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().plusDays(2).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Future 1").build();
+        Appointment future2 = new AppointmentBuilder()
+                .withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().plusDays(1).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Future 2").build();
+        Appointment past1 = new AppointmentBuilder().withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().minusDays(2).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Past 1").build();
+        Appointment past2 = new AppointmentBuilder()
+                .withPatientId(ALICE.getIdentityNumber())
+                .withTime(LocalDateTime.now().minusDays(1).format(AppointmentBuilder.FORMATTER))
+                .withNotes("Past 2").build();
+        List<Appointment> appointments = Arrays.asList(future1, past1, future2, past2); // Unsorted mix
+
+        modelManager.updateViewedPersonAppointmentList(appointments);
+
+        ObservableList<Appointment> upcoming = modelManager.getViewedPersonUpcomingAppointmentList();
+        assertEquals(2, upcoming.size());
+        assertEquals(future2, upcoming.get(0)); // Sorted upcoming
+        assertEquals(future1, upcoming.get(1));
+
+        ObservableList<Appointment> past = modelManager.getViewedPersonPastAppointmentList();
+        assertEquals(2, past.size());
+        assertEquals(past2, past.get(0)); // Sorted past (reverse chronological)
+        assertEquals(past1, past.get(1));
+    }
+
+
+    @Test
+    public void clearViewedPersonAppointmentList_clearsBothLists() {
+        Appointment future = new AppointmentBuilder()
+                .withTime(LocalDateTime.now().plusDays(1).format(AppointmentBuilder.FORMATTER))
+                .build();
+        Appointment past = new AppointmentBuilder()
+                .withTime(LocalDateTime.now().minusDays(1).format(AppointmentBuilder.FORMATTER))
+                .build();
+        modelManager.updateViewedPersonAppointmentList(Arrays.asList(future, past));
+
+        modelManager.clearViewedPersonAppointmentList();
+
+        assertTrue(modelManager.getViewedPersonUpcomingAppointmentList().isEmpty());
+        assertTrue(modelManager.getViewedPersonPastAppointmentList().isEmpty());
     }
 
     @Test
@@ -146,7 +291,7 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
-        // different filteredList -> returns false
+        // different filteredPersonList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameOrIdContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
@@ -165,6 +310,22 @@ public class ModelManagerTest {
 
         // resets modelManager to initial state
         modelManager.updateFilteredAppointmentList(a -> true);
+
+        // different viewedPersonUpcomingAppointmentList -> returns false
+        ModelManager modelManagerWithUpcoming = new ModelManager(addressBook, userPrefs);
+        Appointment future = new AppointmentBuilder()
+                .withTime(LocalDateTime.now().plusDays(1).format(AppointmentBuilder.FORMATTER))
+                .build();
+        modelManagerWithUpcoming.updateViewedPersonAppointmentList(Collections.singletonList(future));
+        assertFalse(modelManager.equals(modelManagerWithUpcoming));
+
+        // different viewedPersonPastAppointmentList -> returns false
+        ModelManager modelManagerWithPast = new ModelManager(addressBook, userPrefs);
+        Appointment past = new AppointmentBuilder()
+                .withTime(LocalDateTime.now().minusDays(1).format(AppointmentBuilder.FORMATTER))
+                .build();
+        modelManagerWithPast.updateViewedPersonAppointmentList(Collections.singletonList(past));
+        assertFalse(modelManager.equals(modelManagerWithPast));
     }
 
 }

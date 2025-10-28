@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -17,6 +19,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -52,7 +56,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane personViewPanelPlaceholder;
+    private StackPane detailsPanelPlaceholder;
 
     @FXML
     private SplitPane personSplitPane;
@@ -128,6 +132,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        handleDefaultView();
     }
 
     /**
@@ -170,13 +176,46 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Handles switching to the detailed person view.
+     * Triggered when a view command for a person completes.
+     */
     @FXML
     private void handleView() {
-        logic.getPersonToView().ifPresent(person -> {
-            PersonViewPanel personViewPanel = new PersonViewPanel(person);
-            personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+        Optional<Person> personOptional = logic.getPersonToView();
+
+        if (personOptional.isPresent()) {
+            Person person = personOptional.get();
+            ObservableList<Appointment> upcomingAppointments = logic.getViewedPersonUpcomingAppointmentList();
+            ObservableList<Appointment> pastAppointments = logic.getViewedPersonPastAppointmentList();
+
+            PersonViewPanel personViewPanel = new PersonViewPanel(person, upcomingAppointments, pastAppointments);
+
+            detailsPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
             personSplitPane.setDividerPositions(0.5);
-        });
+        } else {
+            logger.warning("handleViewPerson called but no person was available in Logic.");
+            handleDefaultView();
+        }
+    }
+
+    private void handleShowAppointments() {
+        ObservableList<Appointment> upcomingAppointments = logic.getUpcomingAppointmentList();
+        ObservableList<Appointment> pastAppointments = logic.getPastAppointmentList();
+
+        AppointmentListPanel appointmentListPanel = new AppointmentListPanel(upcomingAppointments, pastAppointments);
+
+        detailsPanelPlaceholder.getChildren().setAll(appointmentListPanel.getRoot());
+        personSplitPane.setDividerPositions(0.5);
+    }
+
+    /**
+     * Resets the view to the default single-panel layout (shows only the person list).
+     */
+    private void handleDefaultView() {
+        personSplitPane.setDividerPositions(1.0);
+        detailsPanelPlaceholder.getChildren().clear();
+        logic.clearViewedData();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -194,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isHelp()) {
                 handleHelp();
             }
 
@@ -204,6 +243,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isView()) {
                 handleView();
+            } else if (commandResult.isViewAppointments()) {
+                handleShowAppointments();
+            } else {
+                handleDefaultView(); // Revert to single-panel for other commands
             }
 
             return commandResult;

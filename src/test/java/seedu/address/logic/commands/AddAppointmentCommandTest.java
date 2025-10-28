@@ -94,7 +94,7 @@ public class AddAppointmentCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -193,6 +193,11 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public ObservableList<Appointment> getFilteredAppointmentList(IdentityNumber personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -204,6 +209,27 @@ public class AddAppointmentCommandTest {
 
         @Override
         public ObservableList<Appointment> getPastAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Appointment> getViewedPersonPastAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Appointment> getViewedPersonUpcomingAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public void updateViewedPersonAppointmentList(List<Appointment> appointments) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearViewedPersonAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
     }
