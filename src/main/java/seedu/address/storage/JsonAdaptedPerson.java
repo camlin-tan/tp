@@ -224,6 +224,7 @@ class JsonAdaptedPerson {
         final SmokingRecord modelSmokingRecord = new SmokingRecord(smokingRecord);
 
         if (alcoholicRecord == null) {
+            logger.warning(() -> String.format("JsonAdaptedPerson: missing AlcoholicRecord for name='%s'", name));
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AlcoholicRecord.class.getSimpleName()));
         }
