@@ -37,7 +37,7 @@ public class DeleteAppointmentCommandTest {
     @Test
     public void execute_deleteSuccessful_appointmentRemoved() throws Exception {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Appointment a = model.getFilteredAppointmentList().get(0);
+        Appointment a = model.getUpcomingAppointmentList().get(0);
 
         DeleteAppointmentCommand cmd = new DeleteAppointmentCommand(Index.fromOneBased(1));
         CommandResult result = cmd.execute(model);
