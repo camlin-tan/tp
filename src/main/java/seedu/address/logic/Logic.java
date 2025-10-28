@@ -51,8 +51,11 @@ public interface Logic {
     /** Returns the person to view if a view command has been entered */
     Optional<Person> getPersonToView();
 
-    /** Returns an unmodifiable view of the list of appointments for the currently viewed person */
-    ObservableList<Appointment> getViewedPersonAppointmentList();
+    /** Returns an unmodifiable view of the list of upcoming appointments for the currently viewed person */
+    ObservableList<Appointment> getViewedPersonUpcomingAppointmentList();
+
+    /** Returns an unmodifiable view of the list of past appointments for the currently viewed person */
+    ObservableList<Appointment> getViewedPersonPastAppointmentList();
 
     /** Clears the person currently set for viewing and their associated appointment list in the model */
     void clearViewedData();

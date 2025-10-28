@@ -99,8 +99,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Appointment> getViewedPersonAppointmentList() {
-        return model.getViewedPersonAppointmentList();
+    public ObservableList<Appointment> getViewedPersonUpcomingAppointmentList() {
+        return model.getViewedPersonUpcomingAppointmentList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getViewedPersonPastAppointmentList() {
+        return model.getViewedPersonPastAppointmentList();
     }
 
     @Override

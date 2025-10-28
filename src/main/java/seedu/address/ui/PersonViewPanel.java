@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -58,18 +57,20 @@ public class PersonViewPanel extends UiPart<Region> {
     private VBox pastAppointmentsBox;
 
     /**
-     * Creates a {@code PersonViewPanel} with the given {@code Person} and their {@code appointments}.
+     * Creates a {@code PersonViewPanel} with the given {@code Person} and their separated appointment lists.
      *
      * @param person The person whose details are to be displayed.
-     * @param appointments The list of appointments associated with the person.
+     * @param upcomingAppointments The list of upcoming appointments associated with the person.
+     * @param pastAppointments The list of past appointments associated with the person.
      */
-    public PersonViewPanel(Person person, ObservableList<Appointment> appointments) {
+    public PersonViewPanel(Person person, ObservableList<Appointment> upcomingAppointments,
+                           ObservableList<Appointment> pastAppointments) {
         super(FXML);
         this.person = person;
         getRoot().getStylesheets().add(getClass().getResource("/view/PersonViewPanel.css").toExternalForm());
 
         fillPersonDetails();
-        fillAppointments(appointments);
+        fillAppointments(upcomingAppointments, pastAppointments);
     }
 
     /**
@@ -100,57 +101,43 @@ public class PersonViewPanel extends UiPart<Region> {
     }
 
     /**
-     * Fills in the person's appointments, separating them into upcoming and past sections.
+     * Fills in the person's appointments using the pre-filtered and sorted lists.
      * Clears previous appointment content before adding new items.
      *
-     * @param appointments The list of appointments for the person (expected to be sorted chronologically).
+     * @param upcomingAppointments The list of upcoming appointments (sorted chronologically).
+     * @param pastAppointments The list of past appointments (sorted reverse chronologically).
      */
-    private void fillAppointments(ObservableList<Appointment> appointments) {
-        upcomingAppointmentsBox.getChildren().clear(); // Clear previous content
-        pastAppointmentsBox.getChildren().clear(); // Clear previous content
+    private void fillAppointments(ObservableList<Appointment> upcomingAppointments,
+                                  ObservableList<Appointment> pastAppointments) {
+        upcomingAppointmentsBox.getChildren().clear();
+        pastAppointmentsBox.getChildren().clear();
 
-        if (appointments == null || appointments.isEmpty()) {
+        // Populate Upcoming Appointments
+        if (upcomingAppointments == null || upcomingAppointments.isEmpty()) {
             Label noUpcoming = new Label("None");
             noUpcoming.getStyleClass().add(NONE_TAG_STYLE_CLASS);
             upcomingAppointmentsBox.getChildren().add(noUpcoming);
-
-            Label noPast = new Label("None");
-            noPast.getStyleClass().add(NONE_TAG_STYLE_CLASS);
-            pastAppointmentsBox.getChildren().add(noPast);
-            return;
-        }
-
-        LocalDateTime now = LocalDateTime.now();
-        boolean hasUpcoming = false;
-        boolean hasPast = false;
-
-        // Appointments list is assumed to be sorted chronologically (oldest first) by ModelManager
-        for (Appointment appt : appointments) {
-            Label apptLabel = new Label(formatAppointmentForDisplay(appt));
-            apptLabel.getStyleClass().add(VALUE_LABEL_STYLE_CLASS); // Use existing style
-            apptLabel.setWrapText(true);
-
-            if (appt.isAfterNow()) { // Check if appointment is in the future
-                upcomingAppointmentsBox.getChildren().add(apptLabel); // Add to end (maintains chronological order)
-                hasUpcoming = true;
-            } else { // Appointment is now or in the past
-                // Add past appointments in reverse chronological order (most recent first)
-                // Since the source list is sorted chronologically (oldest first), add to the beginning of the VBox
-                pastAppointmentsBox.getChildren().add(0, apptLabel);
-                hasPast = true;
+        } else {
+            for (Appointment appt : upcomingAppointments) {
+                Label apptLabel = new Label(formatAppointmentForDisplay(appt));
+                apptLabel.getStyleClass().add(VALUE_LABEL_STYLE_CLASS);
+                apptLabel.setWrapText(true);
+                upcomingAppointmentsBox.getChildren().add(apptLabel);
             }
         }
 
-        // Add "None" label if a section ended up empty
-        if (!hasUpcoming) {
-            Label noUpcoming = new Label("None");
-            noUpcoming.getStyleClass().add(NONE_TAG_STYLE_CLASS);
-            upcomingAppointmentsBox.getChildren().add(noUpcoming);
-        }
-        if (!hasPast) {
+        // Populate Past Appointments
+        if (pastAppointments == null || pastAppointments.isEmpty()) {
             Label noPast = new Label("None");
             noPast.getStyleClass().add(NONE_TAG_STYLE_CLASS);
             pastAppointmentsBox.getChildren().add(noPast);
+        } else {
+            for (Appointment appt : pastAppointments) {
+                Label apptLabel = new Label(formatAppointmentForDisplay(appt));
+                apptLabel.getStyleClass().add(VALUE_LABEL_STYLE_CLASS);
+                apptLabel.setWrapText(true);
+                pastAppointmentsBox.getChildren().add(apptLabel);
+            }
         }
     }
 
@@ -161,8 +148,8 @@ public class PersonViewPanel extends UiPart<Region> {
      * @return A formatted string representation.
      */
     private String formatAppointmentForDisplay(Appointment appointment) {
-        String dateTimeStr = appointment.getDateTime().toString(); //
-        String notesStr = appointment.getNotes().toString(); //
+        String dateTimeStr = appointment.getDateTime().toString();
+        String notesStr = appointment.getNotes().toString();
         return dateTimeStr + (notesStr.isEmpty() ? "" : ": " + notesStr);
     }
 
@@ -212,7 +199,7 @@ public class PersonViewPanel extends UiPart<Region> {
 
         for (String itemStr : sortedItemStrings) {
             Label itemLabel = new Label(itemStr);
-            itemLabel.getStyleClass().add(TAG_STYLE_CLASS); // Reuse tag styling
+            itemLabel.getStyleClass().add(TAG_STYLE_CLASS);
             pane.getChildren().add(itemLabel);
         }
     }

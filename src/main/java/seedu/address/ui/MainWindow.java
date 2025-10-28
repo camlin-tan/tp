@@ -186,9 +186,11 @@ public class MainWindow extends UiPart<Stage> {
 
         if (personOptional.isPresent()) {
             Person person = personOptional.get();
-            ObservableList<Appointment> appointments = logic.getViewedPersonAppointmentList();
+            ObservableList<Appointment> upcomingAppointments = logic.getViewedPersonUpcomingAppointmentList();
+            ObservableList<Appointment> pastAppointments = logic.getViewedPersonPastAppointmentList();
 
-            PersonViewPanel personViewPanel = new PersonViewPanel(person, appointments);
+            PersonViewPanel personViewPanel = new PersonViewPanel(person, upcomingAppointments, pastAppointments);
+
             detailsPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
             personSplitPane.setDividerPositions(0.5);
         } else {
@@ -198,15 +200,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void handleShowAppointments() {
-        // Fetch both lists from the logic component
         ObservableList<Appointment> upcomingAppointments = logic.getUpcomingAppointmentList();
         ObservableList<Appointment> pastAppointments = logic.getPastAppointmentList();
 
-        // Pass both lists to the AppointmentListPanel constructor
         AppointmentListPanel appointmentListPanel = new AppointmentListPanel(upcomingAppointments, pastAppointments);
 
         detailsPanelPlaceholder.getChildren().setAll(appointmentListPanel.getRoot());
-        personSplitPane.setDividerPositions(0.5); // Show both panels
+        personSplitPane.setDividerPositions(0.5);
     }
 
     /**
