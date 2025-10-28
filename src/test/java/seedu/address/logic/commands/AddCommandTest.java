@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -160,33 +162,37 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasAppointment(seedu.address.model.appointment.Appointment appointment) {
+        public boolean hasAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteAppointment(seedu.address.model.appointment.Appointment target) {
+        public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addAppointment(seedu.address.model.appointment.Appointment appointment) {
+        public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAppointment(seedu.address.model.appointment.Appointment target,
-                                  seedu.address.model.appointment.Appointment editedAppointment) {
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<seedu.address.model.appointment.Appointment> getFilteredAppointmentList() {
+        public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<seedu.address.model.appointment.Appointment> predicate) {
+        public ObservableList<Appointment> getFilteredAppointmentList(IdentityNumber personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -197,6 +203,21 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Appointment> getPastAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Appointment> getViewedPersonAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateViewedPersonAppointmentList(List<Appointment> appointments) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearViewedPersonAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
     }
