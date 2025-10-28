@@ -15,9 +15,9 @@ Adds a patient with the specified fields
 - Gender: `g\`
 - Alcoholic Record: `ar\`
 - Smoking Record: `sr\`
+
+##### Optional
 - Past Diagnoses: `pd\`
-
-
 
 ##### Optional, can have multiple:
 - Tags: `t\`

@@ -20,6 +20,8 @@ Patient Fields:
     g\GENDER
     ar\ALCOHOLIC_RECORD (e.g., YES or NO)
     sr\SMOKING_RECORD (e.g., YES or NO)
+
+  [Optional]
     pd\PAST_DIAGNOSES
 
   [Optional - Can have multiple]
