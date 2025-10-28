@@ -114,8 +114,10 @@ public class CommandTestUtil {
     public static final String INVALID_ALCOHOLIC_RECORD_DESC = " "
             + PREFIX_ALCOHOLIC_RECORD + " "; // empty string not allowed for alcoholic record
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER; // empty string not allowed for gender
-    public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE; // invalid blood type
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + " "; // empty string not allowed for gender
+    public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGY + " "; // empty string invalid for allergy
+    public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + " "; // empty string invalid medicine
+    public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE + " "; // invalid blood type
     public static final String INVALID_SMOKING_RECORD_DESC = " "
             + PREFIX_SMOKING_RECORD + " "; // empty string not allowed for smoking record
 
