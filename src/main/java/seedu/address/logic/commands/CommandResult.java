@@ -22,7 +22,8 @@ public class CommandResult {
      * Constructor for most commands.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false, Optional.empty());
+        this(feedbackToUser, null, false, false, false,
+                Optional.empty());
     }
 
     /**
@@ -36,21 +37,24 @@ public class CommandResult {
      * Constructor for view command.
      */
     public CommandResult(String feedbackToUser, Person personToView) {
-        this(feedbackToUser, personToView, false, false, false, Optional.empty());
+        this(feedbackToUser, personToView, false, false, false,
+                Optional.empty());
     }
 
     /**
      * Constructor for appointments command.
      */
     public CommandResult(String feedbackToUser, boolean showAppointments) {
-        this(feedbackToUser, null, false, false, showAppointments, Optional.empty());
+        this(feedbackToUser, null, false, false, showAppointments,
+                Optional.empty());
     }
 
     /**
      * Constructor for the theme command.
      */
     public CommandResult(String feedbackToUser, String themePath) {
-        this(feedbackToUser, null, false, false, false, Optional.of(themePath));
+        this(feedbackToUser, null, false, false, false,
+                Optional.of(themePath));
     }
 
     /**
