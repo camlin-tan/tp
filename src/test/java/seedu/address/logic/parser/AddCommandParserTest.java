@@ -18,7 +18,6 @@ import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.IDENTITY_NUMBER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.IDENTITY_NUMBER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALCOHOLIC_RECORD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALLERGY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BLOOD_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_OF_BIRTH_DESC;
@@ -73,7 +72,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
@@ -100,7 +98,6 @@ public class AddCommandParserTest {
                 + DATE_OF_BIRTH_DESC_BOB + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
                 + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_DIAGNOSES_DESC_BOB + MEDICINE_DESC_ANTIDEPRESSANT,
                 new AddCommand(expectedPerson));
-
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -221,10 +218,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedPersonString + INVALID_DATE_OF_BIRTH_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE_OF_BIRTH));
 
-        // invalid alcoholic record
-        assertParseFailure(parser, validExpectedPersonString + INVALID_ALCOHOLIC_RECORD_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ALCOHOLIC_RECORD));
-
         // invalid smoking record
         assertParseFailure(parser, validExpectedPersonString + INVALID_SMOKING_RECORD_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SMOKING_RECORD));
@@ -237,7 +230,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                 NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC
-                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
+                        + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
                         + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
 
         // zero past diagnoses
@@ -245,8 +238,16 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                 NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC + TAG_DESC_HUSBAND
-                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
+                        + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
                         + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
+
+        // zero alcoholic record
+        expectedPerson = new PersonBuilder(AMY).withTags("husband").withAllergies().build();
+        assertParseSuccess(parser,
+                NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC + TAG_DESC_HUSBAND
+                        + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY + MEDICINE_DESC_ANTIDEPRESSANT,
+                new AddCommand(expectedPerson));
     }
 
     @Test
@@ -329,15 +330,6 @@ public class AddCommandParserTest {
                 + TAG_DESC_FRIEND + BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
                 + SMOKING_RECORD_DESC_BOB,
                 DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
-
-
-        // invalid alcoholic record
-        assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
-                + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
-                + GENDER_DESC_BOB + INVALID_ALCOHOLIC_RECORD_DESC + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS
-                + PAST_DIAGNOSES_DESC_BOB,
-                AlcoholicRecord.MESSAGE_CONSTRAINTS);
 
         // invalid gender
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ALCOHOLIC_RECORD_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ALCOHOLIC_RECORD_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_NUTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOOD_TYPE;
@@ -42,7 +41,7 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withIdentityNumber("AP67")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmergencyContact("[mother] 12345679")
             .withEmail("alice@example.com").withPhone("94351253").withTags("friends").withDateOfBirth("20-05-1998")
-            .withBloodType("O").withAlcoholicRecord("Social drinker").withGender("F").withSmokingRecord("Non-smoker")
+            .withBloodType("O").withGender("F").withSmokingRecord("Non-smoker")
             .withAllergies("nuts").withPastDiagnoses("Diabetes").withMedicines("antidepressants").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withIdentityNumber("BM67")
             .withAddress("311, Clementi Ave 2, #02-25").withEmergencyContact("[father] +65 1324456567")
@@ -58,8 +57,7 @@ public class TypicalPersons {
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withIdentityNumber("DM67")
             .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
             .withEmergencyContact("[sister-in-law] +123 12-731-7245").withTags("friends")
-            .withDateOfBirth("30-05-1995").withBloodType("O").withAlcoholicRecord("Yes").withGender("M")
-            .withSmokingRecord("Quitter")
+            .withDateOfBirth("30-05-1995").withBloodType("O").withGender("M").withSmokingRecord("Quitter")
             .withAllergies("nuts").withMedicines("antidepressants").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withIdentityNumber("EM67")
             .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave")
@@ -97,7 +95,7 @@ public class TypicalPersons {
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
             .withTags(VALID_TAG_FRIEND).withDateOfBirth(VALID_DATE_OF_BIRTH_AMY)
             .withBloodType(VALID_BLOOD_TYPE)
-            .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withGender(VALID_GENDER_AMY)
+            .withGender(VALID_GENDER_AMY)
             .withSmokingRecord(VALID_SMOKING_RECORD_AMY)
             .withAllergies(VALID_ALLERGY_NUTS)
             .withMedicines(VALID_MEDICINE_ANTIDEPRESSANT).build();
