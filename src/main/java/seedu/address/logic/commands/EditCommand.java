@@ -145,8 +145,8 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedIdentityNumber, updatedPhone, updatedEmail,
                 updatedAddress, updatedEmergencyContact, updatedTags, updatedDateOfBirth, updatedBloodType,
-                updatedAlcoholicRecord, updatedGender, updatedSmokingRecord, updatedAllergies, updatedPastMedicalHistory,
-                updatedMedicines);
+                updatedAlcoholicRecord, updatedGender, updatedSmokingRecord, updatedAllergies,
+                updatedPastMedicalHistory, updatedMedicines);
     }
 
     @Override

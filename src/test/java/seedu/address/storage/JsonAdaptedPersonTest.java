@@ -197,7 +197,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_EMERGENCY_CONTACT, VALID_TAGS, futureDateString, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD,
-                        VALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY, VALID_MEDICINES);
+                        VALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY,
+                        VALID_MEDICINES);
 
         String expectedMessage = DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -253,7 +254,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD,
-                        VALID_GENDER, INVALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY, VALID_MEDICINES);
+                        VALID_GENDER, INVALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY,
+                        VALID_MEDICINES);
         String expectedMessage = SmokingRecord.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

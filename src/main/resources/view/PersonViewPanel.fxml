@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1"
-      spacing="10"
-      style="-fx-padding: 15;">
-    <Label fx:id="nameLabel" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white;" />
-    <Label fx:id="identityNumberLabel" style="-fx-text-fill: white;"/>
-    <Label fx:id="phoneLabel" style="-fx-text-fill: white;"/>
-    <Label fx:id="emailLabel" wrapText="true" style="-fx-text-fill: white;"/>
-    <Label fx:id="addressLabel" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white;" />
-    <Label fx:id="bloodTypeLabel" style="-fx-text-fill: white;"/>
-    <Label fx:id="alcoholicRecordLabel" wrapText="true" style="-fx-text-fill: white;"/>
-    <Label fx:id="gender" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white;" />
-    <Label fx:id="dateOfBirthAndAgeLabel" style="-fx-text-fill: white;"/>
-    <Label fx:id="smokingRecordLabel" style="-fx-text-fill: white;"/>
-    <Label fx:id="pastMedicalHistoryLabel" wrapText="true" style="-fx-text-fill: white;"/>
-    <Label fx:id="medicineLabel" wrapText="true" style="-fx-text-fill: white;"/>
-    <Label fx:id="allergiesLabel" wrapText="true" style="-fx-text-fill: white;"/>
-</VBox>
+<ScrollPane fitToWidth="true" styleClass="person-view-scroll-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox fx:id="personViewContainer" spacing="20" styleClass="person-view-vbox">
+
+        <Label fx:id="nameLabel" styleClass="person-view-name-label"/>
+
+        <Label text="Personal Details" styleClass="person-view-section-heading" />
+        <GridPane fx:id="personalInfoGrid" hgap="10" vgap="8">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="140" prefWidth="140" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+        </GridPane>
+
+        <Label text="Medical Details" styleClass="person-view-section-heading" />
+        <GridPane fx:id="medicalInfoGrid" hgap="10" vgap="8">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="140" prefWidth="140" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+        </GridPane>
+
+        <Label text="Allergies" styleClass="person-view-section-heading" />
+        <FlowPane fx:id="allergiesFlowPane" hgap="8" vgap="8" />
+
+        <Label text="Current Medicines" styleClass="person-view-section-heading" />
+        <FlowPane fx:id="medicineFlowPane" hgap="8" vgap="8" />
+
+        <Label text="Upcoming Appointments" styleClass="person-view-section-heading" />
+        <VBox fx:id="upcomingAppointmentsBox" spacing="5" styleClass="person-view-appointment-box"/>
+
+        <Label text="Past Appointments" styleClass="person-view-section-heading" />
+        <VBox fx:id="pastAppointmentsBox" spacing="5" styleClass="person-view-appointment-box"/>
+    </VBox>
+</ScrollPane>

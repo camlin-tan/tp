@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentNotes;
 import seedu.address.model.appointment.AppointmentTime;
@@ -14,6 +16,7 @@ public class AppointmentBuilder {
     public static final String DEFAULT_NOTES = "Follow up in 2 weeks.";
     public static final String DEFAULT_TIME = "01-12-2023 14:30";
     public static final Person DEFAULT_PATIENT = new PersonBuilder().build();
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     private AppointmentNotes notes;
     private AppointmentTime time;

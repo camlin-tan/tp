@@ -252,7 +252,8 @@ public class ParserUtilTest {
     public void parsePastMedicalHistory_validValueWithWhitespace_returnsTrimmedPastMedicalHistory() throws Exception {
         String pastMedicalHistoryWithWhitespace = WHITESPACE + "Diabetes, Hypertension" + WHITESPACE;
         String expectedPastMedicalHistory = "Diabetes, Hypertension";
-        assertEquals(expectedPastMedicalHistory, ParserUtil.parsePastMedicalHistory(pastMedicalHistoryWithWhitespace).value);
+        assertEquals(expectedPastMedicalHistory,
+                ParserUtil.parsePastMedicalHistory(pastMedicalHistoryWithWhitespace).value);
     }
 
     @Test

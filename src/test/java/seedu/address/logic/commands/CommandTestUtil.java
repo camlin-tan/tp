@@ -76,8 +76,10 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String IDENTITY_NUMBER_DESC_AMY = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_AMY;
     public static final String IDENTITY_NUMBER_DESC_BOB = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_BOB;
-    public static final String PAST_MEDICAL_HISTORY_DESC_AMY = " " + PREFIX_PAST_MEDICAL_HISTORY + VALID_PAST_MEDICAL_HISTORY_AMY;
-    public static final String PAST_MEDICAL_HISTORY_DESC_BOB = " " + PREFIX_PAST_MEDICAL_HISTORY + VALID_PAST_MEDICAL_HISTORY_BOB;
+    public static final String PAST_MEDICAL_HISTORY_DESC_AMY = " " + PREFIX_PAST_MEDICAL_HISTORY
+            + VALID_PAST_MEDICAL_HISTORY_AMY;
+    public static final String PAST_MEDICAL_HISTORY_DESC_BOB = " " + PREFIX_PAST_MEDICAL_HISTORY
+            + VALID_PAST_MEDICAL_HISTORY_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -114,8 +116,10 @@ public class CommandTestUtil {
     public static final String INVALID_ALCOHOLIC_RECORD_DESC = " "
             + PREFIX_ALCOHOLIC_RECORD + " "; // empty string not allowed for alcoholic record
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER; // empty string not allowed for gender
-    public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE; // invalid blood type
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + " "; // empty string not allowed for gender
+    public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGY + " "; // empty string invalid for allergy
+    public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + " "; // empty string invalid medicine
+    public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE + " "; // invalid blood type
     public static final String INVALID_SMOKING_RECORD_DESC = " "
             + PREFIX_SMOKING_RECORD + " "; // empty string not allowed for smoking record
 

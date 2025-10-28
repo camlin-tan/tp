@@ -37,7 +37,7 @@ public class PastMedicalHistoryTest {
 
         // invalid past medical histories
         assertFalse(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory(" ")); // only whitespace
-        assertFalse(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory("   ")); // multiple whitespaces
+        assertFalse(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory("   "));
     }
 
     @Test

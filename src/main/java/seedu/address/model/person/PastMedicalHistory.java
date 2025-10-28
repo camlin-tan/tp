@@ -7,7 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidPastMedicalHistory(String)}
  */
 public class PastMedicalHistory {
-    public static final String MESSAGE_CONSTRAINTS = "Past medical history can be any string, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Past medical history can be any string, "
+            + "and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
