@@ -21,6 +21,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered appointment list for a specific person ID */
     ObservableList<Appointment> getFilteredAppointmentList(IdentityNumber personId);
 
+    /** Returns an unmodifiable view of the filtered appointment list */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
     /** Returns the list of appointments associated with the currently viewed person. */
     ObservableList<Appointment> getViewedPersonAppointmentList();
 
@@ -119,9 +122,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
-
-    /** Returns an unmodifiable view of the filtered appointment list */
-    ObservableList<Appointment> getFilteredAppointmentList();
 
     /** Returns an unmodifiable view of the filtered upcoming appointment list */
     ObservableList<Appointment> getUpcomingAppointmentList();

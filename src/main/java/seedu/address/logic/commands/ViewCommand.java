@@ -55,7 +55,8 @@ public class ViewCommand extends Command {
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
         this.personToView = personToView;
 
-        ObservableList<Appointment> personAppointments = model.getFilteredAppointmentList(personToView.getIdentityNumber());
+        ObservableList<Appointment> personAppointments =
+                model.getFilteredAppointmentList(personToView.getIdentityNumber());
         model.updateViewedPersonAppointmentList(personAppointments);
 
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)),

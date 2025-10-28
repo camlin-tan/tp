@@ -107,7 +107,7 @@ public class PersonViewPanel extends UiPart<Region> {
      */
     private void fillAppointments(ObservableList<Appointment> appointments) {
         upcomingAppointmentsBox.getChildren().clear(); // Clear previous content
-        pastAppointmentsBox.getChildren().clear();   // Clear previous content
+        pastAppointmentsBox.getChildren().clear(); // Clear previous content
 
         if (appointments == null || appointments.isEmpty()) {
             Label noUpcoming = new Label("None");

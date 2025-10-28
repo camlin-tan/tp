@@ -185,20 +185,20 @@ public class ModelManager implements Model {
     //=========== Filtered Appointment List Accessors ==========================================================
 
     /**
-     * Returns the main filtered appointment list. Used for general display/filtering.
-     */
-    @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() {
-        return filteredAppointments;
-    }
-
-    /**
      * Updates the main filtered appointment list.
      */
     @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
+    }
+
+    /**
+     * Returns the main filtered appointment list. Used for general display/filtering.
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
     }
 
     /**
@@ -210,7 +210,8 @@ public class ModelManager implements Model {
     public ObservableList<Appointment> getFilteredAppointmentList(IdentityNumber personId) {
         requireNonNull(personId);
         Predicate<Appointment> personPredicate = appointment -> appointment.getPatientId().equals(personId);
-        FilteredList<Appointment> personAppointments = new FilteredList<>(this.addressBook.getAppointmentList(), personPredicate);
+        FilteredList<Appointment> personAppointments =
+                new FilteredList<>(this.addressBook.getAppointmentList(), personPredicate);
         return new SortedList<>(personAppointments, Appointment::compareByDateTime);
     }
 
