@@ -4,10 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,8 +36,10 @@ public class ModelManager implements Model {
     private final SortedList<Appointment> sortedAllPastAppointments;
 
     // Lists to hold appointments for the person currently being viewed
-    private final ObservableList<Appointment> viewedPersonAppointments;
-    private final ObservableList<Appointment> unmodifiableViewedPersonAppointments;
+    private final ObservableList<Appointment> viewedPersonUpcomingAppointments;
+    private final ObservableList<Appointment> unmodifiableViewedPersonUpcomingAppointments;
+    private final ObservableList<Appointment> viewedPersonPastAppointments;
+    private final ObservableList<Appointment> unmodifiableViewedPersonPastAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -51,8 +54,12 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
 
-        viewedPersonAppointments = FXCollections.observableArrayList();
-        unmodifiableViewedPersonAppointments = FXCollections.unmodifiableObservableList(viewedPersonAppointments);
+        viewedPersonUpcomingAppointments = FXCollections.observableArrayList();
+        unmodifiableViewedPersonUpcomingAppointments =
+                FXCollections.unmodifiableObservableList(viewedPersonUpcomingAppointments);
+        viewedPersonPastAppointments = FXCollections.observableArrayList();
+        unmodifiableViewedPersonPastAppointments =
+                FXCollections.unmodifiableObservableList(viewedPersonPastAppointments);
 
         FilteredList<Appointment> allUpcomingAppointments =
                 new FilteredList<>(this.addressBook.getAppointmentList(), Appointment::isAfterNow);
@@ -219,35 +226,58 @@ public class ModelManager implements Model {
     //=========== Viewed Person Appointment List Accessors ===================================================
 
     /**
-     * Returns the dedicated list holding appointments for the currently viewed person.
+     * Returns the dedicated list holding upcoming appointments for the currently viewed person.
      * The UI (PersonViewPanel) should observe/use this list.
      */
     @Override
-    public ObservableList<Appointment> getViewedPersonAppointmentList() {
-        return unmodifiableViewedPersonAppointments;
+    public ObservableList<Appointment> getViewedPersonUpcomingAppointmentList() {
+        return unmodifiableViewedPersonUpcomingAppointments;
     }
 
     /**
-     * Updates the dedicated list holding appointments for the currently viewed person.
-     * Called by ViewCommand.
+     * Returns the dedicated list holding past appointments for the currently viewed person.
+     * The UI (PersonViewPanel) should observe/use this list.
+     */
+    @Override
+    public ObservableList<Appointment> getViewedPersonPastAppointmentList() {
+        return unmodifiableViewedPersonPastAppointments;
+    }
+
+    /**
+     * Updates the dedicated lists holding upcoming and past appointments for the currently viewed person.
+     * Called by ViewCommand. Upcoming appointments are sorted chronologically (soonest first).
+     * Past appointments are sorted reverse chronologically (most recent first).
      */
     @Override
     public void updateViewedPersonAppointmentList(List<Appointment> appointments) {
         requireAllNonNull(appointments);
-        List<Appointment> sortedAppointments = new ArrayList<>(appointments);
-        sortedAppointments.sort(Appointment::compareByDateTime); //
-        viewedPersonAppointments.setAll(sortedAppointments);
-        logger.fine("Updated viewed person appointments list with " + appointments.size() + " appointments.");
+        List<Appointment> upcoming = appointments.stream()
+                .filter(Appointment::isAfterNow)
+                .sorted(Appointment::compareByDateTime) // Sort upcoming chronologically
+                .collect(Collectors.toList());
+
+        List<Appointment> past = appointments.stream()
+                .filter(Appointment::isBeforeNow)
+                .sorted(Appointment::compareByDateTime) // Sort past chronologically first
+                .collect(Collectors.toList());
+        Collections.reverse(past); // Reverse for reverse chronological order
+
+        viewedPersonUpcomingAppointments.setAll(upcoming);
+        viewedPersonPastAppointments.setAll(past);
+
+        logger.fine("Updated viewed person upcoming (" + upcoming.size() + ") and past ("
+                + past.size() + ") appointments lists.");
     }
 
     /**
-     * Clears the dedicated list holding appointments for the currently viewed person.
-     * Called when resetting the view (e.g., by LogicManager.clearViewedData).
+     * Clears the dedicated lists holding appointments for the currently viewed person.
+     * Called when resetting the view.
      */
     @Override
     public void clearViewedPersonAppointmentList() {
-        viewedPersonAppointments.clear();
-        logger.fine("Cleared viewed person appointments list.");
+        viewedPersonUpcomingAppointments.clear();
+        viewedPersonPastAppointments.clear();
+        logger.fine("Cleared viewed person appointments lists.");
     }
 
 
@@ -288,6 +318,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredAppointments.equals(otherModelManager.filteredAppointments)
-                && viewedPersonAppointments.equals(otherModelManager.viewedPersonAppointments);
+                && viewedPersonUpcomingAppointments.equals(otherModelManager.viewedPersonUpcomingAppointments)
+                && viewedPersonPastAppointments.equals(otherModelManager.viewedPersonPastAppointments);
     }
 }

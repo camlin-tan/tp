@@ -24,8 +24,11 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();
 
-    /** Returns the list of appointments associated with the currently viewed person. */
-    ObservableList<Appointment> getViewedPersonAppointmentList();
+    /** Returns an unmodifiable view of the upcoming appointments list for the currently viewed person */
+    ObservableList<Appointment> getViewedPersonUpcomingAppointmentList();
+
+    /** Returns an unmodifiable view of the past appointments list for the currently viewed person */
+    ObservableList<Appointment> getViewedPersonPastAppointmentList();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
