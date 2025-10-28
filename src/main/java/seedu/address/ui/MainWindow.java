@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -174,13 +176,25 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Handles switching to the detailed person view.
+     * Triggered when a view command for a person completes.
+     */
     @FXML
     private void handleView() {
-        logic.getPersonToView().ifPresent(person -> {
-            PersonViewPanel personViewPanel = new PersonViewPanel(person);
-            detailsPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot()); // Use renamed placeholder
+        Optional<Person> personOptional = logic.getPersonToView();
+
+        if (personOptional.isPresent()) {
+            Person person = personOptional.get();
+            ObservableList<Appointment> appointments = logic.getViewedPersonAppointmentList();
+
+            PersonViewPanel personViewPanel = new PersonViewPanel(person, appointments);
+            detailsPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
             personSplitPane.setDividerPositions(0.5);
-        });
+        } else {
+            logger.warning("handleViewPerson called but no person was available in Logic.");
+            handleDefaultView();
+        }
     }
 
     private void handleShowAppointments() {
@@ -201,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleDefaultView() {
         personSplitPane.setDividerPositions(1.0);
         detailsPanelPlaceholder.getChildren().clear();
+        logic.clearViewedData();
     }
 
     public PersonListPanel getPersonListPanel() {

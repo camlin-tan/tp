@@ -34,5 +34,10 @@
         <Label text="Current Medicines" styleClass="person-view-section-heading" />
         <FlowPane fx:id="medicineFlowPane" hgap="8" vgap="8" />
 
+        <Label text="Upcoming Appointments" styleClass="person-view-section-heading" />
+        <VBox fx:id="upcomingAppointmentsBox" spacing="5" styleClass="person-view-appointment-box"/>
+
+        <Label text="Past Appointments" styleClass="person-view-section-heading" />
+        <VBox fx:id="pastAppointmentsBox" spacing="5" styleClass="person-view-appointment-box"/>
     </VBox>
 </ScrollPane>
