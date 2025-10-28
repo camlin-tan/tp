@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -44,6 +45,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        this.personToView = null;
     }
 
     @Override
@@ -87,8 +89,24 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Appointment> getFilteredAppointmentList(IdentityNumber personId) {
+        return model.getFilteredAppointmentList(personId);
+    }
+
+    @Override
     public Optional<Person> getPersonToView() {
         return Optional.ofNullable(personToView);
+    }
+
+    @Override
+    public ObservableList<Appointment> getViewedPersonAppointmentList() {
+        return model.getViewedPersonAppointmentList();
+    }
+
+    @Override
+    public void clearViewedData() {
+        this.personToView = null;
+        model.clearViewedPersonAppointmentList();
     }
 
     @Override

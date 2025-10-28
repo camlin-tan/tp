@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,6 +17,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+
+    /** Returns an unmodifiable view of the filtered appointment list for a specific person ID */
+    ObservableList<Appointment> getFilteredAppointmentList(IdentityNumber personId);
+
+    /** Returns the list of appointments associated with the currently viewed person. */
+    ObservableList<Appointment> getViewedPersonAppointmentList();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -64,6 +72,12 @@ public interface Model {
      * exists in the address book.
      */
     boolean hasAppointment(Appointment appointment);
+
+    /** Updates the list of appointments associated with the currently viewed person. */
+    void updateViewedPersonAppointmentList(List<Appointment> appointments);
+
+    /** Clears the list of appointments associated with the currently viewed person. */
+    void clearViewedPersonAppointmentList();
 
     /**
      * Deletes the given person.
