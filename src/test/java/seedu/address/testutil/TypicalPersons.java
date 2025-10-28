@@ -19,7 +19,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICINE_ANTIDEPRESSANT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PAST_DIAGNOSES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAST_MEDICAL_HISTORY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SMOKING_RECORD_AMY;
@@ -43,7 +43,7 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmergencyContact("[mother] 12345679")
             .withEmail("alice@example.com").withPhone("94351253").withTags("friends").withDateOfBirth("20-05-1998")
             .withBloodType("O").withAlcoholicRecord("Social drinker").withGender("F").withSmokingRecord("Non-smoker")
-            .withAllergies("nuts").withPastDiagnoses("Diabetes").withMedicines("antidepressants").build();
+            .withAllergies("nuts").withPastMedicalHistory("Diabetes").withMedicines("antidepressants").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withIdentityNumber("BM67")
             .withAddress("311, Clementi Ave 2, #02-25").withEmergencyContact("[father] +65 1324456567")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -107,7 +107,7 @@ public class TypicalPersons {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withDateOfBirth(VALID_DATE_OF_BIRTH_BOB)
             .withBloodType(VALID_BLOOD_TYPE).withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_BOB)
             .withGender(VALID_GENDER_BOB).withSmokingRecord(VALID_SMOKING_RECORD_BOB)
-            .withAllergies(VALID_ALLERGY_NUTS).withPastDiagnoses(VALID_PAST_DIAGNOSES_BOB)
+            .withAllergies(VALID_ALLERGY_NUTS).withPastMedicalHistory(VALID_PAST_MEDICAL_HISTORY_BOB)
             .withMedicines(VALID_MEDICINE_ANTIDEPRESSANT).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

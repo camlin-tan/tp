@@ -21,8 +21,8 @@ Patient Fields:
     ar\ALCOHOLIC_RECORD (e.g., YES or NO)
     sr\SMOKING_RECORD (e.g., YES or NO)
 
-  [Optional]
-    pd\PAST_DIAGNOSES
+  [Optional - Single Entry]
+    pmh\PAST_MEDICAL_HISTORY
 
   [Optional - Can have multiple]
     t\TAG
