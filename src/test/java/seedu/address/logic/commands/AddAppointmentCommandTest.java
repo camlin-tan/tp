@@ -213,9 +213,15 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public ObservableList<Appointment> getViewedPersonAppointmentList() {
+        public ObservableList<Appointment> getViewedPersonPastAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Appointment> getViewedPersonUpcomingAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public void updateViewedPersonAppointmentList(List<Appointment> appointments) {
