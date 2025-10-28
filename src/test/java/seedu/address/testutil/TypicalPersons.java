@@ -19,7 +19,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICINE_ANTIDEPRESSANT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PAST_DIAGNOSES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PAST_DIAGNOSES_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -100,7 +99,7 @@ public class TypicalPersons {
             .withBloodType(VALID_BLOOD_TYPE)
             .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withGender(VALID_GENDER_AMY)
             .withSmokingRecord(VALID_SMOKING_RECORD_AMY)
-            .withAllergies(VALID_ALLERGY_NUTS).withPastDiagnoses(VALID_PAST_DIAGNOSES_AMY)
+            .withAllergies(VALID_ALLERGY_NUTS)
             .withMedicines(VALID_MEDICINE_ANTIDEPRESSANT).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withIdentityNumber(VALID_ID_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)

@@ -19,12 +19,14 @@ import static seedu.address.logic.commands.CommandTestUtil.IDENTITY_NUMBER_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.IDENTITY_NUMBER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALCOHOLIC_RECORD_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALLERGY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BLOOD_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_OF_BIRTH_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMERGENCY_CONTACT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_IDENTITY_NUMBER_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SMOKING_RECORD_DESC;
@@ -44,6 +46,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICINE_ANTIDEPRESSANT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -71,11 +74,13 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.IdentityNumber;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -233,7 +238,15 @@ public class AddCommandParserTest {
                 NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC
                         + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
-                        + PAST_DIAGNOSES_DESC_AMY + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
+                        + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
+
+        // zero past diagnoses
+        expectedPerson = new PersonBuilder(AMY).withTags("husband").withAllergies().build();
+        assertParseSuccess(parser,
+                NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC + TAG_DESC_HUSBAND
+                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
+                        + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
     }
 
     @Test
@@ -333,6 +346,22 @@ public class AddCommandParserTest {
                 + ALCOHOLIC_RECORD_DESC_BOB + INVALID_GENDER_DESC + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS
                 + PAST_DIAGNOSES_DESC_BOB,
                 Gender.MESSAGE_CONSTRAINTS);
+
+        // invalid allergy
+        assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
+                        + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB + INVALID_ALLERGY_DESC
+                        + PAST_DIAGNOSES_DESC_BOB + VALID_MEDICINE_ANTIDEPRESSANT,
+                Allergy.MESSAGE_CONSTRAINTS);
+
+        // invalid medicine
+        assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND + BLOOD_TYPE_DESC
+                        + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS
+                        + PAST_DIAGNOSES_DESC_BOB + INVALID_MEDICINE_DESC,
+                Medicine.MESSAGE_CONSTRAINTS);
 
         // invalid blood type
         assertParseFailure(parser, NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

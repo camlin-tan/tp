@@ -12,55 +12,64 @@ import seedu.address.model.person.Person;
 public class CommandResult {
 
     private final String feedbackToUser;
-    private final boolean showHelp;
-    private final boolean exit;
     private final Person personToView;
     private final Optional<String> themePath;
+    private final boolean isHelp;
+    private final boolean isExit;
+    private final boolean isViewAppointments;
 
     /**
      * Constructor for most commands.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
+        this(feedbackToUser, null, false, false, false, Optional.empty());
     }
 
     /**
      * Constructor for help and exit command.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, null);
+    public CommandResult(String feedbackToUser, boolean isHelp, boolean isExit) {
+        this(feedbackToUser, null, isHelp, isExit, false, Optional.empty());
     }
 
     /**
      * Constructor for view command.
      */
     public CommandResult(String feedbackToUser, Person personToView) {
-        this(feedbackToUser, false, false, personToView);
+        this(feedbackToUser, personToView, false, false, false, Optional.empty());
+    }
+
+    /**
+     * Constructor for appointments command.
+     */
+    public CommandResult(String feedbackToUser, boolean showAppointments) {
+        this(feedbackToUser, null, false, false, showAppointments, Optional.empty());
     }
 
     /**
      * Constructor for the theme command.
      */
     public CommandResult(String feedbackToUser, String themePath) {
-        this(feedbackToUser, false, false, null, Optional.of(themePath));
+        this(feedbackToUser, null, false, false, false, Optional.of(themePath));
     }
 
     /**
      * Constructor that calls the full constructor with a default empty theme.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Person personToView) {
-        this(feedbackToUser, showHelp, exit, personToView, Optional.empty());
+    public CommandResult(String feedbackToUser, boolean isHelp, boolean isExit, Person personToView) {
+        this(feedbackToUser, personToView, isHelp, isExit, false, Optional.empty());
     }
 
     /**
      * The full constructor.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Person personToView,
-                         Optional<String> themePath) {
+    public CommandResult(String feedbackToUser, Person personToView,
+                         boolean isHelp, boolean isExit, boolean isViewAppointments, Optional<String> themePath) {
         this.feedbackToUser = feedbackToUser;
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.isHelp = isHelp;
+        this.isExit = isExit;
         this.personToView = personToView;
+        this.isViewAppointments = isViewAppointments;
         this.themePath = themePath;
     }
 
@@ -68,12 +77,12 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public boolean isHelp() {
+        return isHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
     }
 
     public Person getPersonToView() {
@@ -86,6 +95,10 @@ public class CommandResult {
 
     public Optional<String> getThemePath() {
         return themePath;
+    }
+
+    public boolean isViewAppointments() {
+        return isViewAppointments;
     }
 
     @Override
@@ -101,9 +114,10 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && Objects.equals(personToView, otherCommandResult.personToView)
+                && isHelp == otherCommandResult.isHelp
+                && isExit == otherCommandResult.isExit
+                && isViewAppointments == otherCommandResult.isViewAppointments
+                && Objects.equals(this.personToView, otherCommandResult.personToView)
                 && Objects.equals(themePath, otherCommandResult.themePath);
     }
 
@@ -111,14 +125,16 @@ public class CommandResult {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("feedbackToUser", feedbackToUser)
-                .add("showHelp", showHelp)
-                .add("exit", exit)
                 .add("personToView", personToView)
+                .add("isHelp", isHelp)
+                .add("isExit", isExit)
+                .add("isViewAppointments", isViewAppointments)
+                .add("themePath", themePath)
                 .toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, personToView, themePath);
+        return Objects.hash(feedbackToUser, personToView, isHelp, isExit, isViewAppointments, themePath);
     }
 }

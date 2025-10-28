@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
-            + PREFIX_PAST_DIAGNOSES + "None "
+            + PREFIX_PAST_DIAGNOSES + "PAST DIAGNOSES "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
