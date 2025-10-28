@@ -109,34 +109,30 @@ public class PersonViewPanel extends UiPart<Region> {
      */
     private void fillAppointments(ObservableList<Appointment> upcomingAppointments,
                                   ObservableList<Appointment> pastAppointments) {
-        upcomingAppointmentsBox.getChildren().clear();
-        pastAppointmentsBox.getChildren().clear();
+        populateAppointmentBox(upcomingAppointmentsBox, upcomingAppointments);
+        populateAppointmentBox(pastAppointmentsBox, pastAppointments);
+    }
 
-        // Populate Upcoming Appointments
-        if (upcomingAppointments == null || upcomingAppointments.isEmpty()) {
-            Label noUpcoming = new Label("None");
-            noUpcoming.getStyleClass().add(NONE_TAG_STYLE_CLASS);
-            upcomingAppointmentsBox.getChildren().add(noUpcoming);
+    /**
+     * Populates the given VBox with appointment labels from the provided list.
+     * If the list is empty or null, adds a "None" label.
+     *
+     * @param box The VBox to populate.
+     * @param appointments The list of appointments to display.
+     */
+    private void populateAppointmentBox(VBox box, ObservableList<Appointment> appointments) {
+        box.getChildren().clear();
+
+        if (appointments == null || appointments.isEmpty()) {
+            Label noneLabel = new Label("None");
+            noneLabel.getStyleClass().add(NONE_TAG_STYLE_CLASS);
+            box.getChildren().add(noneLabel);
         } else {
-            for (Appointment appt : upcomingAppointments) {
-                Label apptLabel = new Label(formatAppointmentForDisplay(appt));
+            for (Appointment appointment : appointments) {
+                Label apptLabel = new Label(formatAppointmentForDisplay(appointment));
                 apptLabel.getStyleClass().add(VALUE_LABEL_STYLE_CLASS);
                 apptLabel.setWrapText(true);
-                upcomingAppointmentsBox.getChildren().add(apptLabel);
-            }
-        }
-
-        // Populate Past Appointments
-        if (pastAppointments == null || pastAppointments.isEmpty()) {
-            Label noPast = new Label("None");
-            noPast.getStyleClass().add(NONE_TAG_STYLE_CLASS);
-            pastAppointmentsBox.getChildren().add(noPast);
-        } else {
-            for (Appointment appt : pastAppointments) {
-                Label apptLabel = new Label(formatAppointmentForDisplay(appt));
-                apptLabel.getStyleClass().add(VALUE_LABEL_STYLE_CLASS);
-                apptLabel.setWrapText(true);
-                pastAppointmentsBox.getChildren().add(apptLabel);
+                box.getChildren().add(apptLabel);
             }
         }
     }
