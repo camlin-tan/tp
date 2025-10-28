@@ -17,7 +17,7 @@
     <Label fx:id="gender" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white;" />
     <Label fx:id="dateOfBirthAndAgeLabel" style="-fx-text-fill: white;"/>
     <Label fx:id="smokingRecordLabel" style="-fx-text-fill: white;"/>
-    <Label fx:id="pastDiagnosisLabel" wrapText="true" style="-fx-text-fill: white;"/>
+    <Label fx:id="pastMedicalHistoryLabel" wrapText="true" style="-fx-text-fill: white;"/>
     <Label fx:id="medicineLabel" wrapText="true" style="-fx-text-fill: white;"/>
     <Label fx:id="allergiesLabel" wrapText="true" style="-fx-text-fill: white;"/>
 </VBox>

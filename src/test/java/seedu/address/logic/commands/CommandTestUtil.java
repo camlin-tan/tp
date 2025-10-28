@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_MEDICAL_HISTORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -62,8 +62,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_SMOKING_RECORD_AMY = "Non-smoker";
     public static final String VALID_SMOKING_RECORD_BOB = "Occasional smoker";
-    public static final String VALID_PAST_DIAGNOSES_AMY = "Diabetes";
-    public static final String VALID_PAST_DIAGNOSES_BOB = "Hypertension";
+    public static final String VALID_PAST_MEDICAL_HISTORY_AMY = "Diabetes";
+    public static final String VALID_PAST_MEDICAL_HISTORY_BOB = "Hypertension";
     public static final String VALID_SMOKING_RECORD_NO = "no";
     public static final String VALID_SMOKING_RECORD_YES = "yes";
 
@@ -76,8 +76,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String IDENTITY_NUMBER_DESC_AMY = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_AMY;
     public static final String IDENTITY_NUMBER_DESC_BOB = " " + PREFIX_IDENTITY_NUMBER + VALID_ID_BOB;
-    public static final String PAST_DIAGNOSES_DESC_AMY = " " + PREFIX_PAST_DIAGNOSES + VALID_PAST_DIAGNOSES_AMY;
-    public static final String PAST_DIAGNOSES_DESC_BOB = " " + PREFIX_PAST_DIAGNOSES + VALID_PAST_DIAGNOSES_BOB;
+    public static final String PAST_MEDICAL_HISTORY_DESC_AMY = " " + PREFIX_PAST_MEDICAL_HISTORY + VALID_PAST_MEDICAL_HISTORY_AMY;
+    public static final String PAST_MEDICAL_HISTORY_DESC_BOB = " " + PREFIX_PAST_MEDICAL_HISTORY + VALID_PAST_MEDICAL_HISTORY_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -132,7 +132,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
                 .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_AMY).withSmokingRecord(VALID_SMOKING_RECORD_AMY)
                 .withAllergies(VALID_ALLERGY_NUTS)
-                .withPastDiagnoses(VALID_PAST_DIAGNOSES_AMY).build();
+                .withPastMedicalHistory(VALID_PAST_MEDICAL_HISTORY_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIdentityNumber(VALID_ID_BOB).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
@@ -140,7 +140,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withBloodType(VALID_BLOOD_TYPE)
                 .withAlcoholicRecord(VALID_ALCOHOLIC_RECORD_BOB).withSmokingRecord(VALID_SMOKING_RECORD_BOB)
                 .withAllergies(VALID_ALLERGY_NUTS)
-                .withPastDiagnoses(VALID_PAST_DIAGNOSES_BOB).build();
+                .withPastMedicalHistory(VALID_PAST_MEDICAL_HISTORY_BOB).build();
     }
 
     /**

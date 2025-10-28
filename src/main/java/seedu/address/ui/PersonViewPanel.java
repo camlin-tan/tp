@@ -51,7 +51,7 @@ public class PersonViewPanel extends UiPart<Region> {
     private Label medicineLabel;
 
     @FXML
-    private Label pastDiagnosisLabel;
+    private Label pastMedicalHistoryLabel;
 
     @FXML
     private Label allergiesLabel;
@@ -80,7 +80,7 @@ public class PersonViewPanel extends UiPart<Region> {
         dateOfBirthAndAgeLabel.setText(person.getDateOfBirth().toString());
         smokingRecordLabel.setText(person.getSmokingRecord().toString());
         medicineLabel.setText(person.getMedicines().toString());
-        pastDiagnosisLabel.setText(person.getPastDiagnoses().toString());
+        pastMedicalHistoryLabel.setText(person.getPastMedicalHistory().toString());
         allergiesLabel.setText(person.getAllergies().toString());
     }
 }

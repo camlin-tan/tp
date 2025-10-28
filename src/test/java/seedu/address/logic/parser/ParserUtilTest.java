@@ -238,40 +238,40 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePastDiagnoses_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePastDiagnoses((String) null));
+    public void parsePastMedicalHistory_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePastMedicalHistory((String) null));
     }
 
     @Test
-    public void parsePastDiagnoses_validValueWithoutWhitespace_returnsPastDiagnoses() throws Exception {
-        String validPastDiagnoses = "Diabetes, Hypertension";
-        assertEquals(validPastDiagnoses, ParserUtil.parsePastDiagnoses(validPastDiagnoses).value);
+    public void parsePastMedicalHistory_validValueWithoutWhitespace_returnsPastMedicalHistory() throws Exception {
+        String validPastMedicalHistory = "Diabetes, Hypertension";
+        assertEquals(validPastMedicalHistory, ParserUtil.parsePastMedicalHistory(validPastMedicalHistory).value);
     }
 
     @Test
-    public void parsePastDiagnoses_validValueWithWhitespace_returnsTrimmedPastDiagnoses() throws Exception {
-        String pastDiagnosesWithWhitespace = WHITESPACE + "Diabetes, Hypertension" + WHITESPACE;
-        String expectedPastDiagnoses = "Diabetes, Hypertension";
-        assertEquals(expectedPastDiagnoses, ParserUtil.parsePastDiagnoses(pastDiagnosesWithWhitespace).value);
+    public void parsePastMedicalHistory_validValueWithWhitespace_returnsTrimmedPastMedicalHistory() throws Exception {
+        String pastMedicalHistoryWithWhitespace = WHITESPACE + "Diabetes, Hypertension" + WHITESPACE;
+        String expectedPastMedicalHistory = "Diabetes, Hypertension";
+        assertEquals(expectedPastMedicalHistory, ParserUtil.parsePastMedicalHistory(pastMedicalHistoryWithWhitespace).value);
     }
 
     @Test
-    public void parsePastDiagnoses_invalidValue_triggersWarning() throws Exception {
+    public void parsePastMedicalHistory_invalidValue_triggersWarning() throws Exception {
         // blank input is considered empty and should be accepted (converted to "None")
         String blank = "   ";
-        assertEquals("None", ParserUtil.parsePastDiagnoses(blank).value);
+        assertEquals("None", ParserUtil.parsePastMedicalHistory(blank).value);
     }
 
     @Test
-    public void parsePastDiagnoses_longValid_triggersFinePreview() throws Exception {
+    public void parsePastMedicalHistory_longValid_triggersFinePreview() throws Exception {
         Logger logger = LogsCenter.getLogger(ParserUtil.class);
         Level old = logger.getLevel();
         try {
             logger.setLevel(Level.FINE); // ensure fine logs are enabled to run the fine branch
-            String longDiagnoses = "Diabetes, Hypertension, Asthma, Chronic Obstructive Pulmonary Disease, "
-                    + "SomeOtherDiagnosis, AnotherOne, Extra"; // > 80 chars
+            String longMedicalHistory = "Diabetes, Hypertension, Asthma, Chronic Obstructive Pulmonary Disease, "
+                    + "SomeOtherMedicalHistory, AnotherOne, Extra"; // > 80 chars
             // should not throw; simply calling it executes the logger.fine preview branch
-            ParserUtil.parsePastDiagnoses(longDiagnoses);
+            ParserUtil.parsePastMedicalHistory(longMedicalHistory);
         } finally {
             logger.setLevel(old);
         }
