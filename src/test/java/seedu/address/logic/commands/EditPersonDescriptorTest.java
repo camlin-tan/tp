@@ -73,7 +73,8 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getAlcoholicRecord().orElse(null) + ", gender="
                 + editPersonDescriptor.getGender().orElse(null) + ", smokingRecord="
                 + editPersonDescriptor.getSmokingRecord().orElse(null) + ", allergies="
-                + editPersonDescriptor.getAllergies().orElse(null) + ", pastDiagnoses="
+                + editPersonDescriptor.getAllergies().orElse(null) + ", medicines="
+                + editPersonDescriptor.getMedicines().orElse(null) + ", pastDiagnoses="
                 + editPersonDescriptor.getPastDiagnoses().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
