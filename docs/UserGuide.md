@@ -21,8 +21,10 @@ Hello, shout out to all my indie doctors out there, this app is for you.
 * [HealthNote User Guide](#healthnote-user-guide)
     * [Table of Contents](#table-of-contents)
   * [Introduction](#introduction)
+  * [Guide Usage](#guide-usage)
   * [Quick Start](#quick-start)
   * [Features](#features)
+    * [Command Format](#command-format)
   * [Features - General Features](#features---general-features)
     * [Viewing help : `help`](#viewing-help--help)
     * [Changing themes : `theme`](#changing-themes--theme)
@@ -43,7 +45,7 @@ Hello, shout out to all my indie doctors out there, this app is for you.
     * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
   * [FAQ](#faq)
   * [Known issues](#known-issues)
-  * [Command summary](#command-summary)
+  * [Command Summary](#command-summary)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -51,16 +53,16 @@ Hello, shout out to all my indie doctors out there, this app is for you.
 
 Are you an independent doctor looking for a simple yet powerful way to manage patient information? Do you find existing clinic management systems too complex or cumbersome for your daily needs? Or perhaps you just want a lightweight, privacy-focused tool that keeps your patients’ records right at your fingertips?
 
-**HealthNote** is your all-in-one, command-line solution for seamless patient management — designed specifically for doctors who value speed, control, and simplicity.
+**HealthNote** is your all-in-one, command-line solution for seamless patient management - designed specifically for doctors who value speed, control, and simplicity.
 
 With **HealthNote**, you can easily:
 - **Add** new patients and record key details such as contact information, medical history, and allergies
 - **View** a patient’s medical information in seconds
 - **Find** patients by name or specific keywords
 - **Delete** outdated records when necessary
-- …and do much more — all directly from your terminal!
+- …and do much more - all directly from your terminal!
 
-Built with independent practitioners and small clinics in mind, **HealthNote** keeps your workflow efficient and focused. Whether you’re managing a handful of patients or maintaining a growing list, this CLI-based address book gives you the precision and speed you need — without unnecessary clutter.
+Built with independent practitioners and small clinics in mind, **HealthNote** keeps your workflow efficient and focused. Whether you’re managing a handful of patients or maintaining a growing list, this CLI-based address book gives you the precision and speed you need - without unnecessary clutter.
 
 HealthNote is a desktop app for managing contacts, optimized for use via a Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthNote can get your patient management tasks done faster than traditional GUI apps.
 
@@ -123,6 +125,7 @@ HealthNote is a desktop app for managing contacts, optimized for use via a Line 
 
 ## Features
 
+### Command Format
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
@@ -171,6 +174,8 @@ Exits the program.
 
 Format: `exit`
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features - Managing Patient Records
@@ -182,22 +187,22 @@ Adds a patient to the address book.
 Format: `add id\IDENTITY n\NAME p\PHONE_NUMBER e\EMAIL a\ADDRESS dob\DATE_OF_BIRTH b\BLOOD_TYPE g\GENDER
 ar\ALCOHOLIC_RECORDS(YES/NO) sr\SMOKING_RECORDS(YES/NO) [t\TAG] [al\ALLERGY] [m\MEDICINE]…​`
 
-| **Field (with Prefix)**                 | **Valid Input(s)**                        | **Invalid Input(s)**           | **Requirement(s)**                                                                              |
-|-----------------------------------------|-----------------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------|
+| **Field (with Prefix)**                 | **Valid Input(s)**             | **Invalid Input(s)**           | **Requirement(s)**                                                                              |
+|-----------------------------------------|------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------|
 | **n\\NAME**                             | Alex the 3rd, John Doe, Damith s/o Sankar Ashish | (Empty)                        | Names should only contain alphanumeric characters and spaces, and not be blank                  |
-| **id\\IDENTITY_NUMBER**                 | S1234567A, T7654321B, 060402-06-6767   | %&!, 12 3-4                    | Identity number should only contain alphanumeric characters,"-" and/or "_", without spaces      |
-| **p\\CONTACT_NUMBER**                   | 9888-3333 (Office)                      | abcdefg, 23                    | Must contain at least 3 consecutive digits                                                      |
+| **id\\IDENTITY_NUMBER**                 | S1234567A, T7654321B, 060402-06-6767 | %&!, 12 3-4                    | Identity number should only contain alphanumeric characters,"-" and/or "_", without spaces      |
+| **p\\CONTACT_NUMBER**                   | 9888-3333 (Office)           | abcdefg, 23                    | Must contain at least 3 consecutive digits                                                      |
 | **e\\EMAIL**                            | e01234567@u.nus.edu, jinHeng@gmail.com | joe@, asd@@@asd                | Emails should be of the format local-part@domain                                                |
-| **addr\\HOME_ADDRESS**                  | 123 Main St                            | (Empty)                        | Addresses can take any values, and it should not be blank                                       |
+| **addr\\HOME_ADDRESS**                  | 123 Main St                 | (Empty)                        | Addresses can take any values, and it should not be blank                                       |
 | **ec\\EMERGENCY_CONTACT**               | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa            | Must be in the form [{relationship}] {phone} where phone contains at least 3 consecutive digits |
-| **dob\\DATE_OF_BIRTH**                  | 05-23-1967, 12/10/1987                 | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: DD-MM-YYYY, DD/MM/YYYY, or MM-DD-YYYY         |
-| **b\\BLOOD_TYPE**                       | A+, O-, AB+                            | 123, XYZ                       | Must be one of: A+, A-, B+, B-, AB+, AB-, O+, O-                                                |
-| **g\\GENDER**                           | Male, Female, Non-binary, Helicopter   | (Empty)                        | Genders should not be blank                                                                     |
-| **ar\\ALCOHOLIC_RECORD**                | None, Occasionally, Heavy               | (Empty)                        | Alcoholic Record should not be blank                                                            |
-| **sr\\SMOKING_RECORD (optional)**       | None, Occasionally, Quitter, Heavy      | (Empty)                        | Smoking Record should not be blank                                                              |
-| **pmh\\PAST_MEDICAL_HISTORY (optional)** | None, Diabetes, Hypertension           | (Empty)                        | Past Medical History should not be blank                                                        |
-| **t\\TAG (optional, multiple)**         | Urgent, Orphan, Poor                    | 123                            | Tags names should be alphanumeric, without spaces                                               |
-| **al\\ALLERGY (optional, multiple)**    | Peanuts, Penicillin                    | (Empty)                        | Allergy names should be alphanumeric, without spaces                                            |
+| **dob\\DATE_OF_BIRTH**                  | 05-23-1967, 12/10/1987      | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: DD-MM-YYYY, DD/MM/YYYY, or MM-DD-YYYY         |
+| **b\\BLOOD_TYPE**                       | A+, O-, AB, Bombay (hh), A Rh(D) negative                            | (Empty)                        | Blood types should not be blank                                               |
+| **g\\GENDER**                           | Male, Female, Non-binary, Helicopter | (Empty)                        | Genders should not be blank                                                                     |
+| **ar\\ALCOHOLIC_RECORD**                | None, Occasionally, Heavy    | (Empty)                        | Alcoholic Record should not be blank                                                            |
+| **sr\\SMOKING_RECORD (optional)**       | None, Occasionally, Quitter, Heavy | (Empty)                        | Smoking Record should not be blank                                                              |
+| **pmh\\PAST_MEDICAL_HISTORY (optional)** | None, Diabetes, Hypertension | (Empty)                        | Past Medical History should not be blank                                                        |
+| **t\\TAG (optional, multiple)**         | Urgent, Orphan, Poor         | 123                            | Tags names should be alphanumeric, without spaces                                               |
+| **al\\ALLERGY (optional, multiple)**    | Peanuts, Penicillin         | (Empty)                        | Allergy names should be alphanumeric, without spaces                                            |
 | **m\\MEDICINE (optional, multiple)**    | 500mg Ibuprofen, 2 Panadol capsules/day | (Empty)                        | Medicine field should not be blank                                                              |
 
 
@@ -214,6 +219,8 @@ Examples:
 * `add id\A00001234A n\John Doe p\98765432 e\johnd@example.com a\John street, block 123, #01-01 dob\01-01-1990 b\O+ g\M ar\NO sr\NO`
 * `add id\B00004567B n\Betsy Crowe t\friend e\betsycrowe@example.com a\Newgate Prison p\1234567 dob\02-02-2000 b\AB- g\F ar\NO sr\NO
 t\criminal`
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Editing a patient : `edit`
 
@@ -237,6 +244,8 @@ Examples:
 *  `edit 1 p\91234567 e\johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n\Betsy Crower t\` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from the address book.
@@ -250,6 +259,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -288,6 +299,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Feature - Clearing Data
@@ -303,6 +316,8 @@ Format: `clear CONFIRM`
 **❗Caution:**<br>
 * This action cannot be undone. You must type exactly 'clear CONFIRM' (case sensitive) to execute
 </div>
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -327,12 +342,16 @@ Furthermore, certain edits can cause the HealthNote to behave in unexpected ways
 
 _Details coming soon ..._
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HealthNote home folder.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -341,16 +360,32 @@ _Details coming soon ..._
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will be focused, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
+
+<div markdown="block" class="alert alert-info">
+
+**Info**
+
+* Fields with square brackets `[prefix\field]` indicates it is an optional field.
+* Commands without any arguments will still execute if user inputs additional arguments/
+* Can view [Command Format](#command-format) for more details.
+
+</div>
+
+
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                           |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add id\IDENTITY n\NAME p\PHONE_NUMBER e\EMAIL a\ADDRESS dob\DATE_OF_BIRTH b\BLOOD_TYPE g\GENDER ar\ALCOHOLIC_RECORDS(YES/NO) sr\SMOKING_RECORDS(YES/NO) [t\TAG] [al\ALLERGY] [m\MEDICINE]…​` <br> e.g., `add id\A00001234A n\John Doe p\98765432 e\johnd@example.com a\John street, block 123, #01-01 dob\01-01-1990 b\O+ g\M ar\NO s\NO` |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                    |
+| **Clear**  | `clear CONFIRM`                                                                                                                                                                                                                                                                                                                            |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                        |
 | **Edit**   | `edit INDEX [id\IDENTITY] [n\NAME] [p\PHONE] [e\EMAIL] [a\ADDRESS] [dob\DATE_OF_BIRTH] [b\BLOOD_TYPE] [g\GENDER] [ar\ALCOHOLIC_RECORDS(YES/NO)] [sr\SMOKING_RECORDS(YES/NO)] [t\TAG]…​`<br> e.g.,`edit 2 n\James Lee e\jameslee@example.com`                                                                                               |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                 |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                     |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                     |
+
+[Back to Table of Contents](#table-of-contents)
