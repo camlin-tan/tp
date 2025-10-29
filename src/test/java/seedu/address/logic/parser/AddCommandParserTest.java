@@ -412,4 +412,37 @@ public class AddCommandParserTest {
                 + SMOKING_RECORD_DESC_BOB + ALLERGY_DESC_NUTS + PAST_MEDICAL_HISTORY_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_oneUnrecognizedPrefix_throwsParseException() {
+        String unrecognizedPrefix = "x\\";
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_PARAMETERS,
+                AddCommand.COMMAND_WORD,
+                unrecognizedPrefix);
+        String userInput = NAME_DESC_BOB + " " + unrecognizedPrefix + "some value" + PHONE_DESC_BOB;
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+
+    @Test
+    public void parse_unrecognizedPrefixAtStart_throwsParseException() {
+        String unrecognizedPrefix = "unknown\\";
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_PARAMETERS,
+                AddCommand.COMMAND_WORD,
+                unrecognizedPrefix);
+        String userInput = " " + unrecognizedPrefix + "value" + NAME_DESC_BOB;
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+
+    @Test
+    public void parse_unrecognizedPrefixAtEnd_throwsParseException() {
+        String unrecognizedPrefix = "lastInvalid\\";
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_PARAMETERS,
+                AddCommand.COMMAND_WORD,
+                unrecognizedPrefix);
+        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + " " + unrecognizedPrefix + "endValue";
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
 }
