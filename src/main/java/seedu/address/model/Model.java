@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -78,12 +77,6 @@ public interface Model {
      * exists in the address book.
      */
     boolean hasAppointment(Appointment appointment);
-
-    /** Updates the list of appointments associated with the currently viewed person. */
-    void updateViewedPersonAppointmentList(List<Appointment> appointments);
-
-    /** Clears the list of appointments associated with the currently viewed person. */
-    void clearViewedPersonAppointmentList();
 
     /**
      * Deletes the given person.

@@ -56,6 +56,9 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
         this.personToView = commandResult.getPersonToView().orElse(null);
+        if (this.personToView != null) {
+            model.getFilteredAppointmentList(this.personToView.getIdentityNumber());
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -111,7 +114,6 @@ public class LogicManager implements Logic {
     @Override
     public void clearViewedData() {
         this.personToView = null;
-        model.clearViewedPersonAppointmentList();
     }
 
     @Override

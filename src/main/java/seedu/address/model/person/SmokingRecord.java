@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's smoking record in the HealthNote.
  */
 public class SmokingRecord {
-    public static final String DEFAULT_SMOKING_RECORD = "";
-    public final String smokingRecord;
+    public static final String DEFAULT_SMOKING_RECORD = "None";
+    public final String value;
 
     /**
      * Constructs a {@code SmokingRecord}.
@@ -17,15 +17,15 @@ public class SmokingRecord {
     public SmokingRecord(String record) {
         requireNonNull(record);
         if (record.isEmpty()) {
-            this.smokingRecord = DEFAULT_SMOKING_RECORD;
+            this.value = DEFAULT_SMOKING_RECORD;
         } else {
-            this.smokingRecord = record;
+            this.value = record;
         }
     }
 
     @Override
     public String toString() {
-        return smokingRecord;
+        return value;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class SmokingRecord {
         }
 
         SmokingRecord otherRecord = (SmokingRecord) other;
-        return smokingRecord.equalsIgnoreCase(otherRecord.smokingRecord);
+        return value.equalsIgnoreCase(otherRecord.value);
     }
 
     @Override
     public int hashCode() {
-        return smokingRecord.hashCode();
+        return value.hashCode();
     }
 }

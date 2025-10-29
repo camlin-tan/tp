@@ -11,13 +11,15 @@
     -fx-font-size: 24;
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-padding: 0 0 10 0;
 }
 
 .person-view-section-heading {
     -fx-font-size: 16;
     -fx-font-weight: bold;
     -fx-text-fill: #E0E0E0;
+    -fx-padding: 14 0 5 0;
+    -fx-border-color: transparent transparent #ccc transparent;
+    -fx-border-width: 0 0 1 0;
 }
 
 .person-view-tag {

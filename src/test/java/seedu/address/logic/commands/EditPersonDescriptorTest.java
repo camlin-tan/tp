@@ -71,7 +71,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getDateOfBirth().orElse(null) + ", bloodType="
                 + editPersonDescriptor.getBloodType().orElse(null) + ", alcoholicRecord="
                 + editPersonDescriptor.getAlcoholicRecord().orElse(null) + ", gender="
-                + editPersonDescriptor.getGender().orElse(null) + ", smokingRecord="
+                + editPersonDescriptor.getGender().orElse(null) + ", value="
                 + editPersonDescriptor.getSmokingRecord().orElse(null) + ", allergies="
                 + editPersonDescriptor.getAllergies().orElse(null) + ", medicines="
                 + editPersonDescriptor.getMedicines().orElse(null) + ", pastMedicalHistory="

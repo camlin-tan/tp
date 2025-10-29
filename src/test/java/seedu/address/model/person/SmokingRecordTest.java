@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -15,15 +14,16 @@ public class SmokingRecordTest {
     }
 
     @Test
-    void constructor_acceptsNonNullStrings() {
-        assertDoesNotThrow(() -> new SmokingRecord(""));
-        assertDoesNotThrow(() -> new SmokingRecord("a"));
-        assertDoesNotThrow(() -> new SmokingRecord("Non-smoker"));
-        assertDoesNotThrow(() -> new SmokingRecord("Heavy smoker"));
-        assertDoesNotThrow(() -> new SmokingRecord("Occasional smoker"));
-        assertDoesNotThrow(() -> new SmokingRecord("Former smoker"));
-        assertDoesNotThrow(() -> new SmokingRecord("Quit 2 years ago"));
-        assertDoesNotThrow(() -> new SmokingRecord("20 cigarettes/day"));
+    public void constructor_emptyString_setsValueToNone() {
+        SmokingRecord smokingRecord = new SmokingRecord("");
+        assertTrue(smokingRecord.value.equals("None"));
+    }
+
+    @Test
+    public void constructor_validString_setsValueCorrectly() {
+        String validSmokingRecord = "Heavy smoker";
+        SmokingRecord smokingRecord = new SmokingRecord(validSmokingRecord);
+        assertTrue(smokingRecord.value.equals(validSmokingRecord));
     }
 
     @Test

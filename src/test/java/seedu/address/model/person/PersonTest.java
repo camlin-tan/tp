@@ -94,7 +94,7 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", emergencyContact="
                 + ALICE.getEmergencyContact() + ", tags=" + ALICE.getTags() + ", dateOfBirth=" + ALICE.getDateOfBirth()
                 + ", bloodType=" + ALICE.getBloodType() + ", alcoholicRecord=" + ALICE.getAlcoholicRecord()
-                + ", gender=" + ALICE.getGender() + ", smokingRecord=" + ALICE.getSmokingRecord() + ", allergies="
+                + ", gender=" + ALICE.getGender() + ", value=" + ALICE.getSmokingRecord() + ", allergies="
                 + ALICE.getAllergies()
                 + ", pastMedicalHistory=" + ALICE.getPastMedicalHistory()
                 + ", medicines=" + ALICE.getMedicines() + "}";
