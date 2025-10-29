@@ -45,6 +45,7 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
     * [Editing the data file](#editing-the-data-file)
     * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
   * [FAQ](#faq)
+  * [Glossary](#glossary)
   * [Known issues](#known-issues)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -321,14 +322,14 @@ Examples:
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                 | Reason                                                                                    | Solution                                                                                                       |
-|-----------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| The person already exists in the address book | You are editing a patient to have the same id as an existing patient                      | Ensure that you do not enter a patient with the same id as an existing patient.                                |
-| Invalid command format!                       | Some of the prefixes could be missing or misspelled, or you entered a non-positive index. | Refer to the [command format](#editing-a-patient--edit)                                                        |
-| Unknown command                               | The `edit` command may be misspelled or not entirely in lowercase                         | Ensure that you use `edit` exactly in lowercase.                                                               |
+| Error Message                                 | Reason                                                                                    | Solution                                                                                                      |
+|-----------------------------------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| The person already exists in the address book | You are editing a patient to have the same id as an existing patient                      | Ensure that you do not enter a patient with the same id as an existing patient.                               |
+| Invalid command format!                       | Some of the prefixes could be missing or misspelled, or you entered a non-positive index. | Refer to the [command format](#editing-a-patient-edit)                                                        |
+| Unknown command                               | The `edit` command may be misspelled or not entirely in lowercase                         | Ensure that you use `edit` exactly in lowercase.                                                              |
 | Invalid field inputs                          | You have entered invalid inputs for a field.                                              | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table) |
-|      The person index provided is invalid                                         | You have entered an invalid index                                                         | Ensure that the index not more than the number of patients in HealthNote.                                      |
-|                   At least one field to edit must be provided.                                                                | You have not entered any fields to edit.                                                  | Enter at least one field to edit.                                                                              |
+|      The person index provided is invalid                                         | You have entered an invalid index                                                         | Ensure that the index not more than the number of patients in HealthNote.                                     |
+|                   At least one field to edit must be provided.                                                                | You have not entered any fields to edit.                                                  | Enter at least one field to edit.                                                                             |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -451,6 +452,23 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+| **Term**                     | **Explanation**                            |
+|------------------------------|--------------------------------------------|
+| Alphanumeric                 | Consists of numbers and/or alphabets only. |
+| CLI (Command-Line Interface) |        A text-based interface where you type commands to interact with the app.                                    |
+| Command                      |  An instruction entered by the user (e.g., `add`, `edit`, `delete`).                                          |
+| Field                        |   A specific piece of information in a patient’s record (e.g., name, address, blood type).                                         |
+| Prefix                       |   A short label before a field to identify it in a command (e.g., `n\` for name, `p\` for phone).                                         |
+| Index                        |   The number showing a patient’s position in the displayed list. Used in commands like `edit` or `delete`.                                                                                                                                        |
+|        Integer                      |     A whole number (no decimals). In HealthNote, indexes must be positive integers such as 1, 2, 3, etc.                                                                                                                                                                                                                                              |
+|               GUI (Graphical User Interface)                      |         The visual interface showing panels, buttons, and text boxes.                                                                                                                                                                                                                                                                                                                                              |
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
@@ -468,7 +486,7 @@ Summary of all the commands.
 
 **Info:**<br>
 * Fields with square brackets `[prefix\field]` indicates it is an optional field.
-* Commands without any arguments will still execute if user inputs additional arguments/
+* Commands without any arguments will still execute if user inputs additional arguments
 * You may view [Command Format](#command-format) for more details.
 
 </box>
