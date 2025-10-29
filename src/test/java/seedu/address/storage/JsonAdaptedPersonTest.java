@@ -61,6 +61,9 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_GENDER = BENSON.getGender().toString();
     private static final String VALID_SMOKING_RECORD = BENSON.getSmokingRecord().toString();
     private static final String VALID_PAST_MEDICAL_HISTORY = BENSON.getPastMedicalHistory().toString();
+    private static final String VALID_LONG_PAST_MEDICAL_HISTORY =
+            "DiagnosisA, DiagnosisB, DiagnosisC, DiagnosisD, DiagnosisE, DiagnosisF, DiagnosisG, "
+            + "DiagnosisH, DiagnosisI, DiagnosisJ, DiagnosisK, DiagnosisL, DiagnosisM, DiagnosisN";
     private static final List<JsonAdaptedMedicine> VALID_MEDICINES = BENSON.getMedicines().stream()
             .map(JsonAdaptedMedicine::new)
             .collect(Collectors.toList());
@@ -305,8 +308,7 @@ public class JsonAdaptedPersonTest {
                     new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
                             VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB,
                             VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD,
-                            VALID_ALLERGIES, "DiagnosisA, DiagnosisB, DiagnosisC, DiagnosisD, DiagnosisE, DiagnosisF,"
-                            + " DiagnosisG", VALID_MEDICINES);
+                            VALID_ALLERGIES, VALID_LONG_PAST_MEDICAL_HISTORY, VALID_MEDICINES);
             // We only need to ensure toModelType runs (and exercises logger.fine). The toModelType method throws
             // IllegalValueException on invalid input, but here the input is valid.
             assertDoesNotThrow(() -> person.toModelType());
