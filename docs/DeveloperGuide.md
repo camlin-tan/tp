@@ -498,11 +498,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command inputted is invalid.
+* 1a. The argument inputted is invalid.
 
     * 1a1. HealthNote shows an error message.
 
       Use case resumes at step 1
+
+**Use case: UC09 - Accessing help**
+
+**MSS**
+
+1.  User requests for help to view available commands.
+2.  HealthNote displays the available commands.
+
+    Use case ends.
 
 *{More to be added}*
 
