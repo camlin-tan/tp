@@ -12,21 +12,14 @@
 
         <Label fx:id="nameLabel" styleClass="person-view-name-label"/>
 
-        <Label text="Personal Details" styleClass="person-view-section-heading" />
-        <GridPane fx:id="personalInfoGrid" hgap="10" vgap="8">
+
+        <GridPane fx:id="infoGrid" hgap="10" vgap="8">
             <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" minWidth="140" prefWidth="140" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="140" maxWidth="200" />
                 <ColumnConstraints hgrow="ALWAYS" />
             </columnConstraints>
         </GridPane>
 
-        <Label text="Medical Details" styleClass="person-view-section-heading" />
-        <GridPane fx:id="medicalInfoGrid" hgap="10" vgap="8">
-            <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" minWidth="140" prefWidth="140" />
-                <ColumnConstraints hgrow="ALWAYS" />
-            </columnConstraints>
-        </GridPane>
 
         <Label text="Allergies" styleClass="person-view-section-heading" />
         <FlowPane fx:id="allergiesFlowPane" hgap="8" vgap="8" />
