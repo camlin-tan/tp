@@ -65,10 +65,9 @@ public class EditCommandParser implements Parser<EditCommand> {
                     String.join(", ", unrecognizedPrefixes)));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_IDENTITY_NUMBER,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_TAG, PREFIX_DATE_OF_BIRTH,
-                PREFIX_SMOKING_RECORD, PREFIX_BLOOD_TYPE, PREFIX_GENDER, PREFIX_ALLERGY, PREFIX_PAST_MEDICAL_HISTORY,
-                PREFIX_MEDICINE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                EDIT_COMMAND_PREFIXES.toArray(new Prefix[0])
+        );
 
         Index index;
 
