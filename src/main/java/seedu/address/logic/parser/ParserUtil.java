@@ -146,8 +146,11 @@ public class ParserUtil {
     public static DateOfBirth parseDateOfBirth(String dateOfBirth) throws ParseException {
         requireNonNull(dateOfBirth);
         String trimmedDateOfBirth = dateOfBirth.trim();
-        if (!DateOfBirth.isValidDate(trimmedDateOfBirth)) {
+        if (!DateOfBirth.isValidDateFormat(trimmedDateOfBirth)) {
             throw new ParseException(DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        if (!DateOfBirth.isValidDate(trimmedDateOfBirth)) {
+            throw new ParseException(DateOfBirth.MESSAGE_INVALID_DATE_CONSTRAINTS + trimmedDateOfBirth);
         }
         if (!DateOfBirth.isValidDateOfBirth(trimmedDateOfBirth)) {
             throw new ParseException(DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS);
@@ -314,8 +317,11 @@ public class ParserUtil {
     public static AppointmentTime parseAppointmentTime(String appointmentTime) throws ParseException {
         requireNonNull(appointmentTime);
         String trimmedAppointmentTime = appointmentTime.trim();
-        if (!AppointmentTime.isValidDateTime(trimmedAppointmentTime)) {
+        if (!AppointmentTime.isValidDateTimeFormat(trimmedAppointmentTime)) {
             throw new ParseException(AppointmentTime.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        if (!AppointmentTime.isValidDateTime(trimmedAppointmentTime)) {
+            throw new ParseException(AppointmentTime.MESSAGE_VALID_DATE_CONSTRAINT + trimmedAppointmentTime);
         }
         return new AppointmentTime(trimmedAppointmentTime);
     }
