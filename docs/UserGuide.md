@@ -8,7 +8,7 @@
 
 ![HealthNoteLogo](images/HealthNoteLogo.png)
 
-Hello, shout out to all my indie doctors out there, this app is for you.
+Hello indie doctors, welcome to our **HealthNote User Guide**!
 
 [//]: # (<!-- * Table of Contents -->)
 
@@ -16,7 +16,6 @@ Hello, shout out to all my indie doctors out there, this app is for you.
 
 ### Table of Contents
 
-* Table of Contents
 <!-- TOC -->
 * [HealthNote User Guide](#healthnote-user-guide)
     * [Table of Contents](#table-of-contents)
@@ -314,7 +313,7 @@ Format: `clear CONFIRM`
 <div markdown="block" class="alert alert-danger">
 
 **❗Caution:**<br>
-* This action cannot be undone. You must type exactly 'clear CONFIRM' (case sensitive) to execute
+* This action cannot be undone. You must type exactly 'clear CONFIRM' (case-sensitive) to execute
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -366,16 +365,14 @@ _Details coming soon ..._
 
 ## Command Summary
 
-<div markdown="block" class="alert alert-info">
+Summary of all the commands.
 
-**Info**
-
+<box type="info" seamless>
+**Info:**<br>
 * Fields with square brackets `[prefix\field]` indicates it is an optional field.
 * Commands without any arguments will still execute if user inputs additional arguments/
 * Can view [Command Format](#command-format) for more details.
-
-</div>
-
+</box>
 
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                           |
@@ -386,6 +383,7 @@ _Details coming soon ..._
 | **Edit**   | `edit INDEX [id\IDENTITY] [n\NAME] [p\PHONE] [e\EMAIL] [a\ADDRESS] [dob\DATE_OF_BIRTH] [b\BLOOD_TYPE] [g\GENDER] [ar\ALCOHOLIC_RECORDS(YES/NO)] [sr\SMOKING_RECORDS(YES/NO)] [t\TAG]…​`<br> e.g.,`edit 2 n\James Lee e\jameslee@example.com`                                                                                               |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                 |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                     |
+| **View**   | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                                                                                                                                            |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                     |
 
 [Back to Table of Contents](#table-of-contents)
