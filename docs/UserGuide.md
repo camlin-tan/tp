@@ -321,14 +321,14 @@ Examples:
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                 | Reason                                                                                    | Solution                                                                                                       |
-|-----------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| The person already exists in the address book | You are editing a patient to have the same id as an existing patient                      | Ensure that you do not enter a patient with the same id as an existing patient.                                |
-| Invalid command format!                       | Some of the prefixes could be missing or misspelled, or you entered a non-positive index. | Refer to the [command format](#editing-a-patient--edit)                                                        |
-| Unknown command                               | The `edit` command may be misspelled or not entirely in lowercase                         | Ensure that you use `edit` exactly in lowercase.                                                               |
+| Error Message                                 | Reason                                                                                    | Solution                                                                                                      |
+|-----------------------------------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| The person already exists in the address book | You are editing a patient to have the same id as an existing patient                      | Ensure that you do not enter a patient with the same id as an existing patient.                               |
+| Invalid command format!                       | Some of the prefixes could be missing or misspelled, or you entered a non-positive index. | Refer to the [command format](#editing-a-patient-edit)                                                        |
+| Unknown command                               | The `edit` command may be misspelled or not entirely in lowercase                         | Ensure that you use `edit` exactly in lowercase.                                                              |
 | Invalid field inputs                          | You have entered invalid inputs for a field.                                              | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table) |
-|      The person index provided is invalid                                         | You have entered an invalid index                                                         | Ensure that the index not more than the number of patients in HealthNote.                                      |
-|                   At least one field to edit must be provided.                                                                | You have not entered any fields to edit.                                                  | Enter at least one field to edit.                                                                              |
+|      The person index provided is invalid                                         | You have entered an invalid index                                                         | Ensure that the index not more than the number of patients in HealthNote.                                     |
+|                   At least one field to edit must be provided.                                                                | You have not entered any fields to edit.                                                  | Enter at least one field to edit.                                                                             |
 
 
 [Back to Table of Contents](#table-of-contents)
