@@ -5,10 +5,8 @@
 
 # HealthNote
 
-[![CI Status](https://github.com/AY2526S1-CS2103T-F11-1/tp/actions/workflows/gradle.yml/badge.svg)]
-(https://github.com/AY2526S1-CS2103T-F11-1/tp/actions)
-[![codecov](https://app.codecov.io/gh/AY2526S1-CS2103T-F11-1/tp/branch/master/graph/badge.svg)]
-(https://app.codecov.io/gh/AY2526S1-CS2103T-F11-1/tp)
+[![CI Status](https://github.com/AY2526S1-CS2103T-F11-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-F11-1/tp/actions)
+[![codecov](https://codecov.io/gh/AY2526S1-CS2103T-F11-1/tp/branch/master/graph/badge.svg)](https://app.codecov.io/gh/AY2526S1-CS2103T-F11-1/tp)
 
 ![Ui](images/Ui.png)
 
