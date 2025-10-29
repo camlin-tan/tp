@@ -116,12 +116,12 @@
   "appointments": [
     {
       "notes": "Routine checkup",
-      "time": "01-12-9999 09:00",
+      "time": "01-12-2020 09:00",
       "patientId": "AP67"
     },
     {
       "notes": "Dental cleaning",
-      "time": "02-12-9999 10:30",
+      "time": "02-12-2020 10:30",
       "patientId": "BM67"
     },
     {
