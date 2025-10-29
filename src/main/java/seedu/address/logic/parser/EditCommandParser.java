@@ -46,7 +46,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_IDENTITY_NUMBER,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_TAG, PREFIX_DATE_OF_BIRTH,
                 PREFIX_SMOKING_RECORD, PREFIX_BLOOD_TYPE, PREFIX_GENDER, PREFIX_ALLERGY, PREFIX_PAST_MEDICAL_HISTORY,
-                PREFIX_MEDICINE);
+                PREFIX_MEDICINE, PREFIX_ALCOHOLIC_RECORD);
 
         Index index;
 
@@ -102,6 +102,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setPastMedicalHistory(ParserUtil.parsePastMedicalHistory(
                     argMultimap.getValue(PREFIX_PAST_MEDICAL_HISTORY).get()));
         }
+        if (argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).isPresent()) {
+            editPersonDescriptor.setAlcoholicRecord(ParserUtil.parseAlcoholicRecord(
+                    argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).get()));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseAllergiesForEdit(argMultimap.getAllValues(PREFIX_ALLERGY)).ifPresent(editPersonDescriptor::setAllergies);
         parseMedicinesForEdit(argMultimap.getAllValues(PREFIX_MEDICINE)).ifPresent(editPersonDescriptor::setMedicines);
