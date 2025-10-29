@@ -21,6 +21,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_PARAMETERS =
+            "Invalid parameter(s) for '%1$s' command: %2$s."
+                    + "\n Please refer to the Help page or type 'help' for the valid parameters";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -55,8 +58,8 @@ public class Messages {
                 .append(person.getBloodType())
                 .append("; Gender: ")
                 .append(person.getGender())
-                .append("; Past Diagnoses: ")
-                .append(person.getPastDiagnoses())
+                .append("; Past Medical History: ")
+                .append(person.getPastMedicalHistory())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         builder.append("; Allergies: ");
