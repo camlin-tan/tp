@@ -13,13 +13,13 @@ public class TypicalAppointments {
 
     public static final Appointment APPT_ALICE = new AppointmentBuilder()
             .withNotes("Routine checkup")
-            .withTime("01-12-9999 09:00")
+            .withTime("01-12-2020 09:00")
             .withPatientId(TypicalPersons.ALICE.getIdentityNumber())
             .build();
 
     public static final Appointment APPT_BENSON = new AppointmentBuilder()
             .withNotes("Dental cleaning")
-            .withTime("02-12-9999 10:30")
+            .withTime("02-12-2020 10:30")
             .withPatientId(TypicalPersons.BENSON.getIdentityNumber())
             .build();
 
