@@ -304,6 +304,9 @@ public class ParserUtil {
     public static PastMedicalHistory parsePastMedicalHistory(String pastMedicalHistory) throws ParseException {
         requireNonNull(pastMedicalHistory);
         String trimmedPastMedicalHistory = pastMedicalHistory.trim();
+        if (!PastMedicalHistory.isValidPastMedicalHistory(trimmedPastMedicalHistory)) {
+            throw new ParseException(PastMedicalHistory.MESSAGE_CONSTRAINTS);
+        }
         return new PastMedicalHistory(trimmedPastMedicalHistory);
     }
 

@@ -64,8 +64,6 @@ public class CommandTestUtil {
     public static final String VALID_SMOKING_RECORD_BOB = "Occasional smoker";
     public static final String VALID_PAST_MEDICAL_HISTORY_AMY = "Diabetes";
     public static final String VALID_PAST_MEDICAL_HISTORY_BOB = "Hypertension";
-    public static final String VALID_SMOKING_RECORD_NO = "no";
-    public static final String VALID_SMOKING_RECORD_YES = "yes";
 
     public static final String VALID_APPOINTMENT_TIME_AMY = "01-01-2025 10:00";
     public static final String VALID_APPOINTMENT_TIME_BOB = "02-02-2025 11:00";
@@ -121,7 +119,7 @@ public class CommandTestUtil {
     public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + " "; // empty string invalid medicine
     public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE + " "; // invalid blood type
     public static final String INVALID_SMOKING_RECORD_DESC = " "
-            + PREFIX_SMOKING_RECORD + " "; // empty string not allowed for smoking record
+            + PREFIX_SMOKING_RECORD + "  "; // empty string not allowed for smoking record
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

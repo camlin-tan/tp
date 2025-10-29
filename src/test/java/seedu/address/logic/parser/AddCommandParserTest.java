@@ -84,7 +84,6 @@ import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.SmokingRecord;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -249,6 +248,15 @@ public class AddCommandParserTest {
                         + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC + TAG_DESC_HUSBAND
                         + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY + SMOKING_RECORD_DESC_AMY
                         + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
+
+        // zero smoking record
+        expectedPerson = new PersonBuilder(AMY).withTags("husband").withSmokingRecord("").build();
+        assertParseSuccess(parser,
+                NAME_DESC_AMY + IDENTITY_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + EMERGENCY_CONTACT_DESC_AMY + DATE_OF_BIRTH_DESC_AMY + BLOOD_TYPE_DESC + TAG_DESC_HUSBAND
+                        + ALCOHOLIC_RECORD_DESC_AMY + GENDER_DESC_AMY
+                        + ALLERGY_DESC_NUTS
+                        + MEDICINE_DESC_ANTIDEPRESSANT, new AddCommand(expectedPerson));
     }
 
     @Test
@@ -372,15 +380,6 @@ public class AddCommandParserTest {
                 + INVALID_BLOOD_TYPE_DESC + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB + SMOKING_RECORD_DESC_BOB
                 + ALLERGY_DESC_NUTS + PAST_MEDICAL_HISTORY_DESC_BOB,
                 BloodType.MESSAGE_CONSTRAINTS);
-
-        // invalid smoking record
-        assertParseFailure(parser,
-                NAME_DESC_BOB + IDENTITY_NUMBER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + EMERGENCY_CONTACT_DESC_BOB + DATE_OF_BIRTH_DESC_BOB + BLOOD_TYPE_DESC
-                + INVALID_SMOKING_RECORD_DESC
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ALCOHOLIC_RECORD_DESC_BOB + GENDER_DESC_BOB
-                        + PAST_MEDICAL_HISTORY_DESC_BOB,
-                SmokingRecord.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only the first invalid value reported
         assertParseFailure(

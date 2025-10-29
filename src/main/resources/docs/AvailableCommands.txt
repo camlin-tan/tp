@@ -19,9 +19,9 @@ Patient Fields:
     b\BLOOD_TYPE
     g\GENDER
     ar\ALCOHOLIC_RECORD (e.g., YES or NO)
-    sr\SMOKING_RECORD (e.g., YES or NO)
 
   [Optional - Single Entry]
+    sr\SMOKING_RECORD (e.g., YES or NO)
     pmh\PAST_MEDICAL_HISTORY
 
   [Optional - Can have multiple]
