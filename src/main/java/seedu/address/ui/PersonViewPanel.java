@@ -13,7 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Allergy;
 import seedu.address.model.person.Person;
 
 /**
