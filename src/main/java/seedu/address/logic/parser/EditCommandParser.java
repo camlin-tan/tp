@@ -57,6 +57,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         Set<String> unrecognizedPrefixes = findUnrecognizedPrefixes(args);
         if (!unrecognizedPrefixes.isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_PARAMETERS,
@@ -123,10 +124,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(PREFIX_PAST_MEDICAL_HISTORY).get()));
         }
         if (argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).isPresent()) {
-            String raw = argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).get().trim();
-            if (!raw.isEmpty()) {
-                editPersonDescriptor.setAlcoholicRecord(ParserUtil.parseAlcoholicRecord(raw));
-            }
+            editPersonDescriptor.setAlcoholicRecord(ParserUtil.parseAlcoholicRecord(
+                    argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
