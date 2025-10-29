@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
@@ -63,10 +64,13 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         Set<String> unrecognizedPrefixes = findUnrecognizedPrefixes(args);
         if (!unrecognizedPrefixes.isEmpty()) {
-            throw new ParseException("The following field prefix(es) are not valid for the 'add' command: "
-                    + String.join(", ", unrecognizedPrefixes));
+            throw new ParseException("The following parameters are not valid for the 'add' command: "
+                    + String.join(", ", unrecognizedPrefixes)
+                    + "\n Please refer to the Help page or type 'help' for the valid parameters");
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
@@ -116,9 +120,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     /**
-     * Finds prefixes in the args string that are not present in the knownPrefixes list.
+     * Finds prefixes in the args string that are not present in the ADD_COMMAND_PREFIXES list.
      *
-     * @param args          The raw arguments string.
+     * @param args The raw arguments string.
      * @return A Set of unrecognized prefix strings found in args.
      */
     private Set<String> findUnrecognizedPrefixes(String args) {
@@ -126,10 +130,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .map(Prefix::getPrefix)
                 .collect(Collectors.toSet());
         Set<String> unrecognized = new HashSet<>();
-        Matcher matcher = PREFIX_FINDER_PATTERN.matcher(" " + args); // Prepend space to catch prefix at start
+        Matcher matcher = PREFIX_FINDER_PATTERN.matcher(" " + args);
 
         while (matcher.find()) {
-            String potentialPrefix = matcher.group(1); // Extract the prefix (e.g., "n\\")
+            String potentialPrefix = matcher.group(1);
             if (!knownPrefixStrings.contains(potentialPrefix)) {
                 unrecognized.add(potentialPrefix);
             }
