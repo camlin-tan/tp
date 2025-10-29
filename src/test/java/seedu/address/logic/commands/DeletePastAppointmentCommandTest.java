@@ -16,20 +16,20 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.testutil.TypicalPersons;
 
 /**
- * Tests for DeleteUpcomingAppointmentCommand.
+ * Tests for DeletePastAppointmentCommand.
  */
-public class DeleteUpcomingAppointmentCommandTest {
+public class DeletePastAppointmentCommandTest {
 
     @Test
     public void equals_sameValues_returnsTrue() {
-        DeleteUpcomingAppointmentCommand c1 = new DeleteUpcomingAppointmentCommand(Index.fromOneBased(1));
-        DeleteUpcomingAppointmentCommand c2 = new DeleteUpcomingAppointmentCommand(Index.fromOneBased(1));
+        DeletePastAppointmentCommand c1 = new DeletePastAppointmentCommand(Index.fromOneBased(1));
+        DeletePastAppointmentCommand c2 = new DeletePastAppointmentCommand(Index.fromOneBased(1));
         assertEquals(c1, c2);
     }
 
     @Test
     public void toString_containsTargetIndex() {
-        DeleteUpcomingAppointmentCommand cmd = new DeleteUpcomingAppointmentCommand(Index.fromOneBased(3));
+        DeletePastAppointmentCommand cmd = new DeletePastAppointmentCommand(Index.fromOneBased(3));
         String s = cmd.toString();
         assertTrue(s.contains("targetIndex"));
     }
@@ -37,14 +37,14 @@ public class DeleteUpcomingAppointmentCommandTest {
     @Test
     public void execute_deleteSuccessful_appointmentRemoved() throws Exception {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Appointment a = model.getUpcomingAppointmentList().get(0);
+        Appointment a = model.getPastAppointmentList().get(0);
 
-        DeleteUpcomingAppointmentCommand cmd = new DeleteUpcomingAppointmentCommand(Index.fromOneBased(1));
+        DeletePastAppointmentCommand cmd = new DeletePastAppointmentCommand(Index.fromOneBased(1));
         CommandResult result = cmd.execute(model);
 
         // appointment should no longer exist in the model
         assertFalse(model.hasAppointment(a));
-        assertEquals(String.format(DeleteUpcomingAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+        assertEquals(String.format(DeletePastAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 seedu.address.logic.Messages.format(a)), result.getFeedbackToUser());
     }
 
@@ -52,7 +52,7 @@ public class DeleteUpcomingAppointmentCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
-        DeleteUpcomingAppointmentCommand cmd = new DeleteUpcomingAppointmentCommand(Index.fromOneBased(200));
+        DeletePastAppointmentCommand cmd = new DeletePastAppointmentCommand(Index.fromOneBased(200));
         assertThrows(CommandException.class, () -> cmd.execute(model));
     }
 }
