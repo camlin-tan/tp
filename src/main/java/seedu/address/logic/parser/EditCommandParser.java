@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -59,9 +60,9 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Set<String> unrecognizedPrefixes = findUnrecognizedPrefixes(args);
         if (!unrecognizedPrefixes.isEmpty()) {
-            throw new ParseException("The following parameters are not valid for the 'edit' command: "
-                    + String.join(", ", unrecognizedPrefixes)
-                    + "\n Please refer to the Help page or type 'help' for the valid parameters");
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_PARAMETERS,
+                    EditCommand.COMMAND_WORD,
+                    String.join(", ", unrecognizedPrefixes)));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_IDENTITY_NUMBER,

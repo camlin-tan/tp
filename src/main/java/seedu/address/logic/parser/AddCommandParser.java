@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -68,9 +69,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Set<String> unrecognizedPrefixes = findUnrecognizedPrefixes(args);
         if (!unrecognizedPrefixes.isEmpty()) {
-            throw new ParseException("The following parameters are not valid for the 'add' command: "
-                    + String.join(", ", unrecognizedPrefixes)
-                    + "\n Please refer to the Help page or type 'help' for the valid parameters");
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_PARAMETERS,
+                    AddCommand.COMMAND_WORD,
+                    String.join(", ", unrecognizedPrefixes)));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
