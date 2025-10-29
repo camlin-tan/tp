@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class AlcoholicRecord {
     public static final String MESSAGE_CONSTRAINTS =
-            "Alcoholic record cannot be null or empty.";
+            "Alcoholic record can be any string, and it should not be blank.";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String alcoholicRecord;
@@ -21,15 +21,19 @@ public class AlcoholicRecord {
      */
     public AlcoholicRecord(String alcoholicRecord) {
         requireNonNull(alcoholicRecord);
-        checkArgument(isValidAlcoholicRecord(alcoholicRecord), MESSAGE_CONSTRAINTS);
-        this.alcoholicRecord = alcoholicRecord;
+        if (alcoholicRecord.isEmpty()) {
+            this.alcoholicRecord = "None";
+        } else {
+            checkArgument(isValidAlcoholicRecord(alcoholicRecord), MESSAGE_CONSTRAINTS);
+            this.alcoholicRecord = alcoholicRecord;
+        }
     }
 
     /**
      * Returns true if a given string is a valid alcoholic record.
      */
     public static boolean isValidAlcoholicRecord(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.isEmpty() || test.matches(VALIDATION_REGEX);
     }
 
     /**

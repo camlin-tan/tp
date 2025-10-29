@@ -40,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT "
             + PREFIX_DATE_OF_BIRTH + "DATE OF BIRTH "
             + PREFIX_BLOOD_TYPE + "BLOOD TYPE "
-            + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
+            + "[" + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD] "
             + PREFIX_GENDER + "GENDER "
             + "[" + PREFIX_SMOKING_RECORD + "SMOKING RECORD] "
             + "[" + PREFIX_PAST_MEDICAL_HISTORY + "PAST MEDICAL HISTORY] "
