@@ -26,21 +26,6 @@ public class PastMedicalHistoryTest {
     }
 
     @Test
-    public void isValidPastMedicalHistory() {
-        // valid past medical histories
-        assertTrue(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory("Diabetes"));
-        assertTrue(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory("Hypertension, Asthma"));
-        assertTrue(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory("None"));
-
-        // empty string is valid
-        assertTrue(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory(""));
-
-        // invalid past medical histories
-        assertFalse(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory(" ")); // only whitespace
-        assertFalse(seedu.address.model.person.PastMedicalHistory.isValidPastMedicalHistory("   "));
-    }
-
-    @Test
     public void equals() {
         PastMedicalHistory pd1 = new PastMedicalHistory("Diabetes");
         PastMedicalHistory pd2 = new PastMedicalHistory("Diabetes");

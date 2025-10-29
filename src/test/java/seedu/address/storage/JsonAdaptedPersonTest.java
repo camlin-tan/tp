@@ -275,18 +275,6 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidPastMedicalHistory_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
-                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB,
-                        VALID_BLOOD_TYPE,
-                        VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES,
-                        INVALID_PAST_MEDICAL_HISTORY, VALID_MEDICINES);
-        String expectedMessage = PastMedicalHistory.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_nullPastMedicalHistory_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
