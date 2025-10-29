@@ -34,7 +34,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMERGENCY_CONTACT = "[mother] 123456789";
     public static final String DEFAULT_BLOOD_TYPE = "O";
     public static final String DEFAULT_DOB = "01-01-2000";
-    public static final String DEFAULT_ALCOHOLIC_RECORD = "";
+    public static final String DEFAULT_ALCOHOLIC_RECORD = "Social drinker";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_SMOKING_RECORD = "Non-smoker";
     public static final String DEFAULT_PAST_MEDICAL_HISTORY = "";
