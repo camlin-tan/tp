@@ -14,9 +14,9 @@ Adds a patient with the specified fields
 - Blood Type: `b\`
 - Gender: `g\`
 - Alcoholic Record: `ar\`
-- Smoking Record: `sr\`
 
 ##### Optional, single entry:
+- Smoking Record: `sr\`
 - Past Medical History: `pmh\`
 
 ##### Optional, can have multiple:
