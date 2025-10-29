@@ -26,21 +26,21 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
   * [Features](#features)
     * [Command Format](#command-format)
     * [Input Constraints Table](#input-constraints-table)
-  * [Features - General Features](#features---general-features)
-    * [Viewing help : `help`](#viewing-help--help)
-    * [Changing themes : `theme`](#changing-themes--theme)
-    * [Exiting the program : `exit`](#exiting-the-program--exit)
-  * [Features - Managing Patient Records](#features---managing-patient-records)
+  * [Features - General Features](#features-general-features)
+    * [Viewing help : `help`](#viewing-help-help)
+    * [Changing themes : `theme`](#changing-themes-theme)
+    * [Exiting the program : `exit`](#exiting-the-program-exit)
+  * [Features - Managing Patient Records](#features-managing-patient-records)
     * [Adding a patient: `add`](#adding-a-patient-add)
-    * [Editing a patient : `edit`](#editing-a-patient--edit)
-    * [Deleting a patient : `delete`](#deleting-a-patient--delete)
-  * [Feature - Viewing Patient Records](#feature---viewing-patient-records)
+    * [Editing a patient : `edit`](#editing-a-patient-edit)
+    * [Deleting a patient : `delete`](#deleting-a-patient-delete)
+  * [Feature - Viewing Patient Records](#feature-viewing-patient-records)
     * [View a patient's medical information: `view`](#view-a-patients-medical-information-view)
-    * [Listing all patients : `list`](#listing-all-patients--list)
+    * [Listing all patients : `list`](#listing-all-patients-list)
     * [Locating patients by name: `find`](#locating-patients-by-name-find)
-  * [Feature - Clearing Data](#feature---clearing-data)
+  * [Feature - Clearing Data](#feature-clearing-data)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  * [Feature - Data Management](#feature---data-management)
+  * [Feature - Data Management](#feature-data-management)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
@@ -167,23 +167,23 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 
 ### Input Constraints Table
 
-| **Field (with Prefix)**                | **Valid Input(s)**             | **Invalid Input(s)**           | **Requirement(s)**                                                                              |
-|----------------------------------------|------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------|
-| **n\\NAME**                            | Alex the 3rd, John Doe, Damith s/o Sankar Ashish | (Empty)                        | Names should only contain alphanumeric characters and spaces, and not be blank                  |
-| **id\\IDENTITY_NUMBER**                | S1234567A, T7654321B, 060402-06-6767 | %&!, 12 3-4                    | Identity number should only contain alphanumeric characters,"-" and/or "_", without spaces      |
-| **p\\CONTACT_NUMBER**                  | 9888-3333 (Office)           | abcdefg, 23                    | Must contain at least 3 consecutive digits                                                      |
-| **e\\EMAIL**                           | e01234567@u.nus.edu, jinHeng@gmail.com | joe@, asd@@@asd                | Emails should be of the format local-part@domain                                                |
-| **addr\\HOME_ADDRESS**                 | 123 Main St                 | (Empty)                        | Addresses can take any values, and it should not be blank                                       |
-| **ec\\EMERGENCY_CONTACT**              | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa            | Must be in the form [{relationship}] {phone} where phone contains at least 3 consecutive digits |
-| **dob\\DATE_OF_BIRTH**                 | 05-23-1967, 12/10/1987      | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: DD-MM-YYYY, DD/MM/YYYY, or MM-DD-YYYY         |
-| **b\\BLOOD_TYPE**                      | A+, O-, AB, Bombay (hh), A Rh(D) negative                            | (Empty)                        | Blood types should not be blank                                               |
-| **g\\GENDER**                          | Male, Female, Non-binary, Helicopter | (Empty)                        | Genders should not be blank                                                                     |
-| **ar\\ALCOHOLIC_RECORD**               | None, Occasionally, Heavy    | (Empty)                        | Alcoholic Record should not be blank                                                            |
-| **sr\\SMOKING_RECORD**       | None, Occasionally, Quitter, Heavy | (Empty)                        | Smoking Record should not be blank                                                              |
-| **pmh\\PAST_MEDICAL_HISTORY** | None, Diabetes, Hypertension | (Empty)                        | Past Medical History should not be blank                                                        |
-| **t\\TAG**        | Urgent, Orphan, Poor         | 123                            | Tags names should be alphanumeric, without spaces                                               |
-| **al\\ALLERGY**   | Peanuts, Penicillin         | (Empty)                        | Allergy names should be alphanumeric, without spaces                                            |
-| **m\\MEDICINE**   | 500mg Ibuprofen, 2 Panadol capsules/day | (Empty)                        | Medicine field should not be blank                                                              |
+| **Field (with Prefix)**                | **Valid Input(s)**                                      | **Invalid Input(s)**     | **Requirement(s)**                                                                              |
+|----------------------------------------|---------------------------------------------------------|--------------------------|-------------------------------------------------------------------------------------------------|
+| **n\\NAME**                            | Alex the 3rd, John Doe, Damith s/o Sankar Ashish        | (Empty)                  | Names should only contain alphanumeric characters and spaces, and not be blank                  |
+| **id\\IDENTITY_NUMBER**                | S1234567A, T7654321B, 060402-06-6767                    | %&!, 12 3-4              | Identity number should only contain alphanumeric characters,"-" and/or "_", without spaces      |
+| **p\\CONTACT_NUMBER**                  | 9888-3333 (Office)                                      | abcdefg, 23              | Must contain at least 3 consecutive digits                                                      |
+| **e\\EMAIL**                           | e01234567@u.nus.edu, jinHeng@gmail.com                  | joe@, asd@@@asd          | Emails should be of the format local-part@domain                                                |
+| **addr\\HOME_ADDRESS**                 | 123 Main St                                             | (Empty)                  | Addresses can take any values, and it should not be blank                                       |
+| **ec\\EMERGENCY_CONTACT**              | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa      | Must be in the form [{relationship}] {phone} where phone contains at least 3 consecutive digits |
+| **dob\\DATE_OF_BIRTH**                 | 05-23-1967, 12/10/1987                                  | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: DD-MM-YYYY, DD/MM/YYYY, or MM-DD-YYYY         |
+| **b\\BLOOD_TYPE**                      | A+, O-, AB, Bombay (hh), A Rh(D) negative               | (Empty)                  | Blood types should not be blank                                               |
+| **g\\GENDER**                          | Male, Female, Non-binary, Helicopter                    | (Empty)                  | Genders should not be blank                                                                     |
+| **ar\\ALCOHOLIC_RECORD**               | None, Occasionally, Heavy                               | (Empty)                  | Alcoholic Record should not be blank                                                            |
+| **sr\\SMOKING_RECORD**       | None, Occasionally, Quitter, Heavy                      | (Empty)                  | Smoking Record should not be blank                                                              |
+| **pmh\\PAST_MEDICAL_HISTORY** | None, Diabetes, Hypertension                            | (Empty)                  | Past Medical History should not be blank                                                        |
+| **t\\TAG**        | Urgent, HighRisk, VIP                                   | is_diabetic              | Tags names should be alphanumeric, without spaces                                               |
+| **al\\ALLERGY**   | Peanuts, Penicillin                                     | peanut_                  | Allergy names should be alphanumeric, without spaces                                            |
+| **m\\MEDICINE**   | 500mg Ibuprofen, 2 Panadol capsules/day                 | (Empty)                  | Medicine field should not be blank                                                              |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -226,23 +226,24 @@ Adds a patient to the address book.
 Format: `add id\IDENTITY n\NAME p\PHONE_NUMBER e\EMAIL a\ADDRESS dob\DATE_OF_BIRTH b\BLOOD_TYPE g\GENDER
 ar\ALCOHOLIC_RECORDS(YES/NO) sr\SMOKING_RECORDS(YES/NO) [t\TAG] [al\ALLERGY] [m\MEDICINE]…​`
 
-| **Field (with Prefix)**                 | Compulsory? | Can have multiple? |
-|-----------------------------------------|-------------|--------------------|
-| **n\\NAME**                             | Yes         | No                 |
-| **id\\IDENTITY_NUMBER**                 | Yes         | No                 |
-| **p\\CONTACT_NUMBER**                   | Yes         | No                 |
-| **e\\EMAIL**                            | Yes         | No                 |
-| **addr\\HOME_ADDRESS**                  | Yes         | No                 |
-| **ec\\EMERGENCY_CONTACT**               | Yes         | No                 |
-| **dob\\DATE_OF_BIRTH**                  | Yes         | No                 |
-| **b\\BLOOD_TYPE**                       | Yes         | No                 |
-| **g\\GENDER**                           | Yes         | No                 |
-| **ar\\ALCOHOLIC_RECORD**                | Yes         | No                 |
-| **sr\\SMOKING_RECORD (optional)**       | No          | No                 |
-| **pmh\\PAST_MEDICAL_HISTORY (optional)** | No          | No                 |
-| **t\\TAG (optional, multiple)**         | No          | Yes                |
-| **al\\ALLERGY (optional, multiple)**    | No          | Yes                |
-| **m\\MEDICINE (optional, multiple)**    | No          | Yes                |
+| **Field (with Prefix)**                  | **Compulsory?** | **Can have multiple?** | **Description**                                                                     |
+|------------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|
+| **n\NAME**                              | Yes             | No                     | Full legal name of the patient.                                                     |
+| **id\IDENTITY_NUMBER**                  | Yes             | No                     | Unique identification number (e.g., national ID, passport number, or hospital ID).  |
+| **p\CONTACT_NUMBER**                    | Yes             | No                     | Primary phone number for reaching the patient.                                      |
+| **e\EMAIL**                             | Yes             | No                     | Patient’s active email address for communication.                                   |
+| **addr\HOME_ADDRESS**                   | Yes             | No                     | Current residential address of the patient.                                         |
+| **ec\EMERGENCY_CONTACT**                | Yes             | No                     | Name and contact details of a person to call in case of emergency.                  |
+| **dob\DATE_OF_BIRTH**                   | Yes             | No                     | Patient’s date of birth.                                                            |
+| **b\BLOOD_TYPE**                        | Yes             | No                     | Patient’s blood group (e.g., A+, O-, etc.).                                         |
+| **g\GENDER**                            | Yes             | No                     | Gender identity of the patient (e.g., Male, Female, Non-binary, Prefer not to say). |
+| **ar\ALCOHOLIC_RECORD**                 | Yes             | No                     | Indicates whether the patient consumes alcohol and relevant details or frequency.   |
+| **sr\SMOKING_RECORD (optional)**        | No              | No                     | Indicates whether the patient smokes and relevant details or frequency.             |
+| **pmh\PAST_MEDICAL_HISTORY (optional)** | No              | No                     | Summary of major past illnesses, surgeries, or chronic conditions.                         |
+| **t\TAG (optional, multiple)**          | No              | Yes                    | Custom labels or categories for organising patients.                                |
+| **al\ALLERGY (optional, multiple)**     | No              | Yes                    | List of known allergies (e.g., “Peanuts”, “Penicillin”).                            |
+| **m\MEDICINE (optional, multiple)**     | No              | Yes                    | List of current medications prescribed to the patient.                              |
+
 
 <box type="tip" seamless>
 
@@ -294,24 +295,25 @@ Format: `edit INDEX [id\IDENTITY] [n\NAME] [p\PHONE] [e\EMAIL] [a\ADDRESS] [dob\
 </div>
 
 
-| **Field (with Prefix)**                  | Compulsory? | Can have multiple? |
-|------------------------------------------|-------------|--------------------|
-| INDEX                                    | Yes         | No                   |
-| **n\\NAME**                              | No         | No                 |
-| **id\\IDENTITY_NUMBER**                  | No         | No                 |
-| **p\\CONTACT_NUMBER**                    | No         | No                 |
-| **e\\EMAIL**                             | No         | No                 |
-| **addr\\HOME_ADDRESS**                   | No         | No                 |
-| **ec\\EMERGENCY_CONTACT**                | No         | No                 |
-| **dob\\DATE_OF_BIRTH**                   | No         | No                 |
-| **b\\BLOOD_TYPE**                        | No         | No                 |
-| **g\\GENDER**                            | No         | No                 |
-| **ar\\ALCOHOLIC_RECORD**                 | No         | No                 |
-| **sr\\SMOKING_RECORD (optional)**        | No          | No                 |
-| **pmh\\PAST_MEDICAL_HISTORY (optional)** | No          | No                 |
-| **t\\TAG (optional, multiple)**          | No          | Yes                |
-| **al\\ALLERGY (optional, multiple)**     | No          | Yes                |
-| **m\\MEDICINE (optional, multiple)**     | No          | Yes                |
+| **Field (with Prefix)**                  | **Compulsory?** | **Can have multiple?** | **Description**                                                                     |
+|------------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|
+| **INDEX**                                | Yes             | No                     | Index of the patient in the Patient List Panel.                                     |
+| **n\NAME**                              | No              | No                     | Full legal name of the patient.                                                     |
+| **id\IDENTITY_NUMBER**                  | No              | No                     | Identification number (e.g., national ID, passport number, or hospital ID).         |
+| **p\CONTACT_NUMBER**                    | No              | No                     | Primary phone number for reaching the patient.                                      |
+| **e\EMAIL**                             | No              | No                     | Patient’s email address for communication.                                          |
+| **addr\HOME_ADDRESS**                   | No              | No                     | Current residential address of the patient.                                         |
+| **ec\EMERGENCY_CONTACT**                | No              | No                     | Name and contact details of a person to contact in case of emergency.               |
+| **dob\DATE_OF_BIRTH**                   | No              | No                     | Patient’s date of birth.                                                            |
+| **b\BLOOD_TYPE**                        | No              | No                     | Patient’s blood group (e.g., A+, O-, etc.).                                         |
+| **g\GENDER**                            | No              | No                     | Gender identity of the patient (e.g., Male, Female, Non-binary, Prefer not to say). |
+| **ar\ALCOHOLIC_RECORD**                 | No              | No                     | Indicates whether the patient consumes alcohol and relevant details or frequency.   |
+| **sr\SMOKING_RECORD (optional)**        | No              | No                     | Indicates whether the patient smokes and relevant details or frequency.             |
+| **pmh\PAST_MEDICAL_HISTORY (optional)** | No              | No                     | Summary of major past illnesses, surgeries, or chronic conditions.                  |
+| **t\TAG (optional, multiple)**          | No              | Yes                    | Custom labels or categories for organising patients.                                |
+| **al\ALLERGY (optional, multiple)**     | No              | Yes                    | List of known allergies (e.g., “Peanuts”, “Penicillin”).                            |
+| **m\MEDICINE (optional, multiple)**     | No              | Yes                    | List of current medications prescribed to the patient.                              |
+
 
 Examples:
 *  `edit 1 p\91234567 e\johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
@@ -344,6 +346,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+**Here is a list of common errors and how to prevent them**
 
 | Error Message                                 | Reason                                                              | Solution                                                                  |
 |-----------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|
