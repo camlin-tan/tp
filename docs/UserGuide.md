@@ -72,7 +72,7 @@ HealthNote is a desktop app for managing contacts, optimized for use via a Line 
 
 **For Novices**
 
-* Perhaps you can jump to the [Quick Start](#quick-start) section to get started
+* For first time users unfamiliar of CLI, perhaps you can first jump to the [Quick Start](#quick-start) section to get started
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -89,6 +89,9 @@ HealthNote is a desktop app for managing contacts, optimized for use via a Line 
 * Perhaps you can jump to the [Command summary](#command-summary) for a quick summary of the commands.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
+User Interface
 
 --------------------------------------------------------------------------------------------------------------------
 
