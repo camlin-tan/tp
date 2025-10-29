@@ -17,7 +17,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -44,12 +49,26 @@ import seedu.address.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    private static final List<Prefix> ADD_COMMAND_PREFIXES = List.of(
+            PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            PREFIX_EMERGENCY_CONTACT, PREFIX_TAG, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE, PREFIX_ALCOHOLIC_RECORD,
+            PREFIX_GENDER, PREFIX_SMOKING_RECORD, PREFIX_ALLERGY, PREFIX_PAST_MEDICAL_HISTORY, PREFIX_MEDICINE
+    );
+
+    private static final Pattern PREFIX_FINDER_PATTERN = Pattern.compile("\\s+(\\w+\\\\)");
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        Set<String> unrecognizedPrefixes = findUnrecognizedPrefixes(args);
+        if (!unrecognizedPrefixes.isEmpty()) {
+            throw new ParseException("The following field prefix(es) are not valid for the 'add' command: "
+                    + String.join(", ", unrecognizedPrefixes));
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_EMERGENCY_CONTACT, PREFIX_TAG, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE, PREFIX_ALCOHOLIC_RECORD,
@@ -67,6 +86,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE,
                 PREFIX_ALCOHOLIC_RECORD, PREFIX_GENDER, PREFIX_SMOKING_RECORD, PREFIX_PAST_MEDICAL_HISTORY);
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         IdentityNumber identityNumber = ParserUtil.parseIdentityNumber(
                 argMultimap.getValue(PREFIX_IDENTITY_NUMBER).get());
@@ -93,6 +113,28 @@ public class AddCommandParser implements Parser<AddCommand> {
                 bloodType, alcoholicRecord, gender, smokingRecord, allergyList, pastMedicalHistory, medicineList);
 
         return new AddCommand(person);
+    }
+
+    /**
+     * Finds prefixes in the args string that are not present in the knownPrefixes list.
+     *
+     * @param args          The raw arguments string.
+     * @return A Set of unrecognized prefix strings found in args.
+     */
+    private Set<String> findUnrecognizedPrefixes(String args) {
+        Set<String> knownPrefixStrings = ADD_COMMAND_PREFIXES.stream()
+                .map(Prefix::getPrefix)
+                .collect(Collectors.toSet());
+        Set<String> unrecognized = new HashSet<>();
+        Matcher matcher = PREFIX_FINDER_PATTERN.matcher(" " + args); // Prepend space to catch prefix at start
+
+        while (matcher.find()) {
+            String potentialPrefix = matcher.group(1); // Extract the prefix (e.g., "n\\")
+            if (!knownPrefixStrings.contains(potentialPrefix)) {
+                unrecognized.add(potentialPrefix);
+            }
+        }
+        return unrecognized;
     }
 
     /**
