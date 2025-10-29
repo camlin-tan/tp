@@ -93,7 +93,7 @@ public class PersonViewPanel extends UiPart<Region> {
         addGridRow(medicalInfoGrid, "Blood Type:", person.getBloodType().toString());
         addGridRow(medicalInfoGrid, "Alcoholic Record:", person.getAlcoholicRecord().toString());
         addGridRow(medicalInfoGrid, "Smoking Record:", person.getSmokingRecord().toString());
-        addGridRow(medicalInfoGrid, "Past Diagnoses:", person.getPastDiagnoses().toString());
+        addGridRow(medicalInfoGrid, "Past Medical History:", person.getPastMedicalHistory().toString());
 
         // Lists
         populateFlowPane(allergiesFlowPane, person.getAllergies());

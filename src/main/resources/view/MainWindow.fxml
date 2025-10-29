@@ -45,8 +45,7 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
-          <SplitPane fx:id="personSplitPane" dividerPositions="1.0" VBox.vgrow="ALWAYS">
+          <SplitPane fx:id="mainSplitPane" dividerPositions="0.33, 0.66" VBox.vgrow="ALWAYS">
               <StackPane fx:id="personListPanelPlaceholder" styleClass="pane-with-border">
                   <padding>
                       <Insets top="10" right="10" bottom="10" left="10" />
@@ -58,10 +57,13 @@
                       <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
               </StackPane>
+
+              <StackPane fx:id="appointmentListPanelPlaceholder" styleClass="pane-with-border">
+                  <padding>
+                      <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+              </StackPane>
           </SplitPane>
-
-
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

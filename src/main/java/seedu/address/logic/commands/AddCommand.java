@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDENTITY_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_DIAGNOSES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAST_MEDICAL_HISTORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SMOKING_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_ALCOHOLIC_RECORD + "ALCOHOLIC RECORD "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_SMOKING_RECORD + "SMOKING RECORD "
-            + PREFIX_PAST_DIAGNOSES + "PAST DIAGNOSES "
+            + PREFIX_PAST_MEDICAL_HISTORY + "PAST MEDICAL HISTORY "
             + "[" + PREFIX_TAG + "TAG]"
             + "[" + PREFIX_ALLERGY + "ALLERGY]"
             + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
@@ -62,7 +62,7 @@ public class AddCommand extends Command {
             + PREFIX_ALLERGY + "nuts "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_PAST_DIAGNOSES + "Diabetes "
+            + PREFIX_PAST_MEDICAL_HISTORY + "Diabetes "
             + PREFIX_MEDICINE + "100mg painkillers/day "
             + PREFIX_MEDICINE + "100mg Panadol/day" + "\n"
             + "Notes: \\ is preserved for internal usage and should not be used in any field other than prefix.";
