@@ -298,15 +298,10 @@ public class ParserUtil {
     /**
      * Parses a {@code String pastMedicalHistory} into a {@code PastMedicalHistory}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code pastMedicalHistory} is invalid.
      */
-    public static PastMedicalHistory parsePastMedicalHistory(String pastMedicalHistory) throws ParseException {
+    public static PastMedicalHistory parsePastMedicalHistory(String pastMedicalHistory) {
         requireNonNull(pastMedicalHistory);
         String trimmedPastMedicalHistory = pastMedicalHistory.trim();
-        if (!PastMedicalHistory.isValidPastMedicalHistory(trimmedPastMedicalHistory)) {
-            throw new ParseException(PastMedicalHistory.MESSAGE_CONSTRAINTS);
-        }
         return new PastMedicalHistory(trimmedPastMedicalHistory);
     }
 

@@ -246,9 +246,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PastMedicalHistory.class.getSimpleName()));
         }
-        if (!PastMedicalHistory.isValidPastMedicalHistory(pastMedicalHistory)) {
-            throw new IllegalValueException(seedu.address.model.person.PastMedicalHistory.MESSAGE_CONSTRAINTS);
-        }
         final PastMedicalHistory modelPastMedicalHistory = new PastMedicalHistory(pastMedicalHistory);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
