@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
@@ -19,8 +20,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -35,6 +41,14 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
+    private static final List<Prefix> EDIT_COMMAND_PREFIXES = List.of(
+            PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            PREFIX_EMERGENCY_CONTACT, PREFIX_TAG, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE, PREFIX_ALCOHOLIC_RECORD,
+            PREFIX_GENDER, PREFIX_SMOKING_RECORD, PREFIX_ALLERGY, PREFIX_PAST_MEDICAL_HISTORY, PREFIX_MEDICINE
+    );
+
+    private static final Pattern PREFIX_FINDER_PATTERN = Pattern.compile("\\s+(\\w+\\\\)");
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -42,6 +56,14 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
+        Set<String> unrecognizedPrefixes = findUnrecognizedPrefixes(args);
+        if (!unrecognizedPrefixes.isEmpty()) {
+            throw new ParseException("The following parameters are not valid for the 'edit' command: "
+                    + String.join(", ", unrecognizedPrefixes)
+                    + "\n Please refer to the Help page or type 'help' for the valid parameters");
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_IDENTITY_NUMBER,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_TAG, PREFIX_DATE_OF_BIRTH,
                 PREFIX_SMOKING_RECORD, PREFIX_BLOOD_TYPE, PREFIX_GENDER, PREFIX_ALLERGY, PREFIX_PAST_MEDICAL_HISTORY,
@@ -110,6 +132,28 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Finds prefixes in the args string that are not present in the EDIT_COMMAND_PREFIXES list.
+     *
+     * @param args The raw arguments string.
+     * @return A Set of unrecognized prefix strings found in args.
+     */
+    private Set<String> findUnrecognizedPrefixes(String args) {
+        Set<String> knownPrefixStrings = EDIT_COMMAND_PREFIXES.stream()
+                .map(Prefix::getPrefix)
+                .collect(Collectors.toSet());
+        Set<String> unrecognized = new HashSet<>();
+        Matcher matcher = PREFIX_FINDER_PATTERN.matcher(" " + args);
+
+        while (matcher.find()) {
+            String potentialPrefix = matcher.group(1);
+            if (!knownPrefixStrings.contains(potentialPrefix)) {
+                unrecognized.add(potentialPrefix);
+            }
+        }
+        return unrecognized;
     }
 
     /**
