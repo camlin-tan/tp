@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AppointmentsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -114,13 +113,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
-
-    @Test
-    public void parseCommand_appointments() throws Exception {
-        assertTrue(parser.parseCommand(AppointmentsCommand.COMMAND_WORD) instanceof AppointmentsCommand);
-        assertTrue(parser.parseCommand(AppointmentsCommand.COMMAND_WORD + " 3") instanceof AppointmentsCommand);
-    }
-
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
