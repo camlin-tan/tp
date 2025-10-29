@@ -45,6 +45,7 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
     * [Editing the data file](#editing-the-data-file)
     * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
   * [FAQ](#faq)
+  * [Glossary](#glossary)
   * [Known issues](#known-issues)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -451,6 +452,22 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+| **Term**                     | **Explanation**                            |
+|------------------------------|--------------------------------------------|
+| Alphanumeric                 | Consists of numbers and/or alphabets only. |
+| CLI (Command-Line Interface) |        A text-based interface where you type commands to interact with the app.                                    |
+| Command                      |  An instruction entered by the user (e.g., `add`, `edit`, `delete`).                                          |
+| Field                        |   A specific piece of information in a patient’s record (e.g., name, address, blood type).                                         |
+| Prefix                       |   A short label before a field to identify it in a command (e.g., `n\` for name, `p\` for phone).                                         |
+| Index                        |   The number showing a patient’s position in the displayed list. Used in commands like `edit` or `delete`.                                                                                                                                        |
+|        Integer                      |     A whole number (no decimals). In HealthNote, indexes must be positive integers such as 1, 2, 3, etc.                                                                                                                                                                                                                                              |
+|               GUI (Graphical User Interface)                      |         The visual interface showing panels, buttons, and text boxes.                                                                                                                                                                                                                                                                                                                                              |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
@@ -468,7 +485,7 @@ Summary of all the commands.
 
 **Info:**<br>
 * Fields with square brackets `[prefix\field]` indicates it is an optional field.
-* Commands without any arguments will still execute if user inputs additional arguments/
+* Commands without any arguments will still execute if user inputs additional arguments
 * You may view [Command Format](#command-format) for more details.
 
 </box>
