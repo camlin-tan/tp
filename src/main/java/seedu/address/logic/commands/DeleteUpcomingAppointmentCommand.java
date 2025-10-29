@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Deletes an appointment identified using it's displayed index from the address book.
+ * Deletes an upcoming appointment identified using it's displayed index from the address book.
  */
-public class DeleteAppointmentCommand extends Command {
+public class DeleteUpcomingAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "unschedule";
 
@@ -28,7 +28,7 @@ public class DeleteAppointmentCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteAppointmentCommand(Index targetIndex) {
+    public DeleteUpcomingAppointmentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -62,11 +62,11 @@ public class DeleteAppointmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteAppointmentCommand otherDeleteAppointmentCommand)) {
+        if (!(other instanceof DeleteUpcomingAppointmentCommand otherDeleteUpcomingAppointmentCommand)) {
             return false;
         }
 
-        return targetIndex.equals(otherDeleteAppointmentCommand.targetIndex);
+        return targetIndex.equals(otherDeleteUpcomingAppointmentCommand.targetIndex);
     }
 
 }

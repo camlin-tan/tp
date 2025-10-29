@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
@@ -56,8 +57,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_DATE_OF_BIRTH, PREFIX_SMOKING_RECORD,
-                PREFIX_PAST_MEDICAL_HISTORY);
+                PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_DATE_OF_BIRTH, PREFIX_SMOKING_RECORD, PREFIX_GENDER,
+                PREFIX_ALCOHOLIC_RECORD, PREFIX_BLOOD_TYPE, PREFIX_PAST_MEDICAL_HISTORY);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 

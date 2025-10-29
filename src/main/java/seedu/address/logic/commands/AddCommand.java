@@ -60,12 +60,12 @@ public class AddCommand extends Command {
             + PREFIX_DATE_OF_BIRTH + "01-01-2000 "
             + PREFIX_SMOKING_RECORD + "Heavy smoker "
             + PREFIX_ALLERGY + "nuts "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney "
+            + PREFIX_TAG + "priorityHigh "
+            + PREFIX_TAG + "diabetesFollowUp "
             + PREFIX_PAST_MEDICAL_HISTORY + "Diabetes "
             + PREFIX_MEDICINE + "100mg painkillers/day "
             + PREFIX_MEDICINE + "100mg Panadol/day" + "\n"
-            + "Notes: \\ is preserved for internal usage and should not be used in any field other than prefix.";
+            + "Note: \\ is preserved for internal usage and should not be used in any field other than prefix.";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with this ID already exists";
