@@ -340,11 +340,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HealthNote` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a patient**
+**Use case: UC01 - Delete a patient**
 
 **MSS**
 
-1.  User requests to list patients
+1.  User requests to <u>list patients (UC05)</u>
 2.  HealthNote shows a list of patients
 3.  User requests to delete a specific patient in the list
 4.  HealthNote deletes the patient
@@ -363,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a patient**
+**Use case: UC02 - Add a patient**
 
 **MSS**
 
@@ -392,13 +392,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1d. Duplicate email or contact number detected.
-
-    * 1d1. HealthNote shows a warning message.
-
-      Use case resumes at step 2.
-
-**Use case: View all commands**
+**Use case: UC03 - View all commands**
 
 **MSS**
 
@@ -416,6 +410,108 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. HealthNote shows an error message.
 
       Use case ends
+
+**Use case: UC04 - Edit a patient**
+
+**MSS**
+
+1.  User requests to <u>list patients (UC05)</u>
+2.  HealthNote shows a list of patients
+3.  User requests to edit a patient using the edit command with required parameters.
+4.  HealthNote edits the patient in the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * Use case ends.
+
+* 3a. One or more required parameters are missing.
+
+    * 1a1. HealthNote shows an error message.
+
+      Use case resumes at step 1
+
+* 3b. The given index is invalid.
+
+    * 1bHealthNote shows an error message.
+
+      Use case resumes at step 1.
+
+* 3c. Duplicate identity number detected.
+
+    * 3c1. HealthNote shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC05 - List patients**
+
+**MSS**
+
+1.  User requests to list all patients.
+2.  HealthNote lists the patients in the system.
+
+    Use case ends.
+
+**Use case: UC06 - Find patients**
+
+**MSS**
+
+1.  User requests to find patients.
+2.  HealthNote lists the matching patients in the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * Use case ends.
+
+**Use case: UC07 - Clear all entries**
+
+**MSS**
+
+1.  User requests to clear all entries in the system.
+2.  HealthNote clears all entries in the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The command inputted is invalid.
+
+    * 1a1. HealthNote shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: UC08 - Change theme**
+
+**MSS**
+
+1.  User requests to change theme of the app.
+2.  HealthNote changes the theme of the app.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The argument inputted is invalid.
+
+    * 1a1. HealthNote shows an error message.
+
+      Use case resumes at step 1
+
+**Use case: UC09 - Accessing help**
+
+**MSS**
+
+1.  User requests for help to view available commands.
+2.  HealthNote displays the available commands.
+
+    Use case ends.
 
 *{More to be added}*
 
