@@ -14,7 +14,7 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    public static final String MESSAGE_WARNING = " \nNotes: Additional arguments detected. You may provide extra "
+    public static final String MESSAGE_WARNING = " \nNote: Additional arguments detected. You may provide extra "
             + "arguments, but they will be ignored.\n";
 
     private final boolean hasExtraArgs;
