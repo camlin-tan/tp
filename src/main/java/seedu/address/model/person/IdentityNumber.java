@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class IdentityNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The identity number must consist only of letters, digits, underscores, or hyphens," +
-                    " and it should not be blank or contain any whitespace characters";
+            "The identity number must consist only of letters, digits, underscores, or hyphens,"
+                    + " and it should not be blank or contain any whitespace characters";
 
     /*
      * The identity number must consist only of letters, digits, underscores, or hyphens.
