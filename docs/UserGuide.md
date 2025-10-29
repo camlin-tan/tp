@@ -280,13 +280,19 @@ Format: `edit INDEX [id\IDENTITY] [n\NAME] [p\PHONE] [e\EMAIL] [a\ADDRESS] [dob\
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div markdown="block" class="alert alert-info">
+
+**ℹ️ Info:**<br>
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t\` without
-    specifying any tags after it.
+  specifying any tags after it.
 * You can remove all the patient’s medicine record by typing `m\` without
-    specifying any tags after it.
+  specifying any tags after it.
 * You can remove all the patient’s allergies by typing `al\` without
-    specifying any tags after it.
+  specifying any tags after it.
+</div>
+
 
 | **Field (with Prefix)**                  | Compulsory? | Can have multiple? |
 |------------------------------------------|-------------|--------------------|
@@ -399,7 +405,7 @@ Format: `clear CONFIRM`
 
 <div markdown="block" class="alert alert-danger">
 
-**❗Caution:**<br>
+**❗Warning:**<br>
 * This action cannot be undone. You must type exactly 'clear CONFIRM' (case-sensitive) to execute
 </div>
 
