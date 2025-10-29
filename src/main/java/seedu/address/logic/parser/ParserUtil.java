@@ -284,17 +284,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String smokingRecord} into a {@code SmokingRecord}.
+     * Parses a {@code String value} into a {@code SmokingRecord}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code smokingRecord} is invalid.
      */
-    public static SmokingRecord parseSmokingRecord(String smokingRecord) throws ParseException {
+    public static SmokingRecord parseSmokingRecord(String smokingRecord) {
         requireNonNull(smokingRecord);
         String trimmedRecord = smokingRecord.trim();
-        if (!SmokingRecord.isValidSmokingRecord(trimmedRecord)) {
-            throw new ParseException(SmokingRecord.MESSAGE_CONSTRAINTS);
-        }
         return new SmokingRecord(trimmedRecord);
     }
 

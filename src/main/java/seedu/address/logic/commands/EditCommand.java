@@ -422,7 +422,7 @@ public class EditCommand extends Command {
                     .add("bloodType", bloodType)
                     .add("alcoholicRecord", alcoholicRecord)
                     .add("gender", gender)
-                    .add("smokingRecord", smokingRecord)
+                    .add("value", smokingRecord)
                     .add("allergies", allergies)
                     .add("medicines", medicines)
                     .add("pastMedicalHistory", pastMedicalHistory)

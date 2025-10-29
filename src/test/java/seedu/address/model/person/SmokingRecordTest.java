@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -15,56 +14,16 @@ public class SmokingRecordTest {
     }
 
     @Test
-    public void constructor_invalidSmokingRecord_throwsIllegalArgumentException() {
-        String invalidRecord = " ";
-        assertThrows(IllegalArgumentException.class,
-                SmokingRecord.MESSAGE_CONSTRAINTS, () -> new SmokingRecord(invalidRecord));
+    public void constructor_emptyString_setsValueToNone() {
+        SmokingRecord smokingRecord = new SmokingRecord("");
+        assertTrue(smokingRecord.value.equals("None"));
     }
 
     @Test
-    public void constructor_validSmokingRecord_accepted() {
-        // boundary case: single character
-        new SmokingRecord("a");
-
-        // normal cases
-        new SmokingRecord("Non-smoker");
-        new SmokingRecord("Heavy smoker");
-        new SmokingRecord("Occasional smoker");
-        new SmokingRecord("Former smoker");
-
-        // special characters
-        new SmokingRecord("Quit 2 years ago");
-        new SmokingRecord("20 cigarettes/day");
-    }
-
-    @Test
-    public void isValidSmokingRecord() {
-        // null smoking record
-        assertThrows(NullPointerException.class, () -> SmokingRecord.isValidSmokingRecord(null));
-
-        // invalid smoking records
-        assertFalse(SmokingRecord.isValidSmokingRecord(" ")); // spaces only
-        assertFalse(SmokingRecord.isValidSmokingRecord("   \t\n")); // multiple whitespace
-        assertFalse(SmokingRecord.isValidSmokingRecord(" Non-smoker")); // leading space
-        assertFalse(SmokingRecord.isValidSmokingRecord("   Quitter")); // leading spaces
-
-        // valid smoking records (any non-null, non-empty string)
-        assertTrue(SmokingRecord.isValidSmokingRecord("")); // empty string
-        assertTrue(SmokingRecord.isValidSmokingRecord("Non-smoker"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("Heavy smoker"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("Occasional"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("Quitter"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("Former smoker"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("20 cigarettes/day"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("Quit 2 years ago"));
-
-        // single characters
-        assertTrue(SmokingRecord.isValidSmokingRecord("Y"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("N"));
-
-        // case sensitive variations
-        assertTrue(SmokingRecord.isValidSmokingRecord("Non-Smoker"));
-        assertTrue(SmokingRecord.isValidSmokingRecord("heavy SMOKER"));
+    public void constructor_validString_setsValueCorrectly() {
+        String validSmokingRecord = "Heavy smoker";
+        SmokingRecord smokingRecord = new SmokingRecord(validSmokingRecord);
+        assertTrue(smokingRecord.value.equals(validSmokingRecord));
     }
 
     @Test

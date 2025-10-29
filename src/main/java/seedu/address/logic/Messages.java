@@ -60,6 +60,8 @@ public class Messages {
                 .append(person.getGender())
                 .append("; Alcoholic Record: ")
                 .append(person.getAlcoholicRecord())
+                .append("; Smoking Record: ")
+                .append(person.getSmokingRecord())
                 .append("; Past Medical History: ")
                 .append(person.getPastMedicalHistory())
                 .append("; Tags: ");

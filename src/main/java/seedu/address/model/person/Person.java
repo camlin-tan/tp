@@ -202,7 +202,7 @@ public class Person {
                 .add("bloodType", bloodType)
                 .add("alcoholicRecord", alcoholicRecord)
                 .add("gender", gender)
-                .add("smokingRecord", smokingRecord)
+                .add("value", smokingRecord)
                 .add("allergies", allergies)
                 .add("pastMedicalHistory", pastMedicalHistory)
                 .add("medicines", medicines)

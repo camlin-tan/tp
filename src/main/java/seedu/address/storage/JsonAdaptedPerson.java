@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord,
                              @JsonProperty("gender") String gender,
-                             @JsonProperty("smokingRecord") String smokingRecord,
+                             @JsonProperty("value") String smokingRecord,
                              @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
                              @JsonProperty("pastMedicalHistory") String pastMedicalHistory,
                              @JsonProperty("medicines") List<JsonAdaptedMedicine> medicines) {
@@ -217,9 +217,6 @@ class JsonAdaptedPerson {
         if (smokingRecord == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     SmokingRecord.class.getSimpleName()));
-        }
-        if (!SmokingRecord.isValidSmokingRecord(smokingRecord)) {
-            throw new IllegalValueException(SmokingRecord.MESSAGE_CONSTRAINTS);
         }
         final SmokingRecord modelSmokingRecord = new SmokingRecord(smokingRecord);
 
