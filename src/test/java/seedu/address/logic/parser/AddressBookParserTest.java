@@ -18,7 +18,7 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AppointmentsCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.DeleteUpcomingAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -62,9 +62,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteAppointment() throws Exception {
-        DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
-                DeleteAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON), command);
+        DeleteUpcomingAppointmentCommand command = (DeleteUpcomingAppointmentCommand) parser.parseCommand(
+                DeleteUpcomingAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteUpcomingAppointmentCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
