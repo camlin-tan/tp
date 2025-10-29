@@ -9,15 +9,15 @@ Adds a patient with the specified fields
 - Date of Birth: `dob\`
 - Contact Number: `p\`
 - Email: `e\`
-- Home Address: `a\`
+- Home Address: `addr\`
 - Emergency Contact: `ec\`
 - Blood Type: `b\`
 - Gender: `g\`
+
+##### Optional, single entry:
 - Alcoholic Record: `ar\`
 - Smoking Record: `sr\`
-
-##### Optional
-- Past Diagnoses: `pd\`
+- Past Medical History: `pmh\`
 
 ##### Optional, can have multiple:
 - Tags: `t\`

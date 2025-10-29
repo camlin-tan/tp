@@ -28,7 +28,7 @@ public class AppointmentsCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         CommandResult expectedCommandResult =
-                new CommandResult(AppointmentsCommand.MESSAGE_SUCCESS, true);
+                new CommandResult(AppointmentsCommand.MESSAGE_SUCCESS);
         assertCommandSuccess(new AppointmentsCommand(), model, expectedCommandResult, expectedModel);
     }
 
@@ -36,7 +36,7 @@ public class AppointmentsCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showAppointmentWithId(model, ALICE.getIdentityNumber());
         CommandResult expectedCommandResult =
-                new CommandResult(AppointmentsCommand.MESSAGE_SUCCESS, true);
+                new CommandResult(AppointmentsCommand.MESSAGE_SUCCESS);
         assertCommandSuccess(new AppointmentsCommand(), model, expectedCommandResult, expectedModel);
     }
 }
