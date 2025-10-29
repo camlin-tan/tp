@@ -18,7 +18,6 @@ Hello, shout out to all my indie doctors out there, this app is for you.
 
 * Table of Contents
 
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
