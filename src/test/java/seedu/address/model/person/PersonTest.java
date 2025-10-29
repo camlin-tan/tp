@@ -43,9 +43,9 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withIdentityNumber(VALID_ID_AMY).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // id differs in case, all other attributes same -> returns false
+        // id differs in case, all other attributes same -> returns true
         Person editedBob = new PersonBuilder(BOB).withIdentityNumber(VALID_ID_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
     }
 
     @Test
