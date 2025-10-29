@@ -58,8 +58,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_NAME, PREFIX_IDENTITY_NUMBER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_EMERGENCY_CONTACT, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE, PREFIX_ALCOHOLIC_RECORD,
-                PREFIX_GENDER
+                PREFIX_EMERGENCY_CONTACT, PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE, PREFIX_GENDER
             ) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -81,7 +80,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         DateOfBirth dateOfBirth = ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DATE_OF_BIRTH).get());
         BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOOD_TYPE).get());
         AlcoholicRecord alcoholicRecord = ParserUtil.parseAlcoholicRecord(
-                argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).get());
+                argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).orElse(""));
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         SmokingRecord smokingRecord = ParserUtil.parseSmokingRecord(
                 argMultimap.getValue(PREFIX_SMOKING_RECORD).orElse(""));

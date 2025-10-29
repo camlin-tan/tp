@@ -58,7 +58,7 @@
     "tags" : [ "friends" ],
     "dob" : "30-05-1995",
     "bloodType" : "O",
-    "alcoholicRecord" : "Yes",
+    "alcoholicRecord" : "Never",
     "gender" : "M",
     "smokingRecord" : "Quitter",
     "allergies": [ "nuts" ],

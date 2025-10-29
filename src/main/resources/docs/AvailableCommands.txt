@@ -18,9 +18,9 @@ Patient Fields:
     ec\EMERGENCY_CONTACT (e.g., [mother] +60 12-123-4567)
     b\BLOOD_TYPE
     g\GENDER
-    ar\ALCOHOLIC_RECORD (e.g., YES or NO)
 
   [Optional - Single Entry]
+    ar\ALCOHOLIC_RECORD
     sr\SMOKING_RECORD (e.g., YES or NO)
     pmh\PAST_MEDICAL_HISTORY
 
