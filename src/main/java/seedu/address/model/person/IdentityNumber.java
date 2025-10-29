@@ -29,7 +29,7 @@ public class IdentityNumber {
     public IdentityNumber(String id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
-        this.identityNumber = id;
+        this.identityNumber = id.toUpperCase();
     }
 
     /**
