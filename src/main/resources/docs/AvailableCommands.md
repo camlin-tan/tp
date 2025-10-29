@@ -9,7 +9,7 @@ Adds a patient with the specified fields
 - Date of Birth: `dob\`
 - Contact Number: `p\`
 - Email: `e\`
-- Home Address: `a\`
+- Home Address: `addr\`
 - Emergency Contact: `ec\`
 - Blood Type: `b\`
 - Gender: `g\`
