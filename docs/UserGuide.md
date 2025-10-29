@@ -17,7 +17,34 @@ Hello, shout out to all my indie doctors out there, this app is for you.
 ### Table of Contents
 
 * Table of Contents
-
+<!-- TOC -->
+* [HealthNote User Guide](#healthnote-user-guide)
+    * [Table of Contents](#table-of-contents)
+  * [Introduction](#introduction)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+  * [Features - General Features](#features---general-features)
+    * [Viewing help : `help`](#viewing-help--help)
+    * [Changing themes : `theme`](#changing-themes--theme)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
+  * [Features - Managing Patient Records](#features---managing-patient-records)
+    * [Adding a patient: `add`](#adding-a-patient-add)
+    * [Editing a patient : `edit`](#editing-a-patient--edit)
+    * [Deleting a patient : `delete`](#deleting-a-patient--delete)
+  * [Feature - Viewing Patient Records](#feature---viewing-patient-records)
+    * [View a patient's medical information: `view`](#view-a-patients-medical-information-view)
+    * [Listing all patients : `list`](#listing-all-patients--list)
+    * [Locating patients by name: `find`](#locating-patients-by-name-find)
+  * [Feature - Clearing Data](#feature---clearing-data)
+    * [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  * [Feature - Data Management](#feature---data-management)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+    * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  * [FAQ](#faq)
+  * [Known issues](#known-issues)
+  * [Command summary](#command-summary)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
@@ -38,8 +65,33 @@ Built with independent practitioners and small clinics in mind, **HealthNote** k
 HealthNote is a desktop app for managing contacts, optimized for use via a Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthNote can get your patient management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
+## Guide Usage
 
-## Quick start
+<div markdown="block" class="alert alert-info">
+
+**For Novices**
+
+* Perhaps you can jump to the [Quick Start](#quick-start) section to get started
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**For Amateurs**
+
+* Perhaps you can jump to the [Table of Contents](#table-of-contents) to start navigating the guide.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**For Experts**
+
+* Perhaps you can jump to the [Command summary](#command-summary) for a quick summary of the commands.
+</div>
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick Start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
@@ -93,6 +145,8 @@ HealthNote is a desktop app for managing contacts, optimized for use via a Line 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features - General Features
 
 ### Viewing help : `help`
@@ -117,6 +171,8 @@ Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features - Managing Patient Records
 
 ### Adding a patient: `add`
@@ -126,23 +182,23 @@ Adds a patient to the address book.
 Format: `add id\IDENTITY n\NAME p\PHONE_NUMBER e\EMAIL a\ADDRESS dob\DATE_OF_BIRTH b\BLOOD_TYPE g\GENDER
 ar\ALCOHOLIC_RECORDS(YES/NO) sr\SMOKING_RECORDS(YES/NO) [t\TAG] [al\ALLERGY] [m\MEDICINE]…​`
 
-| **Field (with Prefix)**                 | **Valid Input(s)**                        | **Invalid Input(s)** | **Requirement(s)**                                                                              |
-|----------------------------------------|-----------------------------------------|---------------------|-------------------------------------------------------------------------------------------------|
-| **n\\NAME**                            | Alex the 3rd, John Doe, Damith s/o Sankar Ashish | (Empty)             | Names should only contain alphanumeric characters and spaces, and not be blank                  |
-| **id\\IDENTITY_NUMBER**                | S1234567A, T7654321B, 060402-06-6767   |                     | Identity number should only contain alphanumeric characters and “-”, spaces allowed             |
-| **p\\CONTACT_NUMBER**                  | 9888-3333 (Office)                      | abcdefg, 23         | Must contain at least 3 consecutive digits                                                      |
-| **e\\EMAIL**                          | e01234567@u.nus.edu, jinHeng@gmail.com | joe@, asd@@@asd     | Emails should be of the format local-part@domain                                                |
-| **addr\\HOME_ADDRESS**                 | 123 Main St                            | (Empty)             | Addresses can take any values, and it should not be blank                                       |
-| **ec\\EMERGENCY_CONTACT**              | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa | Must be in the form [{relationship}] {phone} where phone contains at least 3 consecutive digits |
+| **Field (with Prefix)**                 | **Valid Input(s)**                        | **Invalid Input(s)**           | **Requirement(s)**                                                                              |
+|----------------------------------------|-----------------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------|
+| **n\\NAME**                            | Alex the 3rd, John Doe, Damith s/o Sankar Ashish | (Empty)                        | Names should only contain alphanumeric characters and spaces, and not be blank                  |
+| **id\\IDENTITY_NUMBER**                | S1234567A, T7654321B, 060402-06-6767   | %&!, 12 3-4                    | Identity number should only contain alphanumeric characters,"-" and/or "_", without spaces      |
+| **p\\CONTACT_NUMBER**                  | 9888-3333 (Office)                      | abcdefg, 23                    | Must contain at least 3 consecutive digits                                                      |
+| **e\\EMAIL**                          | e01234567@u.nus.edu, jinHeng@gmail.com | joe@, asd@@@asd                | Emails should be of the format local-part@domain                                                |
+| **addr\\HOME_ADDRESS**                 | 123 Main St                            | (Empty)                        | Addresses can take any values, and it should not be blank                                       |
+| **ec\\EMERGENCY_CONTACT**              | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa            | Must be in the form [{relationship}] {phone} where phone contains at least 3 consecutive digits |
 | **dob\\DATE_OF_BIRTH**                 | 05-23-1967, 12/10/1987                 | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: DD-MM-YYYY, DD/MM/YYYY, or MM-DD-YYYY         |
-| **b\\BLOOD_TYPE**                      | A+, O-, AB+                            | 123, XYZ            | Must be one of: A+, A-, B+, B-, AB+, AB-, O+, O-                                                |
-| **g\\GENDER**                         | Male, Female, Non-binary, Helicopter   | (Empty)             | Genders should not be blank                                                                     |
-| **ar\\ALCOHOLIC_RECORD**               | None, Occasionally, Heavy               | (Empty)             | Alcoholic Record should not be blank                                                            |
-| **sr\\SMOKING_RECORD (optional)**      | None, Occasionally, Quitter, Heavy      | (Empty)             | Smoking Record should not be blank                                                              |
-| **pmh\\PAST_MEDICAL_HISTORY (optional)** | None, Diabetes, Hypertension           | (Empty)             | Past Medical History should not be blank                                                        |
-| **t\\TAGS (optional, multiple)**       | Urgent, Orphan, Poor                    | 123                 | Tags names should be alphanumeric                                                               |
-| **al\\ALLERGIES (optional, multiple)** | Peanuts, Penicillin                    | (Empty)             | Allergy names should be alphanumeric                                                            |
-| **m\\MEDICINES (optional, multiple)**  | 500mg Ibuprofen, 2 Panadol capsules/day | (Empty)             | Medicine field should not be blank                                                              |
+| **b\\BLOOD_TYPE**                      | A+, O-, AB+                            | 123, XYZ                       | Must be one of: A+, A-, B+, B-, AB+, AB-, O+, O-                                                |
+| **g\\GENDER**                         | Male, Female, Non-binary, Helicopter   | (Empty)                        | Genders should not be blank                                                                     |
+| **ar\\ALCOHOLIC_RECORD**               | None, Occasionally, Heavy               | (Empty)                        | Alcoholic Record should not be blank                                                            |
+| **sr\\SMOKING_RECORD (optional)**      | None, Occasionally, Quitter, Heavy      | (Empty)                        | Smoking Record should not be blank                                                              |
+| **pmh\\PAST_MEDICAL_HISTORY (optional)** | None, Diabetes, Hypertension           | (Empty)                        | Past Medical History should not be blank                                                        |
+| **t\\TAGS (optional, multiple)**       | Urgent, Orphan, Poor                    | 123                            | Tags names should be alphanumeric, without spaces                                               |
+| **al\\ALLERGIES (optional, multiple)** | Peanuts, Penicillin                    | (Empty)                        | Allergy names should be alphanumeric, without spaces                                            |
+| **m\\MEDICINES (optional, multiple)**  | 500mg Ibuprofen, 2 Panadol capsules/day | (Empty)                        | Medicine field should not be blank                                                              |
 
 
 <box type="tip" seamless>
@@ -195,6 +251,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Feature - Viewing Patient Records
 
 ### View a patient's medical information: `view`
@@ -230,6 +288,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Feature - Clearing Data
 
 ### Clearing all entries : `clear`
@@ -238,11 +298,13 @@ Clears all entries from the app.
 
 Format: `clear CONFIRM`
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-danger">
 
 **❗Caution:**<br>
 * This action cannot be undone. You must type exactly 'clear CONFIRM' (case sensitive) to execute
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Feature - Data Management
 
