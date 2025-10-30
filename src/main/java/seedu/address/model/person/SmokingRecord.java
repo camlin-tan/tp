@@ -6,6 +6,13 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's smoking record in the HealthNote.
  */
 public class SmokingRecord {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Smoking record can be any string, and it should not be blank.";
+    /*
+     * The first character of the smoking record must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "^[^\\s].*";
     public static final String DEFAULT_SMOKING_RECORD = "None";
     public final String value;
 
