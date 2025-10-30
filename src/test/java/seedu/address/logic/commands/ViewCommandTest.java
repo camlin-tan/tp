@@ -63,8 +63,7 @@ public class ViewCommandTest {
                 String.format(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)),
                 false,
                 false,
-                personToView,
-                null);
+                personToView);
 
         expectedModel.getFilteredAppointmentList(personToView.getIdentityNumber());
 
