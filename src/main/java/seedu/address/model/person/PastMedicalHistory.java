@@ -6,6 +6,11 @@ import static java.util.Objects.requireNonNull;
  * Represents a person's past medical history in the HealthNote.
  */
 public class PastMedicalHistory {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Past medical history can be any string, and it should not be blank.";
+
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     public static final String DEFAULT_PAST_MEDICAL_HISTORY = "None";
     public final String value;
 
