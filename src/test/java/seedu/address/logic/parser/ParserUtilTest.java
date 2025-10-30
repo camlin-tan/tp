@@ -267,10 +267,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePastMedicalHistory_invalidValue_triggersWarning() throws Exception {
-        // blank input is considered empty and should be accepted (converted to "None")
-        String blank = "   ";
-        assertEquals("None", ParserUtil.parsePastMedicalHistory(blank).value);
+    public void parsePastMedicalHistory_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePastMedicalHistory(""));
     }
 
     @Test

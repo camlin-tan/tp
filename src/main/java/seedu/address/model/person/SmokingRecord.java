@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's smoking record in the HealthNote.
@@ -13,7 +14,6 @@ public class SmokingRecord {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^[^\\s].*";
-    public static final String DEFAULT_SMOKING_RECORD = "None";
     public final String value;
 
     /**
@@ -23,11 +23,15 @@ public class SmokingRecord {
      */
     public SmokingRecord(String record) {
         requireNonNull(record);
-        if (record.isEmpty()) {
-            this.value = DEFAULT_SMOKING_RECORD;
-        } else {
-            this.value = record;
-        }
+        checkArgument(isValidSmokingRecord(record), MESSAGE_CONSTRAINTS);
+        this.value = record;
+    }
+
+    /**
+     * Returns true if a given string is a valid smoking record.
+     */
+    public static boolean isValidSmokingRecord(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

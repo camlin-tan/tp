@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a person's past medical history in the HealthNote.
@@ -11,7 +12,6 @@ public class PastMedicalHistory {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String DEFAULT_PAST_MEDICAL_HISTORY = "None";
     public final String value;
 
     /**
@@ -21,11 +21,15 @@ public class PastMedicalHistory {
      */
     public PastMedicalHistory(String medicalHistory) {
         requireNonNull(medicalHistory);
-        if (medicalHistory.isEmpty()) {
-            this.value = DEFAULT_PAST_MEDICAL_HISTORY;
-        } else {
-            this.value = medicalHistory;
-        }
+        checkArgument(isValidPastMedicalHistory(medicalHistory), MESSAGE_CONSTRAINTS);
+        this.value = medicalHistory;
+    }
+
+    /**
+     * Returns true if a given string is a valid past medical history.
+     */
+    public static boolean isValidPastMedicalHistory(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

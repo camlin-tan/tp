@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names can take any values, and should should not be blank";
+            "Names can take any values, and should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,

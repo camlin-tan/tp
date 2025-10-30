@@ -63,7 +63,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PAST_MEDICAL_HISTORY = BENSON.getPastMedicalHistory().toString();
     private static final String VALID_LONG_PAST_MEDICAL_HISTORY =
             "DiagnosisA, DiagnosisB, DiagnosisC, DiagnosisD, DiagnosisE, DiagnosisF, DiagnosisG, "
-                    + "DiagnosisH, DiagnosisI, DiagnosisJ, DiagnosisK, DiagnosisL, DiagnosisM, DiagnosisN";
+            + "DiagnosisH, DiagnosisI, DiagnosisJ, DiagnosisK, DiagnosisL, DiagnosisM, DiagnosisN";
     private static final List<JsonAdaptedMedicine> VALID_MEDICINES = BENSON.getMedicines().stream()
             .map(JsonAdaptedMedicine::new)
             .collect(Collectors.toList());
