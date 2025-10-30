@@ -34,6 +34,18 @@ Example:
 
 
 ---
+Edit a patient: edit
+-------------------------
+Edits the details of an existing patient in the list. All the fields are optional, but at least one must be provided.
+
+Format:
+  edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [dob\DATE_OF_BIRTH] [p\PHONE_NUMBER] [e\EMAIL] [addr\HOME_ADDRESS] [ec\EMERGENCY_CONTACT] [b\BLOOD_TYPE] [g\GENDER] [ar\ALCOHOLIC_RECORD] [sr\SMOKING_RECORD] [pmh\PAST_MEDICAL_HISTORY] [t\TAG]... [al\ALLERGY]... [m\MEDICINE]...
+
+Example:
+  edit 1 p\+6587654321
+
+
+---
 Delete a patient: delete
 -------------------------
 Deletes the patient at the specified index from the list.
@@ -76,9 +88,51 @@ Example:
 
 
 ---
-View help: help
+Schedule an appointment: schedule
+-------------------------
+Schedules an appointment for a patient.
+
+Format:
+  schedule INDEX adt\APPOINTMENT_TIME [note\APPOINTMENT_NOTE]
+
+Example:
+  schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip
+
+
+---
+Cancel an upcoming appointment: unschedule
+-------------------------
+Deletes the upcoming appointment with a patient.
+
+Format:
+  unschedule INDEX
+
+Example:
+  unschedule 1
+
+
+---
+Forget past appointments: forget
+-------------------------
+Deletes past appointment with a patient.
+
+Format:
+  forget INDEX
+
+Example:
+  forget 1
+
+
+---
+Show all available commands: help
 -------------------------
 Shows this help window.
+
+
+---
+Clear all patients: clear CONFIRM
+-------------------------
+Clears all patients from HealthNotes.
 
 
 ---

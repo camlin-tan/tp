@@ -158,6 +158,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDateOfBirth_leapDay_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateOfBirth("31-02-2025"));
+    }
+
+    @Test
     public void parseDateOfBirth_validValueWithoutWhitespace_returnsDateOfBirth() throws Exception {
         DateOfBirth expectedDateOfBirth = new DateOfBirth(VALID_DATE_OF_BIRTH);
         assertEquals(expectedDateOfBirth, ParserUtil.parseDateOfBirth(VALID_DATE_OF_BIRTH));
@@ -179,6 +184,11 @@ public class ParserUtilTest {
     @Test
     public void parseAppointmentTime_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentTime(INVALID_APPOINTMENT_TIME));
+    }
+
+    @Test
+    public void parseAppointmentTime_leapDay_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentTime("29-02-2025 10:00"));
     }
 
     @Test

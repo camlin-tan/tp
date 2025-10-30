@@ -28,10 +28,10 @@ public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "schedule";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the appointment for the patient identified "
-            + "by the index number used in the displayed patient list. "
+            + "by the index number used in the displayed patient list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_APPOINTMENT_TIME + "APPOINTMENT_TIME "
-            + "[" + PREFIX_APPOINTMENT_NOTE + "APPOINTMENT_NOTE] "
+            + "[" + PREFIX_APPOINTMENT_NOTE + "APPOINTMENT_NOTE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPOINTMENT_TIME + "13-10-2025 10:00 "
             + PREFIX_APPOINTMENT_NOTE + "Needs IV Drip";

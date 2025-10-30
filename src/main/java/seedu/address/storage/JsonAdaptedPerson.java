@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("dob") String dateOfBirth, @JsonProperty("bloodType") String bloodType,
                              @JsonProperty("alcoholicRecord") String alcoholicRecord,
                              @JsonProperty("gender") String gender,
-                             @JsonProperty("smokingRecord") String smokingRecord,
+                             @JsonProperty("value") String smokingRecord,
                              @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
                              @JsonProperty("pastMedicalHistory") String pastMedicalHistory,
                              @JsonProperty("medicines") List<JsonAdaptedMedicine> medicines) {
@@ -197,7 +197,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
         }
-        if (!DateOfBirth.isValidDate(dateOfBirth)) {
+        if (!DateOfBirth.isValidDateFormat(dateOfBirth)) {
             throw new IllegalValueException(DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
         }
         if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
@@ -217,9 +217,6 @@ class JsonAdaptedPerson {
         if (smokingRecord == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     SmokingRecord.class.getSimpleName()));
-        }
-        if (!SmokingRecord.isValidSmokingRecord(smokingRecord)) {
-            throw new IllegalValueException(SmokingRecord.MESSAGE_CONSTRAINTS);
         }
         final SmokingRecord modelSmokingRecord = new SmokingRecord(smokingRecord);
 
@@ -245,9 +242,6 @@ class JsonAdaptedPerson {
             logger.warning(() -> String.format("JsonAdaptedPerson: missing PastMedicalHistory for name='%s'", name));
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PastMedicalHistory.class.getSimpleName()));
-        }
-        if (!PastMedicalHistory.isValidPastMedicalHistory(pastMedicalHistory)) {
-            throw new IllegalValueException(seedu.address.model.person.PastMedicalHistory.MESSAGE_CONSTRAINTS);
         }
         final PastMedicalHistory modelPastMedicalHistory = new PastMedicalHistory(pastMedicalHistory);
 

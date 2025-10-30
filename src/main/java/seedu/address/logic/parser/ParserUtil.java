@@ -146,8 +146,11 @@ public class ParserUtil {
     public static DateOfBirth parseDateOfBirth(String dateOfBirth) throws ParseException {
         requireNonNull(dateOfBirth);
         String trimmedDateOfBirth = dateOfBirth.trim();
-        if (!DateOfBirth.isValidDate(trimmedDateOfBirth)) {
+        if (!DateOfBirth.isValidDateFormat(trimmedDateOfBirth)) {
             throw new ParseException(DateOfBirth.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        if (!DateOfBirth.isValidDate(trimmedDateOfBirth)) {
+            throw new ParseException(DateOfBirth.MESSAGE_INVALID_DATE_CONSTRAINTS + trimmedDateOfBirth);
         }
         if (!DateOfBirth.isValidDateOfBirth(trimmedDateOfBirth)) {
             throw new ParseException(DateOfBirth.MESSAGE_PAST_DATE_CONSTRAINTS);
@@ -281,32 +284,22 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String smokingRecord} into a {@code SmokingRecord}.
+     * Parses a {@code String value} into a {@code SmokingRecord}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code smokingRecord} is invalid.
      */
-    public static SmokingRecord parseSmokingRecord(String smokingRecord) throws ParseException {
+    public static SmokingRecord parseSmokingRecord(String smokingRecord) {
         requireNonNull(smokingRecord);
         String trimmedRecord = smokingRecord.trim();
-        if (!SmokingRecord.isValidSmokingRecord(trimmedRecord)) {
-            throw new ParseException(SmokingRecord.MESSAGE_CONSTRAINTS);
-        }
         return new SmokingRecord(trimmedRecord);
     }
 
     /**
      * Parses a {@code String pastMedicalHistory} into a {@code PastMedicalHistory}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code pastMedicalHistory} is invalid.
      */
-    public static PastMedicalHistory parsePastMedicalHistory(String pastMedicalHistory) throws ParseException {
+    public static PastMedicalHistory parsePastMedicalHistory(String pastMedicalHistory) {
         requireNonNull(pastMedicalHistory);
         String trimmedPastMedicalHistory = pastMedicalHistory.trim();
-        if (!PastMedicalHistory.isValidPastMedicalHistory(trimmedPastMedicalHistory)) {
-            throw new ParseException(PastMedicalHistory.MESSAGE_CONSTRAINTS);
-        }
         return new PastMedicalHistory(trimmedPastMedicalHistory);
     }
 
@@ -319,8 +312,11 @@ public class ParserUtil {
     public static AppointmentTime parseAppointmentTime(String appointmentTime) throws ParseException {
         requireNonNull(appointmentTime);
         String trimmedAppointmentTime = appointmentTime.trim();
-        if (!AppointmentTime.isValidDateTime(trimmedAppointmentTime)) {
+        if (!AppointmentTime.isValidDateTimeFormat(trimmedAppointmentTime)) {
             throw new ParseException(AppointmentTime.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        if (!AppointmentTime.isValidDateTime(trimmedAppointmentTime)) {
+            throw new ParseException(AppointmentTime.MESSAGE_VALID_DATE_CONSTRAINT + trimmedAppointmentTime);
         }
         return new AppointmentTime(trimmedAppointmentTime);
     }

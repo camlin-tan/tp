@@ -123,6 +123,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setPastMedicalHistory(ParserUtil.parsePastMedicalHistory(
                     argMultimap.getValue(PREFIX_PAST_MEDICAL_HISTORY).get()));
         }
+        if (argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).isPresent()) {
+            editPersonDescriptor.setAlcoholicRecord(ParserUtil.parseAlcoholicRecord(
+                    argMultimap.getValue(PREFIX_ALCOHOLIC_RECORD).get()));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseAllergiesForEdit(argMultimap.getAllValues(PREFIX_ALLERGY)).ifPresent(editPersonDescriptor::setAllergies);
         parseMedicinesForEdit(argMultimap.getAllValues(PREFIX_MEDICINE)).ifPresent(editPersonDescriptor::setMedicines);

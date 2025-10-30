@@ -37,10 +37,7 @@ public class PersonViewPanel extends UiPart<Region> {
     private Label nameLabel;
 
     @FXML
-    private GridPane personalInfoGrid;
-
-    @FXML
-    private GridPane medicalInfoGrid;
+    private GridPane infoGrid;
 
     @FXML
     private FlowPane allergiesFlowPane;
@@ -81,20 +78,27 @@ public class PersonViewPanel extends UiPart<Region> {
         nameLabel.setText(person.getName().fullName);
 
         // Personal Info
-        addGridRow(personalInfoGrid, "Identity Number:", person.getIdentityNumber().identityNumber);
-        addGridRow(personalInfoGrid, "Date of Birth:", person.getDateOfBirth().toString()
+        Label section = new Label("Personal Information");
+        section.getStyleClass().add("person-view-section-heading");
+        infoGrid.add(section, 0, infoGrid.getRowCount(), 2, 1);
+
+        addGridRow(infoGrid, "Identity Number:", person.getIdentityNumber().identityNumber);
+        addGridRow(infoGrid, "Date of Birth:", person.getDateOfBirth().toString()
                 + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
-        addGridRow(personalInfoGrid, "Gender:", person.getGender().toString());
-        addGridRow(personalInfoGrid, "Phone:", person.getPhone().value);
-        addGridRow(personalInfoGrid, "Email:", person.getEmail().value);
-        addGridRow(personalInfoGrid, "Address:", person.getAddress().value);
+        addGridRow(infoGrid, "Gender:", person.getGender().toString());
+        addGridRow(infoGrid, "Phone:", person.getPhone().value);
+        addGridRow(infoGrid, "Email:", person.getEmail().value);
+        addGridRow(infoGrid, "Address:", person.getAddress().value);
 
         // Medical Info
-        addGridRow(medicalInfoGrid, "Emergency Contact:", person.getEmergencyContact().toString());
-        addGridRow(medicalInfoGrid, "Blood Type:", person.getBloodType().toString());
-        addGridRow(medicalInfoGrid, "Alcoholic Record:", person.getAlcoholicRecord().toString());
-        addGridRow(medicalInfoGrid, "Smoking Record:", person.getSmokingRecord().toString());
-        addGridRow(medicalInfoGrid, "Past Medical History:", person.getPastMedicalHistory().toString());
+        Label section2 = new Label("Medical Details");
+        section2.getStyleClass().add("person-view-section-heading");
+        infoGrid.add(section2, 0, infoGrid.getRowCount(), 2, 1);
+        addGridRow(infoGrid, "Emergency Contact:", person.getEmergencyContact().toString());
+        addGridRow(infoGrid, "Blood Type:", person.getBloodType().toString());
+        addGridRow(infoGrid, "Alcoholic Record:", person.getAlcoholicRecord().toString());
+        addGridRow(infoGrid, "Smoking Record:", person.getSmokingRecord().toString());
+        addGridRow(infoGrid, "Past Medical History:", person.getPastMedicalHistory().toString());
 
         // Lists
         Set<String> allergyValues = person.getAllergies().stream()

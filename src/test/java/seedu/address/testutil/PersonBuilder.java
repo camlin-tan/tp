@@ -202,7 +202,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code smokingRecord} of the {@code Person} that we are building.
+     * Sets the {@code value} of the {@code Person} that we are building.
      */
     public PersonBuilder withSmokingRecord(String smokingRecord) {
         this.smokingRecord = new SmokingRecord(smokingRecord);

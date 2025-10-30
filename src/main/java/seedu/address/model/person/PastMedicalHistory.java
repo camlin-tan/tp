@@ -3,35 +3,24 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a person's past medical history in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPastMedicalHistory(String)}
+ * Represents a person's past medical history in the HealthNote.
  */
 public class PastMedicalHistory {
-    public static final String MESSAGE_CONSTRAINTS = "Past medical history can be any string, "
-            + "and it should not be blank";
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String DEFAULT_PAST_MEDICAL_HISTORY = "None";
     public final String value;
 
     /**
      * Constructs a {@code PastMedicalHistory}.
      *
-     * @param medicalHistory A valid past medical history.
+     * @param medicalHistory A string representing the past medical history. Can be empty.
      */
     public PastMedicalHistory(String medicalHistory) {
         requireNonNull(medicalHistory);
         if (medicalHistory.isEmpty()) {
-            this.value = "None";
+            this.value = DEFAULT_PAST_MEDICAL_HISTORY;
         } else {
             this.value = medicalHistory;
         }
-    }
-
-    /**
-     * Returns true if a given string is a valid past medical history.
-     * An empty string is also considered valid, indicating no past medical history.
-     */
-    public static boolean isValidPastMedicalHistory(String test) {
-        return test.isEmpty() || test.matches(VALIDATION_REGEX);
     }
 
     @Override
