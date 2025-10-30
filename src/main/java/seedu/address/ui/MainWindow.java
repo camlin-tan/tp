@@ -130,15 +130,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        assert personListPanelPlaceholder != null : "personListPanelPlaceholder' was not added";
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        assert resultDisplayPlaceholder != null : "resultDisplayPlaceholder' was not added";
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        assert statusbarPlaceholder != null : "statusbarPlaceholder' was not added";
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        assert commandBoxPlaceholder != null : "commandBoxPlaceholder' was not added";
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
