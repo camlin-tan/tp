@@ -32,12 +32,12 @@ import seedu.address.model.person.SmokingRecord;
  * Test class for JsonAdaptedPerson.
  */
 public class JsonAdaptedPersonTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = " ";
     private static final String INVALID_PHONE = "@6";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_DOB = "32-13-2020";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = " ";
     private static final String INVALID_ALCOHOLIC_RECORD = " ";
     private static final String INVALID_BLOOD_TYPE = " ";
     private static final String INVALID_GENDER = " ";
@@ -63,7 +63,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PAST_MEDICAL_HISTORY = BENSON.getPastMedicalHistory().toString();
     private static final String VALID_LONG_PAST_MEDICAL_HISTORY =
             "DiagnosisA, DiagnosisB, DiagnosisC, DiagnosisD, DiagnosisE, DiagnosisF, DiagnosisG, "
-            + "DiagnosisH, DiagnosisI, DiagnosisJ, DiagnosisK, DiagnosisL, DiagnosisM, DiagnosisN";
+                    + "DiagnosisH, DiagnosisI, DiagnosisJ, DiagnosisK, DiagnosisL, DiagnosisM, DiagnosisN";
     private static final List<JsonAdaptedMedicine> VALID_MEDICINES = BENSON.getMedicines().stream()
             .map(JsonAdaptedMedicine::new)
             .collect(Collectors.toList());
