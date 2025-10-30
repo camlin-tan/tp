@@ -23,6 +23,8 @@ General Notes:
 INDEX must be a positive integer.
 Arguments can be inputted in any order (e.g. 'n\STEVEN g\F' is the same as 'g\F n\STEVEN')
 
+Refer to the full User Guide for more details:
+→ https://ay2526s1-cs2103t-f11-1.github.io/tp/UserGuide.html
 
 =========================
    PATIENT COMMANDS
