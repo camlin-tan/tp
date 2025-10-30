@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class CommandResultTest {
     @Test
@@ -65,5 +67,58 @@ public class CommandResultTest {
                 + ", isHelp=" + commandResult.isHelp() + ", isExit=" + commandResult.isExit()
                 + ", themePath=" + commandResult.getThemePath() + "}";
         assertEquals(expected, commandResult.toString());
+    }
+
+    @Test
+    public void equals_personToViewAndThemePath() {
+        Person person = new PersonBuilder().withName("Alice").build();
+        Person anotherPerson = new PersonBuilder().withName("Bob").build();
+
+        CommandResult base = new CommandResult("feedback", false, false, person, "theme1");
+        CommandResult same = new CommandResult("feedback", false, false, person, "theme1");
+        CommandResult differentPerson = new CommandResult("feedback", false, false, anotherPerson, "theme1");
+        CommandResult differentTheme = new CommandResult("feedback", false, false, person, "theme2");
+
+        // same personToView and same themePath -> true
+        assertTrue(base.equals(same));
+
+        // different personToView -> false
+        assertFalse(base.equals(differentPerson));
+
+        // different themePath -> false
+        assertFalse(base.equals(differentTheme));
+    }
+
+    @Test
+    public void hashcode_personToViewAndThemePath() {
+        Person person = new PersonBuilder().withName("Alice").build();
+        CommandResult base = new CommandResult("feedback", false, false, person, "blue");
+
+        // same values -> same hashcode
+        assertEquals(base.hashCode(), new CommandResult("feedback", false, false, person, "blue").hashCode());
+
+        // different personToView -> different hashcode
+        assertNotEquals(base.hashCode(),
+                new CommandResult("feedback", false, false, new PersonBuilder().withName("Bob").build(),
+                        "blue").hashCode());
+
+        // different themePath -> different hashcode
+        assertNotEquals(base.hashCode(),
+                new CommandResult("feedback", false, false, person, "pink").hashCode());
+    }
+
+    @Test
+    public void getPersonToView_presentAndEmpty() {
+        Person person = new PersonBuilder().withName("Alice").build();
+
+        CommandResult withPerson = new CommandResult("feedback", false, false, person, null);
+        CommandResult withoutPerson = new CommandResult("feedback");
+
+        // personToView present -> Optional non-empty
+        assertTrue(withPerson.getPersonToView().isPresent());
+        assertEquals(person, withPerson.getPersonToView().get());
+
+        // personToView absent -> Optional empty
+        assertFalse(withoutPerson.getPersonToView().isPresent());
     }
 }
