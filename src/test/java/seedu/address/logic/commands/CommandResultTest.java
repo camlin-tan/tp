@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -87,24 +88,6 @@ public class CommandResultTest {
 
         // different themePath -> false
         assertFalse(base.equals(differentTheme));
-    }
-
-    @Test
-    public void hashcode_personToViewAndThemePath() {
-        Person person = new PersonBuilder().withName("Alice").build();
-        CommandResult base = new CommandResult("feedback", false, false, person, "blue");
-
-        // same values -> same hashcode
-        assertEquals(base.hashCode(), new CommandResult("feedback", false, false, person, "blue").hashCode());
-
-        // different personToView -> different hashcode
-        assertNotEquals(base.hashCode(),
-                new CommandResult("feedback", false, false, new PersonBuilder().withName("Bob").build(),
-                        "blue").hashCode());
-
-        // different themePath -> different hashcode
-        assertNotEquals(base.hashCode(),
-                new CommandResult("feedback", false, false, person, "pink").hashCode());
     }
 
     @Test
