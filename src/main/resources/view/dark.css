@@ -93,6 +93,14 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.list-view:empty {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.list-view .list-cell:empty {
+    -fx-background-color: transparent;
+}
+
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
@@ -353,4 +361,70 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+/* Person View Panel Styles */
+.person-view-scroll-pane {
+    -fx-background: #383838;
+    -fx-background-color: #383838;
+}
+
+.person-view-vbox {
+    -fx-padding: 20;
+    -fx-background-color: #383838;
+}
+
+.person-view-name-label {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 10 0;
+}
+
+.person-view-section-heading {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E0E0E0;
+    -fx-padding: 10 0 5 0;
+}
+
+.person-view-tag {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+    -fx-padding: 4 8 4 8;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.person-view-none-tag {
+    -fx-text-fill: #AAAAAA !important;
+    -fx-font-style: italic;
+}
+
+.person-view-field-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #CCCCCC !important;
+    -fx-alignment: top-right;
+}
+
+.person-view-value-label {
+    -fx-text-fill: white !important;
+    -fx-wrap-text: true;
+}
+
+.person-view-appointment-box {
+    -fx-background-color: #2C2C2C;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+    -fx-border-color: #555555;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+/* Appointment Panel Styles */
+.appointment-section-heading {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 10 0 5 0;
 }

@@ -77,14 +77,15 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #87CEEB;
-    -fx-border-color: transparent transparent transparent #87CEEB;
+    -fx-background-color: derive(#E3F2FD, 20%);
+    -fx-border-color: transparent transparent transparent #E3F2FD;
+    -fx-padding: 0 1 0 1;
 }
 
 .split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: #E3F2FD;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-background-color: derive(#E3F2FD, 20%);
 }
 
 .list-view {
@@ -95,6 +96,10 @@
 
 .list-view:empty {
     -fx-background-color: #E3F2FD;
+}
+
+.list-view .list-cell:empty {
+    -fx-background-color: transparent;
 }
 
 .list-cell {
@@ -172,10 +177,9 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #1E3A8A;
-    -fx-border-color: #87CEEB;
-    -fx-border-width: 1;
-    -fx-border-insets: 5;
-    -fx-background-radius: 6;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
 }
 
 .result-display .label {
@@ -184,7 +188,7 @@
 
 .grid-pane {
     -fx-background-color: #E3F2FD;
-    -fx-border-color: #87CEEB;
+    -fx-border-color: #E3F2FD;
     -fx-border-width: 1px;
 }
 
@@ -311,7 +315,7 @@
 #commandTextArea {
     -fx-background-color: transparent white transparent white;
     -fx-background-insets: 0;
-    -fx-border-color: #87CEEB #87CEEB #1E3A8A #87CEEB;
+    -fx-border-color: #E3F2FD #E3F2FD #1E3A8A #E3F2FD;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
@@ -328,12 +332,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: white;
+    -fx-background-color: transparent, white, transparent, white;
     -fx-background-radius: 6;
-    -fx-border-color: #87CEEB;
-    -fx-border-width: 1;
-    -fx-border-radius: 6;
-    -fx-padding: 10;
 }
 
 #personListPanel {
@@ -356,63 +356,70 @@
     -fx-font-size: 11;
 }
 
-/* ====================== PERSON‑VIEW PANEL (LIGHT BLUE BG + DARK TEXT) ====================== */
+/* Person View Panel Styles */
+.person-view-scroll-pane {
+    -fx-background: #5C9FD6;
+    -fx-background-color: #5C9FD6;
+}
 
 .person-view-vbox {
-    -fx-background-color: #E3F2FD;   /* ← Very light sky blue (same as list) */
-    -fx-padding: 24;
-}
-
-.person-view-vbox > .scroll-pane,
-.person-view-vbox > .scroll-pane > .viewport {
-    -fx-background-color: transparent;
-}
-
-/* Cards – clean white */
-.person-view-vbox > .grid-pane,
-.person-view-vbox > .flow-pane,
-.person-view-vbox > .vbox {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 14;
-    -fx-border-color: #87CEEB;
-    -fx-border-radius: 14;
-    -fx-border-width: 1.5;
     -fx-padding: 20;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);
+    -fx-background-color: #5C9FD6;
 }
 
-/* ALL TEXT = DARK BLUE */
-.person-view-section-heading,
-.person-view-name-label,
-.person-view-vbox .label {
-    -fx-text-fill: #1E3A8A;
-    -fx-font-family: "Segoe UI Semibold";
-}
-
-/* Headings */
-.person-view-section-heading {
-    -fx-font-size: 16pt;
-    -fx-font-weight: bold;
-    -fx-padding: 0 0 12 0;
-}
-
-/* Name */
 .person-view-name-label {
-    -fx-font-size: 28pt;
+    -fx-font-size: 24;
     -fx-font-weight: bold;
-    -fx-padding: 0 0 18 0;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 10 0;
 }
 
-/* Field labels & values */
-.person-view-vbox .grid-pane .label {
-    -fx-font-size: 13pt;
+.person-view-section-heading {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 10 0 5 0;
 }
 
-.person-view-vbox .flow-pane .label {
-    -fx-background-color: #6B7280 !important;
-    -fx-text-fill: #FFFFFF !important;
-    -fx-padding: 6 16 6 16;
-    -fx-background-radius: 22;
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+.person-view-tag {
+    -fx-background-color: #BBDEFB;
+    -fx-text-fill: #0D47A1;
+    -fx-padding: 4 8 4 8;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+}
+
+.person-view-none-tag {
+    -fx-text-fill: white !important;
+    -fx-font-style: italic;
+}
+
+.person-view-field-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: white !important;
+    -fx-alignment: top-right;
+}
+
+.person-view-value-label {
+    -fx-text-fill: white !important;
+    -fx-wrap-text: true;
+}
+
+.person-view-appointment-box {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+/* Appointment Panel Styles */
+.appointment-section-heading {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E3A8A;
+    -fx-padding: 10 0 5 0;
 }
