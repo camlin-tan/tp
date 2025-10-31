@@ -271,10 +271,6 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 
 <box type="tip" seamless>
 
-**Tip:*
-</box>
-<box type="tip" seamless>
-
 **Tip:** The fields can be entered in any order.
 </box>
 
