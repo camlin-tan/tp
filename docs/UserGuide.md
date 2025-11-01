@@ -479,43 +479,65 @@ Examples:
 
 ### Scheduling an appointment: `schedule` 
 
-Adds the appointment for the patient identified by the index number used in the displayed patient list.
+**Purpose:** Adds the appointment for the patient specified by `INDEX` shown in the displayed patient list.
 
-Format: `schedule INDEX adt\APPOINTMENT_TIME [note\APPOINTMENT_NOTE]`
+**Format:** `schedule INDEX adt\APPOINTMENT_DATE_TIME [note\APPOINTMENT_NOTE]`
 
-* Adds an appointment the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed **patient** list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Note that APPOINTMENT_NOTE is optional
+#### Input Constraints Table
 
-Example:
-* `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`
+| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
+|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+| **adt\APPOINTMENT_DATE_TIME**          | &check;         | &cross;                | Full date time of the scheduled appointment                                         | d-m-yyyy HH:mm, d.m.yyyy HH:mm, d/m/yyyy HH:mm              |
+| **note\APPOINTENT_NOTE**               | &cross;         | &cross;                | Any additional notes for this particular appointment                                | Any string                                                  |
+
+#### Example:
+* To schedule an appointment with the first patient in the displayed list, you can enter:
+```
+schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip
+```
+
+#### Tips:
+* Appointment notes are optional. Hence, the following is a perfectly valid command:
+```
+schedule 1 adt\13-10-2025 10:00
+```
 
 ### Deleting upcoming appointment: `unschedule`
 
-Deletes the upcoming appointment identified by the index number used in the displayed upcoming appointment list.
+Deletes the upcoming appointment specified by `INDEX` shown in the displayed upcoming appointment list.
 
-Format: `unschedule INDEX`
+**Format:** `unschedule INDEX`
 
-* Deletes the upcoming appointment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed **Upcoming Appointments** list.
-* The index **must be a positive integer** 1, 2, 3, …​
+#### Input Constraints Table
 
-Example:
-* `unschedule 1`
+| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
+|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
 
-### Delete past appointment: `forget`
+#### Example:
+* To delete the first upcoming appointment in the displayed list, you can enter:
+```
+unschedule 1
+```
 
-Deletes the past appointment identified by the index number used in the displayed past appointment list.
+#### Delete past appointment: `forget`
+
+Deletes the past appointment specified by `INDEX` shown in the displayed past appointment list.
 
 Format: `forget INDEX`
 
-* Deletes the past appointment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed **Past Appointments** list.
-* The index **must be a positive integer** 1, 2, 3, …​
+#### Input Constraints Table
 
-Example:
-* `forget 1`
+| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
+|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+
+#### Example:
+* To delete the first past appointment in the displayed list, you can enter:
+```
+forget 1
+```
 
 [Back to Table of Contents](#table-of-contents)
 
