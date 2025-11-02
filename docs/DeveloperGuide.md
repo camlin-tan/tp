@@ -281,27 +281,27 @@ _{Explain here how the data archiving feature will be implemented}_
 Team Size: 5
 
 1. **Save user set theme**:
-In the current implementation, if the user has set a theme, by executing the command: `theme pink` for example, the set
-theme does not persist once the user exits and relaunches the application. We plan to store the user set theme in 
-`UserPrefs`. When the application launches, the user's theme will be fetched and set during UI initialisation. 
-When the user sets a new theme, this data will be updated.
+   In the current implementation, if the user has set a theme, by executing the command: `theme pink` for example, the set
+   theme does not persist once the user exits and relaunches the application. We plan to store the user set theme in
+   `UserPrefs`. When the application launches, the user's theme will be fetched and set during UI initialisation.
+   When the user sets a new theme, this data will be updated.
 
 
 2. **More specific error message for `schedule` command**:
-The current error message when the `schedule` command is executed with missing or invalid parameters is
-`Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
-These reasons for failure include missing parameters, or invalid parameters provided.
-For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
+   The current error message when the `schedule` command is executed with missing or invalid parameters is
+   `Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
+   These reasons for failure include missing parameters, or invalid parameters provided.
+   For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
 unrecognised parameter(s): a\, b\ `
 
 
 3. **Warn Overlapping Appointments:**
-The current implementation allows the user to create two different appointments at the same time and date for
-**different patients.** For example, an appointment may be scheduled for patient `A` at time `25-08-2025 20:00`, 
-and another appointment for the same time may also be scheduled for another patient `B`. We did not stop this from 
-happening as it could be the intended action of the user. However, there is also a possibility that the user had 
-overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
-to add a message to notify the user if this occurs.
+   The current implementation allows the user to create two different appointments at the same time and date for
+   **different patients.** For example, an appointment may be scheduled for patient `A` at time `25-08-2025 20:00`,
+   and another appointment for the same time may also be scheduled for another patient `B`. We did not stop this from
+   happening as it could be the intended action of the user. However, there is also a possibility that the user had
+   overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
+   to add a message to notify the user if this occurs.
 
 ---
 
@@ -311,24 +311,29 @@ to add a message to notify the user if this occurs.
 
 **Target user profile**:
 
-An independent home healthcare provider (e.g., home care doctor or nurse) who:
-- Manages a diverse list of patients.
-- Has no additional personnel (e.g., no receptionist, no assistant).
-- Is constantly on the move, making frequent home visits.
-- Needs to keep track of appointments with patients.
-- Needs to quickly access and update patient records such as personal details, medical history, and appointment notes. 
-- Can type fast and prefers typing to mouse interactions.
-- Is comfortable using Command-Line Interface (CLI) desktop applications.
-- Requires reliable offline access to data, as internet connectivity may not always be available while on the move.
+***General Characteristics***:
 
+* independent home-care doctor often making home visits
+* has a need to manage a significant number of patients with diverse conditions
+* works with limited resources (e.g., no receptionist, no nurse), self-services features are a must
+
+***Technical Characteristics***:
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
+* needs reliable offline mode
+
+***Workflow Challenges***:
+* time pressure during home visits, needs to manage patients quickly
+* juggle between patient's contact details, medical history, appointments
+* needs to track follow-up appointments, medication schedules
 
 **Value proposition**:
-- **Speed**: A keyboard-focused workflow allows for quick patient data entry and retrieval, significantly faster than navigating
-GUIs or traditional physical files. 
-- **Organised**: Consolidates patient details, histories, and appointments in one platform, improving record management 
-and reducing administrative overhead.
-- **Portability**: Replaces bulky patient files as it is a lightweight desktop application and always available. 
-- **Offline**: All patient data is stored locally, functionality is not affected by internet connection.
+
+Helps independent doctors manager their patients and schedule more efficiently using a keyboard-focused UI.
+It is optimised for more tech-savvy doctors who prefer using a CLI.
+Enables quick retrieval of patient’s records, especially useful when they are always on the move.
 
 
 ### User stories
@@ -406,21 +411,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. One or more required parameters are missing.
+* 1a. User makes an invalid input.
 
     * 1a1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
-* 1b. Input parameters are in invalid formats (e.g. date, email, gender).
+* 1b. Duplicate identity number detected.
 
     * 1b1. HealthNote shows an error message.
-
-      Use case resumes at step 1.
-
-* 1c. Duplicate identity number detected.
-
-    * 1c1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
@@ -437,9 +436,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list of commands cannot be retrieved due to some error
+* 1a. The list of commands cannot be retrieved due to some error
 
-    * 2a1. HealthNote shows an error message.
+    * 1a1. HealthNote shows an error message.
 
       Use case ends
 
@@ -460,21 +459,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * Use case ends.
 
-* 3a. One or more required parameters are missing.
+* 3a. User makes an invalid input.
 
-    * 1a1. HealthNote shows an error message.
-
-      Use case resumes at step 1
-
-* 3b. The given index is invalid.
-
-    * 1bHealthNote shows an error message.
+    * 3a1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
-* 3c. Duplicate identity number detected.
+* 3b. Duplicate identity number detected.
 
-    * 3c1. HealthNote shows an error message.
+    * 3b1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
@@ -536,28 +529,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1
 
-**Use case: UC09 - Accessing help**
-
-**MSS**
-
-1.  User requests for help to view available commands.
-2.  HealthNote displays the available commands.
-
-    Use case ends.
-
-*{More to be added}*
-
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has Java 17 or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The product should be for a single user.
+5.  The product should be packaged into a single `.jar` file for ease of execution.
+6.  The product file size should remain below 100 MB to ensure efficient storage and distribution.
+7.  The GUI should display correctly and without layout issues on standard screen resolutions (1920×1080 and higher) at 100% and 125% scale.
+8.  The GUI should remain usable (i.e., all functions accessible even if layout is suboptimal) at 1280×720 resolution and 150% scale.
+9.  A doctor with basic technical knowledge should be able to learn all commands within 30 minutes of using the application.
+10. All patient data must be saved automatically and reliably to prevent data loss in case of unexpected application closure.
+11. All patient data must be stored locally on the user’s computer and never transmitted over the internet.
+12. The application should function offline without needing an internet connection.
+13. The system should include JUnit tests covering at least 70% of the codebase to ensure long-term maintainability and prevent regressions.
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
 
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
@@ -614,7 +602,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file
+
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -916,6 +906,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: Click on "Help" menu and select "Help F1"<br>
        Expected: Help window opens.
 
+    4. Test case: `help 12345`<br>
+       Expected: Help window opens.
+
 ### Exiting the application
 
 1. Exiting via command
@@ -933,24 +926,16 @@ testers are expected to do more *exploratory* testing.
     1. Test case: Click the window close button (X)<br>
        Expected: Application closes gracefully. All data is automatically saved.
 
-### Saving data
+### Manual testing of data handling
 
-1. Dealing with missing/corrupted data files
+### Saving data issues
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Dealing with missing data files
 
-1. _{ more test cases …​ }_
+   Test case:
 
-## Non-Functional Requirements
+    1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
+    2. Delete the file named `addressbook.json`.
+    3. Relaunch the application.
 
-1. Should work on any *mainstream OS* as long as it has Java `17` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above-average typing speed for regular English text (i.e., not code, not system admin commands) should be able to accomplish most tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
-
-## Glossary
-
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
-- **Private contact detail**: A contact detail that is not meant to be shared with others
+   Expected: A new file with sample patient records is created. Sample patient records are displayed in the application.
