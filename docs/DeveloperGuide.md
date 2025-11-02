@@ -126,13 +126,14 @@ The `Model` component,
 * stores the address book data i.e., all `Person` and `Appointment` objects (which are contained in a `UniquePersonList` object and an `UniqueAppointmentList` object).
 
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* each `Person` and `Appointment` store a common reference of `IdentityNumber`
+* each `Person` and their `Appointment`s store a common reference of the `Person`'s `IdentityNumber`
 
 <puml src="diagrams/ModelUiObjectDiagram.puml" width="450" />
+
 * stores the currently 'found' `Person` objects (e.g., results of a search query) as a separate _filtered_ list
 * stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`
-* stores another 2 lists of `Appointments` objects filtered to current viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
-* exposes the lists above to outsiders as an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores another 2 lists of `Appointments` objects belonging to the currently viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
+* exposes the lists above to outsiders as unmodifiable `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
@@ -310,29 +311,24 @@ to add a message to notify the user if this occurs.
 
 **Target user profile**:
 
-***General Characteristics***:
+An independent home healthcare provider (e.g., home care doctor or nurse) who:
+- Manages a diverse list of patients.
+- Has no additional personnel (e.g., no receptionist, no assistant).
+- Is constantly on the move, making frequent home visits.
+- Needs to keep track of appointments with patients.
+- Needs to quickly access and update patient records such as personal details, medical history, and appointment notes. 
+- Can type fast and prefers typing to mouse interactions.
+- Is comfortable using Command-Line Interface (CLI) desktop applications.
+- Requires reliable offline access to data, as internet connectivity may not always be available while on the move.
 
-* independent home-care doctor often making home visits
-* has a need to manage a significant number of patients with diverse conditions
-* works with limited resources (e.g., no receptionist, no nurse), self-services features are a must
-
-***Technical Characteristics***:
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* needs reliable offline mode
-
-***Workflow Challenges***:
-* time pressure during home visits, needs to manage patients quickly
-* juggle between patient's contact details, medical history, appointments
-* needs to track follow-up appointments, medication schedules
 
 **Value proposition**:
-
-Helps independent doctors manager their patients and schedule more efficiently using a keyboard-focused UI.
-It is optimised for more tech-savvy doctors who prefer using a CLI.
-Enables quick retrieval of patient’s records, especially useful when they are always on the move.
+- **Speed**: A keyboard-focused workflow allows for quick patient data entry and retrieval, significantly faster than navigating
+GUIs or traditional physical files. 
+- **Organised**: Consolidates patient details, histories, and appointments in one platform, improving record management 
+and reducing administrative overhead.
+- **Portability**: Replaces bulky patient files as it is a lightweight desktop application and always available. 
+- **Offline**: All patient data is stored locally, functionality is not affected by internet connection.
 
 
 ### User stories
@@ -562,7 +558,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
+* **CLI (Command Line Interface)** — A text-based interface where users interact with the application by typing commands
+
+* **GUI (Graphical User Interface)** — The visual interface of the application that displays patient information and appointment lists
+
+* **Independent Doctor** — A medical professional who works independently, often making home visits and managing patients without support staff like receptionists or nurses
+
+* **Identity Number** — A unique identifier for each patient (e.g., National ID, Passport Number) used to distinguish patients with similar names
+
+* **Emergency Contact** — A designated person to contact in case of medical emergencies, including their relationship to the patient
+
+* **Blood Type** — Classification of blood based on the presence or absence of antibodies and antigens (e.g., A, B, AB, O with +/- Rh factor)
+
+* **Alcoholic Record** — Documentation of a patient's alcohol consumption habits
+
+* **Smoking Record** — Documentation of a patient's smoking habits
+
+* **Medical History (Past Medical History/PMH)** — Previous health conditions, diagnoses, or treatments that a patient has experienced
+
+* **Tag** — A label attached to a patient record for categorization or prioritization (e.g., "priorityHigh", "diabetesFollowUp")
+
+* **Allergy** — A substance or medication that causes an adverse reaction in the patient
+
+* **Medicine** — Current medications that the patient is taking, including dosage information
+
+* **Upcoming Appointment** — An appointment scheduled for a future date and time
+
+* **Past Appointment** — An appointment that has already occurred (date and time in the past)
+
+* **Index** — The position number of an item in a displayed list, starting from 1
+
+* **Parameter** — A piece of information required by a command, specified using a prefix (e.g., `n\` for name, `p\` for phone)
+
+* **Prefix** — A tag that identifies the type of information being provided in a command (e.g., `n\`, `id\`, `p\`)
 
 --------------------------------------------------------------------------------------------------------------------
 
