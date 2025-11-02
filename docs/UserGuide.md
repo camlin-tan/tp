@@ -56,92 +56,55 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
+Welcome to HealthNote! This guide will help you get started.
 
-Are you an independent doctor looking for a simple yet powerful way to manage patient information? Do you find existing clinic management systems too complex or cumbersome for your daily needs? Or perhaps you just want a lightweight, privacy-focused tool that keeps your patients’ records right at your fingertips?
+### What is HealthNote?
+HealthNote is a digital patient record manager. If you are an independent home healthcare provider, this is 
+the perfect tool for you. HealthNote helps manage your patients' information, record their medical histories, and 
+organise home visit notes. The simple and user-friendly interface enables you to access patient details 
+faster than traditional patient files. With HealthNote, you can spend more time caring for your patients instead of 
+combing through their files.
 
-**HealthNote** is your all-in-one, command-line solution for seamless patient management - designed specifically for doctors who value speed, control, and simplicity.
-
-With **HealthNote**, you can easily:
-- **Add** new patients and record key details such as contact information, medical history, and allergies
-- **View** a patient’s medical information in seconds
-- **Find** patients by name or specific keywords
-- **Delete** outdated records when necessary
-- …and do much more - all directly from your terminal!
-
-Built with independent practitioners and small clinics in mind, **HealthNote** keeps your workflow efficient and focused. Whether you’re managing a handful of patients or maintaining a growing list, this CLI-based address book gives you the precision and speed you need - without unnecessary clutter.
-
-HealthNote is a desktop app for managing contacts, optimized for use via a Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthNote can get your patient management tasks done faster than traditional GUI apps.
-
---------------------------------------------------------------------------------------------------------------------
-## Guide Usage
-
-<div markdown="block" class="alert alert-info">
-
-**For Novices**
-
-* For first time users unfamiliar of CLI, perhaps you can first jump to the [Quick Start](#quick-start) section to get started
-</div>
-
-<div markdown="block" class="alert alert-success">
-
-**For Amateurs**
-
-* Perhaps you can jump to the [Table of Contents](#table-of-contents) to start navigating the guide.
-</div>
-
-<div markdown="block" class="alert alert-warning">
-
-**For Experts**
-
-* Perhaps you can jump to the [Command summary](#command-summary) for a quick summary of the commands.
-</div>
+### Who this guide is for
+This guide is intended for medical professionals who are familiar with day-to-day medical terms. We assume that you
+are familiar with basic computer operations and are aware of what system your computer is on (Windows, Linux, Mac - 
+M series or intel chip), no prior experience with Command Line Interfaces (CLIs) is required. Our goal is to quickly help 
+you get up and running with HealthNote.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## User Interface
+## Getting Started
+Follow these steps to install and run HealthNote.
 
-Here are the key components of the HealthNote User Interface (UI), designed for the convenience of our users.
-
-*insert the UI photo here this is just a placeholder for now with labels for the components*
-
-| No | Component        | Description                                                                            |
-|----|------------------|----------------------------------------------------------------------------------------|
-| 1  | Command Input    | This is where the user inputs commands to perform various tasks.                       |
-| 2  | Command Result   | Displays the output and the result of performing a command.                            |
-| 3  | Patient List     | Displays the list of patients.                                                         |
-| 4  | View Patient     | Displays all the data fields of patients which the user requests to view.              |
-| 5  | Appointment List | Displays the upcoming and past appointments, including past and upcoming appointments. |
+1. **Java version check**
+   1. If you are on Windows, open the `Command Prompt` app. If you are on Mac or Linux, open the `terminal` app.
+   2. Type this command: `java -version` and hit enter on your keyboard.
+      - If you get the output: `'java' is not recognized...` or `The operation couldn’t be completed...` or any output that says Java is not installed, you will have to install Java `17` onto your computer by following step 2.
+      - If you get the output: `(something) version 17...`, you may skip to step 3.
 
 
---------------------------------------------------------------------------------------------------------------------
+2. **One-time Java installation**
+   - For Windows users: click [here](https://download.oracle.com/java/17/archive/jdk-17.0.12_windows-x64_bin.exe) to download the installer, then double-click the downloaded file and follow the instructions to install Java.
+   - For Linux users: determine your Linux distribution type, double-click the downloaded file and install Java.
+     - Debian-based (e.g., Ubuntu, Debian, Linux Mint): click [here](https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb).
+     - RPM-based (e.g., Fedora, RHEL, CentOS): click [here](https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb).
+   - For Mac users: follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   - After following the steps above, repeat step 1 to check if you have installed Java `17` successfully.
 
-## Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+3. **Download HealthNote**
+   1. Download the latest `healthnote.jar` file from [here](https://github.com/AY2526S1-CS2103T-F11-1/tp/releases).
+   2. Create a new folder on your computer where you want to store your patient data and move the downloaded `healthnote.jar` into this new folder.
 
-2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your HealthNote.
+4. **Run HealthNote**
+   1. Right-click on the folder that you have put healthnote.jar in and click on `Open in Terminal` or `New Terminal at Folder` or a similar option. Alternatively, if you are on Mac, you may open the Command Line (following the very first step), type `cd` followed by a space and drag the folder into the terminal window, then execute the command.
+   2. Run this command: `java -jar healthnote.jar`
+   3. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui-Updated.png)
+![Ui](images/Ui-Updated.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+Congratulations! You are now ready to use HealthNote.
 
 --------------------------------------------------------------------------------------------------------------------
 
