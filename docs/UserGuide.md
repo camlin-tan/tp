@@ -214,13 +214,23 @@ In the command format, special symbols surrounding prefixes and fields indicate 
 
 ## Features - General Features
 
-### Viewing help: `help`
+### Viewing help : `help`
 
-Displays the help window or brings the help window to the front if it is already opened.
-
-![help message](images/HelpWindow-Updated.png)
+Displays a window showing all available commands and how to use them.
 
 Format: `help`
+
+* Opens a help window with a list of all commands and their usage.
+* No additional parameters are required.
+
+Examples:
+* `help` opens the help window displaying all available commands.
+
+**Here is a list of common errors and how to prevent them**
+
+| Error Message                                 | Reason                                                              | Solution                                                                  |
+|-----------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|
+| Unknown command                               | The `help` command may be misspelled or not entirely in lowercase   | Ensure that you use `help` exactly in lowercase.                          |
 
 <br>
 
@@ -622,7 +632,7 @@ forget 1
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features - Clearing Data
+## Feature - Clearing Data
 
 ### Clearing all entries: `clear`
 
