@@ -411,21 +411,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. One or more required parameters are missing.
+* 1a. User makes an invalid input.
 
     * 1a1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
-* 1b. Input parameters are in invalid formats (e.g. date, email, gender).
+* 1b. Duplicate identity number detected.
 
     * 1b1. HealthNote shows an error message.
-
-      Use case resumes at step 1.
-
-* 1c. Duplicate identity number detected.
-
-    * 1c1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
@@ -442,9 +436,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list of commands cannot be retrieved due to some error
+* 1a. The list of commands cannot be retrieved due to some error
 
-    * 2a1. HealthNote shows an error message.
+    * 1a1. HealthNote shows an error message.
 
       Use case ends
 
@@ -465,21 +459,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * Use case ends.
 
-* 3a. One or more required parameters are missing.
+* 3a. User makes an invalid input.
 
-    * 1a1. HealthNote shows an error message.
-
-      Use case resumes at step 1
-
-* 3b. The given index is invalid.
-
-    * 1bHealthNote shows an error message.
+    * 3a1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
-* 3c. Duplicate identity number detected.
+* 3b. Duplicate identity number detected.
 
-    * 3c1. HealthNote shows an error message.
+    * 3b1. HealthNote shows an error message.
 
       Use case resumes at step 1.
 
@@ -541,14 +529,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1
 
-**Use case: UC09 - Accessing help**
 
-**MSS**
-
-1.  User requests for help to view available commands.
-2.  HealthNote displays the available commands.
-
-    Use case ends.
 
 *{More to be added}*
 
