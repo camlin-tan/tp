@@ -55,7 +55,7 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
   * [Command Summary](#command-summary)
 <!-- TOC -->
 
-------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
 Are you an independent doctor looking for a simple yet powerful way to manage patient information? Do you find existing clinic management systems too complex or cumbersome for your daily needs? Or perhaps you just want a lightweight, privacy-focused tool that keeps your patients’ records right at your fingertips?
@@ -258,12 +258,24 @@ Format: `help`
 
 ### Changing the colour theme : `theme`
 
-Changes the colour theme of the application.
+Changes the colour theme of HealthNote.
 
 Format: `theme THEME_NAME`
 * Available themes: `light`, `dark`, `blue`, `pink`
+* Available themes: `light`, `dark`, `blue`, `pink`.
+* The theme name **must be exactly one of the available options**.
+* Theme names are non-case-sensitive, both lowercase and uppercase letters are accepted.
 
-Example: `theme light`
+Examples:
+* `theme dark` changes the application to dark mode.
+* `theme pink` changes the application to pink mode.
+
+**Here is a list of common errors and how to prevent them**
+
+| Error Message      | Reason                                                             | Solution                                                               |
+|--------------------|--------------------------------------------------------------------|------------------------------------------------------------------------|
+| Unknown command    | The `theme` command may be misspelled or not entirely in lowercase | Ensure that you use `theme` exactly in lowercase.                      |
+| Unknown theme      | The theme name entered is not available                            | Enter one of the available themes: `light`, `dark`, `blue`, or `pink`. |
 
 
 ### Exiting the program : `exit`
