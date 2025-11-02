@@ -564,7 +564,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file
+
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -866,6 +868,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: Click on "Help" menu and select "Help F1"<br>
        Expected: Help window opens.
 
+    4. Test case: `help 12345`<br>
+       Expected: Help window opens.
+
 ### Exiting the application
 
 1. Exiting via command
@@ -883,10 +888,16 @@ testers are expected to do more *exploratory* testing.
     1. Test case: Click the window close button (X)<br>
        Expected: Application closes gracefully. All data is automatically saved.
 
-### Saving data
+### Manual testing of data handling
 
-1. Dealing with missing/corrupted data files
+### Saving data issues
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Dealing with missing data files
 
-1. _{ more test cases …​ }_
+   Test case:
+
+    1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
+    2. Delete the file named `addressbook.json`.
+    3. Relaunch the application.
+
+   Expected: A new file with sample patient records is created. Sample patient records are displayed in the application.
