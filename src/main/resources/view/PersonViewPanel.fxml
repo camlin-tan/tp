@@ -8,7 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane fitToWidth="true" styleClass="person-view-scroll-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox fx:id="personViewContainer" spacing="20" styleClass="person-view-vbox">
+    <VBox>
+    <Label fx:id="defaultLabel" text="Select a person using the 'view &lt;index&gt;' command" style="-fx-text-fill: grey; -fx-font-style: italic;"/>
+    <VBox fx:id="personViewContainer" spacing="20" styleClass="person-view-vbox" visible="false" managed="false">
 
         <Label fx:id="nameLabel" styleClass="person-view-name-label"/>
 
@@ -32,5 +34,6 @@
 
         <Label text="Past Appointments" styleClass="person-view-section-heading" />
         <VBox fx:id="pastAppointmentsBox" spacing="5" styleClass="person-view-appointment-box"/>
+    </VBox>
     </VBox>
 </ScrollPane>

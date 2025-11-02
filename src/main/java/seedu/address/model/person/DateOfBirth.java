@@ -79,7 +79,6 @@ public class DateOfBirth {
     public DateOfBirth(String dateOfBirth) {
         requireNonNull(dateOfBirth);
         checkArgument(isValidDateFormat(dateOfBirth), MESSAGE_FORMAT_CONSTRAINTS);
-        System.out.println(isValidDate(dateOfBirth));
         checkArgument(isValidDate(dateOfBirth), MESSAGE_INVALID_DATE_CONSTRAINTS + dateOfBirth);
         checkArgument(isValidDateOfBirth(dateOfBirth), MESSAGE_PAST_DATE_CONSTRAINTS);
         this.dateOfBirth = DateParserUtil.parseDate(dateOfBirth, FORMATTERS);
