@@ -126,13 +126,14 @@ The `Model` component,
 * stores the address book data i.e., all `Person` and `Appointment` objects (which are contained in a `UniquePersonList` object and an `UniqueAppointmentList` object).
 
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* each `Person` and `Appointment` store a common reference of `IdentityNumber`
+* each `Person` and their `Appointment`s store a common reference of the `Person`'s `IdentityNumber`
 
 <puml src="diagrams/ModelUiObjectDiagram.puml" width="450" />
+
 * stores the currently 'found' `Person` objects (e.g., results of a search query) as a separate _filtered_ list
 * stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`
-* stores another 2 lists of `Appointments` objects filtered to current viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
-* exposes the lists above to outsiders as an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores another 2 lists of `Appointments` objects belonging to the currently viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
+* exposes the lists above to outsiders as unmodifiable `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
@@ -275,32 +276,104 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Effort**
+
+### Difficulty Level
+The difficulty of this project was high. The most difficult feature to implement was the `Appointments` feature,
+as it required transitioning AB3 from a single-entity to a multi-entity application. In AB3, only `Person`
+objects were involved whereas in HealthNote, both `Person` and `Appointment` objects are created, displayed, and used
+simultaneously. Adding a new section to the UI to display these appointments required new internal lists within 
+`Model` and new methods to manage them as well.
+
+Linking each `Person` to their corresponding `Appointment`(s) introduced another layer of complexity, as changes to a 
+`Person` object would also affect their associated `Appointment`(s). For example, when a `Person` is deleted from the `Person List`, 
+all of their related `Appointment`s must also be deleted from the Appointments list. 
+
+
+### Challenges Faced
+Our team faced several technical and workflow challenges:
+
+**Initial Learning Curve**: As a team new to a large codebase, the initial learning curve was steep. We had to quickly
+learn and understand the design patterns, such as the MVC and Observer pattern used in AB3, before they were covered
+in the weekly topics. This required a lot of planning and justification of our design choices in order to ensure that 
+the existing design of AB3 was not broken. 
+
+
+**Adhering to Design**: We spent a considerable amount of time planning and justifying our design choices to ensure 
+that the existing design of AB3 was not broken. For example, our view command required `UI` to interact with `Logic` 
+and `Model` to display a specific `Person` in the new `PersonViewPanel` without violating the `MVC` pattern. We had to 
+carefully plan how the selected `Person` to be viewed would be passed from `Model` to `UI` and how the `MainWindow` 
+would be updated.
+
+
+**Cascading Test Failures**: The massive number of tests used in AB3 meant that simple changes to commonly used classes
+such as those in `command` and `person` broke over 50 JUnit tests at once, all of which had to be manually traced
+and updated. 
+
+
+**Parallel Branches and Merge Conflicts**: Our team worked on multiple features in parallel. Adding numerous new fields
+to `Person` in separate pull requests created a large number of merge conflicts, mostly involving the edited JUnit tests. 
+Resolving these conflicts was very tedious and time-consuming as we could not simply accept the incoming or current 
+branch without editing the code manually.
+
+
+### Effort Required
+We iterated on the four main AB3 components, which saved us the effort of building a functional address book
+from the ground up. However, the effort in adapting it to HealthNote was still substantial. 
+
+**Model**: We modified the `Person` class significantly, adding many new fields that fit our target user such as `BloodType`, 
+`PastMedicalHistory`, and `Allergy`. We also designed and implemented new entities, including `Appointment` and 
+`AppointmentList`.
+
+**Storage**: We created a new `JsonAdaptedAppointment` class to store appointments locally, and updated the 
+`JsonAdaptedPerson` class for our new fields.
+
+**Logic**: We wrote new Command and Parser classes for all new features, such as `AddAppointmentCommand`, 
+`DeleteUpcomingAppointmentCommand`, `DeletePastAppointmentCommand`, `ViewCommand`, and `ThemeCommand`.
+
+**UI**: We created several new UI components to display the appointment list and patient information. This includes
+the `AppointmentCard`, `AppointmentListPanel`, and `PersonViewPanel` for the `view` command.
+
+**Testing**: A large portion of our effort was dedicated to testing. This involved updating hundreds of existing
+AB3 tests to work with our new Person model and writing more testcases to test our new commands, parsers and model classes.
+
+
+### Achievements
+Despite the challenges, our team successfully:
+
+- Transformed AB3 from a generic address book into a specialized, domain-specific application for home healthcare providers.
+- Designed and implemented a relational data model, successfully linking Patient entities to their corresponding Appointments.
+- Mastered and extended the AB3 architecture, applying its design patterns to new and complex features.
+- Delivered an extensive and useful feature set for our target user, such as patient medical records, appointment 
+management and a detailed patient view panel. We also added different themes to enhance the overall user experience and aesthetics.
+
+
 ## **Appendix: Planned Enhancements**
 
 Team Size: 5
 
 1. **Save user set theme**:
-In the current implementation, if the user has set a theme, by executing the command: `theme pink` for example, the set
-theme does not persist once the user exits and relaunches the application. We plan to store the user set theme in 
-`UserPrefs`. When the application launches, the user's theme will be fetched and set during UI initialisation. 
-When the user sets a new theme, this data will be updated.
+   In the current implementation, if the user has set a theme, by executing the command: `theme pink` for example, the set
+   theme does not persist once the user exits and relaunches the application. We plan to store the user set theme in
+   `UserPrefs`. When the application launches, the user's theme will be fetched and set during UI initialisation.
+   When the user sets a new theme, this data will be updated.
 
 
 2. **More specific error message for `schedule` command**:
-The current error message when the `schedule` command is executed with missing or invalid parameters is
-`Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
-These reasons for failure include missing parameters, or invalid parameters provided.
-For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
+   The current error message when the `schedule` command is executed with missing or invalid parameters is
+   `Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
+   These reasons for failure include missing parameters, or invalid parameters provided.
+   For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
 unrecognised parameter(s): a\, b\ `
 
 
 3. **Warn Overlapping Appointments:**
-The current implementation allows the user to create two different appointments at the same time and date for
-**different patients.** For example, an appointment may be scheduled for patient `A` at time `25-08-2025 20:00`, 
-and another appointment for the same time may also be scheduled for another patient `B`. We did not stop this from 
-happening as it could be the intended action of the user. However, there is also a possibility that the user had 
-overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
-to add a message to notify the user if this occurs.
+   The current implementation allows the user to create two different appointments at the same time and date for
+   **different patients.** For example, an appointment may be scheduled for patient `A` at time `25-08-2025 20:00`,
+   and another appointment for the same time may also be scheduled for another patient `B`. We did not stop this from
+   happening as it could be the intended action of the user. However, there is also a possibility that the user had
+   overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
+   to add a message to notify the user if this occurs.
 
 ---
 
@@ -534,15 +607,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has Java 17 or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The product should be for a single user.
+5.  The product should be packaged into a single `.jar` file for ease of execution.
+6.  The product file size should remain below 100 MB to ensure efficient storage and distribution.
+7.  The GUI should display correctly and without layout issues on standard screen resolutions (1920×1080 and higher) at 100% and 125% scale.
+8.  The GUI should remain usable (i.e., all functions accessible even if layout is suboptimal) at 1280×720 resolution and 150% scale.
+9.  A doctor with basic technical knowledge should be able to learn all commands within 30 minutes of using the application.
+10. All patient data must be saved automatically and reliably to prevent data loss in case of unexpected application closure.
+11. All patient data must be stored locally on the user’s computer and never transmitted over the internet.
+12. The application should function offline without needing an internet connection.
+13. The system should include JUnit tests covering at least 70% of the codebase to ensure long-term maintainability and prevent regressions.
 
 ### Glossary
 
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+
+* **CLI (Command Line Interface)** — A text-based interface where users interact with the application by typing commands
+
+* **GUI (Graphical User Interface)** — The visual interface of the application that displays patient information and appointment lists
+
+* **Independent Doctor** — A medical professional who works independently, often making home visits and managing patients without support staff like receptionists or nurses
+
+* **Identity Number** — A unique identifier for each patient (e.g., National ID, Passport Number) used to distinguish patients with similar names
+
+* **Emergency Contact** — A designated person to contact in case of medical emergencies, including their relationship to the patient
+
+* **Blood Type** — Classification of blood based on the presence or absence of antibodies and antigens (e.g., A, B, AB, O with +/- Rh factor)
+
+* **Alcoholic Record** — Documentation of a patient's alcohol consumption habits
+
+* **Smoking Record** — Documentation of a patient's smoking habits
+
+* **Medical History (Past Medical History/PMH)** — Previous health conditions, diagnoses, or treatments that a patient has experienced
+
+* **Tag** — A label attached to a patient record for categorization or prioritization (e.g., "priorityHigh", "diabetesFollowUp")
+
+* **Allergy** — A substance or medication that causes an adverse reaction in the patient
+
+* **Medicine** — Current medications that the patient is taking, including dosage information
+
+* **Upcoming Appointment** — An appointment scheduled for a future date and time
+
+* **Past Appointment** — An appointment that has already occurred (date and time in the past)
+
+* **Index** — The position number of an item in a displayed list, starting from 1
+
+* **Parameter** — A piece of information required by a command, specified using a prefix (e.g., `n\` for name, `p\` for phone)
+
+* **Prefix** — A tag that identifies the type of information being provided in a command (e.g., `n\`, `id\`, `p\`)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -563,8 +680,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    2. Double-click the jar file 
-       
+    2. Double-click the jar file
+
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
@@ -594,22 +711,22 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding a person with optional fields
 
-    1. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 t\priorityHigh`<br>
+    1. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 t\priorityHigh`<br>
        Expected: New contact with tags is added to the list.
 
-    2. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 al\nuts`<br>
+    2. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 al\nuts`<br>
        Expected: New contact with allergies is added to the list.
 
-    3. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 m\100mg Panadol/day`<br>
+    3. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 m\100mg Panadol/day`<br>
        Expected: New contact with medicines is added to the list.
 
-    4. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 ar\Social drinker`<br>
+    4. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 ar\Social drinker`<br>
        Expected: New contact with alcoholic record is added to the list.
 
-    5. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 sr\Heavy smoker`<br>
+    5. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 sr\Heavy smoker`<br>
        Expected: New contact with smoking record is added to the list.
 
-    6. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 pmh\Diabetes`<br>
+    6. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 pmh\Diabetes`<br>
        Expected: New contact with past medical history is added to the list.
 
 ### Editing a person
@@ -624,19 +741,13 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit 1 id\A9999999Z`<br>
        Expected: Identity number of first contact is updated if no duplicate exists.
 
-    4. Test case: `edit 1 e\newemail@example.com addr\New Address 123`<br>
-       Expected: Email and address of first contact are updated.
-
-    5. Test case: `edit 1 t\diabetes`<br>
-       Expected: Tags are replaced with only "diabetes" tag.
-
-    6. Test case: `edit 1 al\Aspirin al\Ibuprofen`<br>
+    4. Test case: `edit 1 al\Aspirin al\Ibuprofen`<br>
        Expected: Allergies are replaced with new list.
 
-    7. Test case: `edit 0 p\91234567`<br>
+    5. Test case: `edit 0 p\91234567`<br>
        Expected: No person is edited. Error details shown in the status message.
 
-    8. Other incorrect edit commands to try: `edit`, `edit x p\12345678` (where x is larger than the list size)<br>
+    6. Other incorrect edit commands to try: `edit`, `edit x p\12345678` (where x is larger than the list size)<br>
        Expected: No person is edited. Error details shown in the status message.
 
 ### Deleting a person
@@ -675,17 +786,6 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `view x` (where x is larger than the list size)<br>
        Expected: Error message shown.
 
-    5. Other incorrect view commands to try: `view`, `view abc`<br>
-       Expected: Error message shown.
-
-2. Switching between different person views
-
-    1. Test case: `view 1` followed by `view 2`<br>
-       Expected: View switches from first person to second person.
-
-    2. Test case: `view 1` followed by `list` followed by `view 1`<br>
-       Expected: View persists correctly after list command.
-
 ### Listing all persons
 
 1. Listing all persons in the address book
@@ -695,9 +795,6 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case after a `find` command: `list`<br>
        Expected: Resets the view to show all persons instead of filtered results.
-
-    3. Test case: `list xhasdnkcsdf` (garbage value after list command)<br>
-       Expected:  All persons in the address book are displayed with a note says "Additional arguments detected. You may provide extra arguments, but they will be ignored.".
 
 ### Finding a person
 
@@ -731,7 +828,100 @@ testers are expected to do more *exploratory* testing.
        Expected: List shows the person with identity number "A1234567B" if the search is case-insensitive for identity numbers.
 
 ### Manual testing of appointment commands
-       
+
+### Adding an appointment
+
+1. Adding an appointment for a patient
+
+    1. Prerequisites: At least one person in the list.
+
+    2. Test case: `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`<br>
+       Expected: New appointment is added. Success message shown with appointment details.
+
+    3. Test case: `schedule 1 adt\13-11-2025 10:00`<br>
+       Expected: New appointment is added with empty notes.
+
+    4. Test case: `schedule x adt\13-11-2025 10:00 note\Test` (where x is larger than the list size) <br>
+       Expected: No appointment is added. Error message indicates invalid index.
+
+    5. Test case: `schedule 1 adt\40-13-2025 note\Test`<br>
+       Expected: No appointment is added. Error message indicates invalid date format.
+
+2. Adding appointments using filtered list
+
+    1. Test case: Execute `find John` to filter the list, then `schedule 1 adt\20-11-2025 11:00 note\X-ray`<br>
+       Expected: Appointment is added for the first person in the filtered list (not necessarily the first person in the complete list).
+
+3. Adding appointments with special characters in notes
+
+    1. Test case: `schedule 1 adt\13-11-2025 10:00 note\Patient needs medication & IV drip, follow-up required!`<br>
+       Expected: Appointment is added with the note containing special characters.
+
+### Deleting an upcoming appointment
+
+1. Deleting an appointment from the upcoming appointments list
+
+    1. Prerequisites: At least one upcoming appointment exists in the system. Upcoming appointments are displayed in the right panel of the application.
+
+    2. Test case: `unschedule 1`<br>
+       Expected: First upcoming appointment is deleted from the list. Success message shown with details of the deleted appointment. The appointment is removed from both the upcoming appointments panel and from the person's appointment list in the view panel (if viewing that person).
+
+    3. Test case: `unschedule 0`<br>
+       Expected: No appointment is deleted. Error message indicates invalid index (must be a positive integer).
+
+    4. Test case: `unschedule x` (where x is larger than the upcoming appointment list size)<br>
+       Expected: No appointment is deleted. Error message indicates index is out of range.
+
+2. Deleting appointments and verifying removal
+
+    1. Prerequisites: At least one person with upcoming appointments.
+
+    2. Test case: Execute `view 1` to view the first person's details, note the upcoming appointments displayed in the person's view panel<br>
+       Expected: Person's details are displayed with all upcoming appointments listed.
+
+    3. Test case: Check the upcoming appointments panel on the right side of the application to find the index of the upcoming appointment for that person you want to delete<br>
+
+    4. Test case: Execute `unschedule x` (x is the index you note from the appointment lists that you want to delete)<br>
+       Expected: Appointment is deleted. Success message shown: "Deleted Appointment: [appointment details]".
+
+    5. Test case: Execute `view 1` again to refresh the person's view<br>
+       Expected: The deleted appointment is no longer shown in the person's upcoming appointments list.
+
+    6. Test case: Verify in the upcoming appointments panel<br>
+       Expected: The deleted appointment is also removed from the upcoming appointments list on the right panel.
+
+### Deleting a past appointment
+
+1. Deleting an appointment from the past appointments list
+
+    1. Prerequisites: At least one past appointment exists in the past appointment list.
+
+    2. Test case: `forget 1`<br>
+       Expected: First past appointment is deleted from the list. Success message shown with details of the deleted appointment. The appointment is removed from both the past appointments panel and from the person's appointment list in the view panel (if viewing that person).
+
+    3. Test case: `forget 0`<br>
+       Expected: No appointment is deleted. Error message indicates invalid index (must be a positive integer).
+
+    4. Test case: `forget x` (where x is larger than the past appointment list size)<br>
+       Expected: No appointment is deleted. Error message indicates index is out of range.
+
+2. Deleting past appointments and verifying removal
+
+    1. Prerequisites: At least one person with past appointments.
+
+    2. Test case: Execute `view 1` to view the first person's details, note the past appointments displayed in the person's view panel<br>
+       Expected: Person's details are displayed with all past appointments listed.
+
+    3. Test case: Check the past appointments panel on the right side of the application to find the index of the past appointment for that person you want to delete<br>
+
+    4. Test case: Execute `forget x` (x is the index you note from the past appointment list that you want to delete)<br>
+       Expected: Appointment is deleted. Success message shown: "Deleted Appointment: [appointment details]".
+
+    5. Test case: Execute `view 1` again to refresh the person's view<br>
+       Expected: The deleted appointment is no longer shown in the person's past appointments list.
+
+    6. Test case: Verify in the past appointments panel<br>
+       Expected: The deleted appointment is also removed from the past appointments list on the right panel.
 
 ### Manual testing of general commands
 
@@ -826,35 +1016,21 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing data files
 
-    Test case:
+   Test case:
 
     1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
     2. Delete the file named `addressbook.json`.
-    3. Relaunch the application. 
-   
-    Expected: A new file with sample patient records is created. Sample patient records are displayed in the application.
+    3. Relaunch the application.
+
+   Expected: A new file with sample patient records is created. Sample patient records are displayed in the application.
 
 2. Dealing with corrupted data files
 
-    Test case:
+   Test case:
 
     1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
     2. Open the file named `addressbook.json`.
     3. Modify the file to simulate corruption. For instance, delete the first few lines from the file.
-    4. Relaunch the application. 
-   
-    Expected: The panel on the left is empty. No patient records are displayed in the application.
+    4. Relaunch the application.
 
-
-## Non-Functional Requirements
-
-1. Should work on any *mainstream OS* as long as it has Java `17` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above-average typing speed for regular English text (i.e., not code, not system admin commands) should be able to accomplish most tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
-
-## Glossary
-
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
+   Expected: The panel on the left is empty. No patient records are displayed in the application.
