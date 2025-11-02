@@ -266,14 +266,14 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 [ar\ALCOHOLIC_RECORD] g\GENDER [sr\SMOKING_RECORD] [pmh\PAST_MEDICAL_HISTORY] [t\TAG]... [al\ALLERGY]... [m\MEDICINE]...`
 
 | **Field (with Prefix)**      | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                                                                 |
-| ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------|
 | **n\NAME**                   | ✓               | ✗                      | Full legal name of the patient.                                                     | Names can take any values, and it should not be blank                                           |
 | **id\IDENTITY_NUMBER**       | ✓               | ✗                      | Unique identification number (e.g., national ID, passport number, or hospital ID).  | Identity number should only contain alphanumeric characters and/or "-", without spaces          |
 | **p\PHONE_NUMBER**           | ✓               | ✗                      | Primary phone number for reaching the patient.                                      | Must contain at least 2 consecutive digits                                                      |
 | **e\EMAIL**                  | ✓               | ✗                      | Patient’s active email address for communication.                                   | Emails should be of the format local-part@domain                                                |
 | **addr\HOME_ADDRESS**        | ✓               | ✗                      | Current residential address of the patient.                                         | Addresses can take any values, and it should not be blank                                       |
 | **ec\EMERGENCY_CONTACT**     | ✓               | ✗                      | Name and contact details of a patient to call in case of emergency.                 | Must be in the form [{relationship}] {phone} where phone contains at least 2 consecutive digits |
-| **dob\DATE_OF_BIRTH**        | ✓               | ✗                      | Patient’s date of birth.                                                            | Date of birth should be of the following formats: d-m-yyyy, d.m.yyyy, d/m/yyyy                  |
+| **dob\DATE_OF_BIRTH**        | ✓               | ✗                      | Patient’s date of birth.                                                            | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                  |
 | **b\BLOOD_TYPE**             | ✓               | ✗                      | Patient’s blood group (e.g., A+, O-, etc.).                                         | Blood types can take any values, and it should not be blank                                     |
 | **g\GENDER**                 | ✓               | ✗                      | Gender identity of the patient (e.g., Male, Female, Non-binary, Prefer not to say). | Genders can take any values, and it should not be blank                                         |
 | **ar\ALCOHOLIC_RECORD**      | ✗               | ✗                      | Indicates whether the patient consumes alcohol and relevant details or frequency.   | Alcoholic Record can take any values, and it should not be blank                                |
@@ -357,7 +357,7 @@ cause it the patient's past medical history to default to the value "None". <br>
 | **e\EMAIL**                  | ✗               | ✗                      | Patient’s email address for communication.                                          | Emails should be of the format local-part@domain                                                |
 | **addr\HOME_ADDRESS**        | ✗               | ✗                      | Current residential address of the patient.                                         | Addresses can take any values, and it should not be blank                                       |
 | **ec\EMERGENCY_CONTACT**     | ✗               | ✗                      | Name and contact details of a patient to contact in case of emergency.              | Must be in the form [{relationship}] {phone} where phone contains at least 2 consecutive digits |
-| **dob\DATE_OF_BIRTH**        | ✗               | ✗                      | Patient’s date of birth.                                                            | Date of birth should be of the following formats: d-m-yyyy, d.m.yyyy, d/m/yyyy                  |
+| **dob\DATE_OF_BIRTH**        | ✗               | ✗                      | Patient’s date of birth.                                                            | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                  |
 | **b\BLOOD_TYPE**             | ✗               | ✗                      | Patient’s blood group (e.g., A+, O-, etc.).                                         | Blood types can take any values, and it should not be blank                                     |
 | **g\GENDER**                 | ✗               | ✗                      | Gender identity of the patient (e.g., Male, Female, Non-binary, Prefer not to say). | Genders can take any values, and it should not be blank                                         |
 | **ar\ALCOHOLIC_RECORD**      | ✗               | ✗                      | Indicates whether the patient consumes alcohol and relevant details or frequency.   | Alcoholic Record can take any values, and it should not be blank                                |
@@ -520,10 +520,10 @@ Examples:
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                 | Reason                                                            | Solution                                         |
-|-----------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Invalid command format!                       | You may not have provided any keyword                             | Add at least one keyword, e.g. `John`.           |
-| Unknown command                               | The `find` command may be misspelled or not entirely in lowercase | Ensure that you use `find` exactly in lowercase. |
+| Error Message                         | Reason                                                            | Solution                                                                      |
+|---------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Invalid command format!               | You may not have provided any keyword                             | Add at least one keyword, e.g. `John`.                                        |
+| Unknown command                       | The `find` command may be misspelled or not entirely in lowercase | Ensure that you use `find` exactly in lowercase.                              |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -533,43 +533,90 @@ Examples:
 
 ### Scheduling an appointment: `schedule` 
 
-Adds the appointment for the patient identified by the index number used in the displayed patient list.
+**Purpose:** Adds the appointment for the patient specified by `INDEX` shown in the displayed patient list.
 
-Format: `schedule INDEX adt\APPOINTMENT_TIME [note\APPOINTMENT_NOTE]`
+**Format:** `schedule INDEX adt\APPOINTMENT_DATE_TIME [note\APPOINTMENT_NOTE]`
 
-* Adds an appointment the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed **patient** list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Note that APPOINTMENT_NOTE is optional
+#### Input Constraints Table
 
+| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
+|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+| **adt\APPOINTMENT_DATE_TIME**          | &check;         | &cross;                | Full date time of the scheduled appointment                                         | d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm           |
+| **note\APPOINTENT_NOTE**               | &cross;         | &cross;                | Any additional notes for this particular appointment                                | Any string                                                  |
+
+#### Example:
+* To schedule an appointment with the first patient in the displayed list, you can enter:
+```
+schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip
+```
+
+#### Tips:
+* Appointment notes are optional. Hence, the following is a perfectly valid command:
+```
+schedule 1 adt\13-10-2025 10:00
+```
 Example:
 * `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`
+  
+**Here is a list of common errors and how to prevent them**
 
+| Error Message                         | Reason                                                                | Solution                                                             |
+|---------------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
+| Invalid command format!               | You may not have provided the necessary arguments                     | Ensure `INDEX` and `adt\` are provided.                              |
+| Unknown command                       | The `schedule` command may be misspelled or not entirely in lowercase | Ensure that you use `schedule` exactly in lowercase.                 |
+| The patient index provided is invalid | You have entered an invalid index                                     | Ensure that the `INDEX` provided is a valid index in the shown list. |
 ### Deleting upcoming appointment: `unschedule`
 
-Deletes the upcoming appointment identified by the index number used in the displayed upcoming appointment list.
+Deletes the upcoming appointment specified by `INDEX` shown in the displayed upcoming appointment list.
 
-Format: `unschedule INDEX`
+**Format:** `unschedule INDEX`
 
-* Deletes the upcoming appointment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed **Upcoming Appointments** list.
-* The index **must be a positive integer** 1, 2, 3, …​
+#### Input Constraints Table
 
-Example:
-* `unschedule 1`
+| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
+|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+
+#### Example:
+* To delete the first upcoming appointment in the displayed list, you can enter:
+```
+unschedule 1
+```
+**Here is a list of common errors and how to prevent them**
+
+| Error Message                             | Reason                                                                  | Solution                                                             |
+|-------------------------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------|
+| Invalid command format!                   | You might not have entered a positive INDEX.                            | Enter a positive INDEX.                                              |
+| Unknown command                           | The `unschedule` command may be misspelled or not entirely in lowercase | Ensure that you use `unschedule` exactly in lowercase.               |
+| The appointment index provided is invalid | You have entered an invalid index                                       | Ensure that the `INDEX` provided is a valid index in the shown list. |
 
 ### Delete past appointment: `forget`
 
-Deletes the past appointment identified by the index number used in the displayed past appointment list.
+Deletes the past appointment specified by `INDEX` shown in the displayed past appointment list.
 
 Format: `forget INDEX`
 
-* Deletes the past appointment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed **Past Appointments** list.
-* The index **must be a positive integer** 1, 2, 3, …​
+#### Input Constraints Table
 
-Example:
-* `forget 1`
+| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
+|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+
+#### Example:
+* To delete the first past appointment in the displayed list, you can enter:
+```
+forget 1
+```
+
+**Here is a list of common errors and how to prevent them**
+
+| Error Message                             | Reason                                                              | Solution                                                             |
+|-------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------|
+| Invalid command format!                   | You might not have entered a positive INDEX.                        | Enter a positive INDEX.                                              |
+| Unknown command                           | The `forget` command may be misspelled or not entirely in lowercase | Ensure that you use `forget` exactly in lowercase.                   |
+| The appointment index provided is invalid | You have entered an invalid index                                   | Ensure that the `INDEX` provided is a valid index in the shown list. |
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -723,7 +770,7 @@ Summary of all the commands.
 | **e\\EMAIL**                   | e01234567@u.nus.edu, jinHeng@gmail.com                  | joe@, asd@@@asd                | Emails should be of the format local-part@domain                                                              |
 | **addr\\HOME_ADDRESS**         | 123 Main St                                             | (Empty)                        | Addresses can take any values, and it should not be blank                                                     |
 | **ec\\EMERGENCY_CONTACT**      | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa            | Must be in the form [{relationship}] {phone} where phone contains at least 2 consecutive digits               |
-| **dob\\DATE_OF_BIRTH**         | 05-23-1967, 12/10/1987                                  | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: d-m-yyyy, d.m.yyyy, d/m/yyyy                                |
+| **dob\\DATE_OF_BIRTH**         | 05-23-1967, 12/10/1987                                  | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                                |
 | **b\\BLOOD_TYPE**              | A+, O-, AB, Bombay (hh), A Rh(D) negative               | (Empty)                        | Blood types can take any values, and it should not be blank                                                   |
 | **g\\GENDER**                  | Male, Female, Non-binary, Genderqueer                   | (Empty)                        | Genders can take any values, and it should not be blank                                                       |
 | **ar\\ALCOHOLIC_RECORD**       | None, Occasionally, Heavy                               | (Empty)                        | Alcoholic Record can take any values, and it should not be blank                                              |
@@ -732,7 +779,7 @@ Summary of all the commands.
 | **t\\TAG**                     | Urgent, HighRisk, VIP                                   | (Empty)                        | Tags names can take any values, and it should not be blank                                                    |
 | **al\\ALLERGY**                | Peanuts, Penicillin                                     | (Empty)                        | Allergy names can take any values, and it should not be blank                                                 |
 | **m\\MEDICINE**                | 500mg Ibuprofen, 2 Panadol capsules/day                 | (Empty)                        | Medicine field can take any values, and it should not be blank                                                |
-| **adt\\APPOINTMENT_DATE_TIME** | 13-10-2025 10:00                                        | 22233344                       | Appointment date & time should be of the following formats: d-m-yyyy HH:mm, d.m.yyyy HH:mm, or d/m/yyyy HH:mm |
+| **adt\\APPOINTMENT_DATE_TIME** | 13-10-2025 10:00                                        | 22233344                       | Appointment date & time should be of the following formats: d-M-yyyy HH:mm, d.M.yyyy HH:mm, or d/M/yyyy HH:mm |
 | **note\\APPOINTMENT_NOTE**     | Needs IV Drip                                           | (Empty)                        | Appointment notes can take any values, and it should not be blank                                             |
 
 [Back to Table of Contents](#table-of-contents)
