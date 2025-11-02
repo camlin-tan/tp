@@ -641,22 +641,22 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding a person with optional fields
 
-    1. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 t\priorityHigh`<br>
+    1. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 t\priorityHigh`<br>
        Expected: New contact with tags is added to the list.
 
-    2. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 al\nuts`<br>
+    2. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 al\nuts`<br>
        Expected: New contact with allergies is added to the list.
 
-    3. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 m\100mg Panadol/day`<br>
+    3. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 m\100mg Panadol/day`<br>
        Expected: New contact with medicines is added to the list.
 
-    4. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 ar\Social drinker`<br>
+    4. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 ar\Social drinker`<br>
        Expected: New contact with alcoholic record is added to the list.
 
-    5. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 sr\Heavy smoker`<br>
+    5. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 sr\Heavy smoker`<br>
        Expected: New contact with smoking record is added to the list.
 
-    6. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 pmh\Diabetes`<br>
+    6. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 pmh\Diabetes`<br>
        Expected: New contact with past medical history is added to the list.
 
 ### Editing a person
@@ -671,19 +671,13 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit 1 id\A9999999Z`<br>
        Expected: Identity number of first contact is updated if no duplicate exists.
 
-    4. Test case: `edit 1 e\newemail@example.com addr\New Address 123`<br>
-       Expected: Email and address of first contact are updated.
-
-    5. Test case: `edit 1 t\diabetes`<br>
-       Expected: Tags are replaced with only "diabetes" tag.
-
-    6. Test case: `edit 1 al\Aspirin al\Ibuprofen`<br>
+    4. Test case: `edit 1 al\Aspirin al\Ibuprofen`<br>
        Expected: Allergies are replaced with new list.
 
-    7. Test case: `edit 0 p\91234567`<br>
+    5. Test case: `edit 0 p\91234567`<br>
        Expected: No person is edited. Error details shown in the status message.
 
-    8. Other incorrect edit commands to try: `edit`, `edit x p\12345678` (where x is larger than the list size)<br>
+    6. Other incorrect edit commands to try: `edit`, `edit x p\12345678` (where x is larger than the list size)<br>
        Expected: No person is edited. Error details shown in the status message.
 
 ### Deleting a person
@@ -722,17 +716,6 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `view x` (where x is larger than the list size)<br>
        Expected: Error message shown.
 
-    5. Other incorrect view commands to try: `view`, `view abc`<br>
-       Expected: Error message shown.
-
-2. Switching between different person views
-
-    1. Test case: `view 1` followed by `view 2`<br>
-       Expected: View switches from first person to second person.
-
-    2. Test case: `view 1` followed by `list` followed by `view 1`<br>
-       Expected: View persists correctly after list command.
-
 ### Listing all persons
 
 1. Listing all persons in the address book
@@ -742,9 +725,6 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case after a `find` command: `list`<br>
        Expected: Resets the view to show all persons instead of filtered results.
-
-    3. Test case: `list xhasdnkcsdf` (garbage value after list command)<br>
-       Expected:  All persons in the address book are displayed with a note says "Additional arguments detected. You may provide extra arguments, but they will be ignored.".
 
 ### Finding a person
 
@@ -776,6 +756,100 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `find a1234567b` (lowercase)<br>
        Expected: List shows the person with identity number "A1234567B" if the search is case-insensitive for identity numbers.
+
+### Adding an appointment
+
+1. Adding an appointment for a patient
+
+    1. Prerequisites: At least one person in the list.
+
+    2. Test case: `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`<br>
+       Expected: New appointment is added. Success message shown with appointment details.
+
+    3. Test case: `schedule 1 adt\13-11-2025 10:00`<br>
+       Expected: New appointment is added with empty notes.
+
+    4. Test case: `schedule x adt\13-11-2025 10:00 note\Test` (where x is larger than the list size) <br>
+       Expected: No appointment is added. Error message indicates invalid index.
+
+    5. Test case: `schedule 1 adt\40-13-2025 note\Test`<br>
+       Expected: No appointment is added. Error message indicates invalid date format.
+
+2. Adding appointments using filtered list
+
+    1. Test case: Execute `find John` to filter the list, then `schedule 1 adt\20-11-2025 11:00 note\X-ray`<br>
+       Expected: Appointment is added for the first person in the filtered list (not necessarily the first person in the complete list).
+
+3. Adding appointments with special characters in notes
+
+    1. Test case: `schedule 1 adt\13-11-2025 10:00 note\Patient needs medication & IV drip, follow-up required!`<br>
+       Expected: Appointment is added with the note containing special characters.
+
+### Deleting an upcoming appointment
+
+1. Deleting an appointment from the upcoming appointments list
+
+    1. Prerequisites: At least one upcoming appointment exists in the system. Upcoming appointments are displayed in the right panel of the application.
+
+    2. Test case: `unschedule 1`<br>
+       Expected: First upcoming appointment is deleted from the list. Success message shown with details of the deleted appointment. The appointment is removed from both the upcoming appointments panel and from the person's appointment list in the view panel (if viewing that person).
+
+    3. Test case: `unschedule 0`<br>
+       Expected: No appointment is deleted. Error message indicates invalid index (must be a positive integer).
+
+    4. Test case: `unschedule x` (where x is larger than the upcoming appointment list size)<br>
+       Expected: No appointment is deleted. Error message indicates index is out of range.
+
+2. Deleting appointments and verifying removal
+
+    1. Prerequisites: At least one person with upcoming appointments.
+
+    2. Test case: Execute `view 1` to view the first person's details, note the upcoming appointments displayed in the person's view panel<br>
+       Expected: Person's details are displayed with all upcoming appointments listed.
+
+    3. Test case: Check the upcoming appointments panel on the right side of the application to find the index of the upcoming appointment for that person you want to delete<br>
+
+    4. Test case: Execute `unschedule x` (x is the index you note from the appointment lists that you want to delete)<br>
+       Expected: Appointment is deleted. Success message shown: "Deleted Appointment: [appointment details]".
+
+    5. Test case: Execute `view 1` again to refresh the person's view<br>
+       Expected: The deleted appointment is no longer shown in the person's upcoming appointments list.
+
+    6. Test case: Verify in the upcoming appointments panel<br>
+       Expected: The deleted appointment is also removed from the upcoming appointments list on the right panel.
+
+### Deleting a past appointment
+
+1. Deleting an appointment from the past appointments list
+
+    1. Prerequisites: At least one past appointment exists in the past appointment list.
+
+    2. Test case: `forget 1`<br>
+       Expected: First past appointment is deleted from the list. Success message shown with details of the deleted appointment. The appointment is removed from both the past appointments panel and from the person's appointment list in the view panel (if viewing that person).
+
+    3. Test case: `forget 0`<br>
+       Expected: No appointment is deleted. Error message indicates invalid index (must be a positive integer).
+
+    4. Test case: `forget x` (where x is larger than the past appointment list size)<br>
+       Expected: No appointment is deleted. Error message indicates index is out of range.
+
+2. Deleting past appointments and verifying removal
+
+    1. Prerequisites: At least one person with past appointments.
+
+    2. Test case: Execute `view 1` to view the first person's details, note the past appointments displayed in the person's view panel<br>
+       Expected: Person's details are displayed with all past appointments listed.
+
+    3. Test case: Check the past appointments panel on the right side of the application to find the index of the past appointment for that person you want to delete<br>
+
+    4. Test case: Execute `forget x` (x is the index you note from the past appointment list that you want to delete)<br>
+       Expected: Appointment is deleted. Success message shown: "Deleted Appointment: [appointment details]".
+
+    5. Test case: Execute `view 1` again to refresh the person's view<br>
+       Expected: The deleted appointment is no longer shown in the person's past appointments list.
+
+    6. Test case: Verify in the past appointments panel<br>
+       Expected: The deleted appointment is also removed from the past appointments list on the right panel.
 
 ### Clearing all entries
 
