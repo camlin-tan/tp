@@ -311,24 +311,29 @@ unrecognised parameter(s): a\, b\ `
 
 **Target user profile**:
 
-An independent home healthcare provider (e.g., home care doctor or nurse) who:
-- Manages a diverse list of patients.
-- Has no additional personnel (e.g., no receptionist, no assistant).
-- Is constantly on the move, making frequent home visits.
-- Needs to keep track of appointments with patients.
-- Needs to quickly access and update patient records such as personal details, medical history, and appointment notes. 
-- Can type fast and prefers typing to mouse interactions.
-- Is comfortable using Command-Line Interface (CLI) desktop applications.
-- Requires reliable offline access to data, as internet connectivity may not always be available while on the move.
+***General Characteristics***:
 
+* independent home-care doctor often making home visits
+* has a need to manage a significant number of patients with diverse conditions
+* works with limited resources (e.g., no receptionist, no nurse), self-services features are a must
+
+***Technical Characteristics***:
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
+* needs reliable offline mode
+
+***Workflow Challenges***:
+* time pressure during home visits, needs to manage patients quickly
+* juggle between patient's contact details, medical history, appointments
+* needs to track follow-up appointments, medication schedules
 
 **Value proposition**:
-- **Speed**: A keyboard-focused workflow allows for quick patient data entry and retrieval, significantly faster than navigating
-GUIs or traditional physical files. 
-- **Organised**: Consolidates patient details, histories, and appointments in one platform, improving record management 
-and reducing administrative overhead.
-- **Portability**: Replaces bulky patient files as it is a lightweight desktop application and always available. 
-- **Offline**: All patient data is stored locally, functionality is not affected by internet connection.
+
+Helps independent doctors manager their patients and schedule more efficiently using a keyboard-focused UI.
+It is optimised for more tech-savvy doctors who prefer using a CLI.
+Enables quick retrieval of patient’s records, especially useful when they are always on the move.
 
 
 ### User stories
