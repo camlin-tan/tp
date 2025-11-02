@@ -602,9 +602,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1
 
 
-
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java 17 or above installed.
@@ -691,7 +688,7 @@ testers are expected to do more *exploratory* testing.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Manual testing of patient commands
+## Manual testing of patient commands
 
 ### Adding a person
 
@@ -827,7 +824,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `find a1234567b` (lowercase)<br>
        Expected: List shows the person with identity number "A1234567B" if the search is case-insensitive for identity numbers.
 
-### Manual testing of appointment commands
+## Manual testing of appointment commands
 
 ### Adding an appointment
 
@@ -923,7 +920,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: Verify in the past appointments panel<br>
        Expected: The deleted appointment is also removed from the past appointments list on the right panel.
 
-### Manual testing of general commands
+## Manual testing of general commands
 
 ### Clearing all entries
 
@@ -1010,7 +1007,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: Click the window close button (X)<br>
        Expected: Application closes gracefully. All data is automatically saved.
 
-### Manual testing of data handling
+## Manual testing of data handling
 
 ### Saving data issues
 
@@ -1032,5 +1029,6 @@ testers are expected to do more *exploratory* testing.
     2. Open the file named `addressbook.json`.
     3. Modify the file to simulate corruption. For instance, delete the first few lines from the file.
     4. Relaunch the application.
+    5. Add a new a patient.
 
-   Expected: The panel on the left is empty. No patient records are displayed in the application.
+   Expected: At the end of step 4, the panel on the left is empty, and no patient records are displayed in the application. At the end of step 6, check to see that the corrupted json file has been overwritten to reflect the added person.
