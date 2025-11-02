@@ -281,27 +281,27 @@ _{Explain here how the data archiving feature will be implemented}_
 Team Size: 5
 
 1. **Save user set theme**:
-In the current implementation, if the user has set a theme, by executing the command: `theme pink` for example, the set
-theme does not persist once the user exits and relaunches the application. We plan to store the user set theme in 
-`UserPrefs`. When the application launches, the user's theme will be fetched and set during UI initialisation. 
-When the user sets a new theme, this data will be updated.
+   In the current implementation, if the user has set a theme, by executing the command: `theme pink` for example, the set
+   theme does not persist once the user exits and relaunches the application. We plan to store the user set theme in
+   `UserPrefs`. When the application launches, the user's theme will be fetched and set during UI initialisation.
+   When the user sets a new theme, this data will be updated.
 
 
 2. **More specific error message for `schedule` command**:
-The current error message when the `schedule` command is executed with missing or invalid parameters is
-`Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
-These reasons for failure include missing parameters, or invalid parameters provided.
-For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
+   The current error message when the `schedule` command is executed with missing or invalid parameters is
+   `Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
+   These reasons for failure include missing parameters, or invalid parameters provided.
+   For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
 unrecognised parameter(s): a\, b\ `
 
 
 3. **Warn Overlapping Appointments:**
-The current implementation allows the user to create two different appointments at the same time and date for
-**different patients.** For example, an appointment may be scheduled for patient `A` at time `25-08-2025 20:00`, 
-and another appointment for the same time may also be scheduled for another patient `B`. We did not stop this from 
-happening as it could be the intended action of the user. However, there is also a possibility that the user had 
-overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
-to add a message to notify the user if this occurs.
+   The current implementation allows the user to create two different appointments at the same time and date for
+   **different patients.** For example, an appointment may be scheduled for patient `A` at time `25-08-2025 20:00`,
+   and another appointment for the same time may also be scheduled for another patient `B`. We did not stop this from
+   happening as it could be the intended action of the user. However, there is also a possibility that the user had
+   overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
+   to add a message to notify the user if this occurs.
 
 ---
 
