@@ -466,10 +466,10 @@ Examples:
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                 | Reason                                                            | Solution                                         |
-|-----------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Invalid command format!                       | You may not have provided any keyword                             | Add at least one keyword, e.g. `John`.           |
-| Unknown command                               | The `find` command may be misspelled or not entirely in lowercase | Ensure that you use `find` exactly in lowercase. |
+| Error Message                         | Reason                                                            | Solution                                                                      |
+|---------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Invalid command format!               | You may not have provided any keyword                             | Add at least one keyword, e.g. `John`.                                        |
+| Unknown command                       | The `find` command may be misspelled or not entirely in lowercase | Ensure that you use `find` exactly in lowercase.                              |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -502,7 +502,16 @@ schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip
 ```
 schedule 1 adt\13-10-2025 10:00
 ```
+Example:
+* `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`
+  
+**Here is a list of common errors and how to prevent them**
 
+| Error Message                         | Reason                                                                | Solution                                                             |
+|---------------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
+| Invalid command format!               | You may not have provided the necessary arguments                     | Ensure `INDEX` and `adt\` are provided.                              |
+| Unknown command                       | The `schedule` command may be misspelled or not entirely in lowercase | Ensure that you use `schedule` exactly in lowercase.                 |
+| The patient index provided is invalid | You have entered an invalid index                                     | Ensure that the `INDEX` provided is a valid index in the shown list. |
 ### Deleting upcoming appointment: `unschedule`
 
 Deletes the upcoming appointment specified by `INDEX` shown in the displayed upcoming appointment list.
@@ -520,8 +529,15 @@ Deletes the upcoming appointment specified by `INDEX` shown in the displayed upc
 ```
 unschedule 1
 ```
+**Here is a list of common errors and how to prevent them**
 
-#### Delete past appointment: `forget`
+| Error Message                             | Reason                                                                  | Solution                                                             |
+|-------------------------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------|
+| Invalid command format!                   | You might not have entered a positive INDEX.                            | Enter a positive INDEX.                                              |
+| Unknown command                           | The `unschedule` command may be misspelled or not entirely in lowercase | Ensure that you use `unschedule` exactly in lowercase.               |
+| The appointment index provided is invalid | You have entered an invalid index                                       | Ensure that the `INDEX` provided is a valid index in the shown list. |
+
+### Delete past appointment: `forget`
 
 Deletes the past appointment specified by `INDEX` shown in the displayed past appointment list.
 
@@ -538,6 +554,15 @@ Format: `forget INDEX`
 ```
 forget 1
 ```
+
+**Here is a list of common errors and how to prevent them**
+
+| Error Message                             | Reason                                                              | Solution                                                             |
+|-------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------|
+| Invalid command format!                   | You might not have entered a positive INDEX.                        | Enter a positive INDEX.                                              |
+| Unknown command                           | The `forget` command may be misspelled or not entirely in lowercase | Ensure that you use `forget` exactly in lowercase.                   |
+| The appointment index provided is invalid | You have entered an invalid index                                   | Ensure that the `INDEX` provided is a valid index in the shown list. |
+
 
 [Back to Table of Contents](#table-of-contents)
 
