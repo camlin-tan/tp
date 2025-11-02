@@ -21,11 +21,10 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
   * [Quick Start](#quick-start)
   * [Features](#features)
     * [Command Format](#command-format)
-    * [Input Constraints Table](#input-constraints-table)
   * [Features - General Features](#features-general-features)
-    * [Viewing help : `help`](#viewing-help-help)
-    * [Changing the colour theme : `theme`](#changing-the-colour-theme-theme)
-    * [Exiting the program : `exit`](#exiting-the-program-exit)
+    * [Viewing help: `help`](#viewing-help-help)
+    * [Changing the colour theme: `theme`](#changing-the-colour-theme-theme)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
   * [Features - Managing Patient Records](#features-managing-patient-records)
     * [Adding a patient: `add`](#adding-a-patient-add)
     * [Editing a patient: `edit`](#editing-a-patient-edit)
@@ -48,6 +47,7 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
   * [Glossary](#glossary)
   * [Known issues](#known-issues)
   * [Command Summary](#command-summary)
+    * [Input Constraints Table](#input-constraints-table)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
