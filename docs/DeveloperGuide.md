@@ -732,55 +732,6 @@ testers are expected to do more *exploratory* testing.
 
 ### Manual testing of appointment commands
        
-### Scheduling appointments
-
-1. Scheduling appointment with all required fields
-
-    1. Prerequisites: Multiple persons is in the list.
-   
-    2. Test case: `schedule 1 adt\25-06-2025 13:00` <br>
-       Expected: New appointment added to the appointment list, containing the same Patient ID as the first patient in the patient list.
-
-    3. Test case: repeat the previous command `schedule 1 adt\25-06-2025 13:00` <br>
-       Expected: Error message indicates appointment already exists for the patient.
-
-    4. Test case: `schedule 1 adt\25-06-2025 13:000` <br>
-       Expected: Error message indicates incorrect appointment time format.
-
-    5. Test case: `schedule 0 adt\25-06-2025 13:00`
-       Expected: No appointment is scheduled. Error message indicates invalid command format.
-
-2. Scheduling appointment with optional fields
-
-    1. Prerequisites: Multiple persons is in the list.
-
-    2. Test case: `schedule 1 adt\25-06-2025 13:00 note\Need IV Drip` <br>
-       Expected: New appointment added to the appointment list, containing the same Patient ID as the first patient in the patient list, with the note "Needs IV Drip".
-
-
-### Deleting upcoming appointments
-
-1. Deleting upcoming appointments from the upcoming appointment list
-
-    1. Prerequisites: At least one upcoming appointment in the list.
-
-    2. Test case: `unschedule 1`
-       Expected: The first upcoming appointment is successfully deleted, and a confirmation message is shown.
-    
-    3. Test case: `unschedule 0`
-       Expected: No appointment deleted. Error message is shown indicating invalid format.
-
-### Deleting past appointments
-
-1. Deleting past appointments from the past appointment list
-
-    1. Prerequisites: At least one past appointment in the list.
-
-    2. Test case: `forget 1`
-       Expected: The first past appointment is successfully deleted, and a confirmation message is shown.
-
-    3. Test case: `forget 0`
-       Expected: No appointment deleted. Error message is shown indicating invalid format.
 
 ### Manual testing of general commands
 
