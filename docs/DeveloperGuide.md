@@ -279,29 +279,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Difficulty Level
 The difficulty of this project was high. The most difficult feature to implement was the `Appointments` feature,
-as it required transitioning AB3 from a single-entity application, which only involved `Person` objects, to an application
-with multiple entities, where both `Person` and `Appointment` objects are created, displayed and used. Adding a new 
-section to the UI to display appointments required new internal lists to be stored in `Model` and new methods to 
-manage this list. 
+as it required transitioning AB3 from a single-entity to a multi-entity application. In AB3, only `Person`
+objects were involved whereas in HealthNote, both `Person` and `Appointment` objects are created, displayed, and used
+simultaneously. Adding a new section to the UI to display these appointments required new internal lists within 
+`Model` and new methods to manage them as well.
 
-Relating each `Person` to their `Appointment` introduced another layer of complexity, as changes to a 
-`Person` object will also affect their `Appointment`(s). For example, when a `Person` is deleted from the `Person List`, 
-all of their related `Appointment`s will also have to be deleted from the Appointments list. 
+Linking each `Person` to their corresponding `Appointment`(s) introduced another layer of complexity, as changes to a 
+`Person` object would also affect their associated `Appointment`(s). For example, when a `Person` is deleted from the `Person List`, 
+all of their related `Appointment`s must also be deleted from the Appointments list. 
 
 
 ### Challenges Faced
 Our team faced several technical and workflow challenges:
 
 **Initial Learning Curve**: As a team new to a large codebase, the initial learning curve was steep. We had to quickly
-learn and spot the design patters, such as the MVC and Observer pattern used in AB£, before they were properly covered
-in the topics. This required a lot of planning and justifying our design choices in order not to break the exising 
-design patterns. 
+learn and understand the design patterns, such as the MVC and Observer pattern used in AB3, before they were covered
+in the weekly topics. This required a lot of planning and justification of our design choices in order to ensure that 
+the existing design of AB3 was not broken. 
 
 
-**Adhering to Design**: We spent considerable time ensuring our new features followed the AB-3 architecture. 
-For example, our view command required `UI` to interact with `Logic` and `Model` to display a specific `Person` in the 
-new `PersonViewPanel` without violating the `MVC` pattern. We had to carefully plan how the selected `Person` to be 
-viewed would be passed from `Model` to `UI` and how the `MainWindow` would be updated.
+**Adhering to Design**: We spent a considerable amount of time planning and justifying our design choices to ensure 
+that the existing design of AB3 was not broken. For example, our view command required `UI` to interact with `Logic` 
+and `Model` to display a specific `Person` in the new `PersonViewPanel` without violating the `MVC` pattern. We had to 
+carefully plan how the selected `Person` to be viewed would be passed from `Model` to `UI` and how the `MainWindow` 
+would be updated.
 
 
 **Cascading Test Failures**: The massive number of tests used in AB3 meant that simple changes to commonly used classes
@@ -309,31 +310,41 @@ such as those in `command` and `person` broke over 50 JUnit tests at once, all o
 and updated. 
 
 
-**Parallel Branches and Merge Conflicts**: Our team worked on multiple features in parallel. Adding numerous new 
-Patient fields in separate pull requests created massive amounts and time-consuming merge conflicts, most of which 
-involving the edited JUnit tests.  
+**Parallel Branches and Merge Conflicts**: Our team worked on multiple features in parallel. Adding numerous new fields
+to `Person` in separate pull requests created a large number of merge conflicts, mostly involving the edited JUnit tests. 
+Resolving these conflicts was very tedious and time-consuming as we could not simply accept the incoming or current 
+branch without editing the code manually.
 
 
 ### Effort Required
-A lot of the project's effort was saved by reusing the four main components of AB3 as it laid out the groundwork for us 
-to build on. That being said, the effort to adapt it for HealthNote was still substantial. The addition of a relational
-data model, `Person` to `Appointments`, required a lot of new work in all the components, not to mention other less
-effort-intensive but still high effort features such as the addition of new fields, themes, and changes to the UI layout. 
+We iterated on the four main AB3 components, which saved us the effort of building a functional address book
+from the ground up. However, the effort in adapting it to HealthNote was still substantial. 
 
-We worked on all the components. We designed and implemented new command parsers, added new fields and behaviour to 
-model, added UI components, modified `JsonAdaptedPerson` with the new fields and added a new 
-`JsonAdaptedAppointment` class to store Appointments locally. Lastly, we also updated and wrote new JUnit tests
-for all the new additions and changes. 
+**Model**: We modified the `Person` class significantly, adding many new fields that fit our target user such as `BloodType`, 
+`PastMedicalHistory`, and `Allergy`. We also designed and implemented new entities, including `Appointment` and 
+`AppointmentList`.
+
+**Storage**: We created a new `JsonAdaptedAppointment` class to store appointments locally, and updated the 
+`JsonAdaptedPerson` class for our new fields.
+
+**Logic**: We wrote new Command and Parser classes for all new features, such as `AddAppointmentCommand`, 
+`DeleteUpcomingAppointmentCommand`, `DeletePastAppointmentCommand`, `ViewCommand`, and `ThemeCommand`.
+
+**UI**: We created several new UI components to display the appointment list and patient information. This includes
+the `AppointmentCard`, `AppointmentListPanel`, and `PersonViewPanel` for the `view` command.
+
+**Testing**: A large portion of our effort was dedicated to testing. This involved updating hundreds of existing
+AB3 tests to work with our new Person model and writing more testcases to test our new commands, parsers and model classes.
 
 
 ### Achievements
 Despite the challenges, our team successfully:
 
-- Transformed AB-3 from a generic address book into a specialized, domain-specific application for home healthcare providers.
+- Transformed AB3 from a generic address book into a specialized, domain-specific application for home healthcare providers.
 - Designed and implemented a relational data model, successfully linking Patient entities to their corresponding Appointments.
-- Mastered and extended the AB-3 architecture, applying its design patterns to new and complex features.
+- Mastered and extended the AB3 architecture, applying its design patterns to new and complex features.
 - Delivered an extensive and useful feature set for our target user, such as patient medical records, appointment 
-management and a detailed patient view panel. We also added different themes so users can set a different aesthetic. 
+management and a detailed patient view panel. We also added different themes to enhance the overall user experience and aesthetics.
 
 
 ## **Appendix: Planned Enhancements**
