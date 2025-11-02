@@ -257,7 +257,6 @@ Format: `help`
 Changes the colour theme of HealthNote.
 
 Format: `theme THEME_NAME`
-* Available themes: `light`, `dark`, `blue`, `pink`
 * Available themes: `light`, `dark`, `blue`, `pink`.
 * The theme name **must be exactly one of the available options**.
 * Theme names are non-case-sensitive, both lowercase and uppercase letters are accepted.
