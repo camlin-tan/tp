@@ -103,16 +103,17 @@ HealthNote is a desktop app for managing contacts, optimized for use via a Line 
 
 Here are the key components of the HealthNote User Interface (UI), designed for the convenience of our users.
 
-*insert the UI photo here this is just a placeholder for now with labels for the components*
+![UI-components.png](images/UI-components.png)
 
-| No | Component        | Description                                                                            |
-|----|------------------|----------------------------------------------------------------------------------------|
-| 1  | Command Input    | This is where the user inputs commands to perform various tasks.                       |
-| 2  | Command Result   | Displays the output and the result of performing a command.                            |
-| 3  | Patient List     | Displays the list of patients.                                                         |
-| 4  | View Patient     | Displays all the data fields of patients which the user requests to view.              |
-| 5  | Appointment List | Displays the upcoming and past appointments, including past and upcoming appointments. |
-
+| No | Component                                 | Description                                                                                                                          |
+|----|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| 1  | Menu bar                                  | Provides access to various actions, such as accessing help or exiting the application.                                               |
+| 2  | Command Box                               | This is where the user inputs commands to perform various tasks.                                                                     |
+| 3  | Command Result                            | Displays the output and the result of performing a command.                                                                          |
+| 4  | Patient List                              | Displays the list of patients.                                                                                                       |
+| 5  | Patient's personal information view panel | Displays all the data fields, including medical records, of the patient which the user requests to view.                             |
+| 6  | Upcoming and past appointments list panel | Displays all the appointments, with the top list displaying upcoming appointments, and the bottom list displaying past appointments. |
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
