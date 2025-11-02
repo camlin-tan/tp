@@ -67,13 +67,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -102,10 +102,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -126,15 +126,15 @@ The `Model` component,
 * stores the address book data i.e., all `Person` and `Appointment` objects (which are contained in a `UniquePersonList` object and an `UniqueAppointmentList` object).
 
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* each `Person` and their `Appointment`s store a common reference of the `Person`'s `IdentityNumber`
+* each `Person` and their `Appointment`s store a common reference of the `Person`'s `IdentityNumber`.
 
 <puml src="diagrams/ModelUiObjectDiagram.puml" width="450" />
 
-* stores the currently 'found' `Person` objects (e.g., results of a search query) as a separate _filtered_ list
-* stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`
-* stores another 2 lists of `Appointments` objects belonging to the currently viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
+* stores the currently 'found' `Person` objects (e.g., results of a search query) as a separate _filtered_ list.
+* stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`.
+* stores another 2 lists of `Appointments` objects belonging to the currently viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`.
 * exposes the lists above to outsiders as unmodifiable `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <box type="info" seamless>
 
@@ -154,7 +154,7 @@ The `Model` component,
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -453,10 +453,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <u>list patients (UC05)</u>
-2.  HealthNote shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  HealthNote deletes the patient
+1.  User requests to <u>list patients (UC05)</u>.
+2.  HealthNote shows a list of patients.
+3.  User requests to delete a specific patient in the list.
+4.  HealthNote deletes the patient.
 
     Use case ends.
 
@@ -499,27 +499,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types a command to view all available commands
-2.  HealthNote retrieves the list of commands supported
-3.  The list of commands is displayed to the user
-4.  User closes the list
+1.  User types a command to view all available commands.
+2.  HealthNote retrieves the list of commands supported.
+3.  The list of commands is displayed to the user.
+4.  User closes the list.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list of commands cannot be retrieved due to some error
+* 1a. The list of commands cannot be retrieved due to some error.
 
     * 1a1. HealthNote shows an error message.
 
-      Use case ends
+      Use case ends.
 
 **Use case: UC04 - Edit a patient**
 
 **MSS**
 
-1.  User requests to <u>list patients (UC05)</u>
-2.  HealthNote shows a list of patients
+1.  User requests to <u>list patients (UC05)</u>.
+2.  HealthNote shows a list of patients.
 3.  User requests to edit a patient using the edit command with required parameters.
 4.  HealthNote edits the patient in the system.
 
@@ -599,7 +599,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. HealthNote shows an error message.
 
-      Use case resumes at step 1
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
@@ -620,6 +621,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
 
 * **CLI (Command Line Interface)** — A text-based interface where users interact with the application by typing commands
 
@@ -672,9 +675,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
-    2. Double-click the jar file
+    2. Double-click the jar file. If it doesn't work, use `java -jar addressbook.jar`.
 
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -684,6 +687,8 @@ testers are expected to do more *exploratory* testing.
 
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+## Manual testing of patient commands
 
 ### Adding a person
 
@@ -819,6 +824,8 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `find a1234567b` (lowercase)<br>
        Expected: List shows the person with identity number "A1234567B" if the search is case-insensitive for identity numbers.
 
+## Manual testing of appointment commands
+
 ### Adding an appointment
 
 1. Adding an appointment for a patient
@@ -913,6 +920,8 @@ testers are expected to do more *exploratory* testing.
     6. Test case: Verify in the past appointments panel<br>
        Expected: The deleted appointment is also removed from the past appointments list on the right panel.
 
+## Manual testing of general commands
+
 ### Clearing all entries
 
 1. Clearing all data from the address book with confirmation
@@ -998,7 +1007,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: Click the window close button (X)<br>
        Expected: Application closes gracefully. All data is automatically saved.
 
-### Manual testing of data handling
+## Manual testing of data handling
 
 ### Saving data issues
 
@@ -1011,3 +1020,15 @@ testers are expected to do more *exploratory* testing.
     3. Relaunch the application.
 
    Expected: A new file with sample patient records is created. Sample patient records are displayed in the application.
+
+2. Dealing with corrupted data files
+
+   Test case:
+
+    1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
+    2. Open the file named `addressbook.json`.
+    3. Modify the file to simulate corruption. For instance, delete the first few lines from the file.
+    4. Relaunch the application.
+    5. Add a new a patient, using `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000`.
+
+   Expected: At the end of step 4, the panel on the left is empty, and no patient records are displayed in the application. At the end of step 5, check to see that the corrupted json file has been overwritten to reflect the added person.
