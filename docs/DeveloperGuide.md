@@ -547,7 +547,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+
+* **CLI (Command Line Interface)** — A text-based interface where users interact with the application by typing commands
+
+* **GUI (Graphical User Interface)** — The visual interface of the application that displays patient information and appointment lists
+
+* **Independent Doctor** — A medical professional who works independently, often making home visits and managing patients without support staff like receptionists or nurses
+
+* **Identity Number** — A unique identifier for each patient (e.g., National ID, Passport Number) used to distinguish patients with similar names
+
+* **Emergency Contact** — A designated person to contact in case of medical emergencies, including their relationship to the patient
+
+* **Blood Type** — Classification of blood based on the presence or absence of antibodies and antigens (e.g., A, B, AB, O with +/- Rh factor)
+
+* **Alcoholic Record** — Documentation of a patient's alcohol consumption habits
+
+* **Smoking Record** — Documentation of a patient's smoking habits
+
+* **Medical History (Past Medical History/PMH)** — Previous health conditions, diagnoses, or treatments that a patient has experienced
+
+* **Tag** — A label attached to a patient record for categorization or prioritization (e.g., "priorityHigh", "diabetesFollowUp")
+
+* **Allergy** — A substance or medication that causes an adverse reaction in the patient
+
+* **Medicine** — Current medications that the patient is taking, including dosage information
+
+* **Upcoming Appointment** — An appointment scheduled for a future date and time
+
+* **Past Appointment** — An appointment that has already occurred (date and time in the past)
+
+* **Index** — The position number of an item in a displayed list, starting from 1
+
+* **Parameter** — A piece of information required by a command, specified using a prefix (e.g., `n\` for name, `p\` for phone)
+
+* **Prefix** — A tag that identifies the type of information being provided in a command (e.g., `n\`, `id\`, `p\`)
 
 --------------------------------------------------------------------------------------------------------------------
 
