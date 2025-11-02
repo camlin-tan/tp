@@ -569,23 +569,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **GUI (Graphical User Interface)** — The visual interface of the application that displays patient information and appointment lists
 
-* **Doctor** — A medical professional who provides healthcare services to patients
-
-* **Patient** — An individual receiving medical care or treatment
+* **Independent Doctor** — A medical professional who works independently, often making home visits and managing patients without support staff like receptionists or nurses
 
 * **Identity Number** — A unique identifier for each patient (e.g., National ID, Passport Number) used to distinguish patients with similar names
 
-* **Upcoming Appointment** — An appointment scheduled for a future date and time
-
-* **Past Appointment** — An appointment that has already occurred (date and time in the past)
-
-* **Home-care Doctor** — A medical professional who provides healthcare services by visiting patients at their homes
-
 * **Emergency Contact** — A designated person to contact in case of medical emergencies, including their relationship to the patient
 
-* **Medical History (Past Medical History/PMH)** — Previous health conditions, diagnoses, or treatments that a patient has experienced
-
 * **Blood Type** — Classification of blood based on the presence or absence of antibodies and antigens (e.g., A, B, AB, O with +/- Rh factor)
+
+* **Alcoholic Record** — Documentation of a patient's alcohol consumption habits
+
+* **Smoking Record** — Documentation of a patient's smoking habits
+
+* **Medical History (Past Medical History/PMH)** — Previous health conditions, diagnoses, or treatments that a patient has experienced
 
 * **Tag** — A label attached to a patient record for categorization or prioritization (e.g., "priorityHigh", "diabetesFollowUp")
 
@@ -593,9 +589,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Medicine** — Current medications that the patient is taking, including dosage information
 
-* **Alcoholic Record** — Documentation of a patient's alcohol consumption habits
+* **Upcoming Appointment** — An appointment scheduled for a future date and time
 
-* **Smoking Record** — Documentation of a patient's smoking habits
+* **Past Appointment** — An appointment that has already occurred (date and time in the past)
 
 * **Index** — The position number of an item in a displayed list, starting from 1
 
