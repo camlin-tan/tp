@@ -275,6 +275,67 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Effort**
+
+### Difficulty Level
+The difficulty of this project was high. The most difficult feature to implement was the `Appointments` feature,
+as it required transitioning AB3 from a single-entity application, which only involved `Person` objects, to an application
+with multiple entities, where both `Person` and `Appointment` objects are created, displayed and used. Adding a new 
+section to the UI to display appointments required new internal lists to be stored in `Model` and new methods to 
+manage this list. 
+
+Relating each `Person` to their `Appointment` introduced another layer of complexity, as changes to a 
+`Person` object will also affect their `Appointment`(s). For example, when a `Person` is deleted from the `Person List`, 
+all of their related `Appointment`s will also have to be deleted from the Appointments list. 
+
+
+### Challenges Faced
+Our team faced several technical and workflow challenges:
+
+**Initial Learning Curve**: As a team new to a large codebase, the initial learning curve was steep. We had to quickly
+learn and spot the design patters, such as the MVC and Observer pattern used in AB£, before they were properly covered
+in the topics. This required a lot of planning and justifying our design choices in order not to break the exising 
+design patterns. 
+
+
+**Adhering to Design**: We spent considerable time ensuring our new features followed the AB-3 architecture. 
+For example, our view command required `UI` to interact with `Logic` and `Model` to display a specific `Person` in the 
+new `PersonViewPanel` without violating the `MVC` pattern. We had to carefully plan how the selected `Person` to be 
+viewed would be passed from `Model` to `UI` and how the `MainWindow` would be updated.
+
+
+**Cascading Test Failures**: The massive number of tests used in AB3 meant that simple changes to commonly used classes
+such as those in `command` and `person` broke over 50 JUnit tests at once, all of which had to be manually traced
+and updated. 
+
+
+**Parallel Branches and Merge Conflicts**: Our team worked on multiple features in parallel. Adding numerous new 
+Patient fields in separate pull requests created massive amounts and time-consuming merge conflicts, most of which 
+involving the edited JUnit tests.  
+
+
+### Effort Required
+A lot of the project's effort was saved by reusing the four main components of AB3 as it laid out the groundwork for us 
+to build on. That being said, the effort to adapt it for HealthNote was still substantial. The addition of a relational
+data model, `Person` to `Appointments`, required a lot of new work in all the components, not to mention other less
+effort-intensive but still high effort features such as the addition of new fields, themes, and changes to the UI layout. 
+
+We worked on all the components. We designed and implemented new command parsers, added new fields and behaviour to 
+model, added UI components, modified `JsonAdaptedPerson` with the new fields and added a new 
+`JsonAdaptedAppointment` class to store Appointments locally. Lastly, we also updated and wrote new JUnit tests
+for all the new additions and changes. 
+
+
+### Achievements
+Despite the challenges, our team successfully:
+
+- Transformed AB-3 from a generic address book into a specialized, domain-specific application for home healthcare providers.
+- Designed and implemented a relational data model, successfully linking Patient entities to their corresponding Appointments.
+- Mastered and extended the AB-3 architecture, applying its design patterns to new and complex features.
+- Delivered an extensive and useful feature set for our target user, such as patient medical records, appointment 
+management and a detailed patient view panel. We also added different themes so users can set a different aesthetic. 
+
+
 ## **Appendix: Planned Enhancements**
 
 Team Size: 5
