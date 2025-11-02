@@ -441,9 +441,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list of commands cannot be retrieved due to some error
+* 1a. The list of commands cannot be retrieved due to some error
 
-    * 2a1. HealthNote shows an error message.
+    * 1a1. HealthNote shows an error message.
 
       Use case ends
 
@@ -540,14 +540,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1
 
-**Use case: UC09 - Accessing help**
 
-**MSS**
-
-1.  User requests for help to view available commands.
-2.  HealthNote displays the available commands.
-
-    Use case ends.
 
 *{More to be added}*
 
@@ -562,7 +555,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -927,4 +919,3 @@ testers are expected to do more *exploratory* testing.
 ## Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, MacOS
-- **Private contact detail**: A contact detail that is not meant to be shared with others
