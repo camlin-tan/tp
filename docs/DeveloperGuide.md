@@ -1031,4 +1031,4 @@ testers are expected to do more *exploratory* testing.
     4. Relaunch the application.
     5. Add a new a patient.
 
-   Expected: At the end of step 4, the panel on the left is empty, and no patient records are displayed in the application. At the end of step 6, check to see that the corrupted json file has been overwritten to reflect the added person.
+   Expected: At the end of step 4, the panel on the left is empty, and no patient records are displayed in the application. At the end of step 5, check to see that the corrupted json file has been overwritten to reflect the added person.
