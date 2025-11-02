@@ -256,11 +256,24 @@ Examples:
 
 <br>
 
-### Exiting the program: `exit`
+### Exiting the program : `exit`
 
-Exits the program.
+Exits the HealthNote application.
 
 Format: `exit`
+
+* Closes the HealthNote application.
+* No additional parameters are required.
+* All data is automatically saved before exiting.
+
+Examples:
+* `exit` closes the HealthNote application.
+
+**Here is a list of common errors and how to prevent them**
+
+| Error Message                                 | Reason                                                              | Solution                                                                  |
+|-----------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|
+| Unknown command                               | The `exit` command may be misspelled or not entirely in lowercase   | Ensure that you use `exit` exactly in lowercase.                          |
 
 [Back to Table of Contents](#table-of-contents)
 
