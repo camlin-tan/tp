@@ -10,10 +10,6 @@
 
 Hello indie doctors, welcome to our **HealthNote User Guide**!
 
-[//]: # (<!-- * Table of Contents -->)
-
-[//]: # (<page-nav-print />)
-
 ### Table of Contents
 
 <!-- TOC -->
@@ -28,23 +24,22 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
     * [Input Constraints Table](#input-constraints-table)
   * [Features - General Features](#features-general-features)
     * [Viewing help : `help`](#viewing-help-help)
-    * [Changing themes : `theme`](#changing-themes-theme)
+    * [Changing the colour theme : `theme`](#changing-the-colour-theme-theme)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
   * [Features - Managing Patient Records](#features-managing-patient-records)
     * [Adding a patient: `add`](#adding-a-patient-add)
-    * [Editing a patient : `edit`](#editing-a-patient-edit)
-    * [Deleting a patient : `delete`](#deleting-a-patient-delete)
+    * [Editing a patient: `edit`](#editing-a-patient-edit)
+    * [Deleting a patient: `delete`](#deleting-a-patient-delete)
   * [Features - Viewing Patient Records](#features-viewing-patient-records)
     * [View a patient's medical information: `view`](#view-a-patients-medical-information-view)
-    * [Listing all patients : `list`](#listing-all-patients-list)
+    * [Listing all patients: `list`](#listing-all-patients-list)
     * [Locating patients by name: `find`](#locating-patients-by-name-find)
   * [Features - Managing Appointment Records](#features-managing-appointment-records)
     * [Scheduling an appointment: `schedule`](#scheduling-an-appointment-schedule-)
     * [Deleting upcoming appointment: `unschedule`](#deleting-upcoming-appointment-unschedule)
     * [Delete past appointment: `forget`](#delete-past-appointment-forget)
   * [Features - Clearing Data](#features-clearing-data)
-    * [Changing the colour theme : `theme`](#changing-the-colour-theme-theme)
-    * [Clearing all entries : `clear`](#clearing-all-entries-clear)
+    * [Clearing all entries: `clear`](#clearing-all-entries-clear)
   * [Features - Data Management](#features-data-management)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -247,7 +242,7 @@ In the command format, special symbols surrounding prefixes and fields indicate 
 
 ## Features - General Features
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Displays the help window or brings the help window to the front if it is already opened.
 
@@ -255,8 +250,9 @@ Displays the help window or brings the help window to the front if it is already
 
 Format: `help`
 
+<br>
 
-### Changing the colour theme : `theme`
+### Changing the colour theme: `theme`
 
 Changes the colour theme of HealthNote.
 
@@ -277,8 +273,9 @@ Examples:
 | Unknown command    | The `theme` command may be misspelled or not entirely in lowercase | Ensure that you use `theme` exactly in lowercase.                      |
 | Unknown theme      | The theme name entered is not available                            | Enter one of the available themes: `light`, `dark`, `blue`, or `pink`. |
 
+<br>
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -347,6 +344,8 @@ Examples:
 
 
 [Back to Table of Contents](#table-of-contents)
+
+<br>
 
 ### Editing a patient: `edit`
 
@@ -454,7 +453,7 @@ Format: `view INDEX`
 Example: `view 1`
 
 
-### Listing all patients : `list`
+### Listing all patients: `list`
 
 Shows a list of all patients in the address book.
 
@@ -530,7 +529,7 @@ Example:
 
 ## Features - Clearing Data
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the app.
 
