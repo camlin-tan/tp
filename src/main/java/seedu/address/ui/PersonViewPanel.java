@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -76,9 +77,20 @@ public class PersonViewPanel extends UiPart<Region> {
             personViewContainer.setManaged(newValue != null);
             personViewContainer.setVisible(newValue != null);
             fillPersonDetails(newValue);
-            fillAppointments(upcomingAppointments, pastAppointments);
         });
 
+        upcomingAppointments.addListener(new ListChangeListener<Appointment>() {
+            @Override
+            public void onChanged(Change<? extends Appointment> c) {
+                populateAppointmentBox(upcomingAppointmentsBox, upcomingAppointments);
+            }
+        });
+        pastAppointments.addListener(new ListChangeListener<Appointment>() {
+            @Override
+            public void onChanged(Change<? extends Appointment> c) {
+                populateAppointmentBox(pastAppointmentsBox, pastAppointments);
+            }
+        });
     }
 
     /**
