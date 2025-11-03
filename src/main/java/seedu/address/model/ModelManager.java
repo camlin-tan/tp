@@ -304,7 +304,9 @@ public class ModelManager implements Model {
     public void setViewedPerson(Person person) {
         logger.fine("Setting viewed person: " + person);
         viewedPerson.setValue(person);
-        getFilteredAppointmentList(person.getIdentityNumber());
+        if (person != null) {
+            getFilteredAppointmentList(person.getIdentityNumber());
+        }
     }
 
     //=========== Equals ====================================================================================
