@@ -814,7 +814,7 @@ Summary of all the commands.
 
 **❗Caution:**
 
-* The symbol is `\` is reserved as a command delimiter. While it is not explicitly prohibited in command values, it is
+* The symbol `\` is reserved as a command delimiter. While it is not explicitly prohibited in command values, it is
   highly discouraged as it could cause unexpected behaviour.
 
 </div>
