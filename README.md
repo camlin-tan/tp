@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/AY2526S1-CS2103T-F11-1/tp/graph/badge.svg?token=4DOGAOPJ34)](https://codecov.io/gh/AY2526S1-CS2103T-F11-1/tp)
 # HealthNote
 
-![Ui](docs/images/Ui-Latest.png)
+![Ui](docs/images/Ui.png)
 
 * HealthNote helps independent doctors manage their patients and schedule more efficiently using a keyboard focused UI.
 * It is optimised for more tech savvy doctors who prefer using a CLI.
