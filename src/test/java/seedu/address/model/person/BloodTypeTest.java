@@ -21,12 +21,12 @@ public class BloodTypeTest {
 
     @Test
     public void isValidBloodType() {
-        // valid genders
+        // valid blood types
         assertTrue(BloodType.isValidBloodType("K0 (Kell-null)"));
         assertTrue(BloodType.isValidBloodType("Duffy-negative (Fy(a−b−))"));
         assertTrue(BloodType.isValidBloodType("Vel-negative"));
 
-        // invalid genders
+        // invalid blood types
         assertFalse(BloodType.isValidBloodType(""));
         assertFalse(BloodType.isValidBloodType(" ")); // only whitespace
         assertFalse(BloodType.isValidBloodType("   ")); // multiple whitespaces
