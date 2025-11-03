@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -44,6 +45,7 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(validPerson, modelStub.getStubViewedPerson());
     }
 
     @Test
@@ -196,6 +198,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableValue<Person> getViewedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setViewedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Appointment> getUpcomingAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -240,6 +252,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private Person viewedPerson;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -251,6 +264,16 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public void setViewedPerson(Person person) {
+            requireNonNull(person);
+            viewedPerson = person;
+        }
+
+        public Person getStubViewedPerson() {
+            return viewedPerson;
         }
 
         @Override

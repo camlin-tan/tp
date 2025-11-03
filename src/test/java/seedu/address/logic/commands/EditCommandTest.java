@@ -43,10 +43,11 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, editedPerson, null);
+                false, false, null);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setViewedPerson(editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
@@ -66,10 +67,11 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, editedPerson, null);
+                false, false, null);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
+        expectedModel.setViewedPerson(editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
@@ -81,9 +83,10 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, editedPerson, null);
+                false, false, null);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setViewedPerson(editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
@@ -99,11 +102,12 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, editedPerson, null);
+                false, false, null);
 
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setViewedPerson(editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }

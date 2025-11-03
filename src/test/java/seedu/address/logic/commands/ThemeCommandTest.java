@@ -21,7 +21,7 @@ public class ThemeCommandTest {
         String expectedMessage = String.format(ThemeCommand.MESSAGE_SUCCESS, "light");
 
         CommandResult expectedResult = new CommandResult(
-                expectedMessage, false, false, null, "/view/light.css");
+                expectedMessage, false, false, "/view/light.css");
 
         assertCommandSuccess(command, model, expectedResult, model);
     }
@@ -35,7 +35,6 @@ public class ThemeCommandTest {
                 expectedMessage,
                 false,
                 false,
-                null,
                 "/view/dark.css"
         );
 
@@ -51,7 +50,6 @@ public class ThemeCommandTest {
                 expectedMessage,
                 false,
                 false,
-                null,
                 "/view/pink.css"
         );
 
@@ -67,7 +65,6 @@ public class ThemeCommandTest {
                 expectedMessage,
                 false,
                 false,
-                null,
                 "/view/blue.css"
         );
 

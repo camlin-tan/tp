@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -44,7 +45,7 @@ public class ModelManager implements Model {
     private final ObservableList<Appointment> viewedPersonPastAppointments;
     private final ObservableList<Appointment> unmodifiableViewedPersonPastAppointments;
 
-    private final ObjectProperty<Person> viewedPerson = new SimpleObjectProperty<>(null);
+    private final ObjectProperty<Person> viewedPerson = new SimpleObjectProperty<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -301,6 +302,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void setViewedPerson(Person person) {
+        logger.fine("Setting viewed person: " + person);
         viewedPerson.setValue(person);
         getFilteredAppointmentList(person.getIdentityNumber());
     }
@@ -324,6 +326,6 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredAppointments.equals(otherModelManager.filteredAppointments)
                 && viewedPersonAppointments.equals(otherModelManager.viewedPersonAppointments)
-                && viewedPerson.equals(otherModelManager.viewedPerson);
+                && Objects.equals(viewedPerson.get(), otherModelManager.viewedPerson.get());
     }
 }
