@@ -18,6 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PAST_MEDICAL_HISTORY_
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SMOKING_RECORD_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.APPT_ALICE;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
@@ -37,6 +38,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.IdentityNumber;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -96,6 +98,35 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getUpcomingAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getUpcomingAppointmentList().remove(0));
+    }
+
+    @Test
+    public void getPastAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getPastAppointmentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredAppointmentList(
+                new IdentityNumber("AP67")
+        ).add(APPT_ALICE));
+    }
+
+    @Test
+    public void getViewedPersonUpcomingAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getViewedPersonUpcomingAppointmentList()
+                .remove(0));
+    }
+
+    @Test
+    public void getViewedPersonPastAppointmentList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getViewedPersonPastAppointmentList()
+                .remove(0));
     }
 
     /**
