@@ -41,23 +41,24 @@ public class DateOfBirthTest {
         // valid format
         assertTrue(DateOfBirth.isValidDateFormat("31-99-1999"));
         assertTrue(DateOfBirth.isValidDateFormat("1/1/2000"));
-        assertTrue(DateOfBirth.isValidDateFormat("30.50.2000"));
+        assertTrue(DateOfBirth.isValidDateFormat("30.50.0000"));
     }
 
     @Test
     public void isValidDate() {
-        // null date of birth
-        assertThrows(NullPointerException.class, () -> DateOfBirth.isValidDateOfBirth(null));
+        // null date
+        assertThrows(NullPointerException.class, () -> DateOfBirth.isValidDate(null));
 
         // invalid date
-        assertFalse(DateOfBirth.isValidDateOfBirth("not-a-date"));
-        assertFalse(DateOfBirth.isValidDateOfBirth("2020-02-30")); // invalid date
-        assertFalse(DateOfBirth.isValidDateOfBirth("29/02/2025")); // leap day
-        assertFalse(DateOfBirth.isValidDateOfBirth("31/04/1999")); // invalid day
+        assertFalse(DateOfBirth.isValidDate("not-a-date"));
+        assertFalse(DateOfBirth.isValidDate("2020-02-30")); // invalid date
+        assertFalse(DateOfBirth.isValidDate("29/02/2025")); // leap day
+        assertFalse(DateOfBirth.isValidDate("31/04/1999")); // invalid day
+        assertFalse(DateOfBirth.isValidDate("12/12/0000")); // year 0000
 
         // valid date
-        assertTrue(DateOfBirth.isValidDateOfBirth("31-12-1999"));
-        assertTrue(DateOfBirth.isValidDateOfBirth("01/01/2000"));
+        assertTrue(DateOfBirth.isValidDate("31-12-1999"));
+        assertTrue(DateOfBirth.isValidDate("01/01/2000"));
     }
 
     @Test

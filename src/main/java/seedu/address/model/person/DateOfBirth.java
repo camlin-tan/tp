@@ -63,6 +63,7 @@ public class DateOfBirth {
      * Years: Four digits
      */
     public static final String VALIDATION_REGEX = "^(\\d{1,2})([-/.])(\\d{1,2})\\2(\\d{4})$";
+    public static final String VALIDATION_NO_0000 = "^(\\d{1,2})([-/.])(\\d{1,2})\\2(?!0000)(\\d{4})$";
 
     public final LocalDate dateOfBirth;
 
@@ -92,7 +93,7 @@ public class DateOfBirth {
     }
 
     public static boolean isValidDate(String test) {
-        return DateParserUtil.isValidDate(test, FORMATTERS);
+        return test.matches(VALIDATION_NO_0000) && DateParserUtil.isValidDate(test, FORMATTERS);
     }
 
     /**

@@ -22,7 +22,8 @@ public class AppointmentTime {
 
     public static final String MESSAGE_VALID_DATE_CONSTRAINT = "Appointment time should be a valid date and time: ";
 
-    public static final String VALIDATION_REGEX =
+    public static final String VALIDATION_REGEX = "^(\\d{1,2})([-/.])(\\d{1,2})\\2(\\d{4}) (\\d{2}):(\\d{2})$";
+    public static final String VALIDATION_NO_0000 =
             "^(\\d{1,2})([-/.])(\\d{1,2})\\2(?!0000)(\\d{4}) (\\d{2}):(\\d{2})$";
 
     public static final List<DateTimeFormatter> FORMATTERS = List.of(
@@ -59,7 +60,7 @@ public class AppointmentTime {
     }
 
     public static boolean isValidDateTime(String test) {
-        return DateTimeParserUtil.isValidDateTime(test, FORMATTERS);
+        return test.matches(VALIDATION_NO_0000) && DateTimeParserUtil.isValidDateTime(test, FORMATTERS);
     }
 
     /**
