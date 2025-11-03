@@ -149,6 +149,16 @@ public class MainWindow extends UiPart<Stage> {
         personViewPanel = new PersonViewPanel(logic.getViewedPerson(), logic.getViewedPersonUpcomingAppointmentList(),
                 logic.getViewedPersonPastAppointmentList());
         detailsPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+
+        mainSplitPane.getDividers().get(0).positionProperty()
+                .addListener((obs, oldVal, newVal) -> {
+                    mainSplitPane.setDividerPosition(0, 0.33);
+                });
+
+        mainSplitPane.getDividers().get(1).positionProperty()
+                .addListener((obs, oldVal, newVal) -> {
+                    mainSplitPane.setDividerPosition(1, 0.66);
+                });
     }
 
     /**
