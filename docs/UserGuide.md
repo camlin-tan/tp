@@ -591,11 +591,11 @@ Examples:
 
 **Input Constraints Table**
 
-| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
-|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
-| **adt\APPOINTMENT_DATE_TIME**          | &check;         | &cross;                | Full date time of the scheduled appointment                                         | d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm           |
-| **note\APPOINTENT_NOTE**               | &cross;         | &cross;                | Any additional notes for this particular appointment                                | Any string                                                  |
+| **Field (with Prefix)**       | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
+|-------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                     | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+| **adt\APPOINTMENT_DATE_TIME** | &check;         | &cross;                | Full date time of the scheduled appointment                                         | d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm           |
+| **note\APPOINTMENT_NOTE**     | &cross;         | &cross;                | Any additional notes for this particular appointment                                | Any string                                                  |
 
 #### Example:
 * To schedule an appointment with the first patient in the displayed list, you can enter:
@@ -837,6 +837,6 @@ Summary of all the commands.
 | **al\\ALLERGY**                | Peanuts, Penicillin                                     | (Empty)                        | Allergy names can take any values, and it should not be blank                                                 |
 | **m\\MEDICINE**                | 500mg Ibuprofen, 2 Panadol capsules/day                 | (Empty)                        | Medicine field can take any values, and it should not be blank                                                |
 | **adt\\APPOINTMENT_DATE_TIME** | 13-10-2025 10:00                                        | 22233344                       | Appointment date & time should be of the following formats: d-M-yyyy HH:mm, d.M.yyyy HH:mm, or d/M/yyyy HH:mm |
-| **note\\APPOINTMENT_NOTE**     | Needs IV Drip                                           | (Empty)                        | Appointment notes can take any values, and it should not be blank                                             |
+| **note\\APPOINTMENT_NOTE**     | Needs IV Drip                                           | N/A                            | Appointment notes can take any values                                                                         |
 
 [Back to Table of Contents](#table-of-contents)
