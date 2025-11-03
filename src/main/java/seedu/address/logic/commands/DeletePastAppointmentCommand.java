@@ -20,7 +20,7 @@ public class DeletePastAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the past appointment identified by the index number "
-            + "used in the displayed upcoming appointment list.\n"
+            + "used in the displayed past appointments list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
