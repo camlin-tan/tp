@@ -423,15 +423,15 @@ Examples:
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                                           | Reason                                                               | Solution                                                                                                       |
-|-------------------------------------------------------------------------|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| The patient already exists in the address book                          | You are editing a patient to have the same id as an existing patient | Ensure that you do not enter a patient with the same id as an existing patient.                                |
-| Invalid command format!                                                 | Some of the prefixes could be missing or misspelled.                 | Refer to the [command format](#editing-a-patient-edit)                                                         |
-| Unknown command                                                         | The `edit` command may be misspelled or not entirely in lowercase    | Ensure that you use `edit` exactly in lowercase.                                                               |
-| Errors relating to invalid field inputs                                 | You have entered invalid inputs for a field.                         | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table) |
-| The patient index provided is invalid                                   | You have entered an invalid index                                    | Ensure that the index not more than the number of patients in HealthNote.                                      |
-| At least one field to edit must be provided.                            | You have not entered any fields to edit.                             | Enter at least one field to edit.                                                                              |
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not non-zero. | Enter an unsigned non-zero integer as `INDEX`.                       |
+| Error Message                                                           | Reason                                                                                      | Solution                                                                                                       |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| The patient already exists in the address book                          | You are editing a patient to have the same id as an existing patient                        | Ensure that you do not enter a patient with the same id as an existing patient.                                |
+| Invalid command format!                                                 | Some of the prefixes could be missing or misspelled.                                        | Refer to the [command format](#editing-a-patient-edit)                                                         |
+| Unknown command                                                         | The `edit` command may be misspelled or not entirely in lowercase                           | Ensure that you use `edit` exactly in lowercase.                                                               |
+| Errors relating to invalid field inputs                                 | You have entered invalid inputs for a field.                                                | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table) |
+| The patient index provided is invalid                                   | You have entered an invalid index                                                           | Ensure that the index not more than the number of patients in HealthNote.                                      |
+| At least one field to edit must be provided.                            | You have not entered any fields to edit.                                                    | Enter at least one field to edit.                                                                              |
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer. | Enter an unsigned non-zero integer as `INDEX`.                       |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -460,10 +460,10 @@ Examples:
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                        | Reason                                                                                         | Solution                                                                                     |
-|--------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not non-zero. | Enter an unsigned non-zero integer as `INDEX`.                       |
-| Unknown command                      | The `delete` command may have been misspelled or not entered in lowercase.                     | Ensure that you use `delete` exactly in lowercase.                                           |
+| Error Message                        | Reason                                                                                           | Solution                                                                                     |
+|--------------------------------------|--------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer.      | Enter an unsigned non-zero integer as `INDEX`.                       |
+| Unknown command                      | The `delete` command may have been misspelled or not entered in lowercase.                       | Ensure that you use `delete` exactly in lowercase.                                           |
 | The person index provided is invalid | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the `INDEX` not more than the number of patients in the currently displayed list. |
 
 
@@ -497,11 +497,11 @@ Example:
 
 **Here is a list of common errors and how to prevent them:**
 
-| Error Message                        | Reason                                                                                         | Solution                                                                                              |
-|--------------------------------------|------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| Invalid command format!              | You did not specify an `INDEX` or the `INDEX` provided is not positive.                            | Enter a positive integer as `INDEX`.                                                                  |
-| Unknown command                      | The `view` command may have been misspelled or not entered in lowercase                      | Ensure that you use `view` exactly in lowercase.                                                      |
-| The person index provided is invalid | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the entered `INDEX` not more than the number of patients in the currently displayed list. |
+| Error Message                                                           | Reason                                                                                           | Solution                                                                                              |
+|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer.      | Enter an unsigned non-zero integer as `INDEX`.                                                        |
+| Unknown command                                                         | The `view` command may have been misspelled or not entered in lowercase                          | Ensure that you use `view` exactly in lowercase.                                                      |
+| The person index provided is invalid                                    | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the entered `INDEX` not more than the number of patients in the currently displayed list. |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -613,12 +613,12 @@ Example:
   
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                                           | Reason                                                                  | Solution                                                             |
-|-------------------------------------------------------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------|
-| Invalid command format!                                                 | You may not have provided the necessary arguments                       | Ensure `INDEX` and `adt\` are provided.                              |
-| Unknown command                                                         | The `schedule` command may be misspelled or not entirely in lowercase   | Ensure that you use `schedule` exactly in lowercase.                 |
-| The patient index provided is invalid                                   | You have entered an invalid index                                       | Ensure that the `INDEX` provided is a valid index in the shown list. |
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not non-zero. | Enter an unsigned non-zero integer as `INDEX`.                       |
+| Error Message                                                           | Reason                                                                                      | Solution                                                             |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| Invalid command format!                                                 | You may not have provided the necessary arguments                                           | Ensure `INDEX` and `adt\` are provided.                              |
+| Unknown command                                                         | The `schedule` command may be misspelled or not entirely in lowercase                       | Ensure that you use `schedule` exactly in lowercase.                 |
+| The patient index provided is invalid                                   | You have entered an invalid index                                                           | Ensure that the `INDEX` provided is a valid index in the shown list. |
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer. | Enter an unsigned non-zero integer as `INDEX`.                       |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -641,11 +641,11 @@ unschedule 1
 ```
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                             | Reason                                                                  | Solution                                                             |
-|-------------------------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------|
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not non-zero. | Enter an unsigned non-zero integer as `INDEX`.                       |
-| Unknown command                           | The `unschedule` command may be misspelled or not entirely in lowercase | Ensure that you use `unschedule` exactly in lowercase.               |
-| The appointment index provided is invalid | You have entered an invalid index                                       | Ensure that the `INDEX` provided is a valid index in the shown list. |
+| Error Message                             | Reason                                                                                      | Solution                                                             |
+|-------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer. | Enter an unsigned non-zero integer as `INDEX`.                       |
+| Unknown command                           | The `unschedule` command may be misspelled or not entirely in lowercase                     | Ensure that you use `unschedule` exactly in lowercase.               |
+| The appointment index provided is invalid | You have entered an invalid index                                                           | Ensure that the `INDEX` provided is a valid index in the shown list. |
 
 ### Delete past appointment: `forget`
 
@@ -667,11 +667,11 @@ forget 1
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                             | Reason                                                              | Solution                                                             |
-|-------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------|
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not non-zero. | Enter an unsigned non-zero integer as `INDEX`.                       |
-| Unknown command                           | The `forget` command may be misspelled or not entirely in lowercase | Ensure that you use `forget` exactly in lowercase.                   |
-| The appointment index provided is invalid | You have entered an invalid index                                   | Ensure that the `INDEX` provided is a valid index in the shown list. |
+| Error Message                             | Reason                                                                                      | Solution                                                             |
+|-------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer. | Enter an unsigned non-zero integer as `INDEX`.                       |
+| Unknown command                           | The `forget` command may be misspelled or not entirely in lowercase                         | Ensure that you use `forget` exactly in lowercase.                   |
+| The appointment index provided is invalid | You have entered an invalid index                                                           | Ensure that the `INDEX` provided is a valid index in the shown list. |
 
 
 [Back to Table of Contents](#table-of-contents)
