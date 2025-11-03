@@ -14,6 +14,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
+    public static final String MESSAGE_SUCCESS_EMPTY = "No persons in the app";
+
     public static final String MESSAGE_WARNING = " \nNote: Additional arguments detected. You may provide extra "
             + "arguments, but they will be ignored.\n";
 
@@ -41,7 +43,11 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        if (hasExtraArgs) {
+        if (model.getFilteredPersonList().isEmpty() && hasExtraArgs) {
+            return new CommandResult(MESSAGE_SUCCESS_EMPTY + MESSAGE_WARNING);
+        } else if (model.getFilteredPersonList().isEmpty() && !hasExtraArgs) {
+            return new CommandResult(MESSAGE_SUCCESS_EMPTY);
+        } else if (hasExtraArgs) {
             return new CommandResult(MESSAGE_SUCCESS + MESSAGE_WARNING);
         }
 
