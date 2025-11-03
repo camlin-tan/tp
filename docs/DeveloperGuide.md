@@ -151,7 +151,7 @@ The `ModelManager`,
 
 <puml src="diagrams/PersonAndAppointmentClassDiagram.puml" width="450" />
 
-**Note:** An alternative (arguably, a more OOP) model is given below. Where `ViewedPerson` stores a reference to the currently viewed `Person` and all their `Appointments` in the necessary order<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. Where `ViewedPerson` stores a reference to the currently viewed `Person` and all their `Appointments` in the necessary order.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
