@@ -7,12 +7,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" styleClass="person-view-scroll-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox>
-    <Label fx:id="defaultLabel" text="Select a person using the 'view &lt;index&gt;' command" style="-fx-text-fill: grey; -fx-font-style: italic;"/>
-    <VBox fx:id="personViewContainer" spacing="20" styleClass="person-view-vbox" visible="false" managed="false">
+<ScrollPane fitToWidth="true" fitToHeight="true" styleClass="person-view-scroll-pane"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER">
+        <Label fx:id="defaultLabel" text="Select a person using the 'view &lt;index&gt;'command"
+               style="-fx-text-fill: grey; -fx-font-style: italic;"/>
+        <VBox fx:id="personViewContainer" spacing="20" styleClass="person-view-vbox" visible="false" managed="false">
 
-        <Label fx:id="nameLabel" styleClass="person-view-name-label"/>
+            <Label fx:id="nameLabel" styleClass="person-view-name-label"/>
 
 
         <GridPane fx:id="infoGrid" hgap="10" vgap="8">
