@@ -8,7 +8,7 @@
 
 ![HealthNoteLogo](images/HealthNoteLogo.png)
 
-Hello indie doctors, welcome to our **HealthNote User Guide**!
+Hello independent doctors, welcome to our **HealthNote User Guide**!
 
 ### Table of Contents
 
@@ -52,45 +52,60 @@ Hello indie doctors, welcome to our **HealthNote User Guide**!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
+Welcome to HealthNote! This guide will help you get started.
 
-Are you an independent doctor looking for a simple yet powerful way to manage patient information? Do you find existing clinic management systems too complex or cumbersome for your daily needs? Or perhaps you just want a lightweight, privacy-focused tool that keeps your patients’ records right at your fingertips?
+### What is HealthNote?
+HealthNote is a digital patient record manager. If you are an independent home healthcare provider, this is 
+the perfect tool for you. HealthNote helps manage your patients' information, record their medical histories, and 
+organise home visit notes. The simple and user-friendly interface enables you to access patient details 
+faster than traditional patient files. With HealthNote, you can spend more time caring for your patients instead of 
+combing through stacks of paperwork.
 
-**HealthNote** is your all-in-one, command-line solution for seamless patient management - designed specifically for doctors who value speed, control, and simplicity.
-
-With **HealthNote**, you can easily:
-- **Add** new patients and record key details such as contact information, medical history, and allergies
-- **View** a patient’s medical information in seconds
-- **Find** patients by name or specific keywords
-- **Delete** outdated records when necessary
-- …and do much more - all directly from your terminal!
-
-Built with independent practitioners and small clinics in mind, **HealthNote** keeps your workflow efficient and focused. Whether you’re managing a handful of patients or maintaining a growing list, this CLI-based address book gives you the precision and speed you need - without unnecessary clutter.
-
-HealthNote is a desktop app for managing contacts, optimized for use via a Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthNote can get your patient management tasks done faster than traditional GUI apps.
+### Who this guide is for
+This guide is written for medical professionals who are proficient with using a Command Line Interface (CLI).
+We assume that you are familiar with your computer's operating system, navigating its files, and using its
+CLI. Our goal is to quickly get you up and running by skipping over-simplified instructions.
 
 --------------------------------------------------------------------------------------------------------------------
-## Guide Usage
 
-<div markdown="block" class="alert alert-info">
+## Getting Started
 
-**For Novices**
+HealthNote requires **Java 17** to run. Please follow the instructions according to your computer's operating system.
 
-* For first time users unfamiliar of CLI, perhaps you can first jump to the [Quick Start](#quick-start) section to get started
-</div>
+### 1. Java version check and installation
 
-<div markdown="block" class="alert alert-success">
+**For macOS Users**
 
-**For Amateurs**
+A specific Java `17` version is required.
 
-* Perhaps you can jump to the [Table of Contents](#table-of-contents) to start navigating the guide.
-</div>
+1. Please follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+2. After completing the setup, open the **Terminal** app and run the command `java -version` to confirm that
+   the correct version is installed, you should see a Java version starting with `17` (e.g., `17.0.5`).
 
-<div markdown="block" class="alert alert-warning">
 
-**For Experts**
+**For Windows and Linux Users**
+1. Open your system's CLI (e.g., PowerShell, Terminal).
+2. Execute this command: `java -version`.
+3. If the output shows a Java version starting with `17` (e.g., `17.0.5`), you already have the correct version
+   installed and may skip to the [Downloading HealthNote](#2-downloading-healthnote) section. If not, keep following the instructions to install Java `17`.
+4. Download Java `17` from [this website](https://www.oracle.com/java/technologies/javase/jdk17-0-13-later-archive-downloads.html)
+   according to your computer's operating system.
+5. Run the downloaded file and follow the on-screen instructions.
+6. After the installation, close and reopen your CLI, and repeat `step 2`.
 
-* Perhaps you can jump to the [Command summary](#command-summary) for a quick summary of the commands.
-</div>
+
+### 2. Downloading HealthNote
+Download the latest `healthnote.jar` file from [here](https://github.com/AY2526S1-CS2103T-F11-1/tp/releases).
+
+
+### 3. Running HealthNote
+1. Create a new folder on your computer where you want to store your patient data and move the downloaded
+   `healthnote.jar` into this new folder.
+2. Open your CLI and navigate to this folder (using commands like `cd`).
+3. Run this command: `java -jar healthnote.jar`
+4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+
+Congratulations! You are now ready to use HealthNote. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -109,36 +124,6 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 | 5  | Patient's personal information view panel | Displays all the data fields, including medical records, of the patient which the user requests to view.                             |
 | 6  | Upcoming and past appointments list panel | Displays all the appointments, with the top list displaying upcoming appointments, and the bottom list displaying past appointments. |
 <br>
-
---------------------------------------------------------------------------------------------------------------------
-
-## Quick Start
-
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-
-2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your HealthNote.
-
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui-Updated.png)
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
