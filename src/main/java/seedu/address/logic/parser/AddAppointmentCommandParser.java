@@ -34,8 +34,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                         AddAppointmentCommand.MESSAGE_USAGE));
             }
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseException(pe.getMessage() + "\n" + AddAppointmentCommand.MESSAGE_USAGE);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_APPOINTMENT_TIME, PREFIX_APPOINTMENT_NOTE);
