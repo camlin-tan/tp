@@ -118,7 +118,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="800" />
 
 The `Model` component,
 
@@ -128,7 +128,7 @@ The `Model` component,
 
 The object diagram below illustrates the important parts of how `ModelManager` is structured and how `UI` interacts with it.
 
-<puml src="diagrams/ModelUiObjectDiagram.puml" width="700" />
+<puml src="diagrams/ModelUiObjectDiagram.puml" width="1000" />
 
 The `ModelManager`,
 
@@ -149,11 +149,11 @@ The `ModelManager`,
 
 **Note:** The above diagrams are simplified to show the most important components and their main associations. Below is a detailed class diagram of Person and Appointment.
 
-<puml src="diagrams/PersonAndAppointmentClassDiagram.puml" width="450" />
+<puml src="diagrams/PersonAndAppointmentClassDiagram.puml" width="1000" />
 
 **Note:** An alternative (arguably, a more OOP) model is given below. Where `ViewedPerson` stores a reference to the currently viewed `Person` and all their `Appointments` in the necessary order.<br>
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ViewedPersonClassDiagram.puml" width="500" />
 
 </box>
 
