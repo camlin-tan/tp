@@ -460,11 +460,11 @@ Examples:
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                        | Reason                                                                                           | Solution                                                                                     |
-|--------------------------------------|--------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| Error Message                                                           | Reason                                                                                           | Solution                                                                                     |
+|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
 | You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer.      | Enter an unsigned non-zero integer as `INDEX`.                       |
-| Unknown command                      | The `delete` command may have been misspelled or not entered in lowercase.                       | Ensure that you use `delete` exactly in lowercase.                                           |
-| The person index provided is invalid | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the `INDEX` not more than the number of patients in the currently displayed list. |
+| Unknown command                                                         | The `delete` command may have been misspelled or not entered in lowercase.                       | Ensure that you use `delete` exactly in lowercase.                                           |
+| The patient index provided is invalid                                   | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the `INDEX` not more than the number of patients in the currently displayed list. |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -501,7 +501,7 @@ Example:
 |-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer.      | Enter an unsigned non-zero integer as `INDEX`.                                                        |
 | Unknown command                                                         | The `view` command may have been misspelled or not entered in lowercase                          | Ensure that you use `view` exactly in lowercase.                                                      |
-| The person index provided is invalid                                    | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the entered `INDEX` not more than the number of patients in the currently displayed list. |
+| The patient index provided is invalid                                   | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the entered `INDEX` not more than the number of patients in the currently displayed list. |
 
 [Back to Table of Contents](#table-of-contents)
 
