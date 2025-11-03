@@ -264,7 +264,7 @@ _{more aspects and alternatives to be added}_
 Our input validation is designed to be flexible and user-centred, avoiding overzealous validation that blocks legitimate inputs. 
 Since doctors often need to record varied and free-form information, we only reject inputs that would cause functional issues (e.g. empty required fields or unparseable dates) while allowing all other characters and symbols.
 
-For fields marked “must not be blank”, any non-empty input is accepted, allowing symbols such as `*`, `/`, `[ ]`, `{ }`, `#`, and `&`. **This is intentional, and not a feature flaw, or an oversight in our design consideration.**
+For fields marked “must not be blank”, any non-empty input is accepted, allowing symbols such as `*`, `/`, `[ ]`, `{ }`, `#`, and `&`. **This is intentional, and not a feature flaw, nor an oversight in our design consideration.**
 This enables users to record data naturally (e.g. Fracture* – left arm, [Mother] 9888-3333 (Office)) without being restricted by unnecessary formatting rules.
 
 In contrast, structured fields like identity number, email, date of birth, and appointment date/time apply format checks only to ensure application operations such as searching, parsing, and sorting remain reliable.
