@@ -1,12 +1,9 @@
 package seedu.address.ui;
 
-import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
@@ -20,8 +17,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -40,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private PersonViewPanel personViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private AppointmentListPanel appointmentListPanel;
@@ -150,10 +146,9 @@ public class MainWindow extends UiPart<Stage> {
                 new AppointmentListPanel(logic.getUpcomingAppointmentList(), logic.getPastAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
-        detailsPanelPlaceholder.getChildren().clear();
-        Label defaultLabel = new Label("Select a person using the 'view' command to see details.");
-        defaultLabel.setStyle("-fx-text-fill: grey; -fx-font-style: italic;");
-        detailsPanelPlaceholder.getChildren().add(defaultLabel);
+        personViewPanel = new PersonViewPanel(logic.getViewedPerson(), logic.getViewedPersonUpcomingAppointmentList(),
+                logic.getViewedPersonPastAppointmentList());
+        detailsPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
     }
 
     /**
@@ -199,40 +194,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles switching to the detailed person view.
-     * Triggered when a view command for a person completes.
-     */
-    @FXML
-    private void handleView() {
-        Optional<Person> personOptional = logic.getPersonToView();
-
-        if (personOptional.isPresent()) {
-            Person person = personOptional.get();
-            ObservableList<Appointment> upcomingAppointments = logic.getViewedPersonUpcomingAppointmentList();
-            ObservableList<Appointment> pastAppointments = logic.getViewedPersonPastAppointmentList();
-
-            PersonViewPanel personViewPanel = new PersonViewPanel(person, upcomingAppointments, pastAppointments);
-            detailsPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
-        } else {
-            logger.warning("handleViewPerson called but no person was available in Logic.");
-            handleDefaultView();
-        }
-    }
-
-    /**
-     * Resets the view to the default single-panel layout (shows only the person list).
-     */
-    private void handleDefaultView() {
-        logger.fine("Handling default view.");
-        detailsPanelPlaceholder.getChildren().clear();
-        Label defaultLabel = new Label("Select a person using the 'view <index>' command to see details.");
-        defaultLabel.setStyle("-fx-text-fill: grey; -fx-font-style: italic;");
-        detailsPanelPlaceholder.getChildren().add(defaultLabel);
-
-        logic.clearViewedData();
-    }
-
-    /**
      * Sets the theme of the application.
      * @param themePath The path to the CSS file.
      */
@@ -259,10 +220,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isView()) {
-                handleView();
             }
 
             commandResult.getThemePath().ifPresent(this::setTheme);

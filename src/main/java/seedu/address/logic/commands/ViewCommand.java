@@ -42,13 +42,9 @@ public class ViewCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
-
-        model.getFilteredAppointmentList(personToView.getIdentityNumber());
-
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)),
-                false, false, personToView, null);
+        model.setViewedPerson(personToView);
+        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
     }
 
     @Override

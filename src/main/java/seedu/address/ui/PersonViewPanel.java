@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -28,7 +30,10 @@ public class PersonViewPanel extends UiPart<Region> {
     private static final String FIELD_LABEL_STYLE_CLASS = "person-view-field-label";
     private static final String VALUE_LABEL_STYLE_CLASS = "person-view-value-label";
 
-    private final Person person;
+    private final ObservableValue<Person> person;
+
+    @FXML
+    private Label defaultLabel;
 
     @FXML
     private VBox personViewContainer;
@@ -61,23 +66,41 @@ public class PersonViewPanel extends UiPart<Region> {
      * @param upcomingAppointments The list of upcoming appointments associated with the person.
      * @param pastAppointments The list of past appointments associated with the person.
      */
-    public PersonViewPanel(Person person, ObservableList<Appointment> upcomingAppointments,
+    public PersonViewPanel(ObservableValue<Person> person, ObservableList<Appointment> upcomingAppointments,
                            ObservableList<Appointment> pastAppointments) {
         super(FXML);
         this.person = person;
         getRoot().getStylesheets().add(getClass().getResource("/view/PersonViewPanel.css").toExternalForm());
+        this.person.addListener((observable, oldValue, newValue) -> {
+            defaultLabel.setVisible(newValue == null);
+            defaultLabel.setManaged(newValue == null);
+            personViewContainer.setManaged(newValue != null);
+            personViewContainer.setVisible(newValue != null);
+            fillPersonDetails(newValue);
+        });
 
-        fillPersonDetails();
-        fillAppointments(upcomingAppointments, pastAppointments);
+        upcomingAppointments.addListener(new ListChangeListener<Appointment>() {
+            @Override
+            public void onChanged(Change<? extends Appointment> c) {
+                populateAppointmentBox(upcomingAppointmentsBox, upcomingAppointments);
+            }
+        });
+        pastAppointments.addListener(new ListChangeListener<Appointment>() {
+            @Override
+            public void onChanged(Change<? extends Appointment> c) {
+                populateAppointmentBox(pastAppointmentsBox, pastAppointments);
+            }
+        });
     }
 
     /**
      * Fills in the person's details for viewing.
      */
-    private void fillPersonDetails() {
+    private void fillPersonDetails(Person person) {
         nameLabel.setText(person.getName().fullName);
 
         // Personal Info
+        infoGrid.getChildren().clear();
         Label section = new Label("Personal Information");
         section.getStyleClass().add("person-view-section-heading");
         infoGrid.add(section, 0, infoGrid.getRowCount(), 2, 1);

@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -68,6 +69,7 @@ public class AddAppointmentCommandTest {
         assertEquals(1, added.size());
         assertEquals(new Appointment(notes, time, new IdentityNumber("ID1")), added.get(0));
         assertTrue(result.getFeedbackToUser().contains("New appointment added"));
+        assertEquals(p, model.getStubViewedPerson());
     }
 
     @Test
@@ -203,6 +205,11 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public ObservableValue<Person> getViewedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Appointment> getUpcomingAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -221,6 +228,10 @@ public class AddAppointmentCommandTest {
         public ObservableList<Appointment> getViewedPersonUpcomingAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void setViewedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
 
     }
 
@@ -230,6 +241,7 @@ public class AddAppointmentCommandTest {
     private class ModelStubWithPersonList extends ModelStub {
         final List<Person> persons;
         final ArrayList<Appointment> addedAppointments = new ArrayList<>();
+        private Person viewedPerson;
 
         ModelStubWithPersonList(List<Person> persons) {
             requireNonNull(persons);
@@ -251,6 +263,16 @@ public class AddAppointmentCommandTest {
         public void addAppointment(Appointment appointment) {
             requireNonNull(appointment);
             addedAppointments.add(appointment);
+        }
+
+        @Override
+        public void setViewedPerson(Person person) {
+            requireNonNull(person);
+            viewedPerson = person;
+        }
+
+        public Person getStubViewedPerson() {
+            return viewedPerson;
         }
 
         @Override

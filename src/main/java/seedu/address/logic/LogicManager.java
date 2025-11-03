@@ -3,9 +3,9 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -36,8 +36,6 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
-    private Person personToView;
-
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -45,7 +43,6 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         this.addressBookParser = new AddressBookParser();
-        this.personToView = null;
     }
 
     @Override
@@ -55,10 +52,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        this.personToView = commandResult.getPersonToView().orElse(null);
-        if (this.personToView != null) {
-            model.getFilteredAppointmentList(this.personToView.getIdentityNumber());
-        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -97,11 +90,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Optional<Person> getPersonToView() {
-        return Optional.ofNullable(personToView);
-    }
-
-    @Override
     public ObservableList<Appointment> getViewedPersonUpcomingAppointmentList() {
         return model.getViewedPersonUpcomingAppointmentList();
     }
@@ -112,8 +100,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void clearViewedData() {
-        this.personToView = null;
+    public ObservableValue<Person> getViewedPerson() {
+        return model.getViewedPerson();
     }
 
     @Override

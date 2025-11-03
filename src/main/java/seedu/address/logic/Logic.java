@@ -1,8 +1,8 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -48,17 +48,13 @@ public interface Logic {
      */
     ObservableList<Appointment> getFilteredAppointmentList(IdentityNumber personId);
 
-    /** Returns the person to view if a view command has been entered */
-    Optional<Person> getPersonToView();
-
     /** Returns an unmodifiable view of the list of upcoming appointments for the currently viewed person */
     ObservableList<Appointment> getViewedPersonUpcomingAppointmentList();
 
     /** Returns an unmodifiable view of the list of past appointments for the currently viewed person */
     ObservableList<Appointment> getViewedPersonPastAppointmentList();
 
-    /** Clears the person currently set for viewing and their associated appointment list in the model */
-    void clearViewedData();
+    ObservableValue<Person> getViewedPerson();
 
     /**
      * Returns the user prefs' address book file path.
