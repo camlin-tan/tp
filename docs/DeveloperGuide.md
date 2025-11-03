@@ -259,9 +259,39 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Input Validation Rationale
 
-_{Explain here how the data archiving feature will be implemented}_
+Our input validation is designed to be flexible and user-centred, avoiding overzealous validation that blocks legitimate inputs. 
+Since doctors often need to record varied and free-form information, we only reject inputs that would cause functional issues (e.g. empty required fields or unparseable dates) while allowing all other characters and symbols.
+
+For fields marked “must not be blank”, any non-empty input is accepted, allowing symbols such as `*`, `/`, `[ ]`, `{ }`, `#`, and `&`. **This is intentional, and not a feature flaw, nor an oversight in our design consideration.**
+This enables users to record data naturally (e.g. Fracture* – left arm, [Mother] 9888-3333 (Office)) without being restricted by unnecessary formatting rules.
+
+In contrast, structured fields like identity number, email, date of birth, and appointment date/time apply format checks only to ensure application operations such as searching, parsing, and sorting remain reliable.
+
+Overall, our approach is to be permissive unless functionality is at risk. We will not restrict values if doing so does not add operational benefit.
+This strikes a balance between robustness and usability, preventing over-restriction while keeping data entry smooth and efficient for real-world medical use.
+
+| **Field**                     | **Allowed Example Inputs (with symbols & numbers)**                                    | **Justification and Real-World Basis**                                                                                                                                                           |
+|-------------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **n\NAME**                    | `Dr. Alex (Sr.)`, `John Paul the 2nd`, `Damith s/o Sankar-Ashish`, `X Æ A-Xii`         | Real names may include titles, numbers, and punctuation (e.g. *Pope John Paul II*, *Damith s/o Sankar-Ashish*). Allowing all symbols and digits supports inclusivity and accurate record-keeping with flexibility. |
+| **id\IDENTITY_NUMBER**        | `S1234567A`, `060402-06-6767`, `A.1234.567`                                            | Identity numbers across systems (passport, hospital, national) may contain letters, digits, hyphens, and dots. Allowing these ensures flexibility while maintaining parseable structure.         |
+| **p\PHONE_NUMBER**            | `9888-3333 (Office)`, `[Home] 6222*3333`, `+65 8123 4567`                              | Phone entries often include country codes, separators, or contextual notes. Requiring only two consecutive digits ensures validity without limiting natural formatting.                          |
+| **e\EMAIL**                   | `nurse.jane_doe+ward@clinic.com`, `dr.lee77@hospital.sg`                               | `+`, `_`, `.`, and digits are valid in real institutional emails (e.g. `alex+lab@hospital.org`). Restricting them would wrongly reject legitimate addresses.                                       |
+| **addr\HOME_ADDRESS**         | `#02-123 Blk 45 Clementi Rd`, `{Unit 3B} 88 Hilltop Ave`                               | Addresses use `#`, `-`, numbers, and brackets (e.g. *#02-45 Blk 88*). These are standard in local and international postal formats.                                                              |
+| **ec\EMERGENCY_CONTACT**      | `[Mother] 9888-3333 (Office)`, `[Dr. Tan {Clinic}] 9000-1111`, `[Friend 2] 9333-2222`  | Emergency contacts often include relationship labels or numbering. The flexible format `[relationship] number` mirrors real hospital data entry patterns.                                        |
+| **dob\DATE_OF_BIRTH**         | `12/10/1987`, `5.5.2000`, `23-09-1975`                                                 | Restricting to numeric formats with `-`, `/`, or `.` ensures proper parsing while supporting international date conventions.                                                                     |
+| **b\BLOOD_TYPE**              | `A+`, `A Rh(D)−`, `Bombay (hh)`, `A/B`, `A*`, `B?`, `Rh(- -)`                          | Blood typing notation often includes symbols like `+`, `-`, `/`, `()`, `*`, and `?` to mark antigen variants, uncertainty, or subgroups (e.g. `A3`, `Rh(- -)`). Allowing such inputs prevents rejection of legitimate lab formats. |
+| **g\GENDER**                  | `Male`, `Female`, `Non-binary`, `X`, `M/F`, `M→F`, `Trans♀`, `Other (specify: &fluid)` | Gender identity and administrative codes can include symbols, arrows, or parentheses (e.g. `M→F`, `X`, `Trans*`). Supporting these improves inclusivity and aligns with modern EHR standards (e.g. Epic, Cerner). |
+| **ar\ALCOHOLIC_RECORD**       | `None`, `2–3x/week`, `Quit & Recovered`, `Occasional (1 glass)`                        | Lifestyle entries often include numbers and punctuation for frequency or context. Flexibility improves expressiveness in clinical notes.                                                         |
+| **sr\SMOKING_RECORD**         | `Quit (2010)`, `Occasional / Social`, `2/day`                                          | Smoking history fields commonly use digits for frequency or cessation year, and symbols like `/` or `()`.                                                                                        |
+| **pmh\PAST_MEDICAL_HISTORY**  | `Asthma (mild)`, `Fracture* – left arm`, `Type-2 Diabetes`                             | Medical conditions often contain digits or shorthand symbols (e.g. `Type-2`, `Stage III`). Allowing punctuation supports real medical documentation.                                             |
+| **t\TAG**                     | `[Follow-Up]`, `VIP*`, `{HighRisk-3}`, `Urgent #2`                                     | Tags may include brackets, hashes, or numbers for sorting or prioritisation. Flexible tagging supports varied hospital workflows.                                                                |
+| **al\ALLERGY**                | `Penicillin 2+`, `Peanut (Severe*)`, `Dust & Pollen`                                   | Allergy records may contain parentheses, severity markers, or numbering. Such notation reflects real-world allergy charting.                                                                     |
+| **m\MEDICINE**                | `2 Panadol/day`, `500mg Ibuprofen (AM & PM)`, `*Insulin – sliding scale*`              | Medicine instructions require digits, units, and symbols to describe dosage and timing. These are standard in prescriptions and MARs.                                                            |
+| **adt\APPOINTMENT_DATE_TIME** | `13-10-2025 10:00`, `12/10/2025 09:30`, `5.5.2024 14:00`                               | Accepts structured date-time formats using `-`, `/`, or `.` for consistent parsing and scheduling.                                                                                               |
+| **note\APPOINTMENT_NOTE**     | `Check BP & HR`, `[Follow-up for MRI]`, `{Review meds}`, `Pain 8/10`                   | Notes naturally contain numbers and symbols for shorthand or emphasis (e.g. `Pain 8/10`, `[Lab Result] pending`). Allowing all supports free-form clinical notation.                             |
+
 
 
 --------------------------------------------------------------------------------------------------------------------
