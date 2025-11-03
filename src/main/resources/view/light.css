@@ -424,6 +424,10 @@
     -fx-border-radius: 5;
 }
 
+.split-pane:horizontal .split-pane-divider {
+    -fx-cursor: default;
+}
+
 /* Appointment Panel Styles */
 .appointment-section-heading {
     -fx-font-size: 16;
