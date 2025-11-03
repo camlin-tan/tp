@@ -452,20 +452,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: UC01 - Delete a patient**
 
 Preconditions: <br>
-`The user has access to the patient list and knows the index of the patient they want to delete.`
+`The actor has access to the patient list and knows the index of the patient they want to delete.`
 
 **MSS**
 
 1. Actor requests to delete a specific patient in the list.
 2. System deletes the patient.
+3. System shows a confirmation message. 
+4. System updates the displayed patient list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 1a. The given index is invalid.
 
-    * 3a1. System shows an error message.
+    * 1a1. System shows an error message.
 
       Use case ends.
 
@@ -482,7 +484,7 @@ Preconditions: <br>
 
 **Extensions**
 
-* 1a. User makes an invalid input.
+* 1a. Actor makes an invalid input.
 
     * 1a1. System shows an error message.
 
@@ -500,8 +502,7 @@ Preconditions: <br>
 
 1.  Actor types a command to view all available commands.
 2.  System retrieves the list of commands supported.
-3.  System displays a seperate window containing the list of commands and their format.
-4.  Actor closes the window.
+3.  System displays the list of commands.
 
     Use case ends.
 
@@ -516,30 +517,28 @@ Preconditions: <br>
 #### **Use case: UC04 - Edit a patient**
 
 Preconditions: <br>
-`The user has access to the patient list and knows the index of the patient they want to delete.`
+`The actor has access to the patient list and knows the index of the patient they want to edit.`
 
 **MSS**
 
 1. Actor requests to edit a patient with required parameters.
 2. System edits the patient in the system.
+3. System shows a confirmation message. 
+4. System updates the displayed patient list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Actor makes an invalid input.
 
-    * Use case ends.
-
-* 3a. Actor makes an invalid input.
-
-    * 3a1. System shows an error message.
+    * 1a1. System shows an error message.
 
       Use case ends.
 
-* 3b. Duplicate identity number detected.
+* 1b. Duplicate identity number detected.
 
-    * 3b1. System shows an error message.
+    * 1b1. System shows an error message.
 
       Use case ends.
 
@@ -547,8 +546,9 @@ Preconditions: <br>
 
 **MSS**
 
-1.  User requests to list all patients.
-2.  System lists all the patients.
+1. Actor requests to list all patients.
+2. System shows a confirmation message.
+3. System lists all the patients.
 
     Use case ends.
 
@@ -556,14 +556,15 @@ Preconditions: <br>
 
 **MSS**
 
-1.  User requests to find patients with required parameters.
-2.  System lists the matching patients in the system.
+1. Actor requests to find patients with required parameters.
+2. System shows a confirmation message.
+3. System lists the matching patients in the system.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. One or more required parameters are missing.
+* 1a. Actor makes an invalid input.
 
     * 1a1. System shows an error message.
 
@@ -573,8 +574,9 @@ Preconditions: <br>
 
 **MSS**
 
-1.  User requests to clear all entries.
-2.  System clears all entries.
+1.  Actor requests to clear all entries.
+2.  System shows a confirmation message.
+3.  System clears all entries.
 
     Use case ends.
 
@@ -591,13 +593,14 @@ Preconditions: <br>
 **MSS**
 
 1.  Actor requests to change the theme with required argument.
-2.  System changes the theme.
+2.  System shows a confirmation message.
+3.  System changes the theme.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The argument entered is invalid.
+* 1a. Actor makes an invalid input.
 
     * 1a1. System shows an error message.
 
@@ -615,21 +618,15 @@ Preconditions: <br>
     Use case ends.
 
 **Extensions**
-* 1a. One or more required parameters are missing.
+* 1a. Actor makes an invalid input.
 
     * 1a1. System shows an error message.
 
       Use case ends.
 
-* 1b. Input parameters are in invalid formats (e.g. date, time).
+* 1b. Appointment time clashes with an existing appointment for a particular patient.
 
     * 1b1. System shows an error message.
-
-      Use case ends.
-
-* 1c. Appointment time clashes with an existing appointment for a particular patient.
-
-    * 1c1. System shows an error message.
 
       Use case ends.
 
