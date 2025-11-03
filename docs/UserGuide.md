@@ -16,9 +16,13 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
 * [HealthNote User Guide](#healthnote-user-guide)
     * [Table of Contents](#table-of-contents)
   * [Introduction](#introduction)
-  * [Guide Usage](#guide-usage)
+    * [What is HealthNote?](#what-is-healthnote)
+    * [Who this guide is for](#who-this-guide-is-for)
+  * [Getting Started](#getting-started)
+    * [1. Java version check and installation](#1-java-version-check-and-installation)
+    * [2. Downloading HealthNote](#2-downloading-healthnote)
+    * [3. Running HealthNote](#3-running-healthnote)
   * [User Interface](#user-interface)
-  * [Quick Start](#quick-start)
   * [Features](#features)
     * [Command Format](#command-format)
   * [Features - General Features](#features-general-features)
@@ -28,11 +32,11 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
   * [Features - Managing Patient Records](#features-managing-patient-records)
     * [Adding a patient: `add`](#adding-a-patient-add)
     * [Editing a patient: `edit`](#editing-a-patient-edit)
-    * [Deleting a patient: `delete`](#deleting-a-patient)
+    * [Deleting a patient: `delete`](#deleting-a-patient-delete)
   * [Features - Viewing Patient Records](#features-viewing-patient-records)
-    * [View a patient's medical information: `view`](#view-a-patients-medical-information)
-    * [Listing all patients: `list`](#listing-all-patients-list)
-    * [Locating patients by name: `find`](#locating-patients-by-name-or-identity)
+    * [View a patient's medical information: `view`](#view-a-patients-medical-information-view)
+    * [Listing all patients: `view`](#listing-all-patients-view)
+    * [Locating patients by name or identity: `find`](#locating-patients-by-name-or-identity-find)
   * [Features - Managing Appointment Records](#features-managing-appointment-records)
     * [Scheduling an appointment: `schedule`](#scheduling-an-appointment-schedule-)
     * [Deleting upcoming appointment: `unschedule`](#deleting-upcoming-appointment-unschedule)
@@ -44,6 +48,8 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
     * [Editing the data file](#editing-the-data-file)
     * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
   * [FAQ](#faq)
+    * [Data Management](#data-management)
+    * [Common Issues](#common-issues)
   * [Glossary](#glossary)
   * [Known issues](#known-issues)
   * [Command Summary](#command-summary)
@@ -123,6 +129,8 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 | 4  | Patient List                              | Displays the list of patients.                                                                                                       |
 | 5  | Patient's personal information view panel | Displays all the data fields, including medical records, of the patient which the user requests to view.                             |
 | 6  | Upcoming and past appointments list panel | Displays all the appointments, with the top list displaying upcoming appointments, and the bottom list displaying past appointments. |
+
+[Back to Table of Contents](#table-of-contents)
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -193,13 +201,15 @@ In the command format, special symbols surrounding prefixes and fields indicate 
 
 </box>
 
+[Back to Table of Contents](#table-of-contents)
 
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features - General Features
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Displays a window showing all available commands and how to use them.
 
@@ -217,7 +227,9 @@ Examples:
 |-----------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|
 | Unknown command                               | The `help` command may be misspelled or not entirely in lowercase   | Ensure that you use `help` exactly in lowercase.                          |
 
+[Back to Table of Contents](#table-of-contents)
 <br>
+
 
 ### Changing the colour theme: `theme`
 
@@ -239,9 +251,10 @@ Examples:
 | Unknown command    | The `theme` command may be misspelled or not entirely in lowercase | Ensure that you use `theme` exactly in lowercase.                      |
 | Unknown theme      | The theme name entered is not available                            | Enter one of the available themes: `light`, `dark`, `blue`, or `pink`. |
 
+[Back to Table of Contents](#table-of-contents)
 <br>
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the HealthNote application.
 
@@ -272,6 +285,8 @@ Adds a patient to the address book.
 
 Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY_CONTACT dob\DATE_OF_BIRTH b\BLOOD_TYPE 
 [ar\ALCOHOLIC_RECORD] g\GENDER [sr\SMOKING_RECORD] [pmh\PAST_MEDICAL_HISTORY] [t\TAG]... [al\ALLERGY]... [m\MEDICINE]...`
+
+**Input Constraints Table**
 
 | **Field (with Prefix)**      | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                                                                 |
 | ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------|
@@ -356,6 +371,8 @@ cause it the patient's past medical history to default to the value "None". <br>
   The same applies to `ar\`, `sr\` for alcoholic and smoking record respectively.
 </div>
 
+**Input Constraints Table**
+
 | **Field (with Prefix)**      | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                                                                 |
 | ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------|
 | **INDEX**                    | ✓               | ✗                      | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the patient list.                                  |
@@ -394,7 +411,7 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting a patient:
+### Deleting a patient: `delete`
 
 Purpose: Removes the specified patient from the patient list.
 
@@ -431,7 +448,7 @@ Examples:
 
 ## Features - Viewing Patient Records
 
-### View a patient's medical information:
+### View a patient's medical information: `view`
 
 Purpose: Displays the medical information of the patient at the specified `INDEX`.
 
@@ -461,7 +478,9 @@ Example:
 | Unknown command                      | The `view` command may have been misspelled or not entered in lowercase                      | Ensure that you use `view` exactly in lowercase.                                                      |
 | The person index provided is invalid | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the entered `INDEX` not more than the number of patients in the currently displayed list. |
 
-### Listing all patients:
+[Back to Table of Contents](#table-of-contents)
+
+### Listing all patients: `view`
 
 Purpose: Shows a list of all patients stored in the patient list.
 
@@ -492,7 +511,7 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 
-### Locating patients by name or identity:
+### Locating patients by name or identity: `find`
 
 Purpose: Search for patients in the patient list by name or identity number.
 
@@ -545,7 +564,7 @@ Examples:
 
 **Format:** `schedule INDEX adt\APPOINTMENT_DATE_TIME [note\APPOINTMENT_NOTE]`
 
-#### Input Constraints Table
+**Input Constraints Table**
 
 | **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
 |----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
@@ -574,13 +593,16 @@ Example:
 | Invalid command format!               | You may not have provided the necessary arguments                     | Ensure `INDEX` and `adt\` are provided.                              |
 | Unknown command                       | The `schedule` command may be misspelled or not entirely in lowercase | Ensure that you use `schedule` exactly in lowercase.                 |
 | The patient index provided is invalid | You have entered an invalid index                                     | Ensure that the `INDEX` provided is a valid index in the shown list. |
+
+[Back to Table of Contents](#table-of-contents)
+
 ### Deleting upcoming appointment: `unschedule`
 
 Deletes the upcoming appointment specified by `INDEX` shown in the displayed upcoming appointment list.
 
 **Format:** `unschedule INDEX`
 
-#### Input Constraints Table
+**Input Constraints Table**
 
 | **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
 |----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
@@ -605,7 +627,7 @@ Deletes the past appointment specified by `INDEX` shown in the displayed past ap
 
 Format: `forget INDEX`
 
-#### Input Constraints Table
+**Input Constraints Table**
 
 | **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
 |----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
@@ -630,7 +652,7 @@ forget 1
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Feature - Clearing Data
+## Features - Clearing Data
 
 ### Clearing all entries: `clear`
 
