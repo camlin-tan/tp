@@ -29,7 +29,7 @@
 * [Home]({{ baseUrl }}/index.html)
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
   * [Introduction]({{ baseUrl }}/UserGuide.html#introduction)
-  * [Quick Start]({{ baseUrl }}/UserGuide.html#getting-started)
+  * [Getting Started]({{ baseUrl }}/UserGuide.html#getting-started)
   * [Features]({{ baseUrl }}/UserGuide.html#features)
   * [FAQ]({{ baseUrl }}/UserGuide.html#command-summary)
   * [Command Summary]({{ baseUrl }}/UserGuide.html#faq)
