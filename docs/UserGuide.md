@@ -656,7 +656,7 @@ HealthNote data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-HealthNote data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HealthNote data are saved automatically as a JSON file `[JAR file location]/data/healthnote.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
@@ -677,21 +677,21 @@ _Details coming soon ..._
 
 ### Data Management
 **Q**: How do I change the location of the data file?<br>
-**A**: Currently, HealthNote does not support changing the data file location. The data file is always stored in `[JAR file location]/data/addressbook.json`.
+**A**: Currently, HealthNote does not support changing the data file location. The data file is always stored in `[JAR file location]/data/healthnote.json`.
 <box type="tip" seamless>
 
 **Extra notes:** For pro-users, you may change the data path in `preferences.json` file located in `[JAR file location]/preferences.json`. However, this is not officially supported and may lead to unexpected behaviour.
 </box>
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the auto created `addressbook.json` it creates with the `addressbook.json` from your previous HealthNote `folder/data`.
+**A**: Install the app in the other computer and overwrite the auto created `healthnote.json` it creates with the `healthnote.json` from your previous HealthNote `folder/data`.
 
 **Q**: May I edit the data file manually?<br>
 **A**: Manual editing of the data file is possible but not recommended unless you are confident in maintaining the correct JSON format. Incorrect edits may lead to empty data loaded when HealthNote start up.
 
 ### Common Issues
 **Q**: Can I undo a delete or clear action?<br>
-**A**: No, once a record is deleted or cleared, the data is permanently removed. It is recommended to back up your data file `addressbook.json` regularly.
+**A**: No, once a record is deleted or cleared, the data is permanently removed. It is recommended to back up your data file `healthnote.json` regularly.
 
 **Q**: Can I open multiple HealthNote windows at the same time?<br>
 **A**: Running multiple instances of the app is not supported. Doing so may cause data conflicts. Use only one window at a time.

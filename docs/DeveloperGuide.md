@@ -706,7 +706,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder.
 
-    2. Double-click the jar file. If it doesn't work, use `java -jar addressbook.jar`.
+    2. Double-click the jar file. If it doesn't work, use `java -jar HealthNote.jar`.
 
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -1045,7 +1045,7 @@ testers are expected to do more *exploratory* testing.
    Test case:
 
     1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
-    2. Delete the file named `addressbook.json`.
+    2. Delete the file named `healthnote.json`.
     3. Relaunch the application.
 
    Expected: A new file with sample patient records is created. Sample patient records are displayed in the application.
@@ -1055,7 +1055,7 @@ testers are expected to do more *exploratory* testing.
    Test case:
 
     1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
-    2. Open the file named `addressbook.json`.
+    2. Open the file named `healthnote.json`.
     3. Modify the file to simulate corruption. For instance, delete the first few lines from the file.
     4. Relaunch the application.
     5. Add a new a patient, using `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000`.
