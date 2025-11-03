@@ -73,6 +73,30 @@ We assume that you are familiar with your computer's operating system, navigatin
 CLI. Our goal is to quickly get you up and running by skipping over-simplified instructions.
 
 --------------------------------------------------------------------------------------------------------------------
+## Using this Guide
+
+<div markdown="block" class="alert alert-info">
+
+**For Novices**
+
+* For first time users, you can first jump to the [Getting Started](#getting-started) section to get started on HealthNote.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**For Amateurs**
+
+* You can jump to the [Table of Contents](#table-of-contents) to start navigating the guide.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**For Experts**
+
+* You can jump to the [Command Summary](#command-summary) for a quick summary of all the commands and their formats.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Getting Started
 
@@ -121,13 +145,13 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 
 ![UI-components.png](images/UI-components.png)
 
-| No | Component                                 | Description                                                                                                                          |
-|----|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| 1  | Menu bar                                  | Provides access to various actions, such as accessing help or exiting the application.                                               |
-| 2  | Command Box                               | This is where the user inputs commands to perform various tasks.                                                                     |
-| 3  | Command Result                            | Displays the output and the result of performing a command.                                                                          |
-| 4  | Patient List                              | Displays the list of patients.                                                                                                       |
-| 5  | Patient's personal information view panel | Displays all the data fields, including medical records, of the patient which the user requests to view.                             |
+| No | Component                                | Description                                                                                                                          |
+|----|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| 1  | Menu bar                                 | Provides access to various actions, such as accessing help or exiting the application.                                               |
+| 2  | Command Box                              | This is where the user inputs commands to perform various tasks.                                                                     |
+| 3  | Command Result                           | Displays the output and the result of performing a command.                                                                          |
+| 4  | Patient List                             | Displays the list of patients.                                                                                                       |
+| 5  | Patient's information view panel         | Displays all the data fields, including medical records, of the patient which the user requests to view.                             |
 | 6  | Upcoming and past appointments list panel | Displays all the appointments, with the top list displaying upcoming appointments, and the bottom list displaying past appointments. |
 
 [Back to Table of Contents](#table-of-contents)
