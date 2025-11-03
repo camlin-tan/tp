@@ -29,7 +29,7 @@
 * [Home]({{ baseUrl }}/index.html)
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
   * [Introduction]({{ baseUrl }}/UserGuide.html#introduction)
-  * [Quick Start]({{ baseUrl }}/UserGuide.html#getting-started)
+  * [Getting Started]({{ baseUrl }}/UserGuide.html#getting-started)
   * [Features]({{ baseUrl }}/UserGuide.html#features)
   * [FAQ]({{ baseUrl }}/UserGuide.html#command-summary)
   * [Command Summary]({{ baseUrl }}/UserGuide.html#faq)
@@ -40,7 +40,7 @@
   * [Implementation]({{ baseUrl }}/DeveloperGuide.html#design-considerations)
   * [Documentation, logging, testing, configuration, dev-ops]({{ baseUrl }}/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops)
   * [Appendix: Effort]({{ baseUrl }}/DeveloperGuide.html#appendix-effort)
-  * [Appendix: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#planned-enhancements)
+  * [Appendix: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#appendix-planned-enhancements)
   * [Appendix: Requirements]({{ baseUrl }}/DeveloperGuide.html#appendix-requirements)
   * [Appendix: Instructions for manual testing]({{ baseUrl }}/DeveloperGuide.html#appendix-instructions-for-manual-testing)
 * [About Us]({{ baseUrl }}/AboutUs.html)
