@@ -35,7 +35,7 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
     * [Deleting a patient: `delete`](#deleting-a-patient-delete)
   * [Features - Viewing Patient Records](#features-viewing-patient-records)
     * [View a patient's medical information: `view`](#view-a-patients-medical-information-view)
-    * [Listing all patients: `view`](#listing-all-patients-view)
+    * [Listing all patients: `list`](#listing-all-patients-list)
     * [Locating patients by name or identity: `find`](#locating-patients-by-name-or-identity-find)
   * [Features - Managing Appointment Records](#features-managing-appointment-records)
     * [Scheduling an appointment: `schedule`](#scheduling-an-appointment-schedule-)
@@ -480,7 +480,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Listing all patients: `view`
+### Listing all patients: `list`
 
 Purpose: Shows a list of all patients stored in the patient list.
 
