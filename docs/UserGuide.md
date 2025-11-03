@@ -63,44 +63,51 @@ HealthNote is a digital patient record manager. If you are an independent home h
 the perfect tool for you. HealthNote helps manage your patients' information, record their medical histories, and 
 organise home visit notes. The simple and user-friendly interface enables you to access patient details 
 faster than traditional patient files. With HealthNote, you can spend more time caring for your patients instead of 
-combing through their files.
+combing through stacks of paperwork.
 
 ### Who this guide is for
-This guide is intended for medical professionals who are familiar with day-to-day medical terms. We assume that you
-are familiar with basic computer operations and are aware of what system your computer is on (Windows, Linux, Mac - 
-M series or intel chip), no prior experience with Command Line Interfaces (CLIs) is required. Our goal is to quickly help 
-you get up and running with HealthNote.
+This guide is written for medical professionals who are proficient with using a Command Line Interface (CLI).
+We assume that you are familiar with your computer's operating system, navigating its files, and using its
+CLI. Our goal is to quickly get you up and running by skipping over-simplified instructions.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting Started
-Follow these steps to install and run HealthNote.
 
-1. **Java version check**
-   1. If you are on Windows, open the `Command Prompt` app. If you are on Mac or Linux, open the `terminal` app.
-   2. Type this command: `java -version` and hit enter on your keyboard.
-      - If you get the output: `'java' is not recognized...` or `The operation couldn’t be completed...` or any output that says Java is not installed, you will have to install Java `17` onto your computer by following step 2.
-      - If you get the output: `(something) version 17...`, you may skip to step 3.
+HealthNote requires **Java 17** to run. Please follow the instructions according to your computer's operating system.
+
+### 1. Java version check and installation
+
+**For macOS Users**
+
+A specific Java `17` version is required.
+
+1. Please follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+2. After completing the setup, open the **Terminal** app and run the command `java -version` to confirm that
+the correct version is installed, you should see a Java version starting with `17` (e.g., `17.0.5`).
+
+   
+**For Windows and Linux Users**
+1. Open your system's CLI (e.g., PowerShell, Terminal).
+2. Execute this command: `java -version`.
+3. If the output shows a Java version starting with `17` (e.g., `17.0.5`), you already have the correct version 
+installed and may skip to the [Downloading HealthNote](#2-downloading-healthnote) section. If not, keep following the instructions to install Java `17`.
+4. Download Java `17` from [this website](https://www.oracle.com/java/technologies/javase/jdk17-0-13-later-archive-downloads.html)
+according to your computer's operating system. 
+5. Run the downloaded file and follow the on-screen instructions.
+6. After the installation, close and reopen your CLI, and repeat `step 2`.
 
 
-2. **One-time Java installation**
-   - For Windows users: click [here](https://download.oracle.com/java/17/archive/jdk-17.0.12_windows-x64_bin.exe) to download the installer, then double-click the downloaded file and follow the instructions to install Java.
-   - For Linux users: determine your Linux distribution type, double-click the downloaded file and install Java.
-     - Debian-based (e.g., Ubuntu, Debian, Linux Mint): click [here](https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb).
-     - RPM-based (e.g., Fedora, RHEL, CentOS): click [here](https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb).
-   - For Mac users: follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-   - After following the steps above, repeat step 1 to check if you have installed Java `17` successfully.
+### 2. Downloading HealthNote
+Download the latest `healthnote.jar` file from [here](https://github.com/AY2526S1-CS2103T-F11-1/tp/releases).
+   
 
-
-3. **Download HealthNote**
-   1. Download the latest `healthnote.jar` file from [here](https://github.com/AY2526S1-CS2103T-F11-1/tp/releases).
-   2. Create a new folder on your computer where you want to store your patient data and move the downloaded `healthnote.jar` into this new folder.
-
-
-4. **Run HealthNote**
-   1. Right-click on the folder that you have put healthnote.jar in and click on `Open in Terminal` or `New Terminal at Folder` or a similar option. Alternatively, if you are on Mac, you may open the Command Line (following the very first step), type `cd` followed by a space and drag the folder into the terminal window, then execute the command.
-   2. Run this command: `java -jar healthnote.jar`
-   3. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+### 3. Running HealthNote
+1. Create a new folder on your computer where you want to store your patient data and move the downloaded 
+`healthnote.jar` into this new folder.
+2. Open your CLI and navigate to this folder (using commands like `cd`).
+3. Run this command: `java -jar healthnote.jar`
+4. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui-Updated.png)
 
