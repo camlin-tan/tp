@@ -143,7 +143,7 @@ Congratulations! You are now ready to use HealthNote. Refer to the [Features](#f
 
 Here are the key components of the HealthNote User Interface (UI), designed for the convenience of our users.
 
-![UI-components.png](images/UI-components.png)
+![UI-components.png](images/Ui-components.png)
 
 | No | Component                                | Description                                                                                                                          |
 |----|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
