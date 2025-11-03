@@ -40,7 +40,7 @@
   * [Implementation]({{ baseUrl }}/DeveloperGuide.html#design-considerations)
   * [Documentation, logging, testing, configuration, dev-ops]({{ baseUrl }}/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops)
   * [Appendix: Effort]({{ baseUrl }}/DeveloperGuide.html#appendix-effort)
-  * [Appendix: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#planned-enhancements)
+  * [Appendix: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#appendix-planned-enhancements)
   * [Appendix: Requirements]({{ baseUrl }}/DeveloperGuide.html#appendix-requirements)
   * [Appendix: Instructions for manual testing]({{ baseUrl }}/DeveloperGuide.html#appendix-instructions-for-manual-testing)
 * [About Us]({{ baseUrl }}/AboutUs.html)
