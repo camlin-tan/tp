@@ -50,6 +50,7 @@ class AppointmentTimeTest {
     void isValidDateTime_invalidCases() {
         assertFalse(AppointmentTime.isValidDateTime("29-02-2025 14:30")); // leap day
         assertFalse(AppointmentTime.isValidDateTime("31/04/2023 14:30")); // wrong day
+        assertFalse(AppointmentTime.isValidDateTime("12/12/0000 14:30")); // year 0000
     }
 
     @Test
