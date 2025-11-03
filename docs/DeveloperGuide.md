@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -175,11 +175,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-#### Design considerations:
+## **Design considerations**
 
 ### Input Validation Rationale
 
@@ -658,7 +654,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder.
 
-    2. Double-click the jar file. If it doesn't work, use `java -jar HealthNote.jar`.
+    2. Double-click the jar file. If it doesn't work, use `java -jar healthnote.jar`.
 
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
