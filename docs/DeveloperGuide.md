@@ -578,6 +578,59 @@ Preconditions: <br>
 
       Use case ends.
 
+#### **Use case: UC10 - Delete a past appointment**
+
+**MSS**
+
+1.  Actor requests to delete a past appointment with specified index.
+2.  System removes the corresponding appointment.
+3.  System shows a confirmation message.
+4.  System updates the displayed past appointment list.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC11 - Delete an upcoming appointment**
+
+**MSS**
+
+1.  Actor requests to cancel an upcoming appointment with specified index.
+2.  System removes the corresponding appointment.
+3.  System shows a confirmation message.
+4.  System updates the displayed upcoming appointment list.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC12 - Exit application**
+
+**MSS**
+
+1.  Actor requests to exit the application.
+2.  System saves all data and user preferences automatically.
+3.  System closes the application window.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Saving data or user preferences fails.
+    * 2a1. System shows an error message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
