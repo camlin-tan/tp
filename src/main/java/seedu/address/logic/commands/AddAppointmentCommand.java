@@ -75,6 +75,7 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
         model.addAppointment(appointment);
+        model.setViewedPerson(personWithAppointment);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(appointment)));
     }
 

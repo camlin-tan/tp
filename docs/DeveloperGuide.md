@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "Developer Guide"
-    pageNav: 3
+  title: "Developer Guide"
+  pageNav: 3
 ---
 
 # HealthNote Developer Guide
@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -57,7 +57,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -67,24 +67,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Appointment` objects residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -116,38 +116,51 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
-
+<puml src="diagrams/ModelClassDiagram.puml" width="800" />
 
 The `Model` component,
 
 * stores the address book data i.e., all `Person` and `Appointment` objects (which are contained in a `UniquePersonList` object and an `UniqueAppointmentList` object).
-
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* each `Person` and their `Appointment`s store a common reference of the `Person`'s `IdentityNumber`.
+* each `Person` and `Appointment` store a common reference of `IdentityNumber`
 
-<puml src="diagrams/ModelUiObjectDiagram.puml" width="450" />
+The object diagram below illustrates the important parts of how `ModelManager` is structured and how `UI` interacts with it.
 
-* stores the currently 'found' `Person` objects (e.g., results of a search query) as a separate _filtered_ list.
-* stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`.
-* stores another 2 lists of `Appointments` objects belonging to the currently viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`.
-* exposes the lists above to outsiders as unmodifiable `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
+<puml src="diagrams/ModelUiObjectDiagram.puml" width="1000" />
+
+The `ModelManager`,
+
+* stores a list of `Person` objects called `FilteredPersonList`. This is the list that is displayed in the `PersonListPanel` in `UI`
+* stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`. These are the lists displayed by `AppointmentListPanel` in `UI`
+* stores a `Person` object called `ViewedPerson` which is the person currently being viewed in the `PersonViewPanel` in `UI`
+* stores another 2 lists of `Appointments` objects filtered to current `ViewedPerson` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
+* exposes the above components to outsiders as unmodifiable `ObservableList`s and `ObservableValue` that can be 'observed'. The UI components are bound to them and automatically update when the data changes.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** The above object diagram does not follow the conventional pattern as everything shown above follows a singleton pattern, where only one instance of its class should exist. 
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+</box>
+
+<box type="info" seamless>
+
+**Note:** The above diagrams are simplified to show the most important components and their main associations. Below is a detailed class diagram of Person and Appointment.
+
+<puml src="diagrams/PersonAndAppointmentClassDiagram.puml" width="1000" />
+
+**Note:** An alternative (arguably, a more OOP) model is given below. Where `ViewedPerson` stores a reference to the currently viewed `Person` and all their `Appointments` in the necessary order.<br>
+
+<puml src="diagrams/ViewedPersonClassDiagram.puml" width="500" />
 
 </box>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/nus-cs2103-AY2526S1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -162,106 +175,41 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Design considerations**
 
-This section describes some noteworthy details on how certain features are implemented.
+### Input Validation Rationale
 
-### \[Proposed\] Undo/redo feature
+Our input validation is designed to be flexible and user-centred, avoiding overzealous validation that blocks legitimate inputs. 
+Since doctors often need to record varied and free-form information, we only reject inputs that would cause functional issues (e.g. empty required fields or unparseable dates) while allowing all other characters and symbols.
 
-#### Proposed Implementation
+For fields marked “must not be blank”, any non-empty input is accepted, allowing symbols such as `*`, `/`, `[ ]`, `{ }`, `#`, and `&`. **This is intentional, and not a feature flaw, nor an oversight in our design consideration.**
+This enables users to record data naturally (e.g. Fracture* – left arm, [Mother] 9888-3333 (Office)) without being restricted by unnecessary formatting rules.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+In contrast, structured fields like identity number, email, date of birth, and appointment date/time apply format checks only to ensure application operations such as searching, parsing, and sorting remain reliable.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Overall, our approach is to be permissive unless functionality is at risk. We will not restrict values if doing so does not add operational benefit.
+This strikes a balance between robustness and usability, preventing over-restriction while keeping data entry smooth and efficient for real-world medical use.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+| **Field**                     | **Allowed Example Inputs (with symbols & numbers)**                                    | **Justification and Real-World Basis**                                                                                                                                                           |
+|-------------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **n\NAME**                    | `Dr. Alex (Sr.)`, `John Paul the 2nd`, `Damith s/o Sankar-Ashish`, `X Æ A-Xii`         | Real names may include titles, numbers, and punctuation (e.g. *Pope John Paul II*, *Damith s/o Sankar-Ashish*). Allowing all symbols and digits supports inclusivity and accurate record-keeping with flexibility. |
+| **id\IDENTITY_NUMBER**        | `S1234567A`, `060402-06-6767`, `A.1234.567`                                            | Identity numbers across systems (passport, hospital, national) may contain letters, digits, hyphens, and dots. Allowing these ensures flexibility while maintaining parseable structure.         |
+| **p\PHONE_NUMBER**            | `9888-3333 (Office)`, `[Home] 6222*3333`, `+65 8123 4567`                              | Phone entries often include country codes, separators, or contextual notes. Requiring only two consecutive digits ensures validity without limiting natural formatting.                          |
+| **e\EMAIL**                   | `nurse.jane_doe+ward@clinic.com`, `dr.lee77@hospital.sg`                               | `+`, `_`, `.`, and digits are valid in real institutional emails (e.g. `alex+lab@hospital.org`). Restricting them would wrongly reject legitimate addresses.                                       |
+| **addr\HOME_ADDRESS**         | `#02-123 Blk 45 Clementi Rd`, `{Unit 3B} 88 Hilltop Ave`                               | Addresses use `#`, `-`, numbers, and brackets (e.g. *#02-45 Blk 88*). These are standard in local and international postal formats.                                                              |
+| **ec\EMERGENCY_CONTACT**      | `[Mother] 9888-3333 (Office)`, `[Dr. Tan {Clinic}] 9000-1111`, `[Friend 2] 9333-2222`  | Emergency contacts often include relationship labels or numbering. The flexible format `[relationship] number` mirrors real hospital data entry patterns.                                        |
+| **dob\DATE_OF_BIRTH**         | `12/10/1987`, `5.5.2000`, `23-09-1975`                                                 | Restricting to numeric formats with `-`, `/`, or `.` ensures proper parsing while supporting international date conventions.                                                                     |
+| **b\BLOOD_TYPE**              | `A+`, `A Rh(D)−`, `Bombay (hh)`, `A/B`, `A*`, `B?`, `Rh(- -)`                          | Blood typing notation often includes symbols like `+`, `-`, `/`, `()`, `*`, and `?` to mark antigen variants, uncertainty, or subgroups (e.g. `A3`, `Rh(- -)`). Allowing such inputs prevents rejection of legitimate lab formats. |
+| **g\GENDER**                  | `Male`, `Female`, `Non-binary`, `X`, `M/F`, `M→F`, `Trans♀`, `Other (specify: &fluid)` | Gender identity and administrative codes can include symbols, arrows, or parentheses (e.g. `M→F`, `X`, `Trans*`). Supporting these improves inclusivity and aligns with modern EHR standards (e.g. Epic, Cerner). |
+| **ar\ALCOHOLIC_RECORD**       | `None`, `2–3x/week`, `Quit & Recovered`, `Occasional (1 glass)`                        | Lifestyle entries often include numbers and punctuation for frequency or context. Flexibility improves expressiveness in clinical notes.                                                         |
+| **sr\SMOKING_RECORD**         | `Quit (2010)`, `Occasional / Social`, `2/day`                                          | Smoking history fields commonly use digits for frequency or cessation year, and symbols like `/` or `()`.                                                                                        |
+| **pmh\PAST_MEDICAL_HISTORY**  | `Asthma (mild)`, `Fracture* – left arm`, `Type-2 Diabetes`                             | Medical conditions often contain digits or shorthand symbols (e.g. `Type-2`, `Stage III`). Allowing punctuation supports real medical documentation.                                             |
+| **t\TAG**                     | `[Follow-Up]`, `VIP*`, `{HighRisk-3}`, `Urgent #2`                                     | Tags may include brackets, hashes, or numbers for sorting or prioritisation. Flexible tagging supports varied hospital workflows.                                                                |
+| **al\ALLERGY**                | `Penicillin 2+`, `Peanut (Severe*)`, `Dust & Pollen`                                   | Allergy records may contain parentheses, severity markers, or numbering. Such notation reflects real-world allergy charting.                                                                     |
+| **m\MEDICINE**                | `2 Panadol/day`, `500mg Ibuprofen (AM & PM)`, `*Insulin – sliding scale*`              | Medicine instructions require digits, units, and symbols to describe dosage and timing. These are standard in prescriptions and MARs.                                                            |
+| **adt\APPOINTMENT_DATE_TIME** | `13-10-2025 10:00`, `12/10/2025 09:30`, `5.5.2024 14:00`                               | Accepts structured date-time formats using `-`, `/`, or `.` for consistent parsing and scheduling.                                                                                               |
+| **note\APPOINTMENT_NOTE**     | `Check BP & HR`, `[Follow-up for MRI]`, `{Review meds}`, `Pain 8/10`                   | Notes naturally contain numbers and symbols for shorthand or emphasis (e.g. `Pain 8/10`, `[Lab Result] pending`). Allowing all supports free-form clinical notation.                             |
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -449,157 +397,239 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HealthNote` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a patient**
+#### **Use case: UC01 - Delete a patient**
+
+Preconditions: <br>
+`The actor has access to the patient list and knows the index of the patient they want to delete.`
 
 **MSS**
 
-1.  User requests to <u>list patients (UC05)</u>.
-2.  HealthNote shows a list of patients.
-3.  User requests to delete a specific patient in the list.
-4.  HealthNote deletes the patient.
+1. Actor requests to delete a specific patient in the list.
+2. System deletes the patient.
+3. System shows a confirmation message. 
+4. System updates the displayed patient list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. HealthNote shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC02 - Add a patient**
-
-**MSS**
-
-1.  User requests to add a patient using the add command with required parameters.
-2.  HealthNote adds the patient to the system.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. User makes an invalid input.
-
-    * 1a1. HealthNote shows an error message.
-
-      Use case resumes at step 1.
-
-* 1b. Duplicate identity number detected.
-
-    * 1b1. HealthNote shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC03 - View all commands**
-
-**MSS**
-
-1.  User types a command to view all available commands.
-2.  HealthNote retrieves the list of commands supported.
-3.  The list of commands is displayed to the user.
-4.  User closes the list.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list of commands cannot be retrieved due to some error.
-
-    * 1a1. HealthNote shows an error message.
+    * 1a1. System shows an error message.
 
       Use case ends.
 
-**Use case: UC04 - Edit a patient**
+#### **Use case: UC02 - Add a patient**
 
 **MSS**
 
-1.  User requests to <u>list patients (UC05)</u>.
-2.  HealthNote shows a list of patients.
-3.  User requests to edit a patient using the edit command with required parameters.
-4.  HealthNote edits the patient in the system.
+1.  Actor requests to add a patient with required parameters.
+2.  System adds the patient to the system.
+3.  System shows a confirmation message including the details of the added patient.
+4.  System updates the displayed patient list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Actor makes an invalid input.
 
-    * Use case ends.
+    * 1a1. System shows an error message.
 
-* 3a. User makes an invalid input.
+      Use case ends.
 
-    * 3a1. HealthNote shows an error message.
+* 1b. Duplicate identity number detected.
 
-      Use case resumes at step 1.
+    * 1b1. System shows an error message.
 
-* 3b. Duplicate identity number detected.
+      Use case ends.
 
-    * 3b1. HealthNote shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC05 - List patients**
+#### **Use case: UC03 - View all commands**
 
 **MSS**
 
-1.  User requests to list all patients.
-2.  HealthNote lists the patients in the system.
-
-    Use case ends.
-
-**Use case: UC06 - Find patients**
-
-**MSS**
-
-1.  User requests to find patients.
-2.  HealthNote lists the matching patients in the system.
+1.  Actor types a command to view all available commands.
+2.  System retrieves the list of commands supported.
+3.  System displays the list of commands.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 2a. The list of commands cannot be retrieved due to some error.
 
-    * Use case ends.
+    * 2a1. System shows an error message.
 
-**Use case: UC07 - Clear all entries**
+      Use case ends.
+
+#### **Use case: UC04 - Edit a patient**
+
+Preconditions: <br>
+`The actor has access to the patient list and knows the index of the patient they want to edit.`
 
 **MSS**
 
-1.  User requests to clear all entries in the system.
-2.  HealthNote clears all entries in the system.
+1. Actor requests to edit a patient with required parameters.
+2. System edits the patient in the system.
+3. System shows a confirmation message. 
+4. System updates the displayed patient list.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The command inputted is invalid.
+* 1a. Actor makes an invalid input.
 
-    * 1a1. HealthNote shows an error message.
+    * 1a1. System shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-**Use case: UC08 - Change theme**
+* 1b. Duplicate identity number detected.
+
+    * 1b1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC05 - List patients**
 
 **MSS**
 
-1.  User requests to change theme of the app.
-2.  HealthNote changes the theme of the app.
+1. Actor requests to list all patients.
+2. System shows a confirmation message.
+3. System lists all the patients.
+
+    Use case ends.
+
+#### **Use case: UC06 - Find patients**
+
+**MSS**
+
+1. Actor requests to find patients with required parameters.
+2. System shows a confirmation message.
+3. System lists the matching patients in the system.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The argument inputted is invalid.
+* 1a. Actor makes an invalid input.
 
-    * 1a1. HealthNote shows an error message.
+    * 1a1. System shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
+
+#### **Use case: UC07 - Clear all entries**
+
+**MSS**
+
+1.  Actor requests to clear all entries.
+2.  System shows a confirmation message.
+3.  System clears all entries.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The command entered is invalid.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC08 - Change theme**
+
+**MSS**
+
+1.  Actor requests to change the theme with required argument.
+2.  System shows a confirmation message.
+3.  System changes the theme.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Actor makes an invalid input.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC09 - Schedule an appointment**
+
+**MSS**
+
+1.  Actor requests to schedule an appointment with required parameters.
+2.  System adds the appointment to the system.
+3.  System shows a confirmation message.
+4.  System updates the displayed upcoming appointment list.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Actor makes an invalid input.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+* 1b. Appointment time clashes with an existing appointment for a particular patient.
+
+    * 1b1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC10 - Delete a past appointment**
+
+**MSS**
+
+1.  Actor requests to delete a past appointment with specified index.
+2.  System removes the corresponding appointment.
+3.  System shows a confirmation message.
+4.  System updates the displayed past appointment list.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC11 - Delete an upcoming appointment**
+
+**MSS**
+
+1.  Actor requests to cancel an upcoming appointment with specified index.
+2.  System removes the corresponding appointment.
+3.  System shows a confirmation message.
+4.  System updates the displayed upcoming appointment list.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### **Use case: UC12 - Exit application**
+
+**MSS**
+
+1.  Actor requests to exit the application.
+2.  System saves all data and user preferences automatically.
+3.  System closes the application window.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Saving data or user preferences fails.
+    * 2a1. System shows an error message.
+
+      Use case ends.
 
 
 ### Non-Functional Requirements
@@ -677,7 +707,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder.
 
-    2. Double-click the jar file. If it doesn't work, use `java -jar addressbook.jar`.
+    2. Double-click the jar file. If it doesn't work, use `java -jar healthnote.jar`.
 
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -1016,7 +1046,7 @@ testers are expected to do more *exploratory* testing.
    Test case:
 
     1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
-    2. Delete the file named `addressbook.json`.
+    2. Delete the file named `healthnote.json`.
     3. Relaunch the application.
 
    Expected: A new file with sample patient records is created. Sample patient records are displayed in the application.
@@ -1026,7 +1056,7 @@ testers are expected to do more *exploratory* testing.
    Test case:
 
     1. Go into the data folder which is in the same folder as the app's jar file. (The location is indicated in the bottom left corner of the application)
-    2. Open the file named `addressbook.json`.
+    2. Open the file named `healthnote.json`.
     3. Modify the file to simulate corruption. For instance, delete the first few lines from the file.
     4. Relaunch the application.
     5. Add a new a patient, using `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000`.

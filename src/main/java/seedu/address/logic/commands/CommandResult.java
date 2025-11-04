@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the result of a command execution.
@@ -15,18 +14,16 @@ public class CommandResult {
 
     private final String feedbackToUser;
     private final Optional<String> themePath;
-    private final Optional<Person> personToView;
     private final boolean isHelp;
     private final boolean isExit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Person personToView, String themePath) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, String themePath) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isHelp = showHelp;
         this.isExit = exit;
-        this.personToView = Optional.ofNullable(personToView);
         this.themePath = Optional.ofNullable(themePath);
     }
 
@@ -35,7 +32,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null, null);
+        this(feedbackToUser, false, false, null);
     }
 
     /**
@@ -43,7 +40,7 @@ public class CommandResult {
      * the personToView field set to its default value.
      */
     public CommandResult(String feedbackToUser, boolean isHelp, boolean isExit) {
-        this(feedbackToUser, isHelp, isExit, null, null);
+        this(feedbackToUser, isHelp, isExit, null);
     }
 
     public String getFeedbackToUser() {
@@ -56,14 +53,6 @@ public class CommandResult {
 
     public boolean isExit() {
         return isExit;
-    }
-
-    public Optional<Person> getPersonToView() {
-        return personToView;
-    }
-
-    public boolean isView() {
-        return personToView.isPresent();
     }
 
     public Optional<String> getThemePath() {
@@ -85,7 +74,6 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && isHelp == otherCommandResult.isHelp
                 && isExit == otherCommandResult.isExit
-                && Objects.equals(this.personToView, otherCommandResult.personToView)
                 && Objects.equals(themePath, otherCommandResult.themePath);
     }
 
@@ -93,7 +81,6 @@ public class CommandResult {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("feedbackToUser", feedbackToUser)
-                .add("personToView", personToView)
                 .add("isHelp", isHelp)
                 .add("isExit", isExit)
                 .add("themePath", themePath)
@@ -102,6 +89,6 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, personToView, themePath, isHelp, isExit);
+        return Objects.hash(feedbackToUser, themePath, isHelp, isExit);
     }
 }

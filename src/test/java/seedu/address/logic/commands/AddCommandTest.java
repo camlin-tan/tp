@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddCommand.OLDER_THAN_100_YEARS_WARNING;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -14,6 +15,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -44,6 +46,20 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(validPerson, modelStub.getStubViewedPerson());
+    }
+
+    @Test
+    public void execute_olderThan100YearOld_warning() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().withDateOfBirth("01-01-0001").build();
+
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        String expectedResult = OLDER_THAN_100_YEARS_WARNING
+                + String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson));
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(validPerson, modelStub.getStubViewedPerson());
     }
 
     @Test
@@ -196,6 +212,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableValue<Person> getViewedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setViewedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Appointment> getUpcomingAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -240,6 +266,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private Person viewedPerson;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -251,6 +278,16 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public void setViewedPerson(Person person) {
+            requireNonNull(person);
+            viewedPerson = person;
+        }
+
+        public Person getStubViewedPerson() {
+            return viewedPerson;
         }
 
         @Override

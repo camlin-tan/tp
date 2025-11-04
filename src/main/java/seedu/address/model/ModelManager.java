@@ -5,10 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -40,6 +44,8 @@ public class ModelManager implements Model {
     private final ObservableList<Appointment> unmodifiableViewedPersonUpcomingAppointments;
     private final ObservableList<Appointment> viewedPersonPastAppointments;
     private final ObservableList<Appointment> unmodifiableViewedPersonPastAppointments;
+
+    private final ObjectProperty<Person> viewedPerson = new SimpleObjectProperty<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -282,6 +288,26 @@ public class ModelManager implements Model {
         return sortedAllPastAppointments;
     }
 
+    //=========== Viewed Person Setters And Accessors ==================================================
+    /**
+     * Returns the currently viewed person.
+     */
+    @Override
+    public ObservableValue<Person> getViewedPerson() {
+        return this.viewedPerson;
+    }
+
+    /**
+     * Sets the currently viewed person.
+     */
+    @Override
+    public void setViewedPerson(Person person) {
+        logger.fine("Setting viewed person: " + person);
+        viewedPerson.setValue(person);
+        if (person != null) {
+            getFilteredAppointmentList(person.getIdentityNumber());
+        }
+    }
 
     //=========== Equals ====================================================================================
 
@@ -301,6 +327,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredAppointments.equals(otherModelManager.filteredAppointments)
-                && viewedPersonAppointments.equals(otherModelManager.viewedPersonAppointments);
+                && viewedPersonAppointments.equals(otherModelManager.viewedPersonAppointments)
+                && Objects.equals(viewedPerson.get(), otherModelManager.viewedPerson.get());
     }
 }

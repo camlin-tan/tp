@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "User Guide"
-    pageNav: 3
+  title: "User Guide"
+  pageNav: 3
 ---
 
 # HealthNote User Guide
@@ -61,10 +61,10 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
 Welcome to HealthNote! This guide will help you get started.
 
 ### What is HealthNote?
-HealthNote is a digital patient record manager. If you are an independent home healthcare provider, this is
-the perfect tool for you. HealthNote helps manage your patients' information, record their medical histories, and
-organise home visit notes. The simple and user-friendly interface enables you to access patient details
-faster than traditional patient files. With HealthNote, you can spend more time caring for your patients instead of
+HealthNote is a digital patient record manager. If you are an independent home healthcare provider, this is 
+the perfect tool for you. HealthNote helps manage your patients' information, record their medical histories, and 
+organise home visit notes. The simple and user-friendly interface enables you to access patient details 
+faster than traditional patient files. With HealthNote, you can spend more time caring for your patients instead of 
 combing through stacks of paperwork.
 
 ### Who this guide is for
@@ -310,7 +310,7 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 <div markdown="block" class="alert alert-info">
 
 **ℹ️ Info:**<br>
-* When adding patients without using the optional fields `ALCOHOLIC_RECORD`, `SMOKING_RECORD` and `PAST_MEDICAL_HISTORY`, they will have default values "None" for these fields.
+* When adding patients without using the optional fields `ALCOHOLIC_RECORD`, `SMOKING_RECORD` and `PAST_MEDICAL_HISTORY`, they will have default values "None" for these fields. 
 * You can enter any number of tags, allergies, medicines (including 0).
 </div>
 
@@ -523,7 +523,7 @@ Adds an appointment for a specific patient at a certain time.
 
 **Format:** `schedule INDEX adt\APPOINTMENT_DATE_TIME [note\APPOINTMENT_NOTE]`
 * Adds an appointment to the appointments list for the patient at the specified `INDEX` at the given date and time.
-* The added appointment may appear at the "upcoming" list or "past" list depending on the date and time.
+* The added appointment may appear at the "upcoming" list or "past" list depending on the date and time. 
 * Appointment date & time should be of the following formats: d-M-yyyy HH:mm, d.M.yyyy HH:mm, or d/M/yyyy HH:mm
 
 **Input Constraints Table**
@@ -543,7 +543,7 @@ Adds an appointment for a specific patient at a certain time.
 **Tip:** Appointment notes are optional. Hence, this is a perfectly valid command: `schedule 1 adt\13-10-2025 10:00`.
 
 </box>
-
+  
 **Here is a list of common errors and how to prevent them**
 
 | Error Message                                                           | Reason                                                                                      | Solution                                                                                              |
