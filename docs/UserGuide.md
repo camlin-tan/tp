@@ -36,7 +36,7 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
   * [Features - Viewing Patient Records](#features-viewing-patient-records)
     * [View a patient's medical information: `view`](#view-a-patients-medical-information-view)
     * [Listing all patients: `list`](#listing-all-patients-list)
-    * [Locating patients by name or identity: `find`](#locating-patients-by-name-or-identity-find)
+    * [Locating patients by name or identity number: `find`](#locating-patients-by-name-or-identity-number-find)
   * [Features - Managing Appointment Records](#features-managing-appointment-records)
     * [Scheduling an appointment: `schedule`](#scheduling-an-appointment-schedule-)
     * [Deleting upcoming appointment: `unschedule`](#deleting-upcoming-appointment-unschedule)
@@ -79,7 +79,7 @@ CLI. Our goal is to quickly get you up and running by skipping over-simplified i
 
 **For Novices**
 
-* For first time users, you can first jump to the [Getting Started](#getting-started) section to get started on HealthNote.
+* For first-time users, you can first jump to the [Getting Started](#getting-started) section to get started on HealthNote.
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -151,7 +151,7 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 | 2  | Command Box                              | This is where the user inputs commands to perform various tasks.                                                                     |
 | 3  | Command Result                           | Displays the output and the result of performing a command.                                                                          |
 | 4  | Patient List                             | Displays the list of patients.                                                                                                       |
-| 5  | Patient's information view panel         | Displays all the data fields, including medical records, of the patient which the user requests to view.                             |
+| 5  | Patient's information view panel         | Displays all the data fields, including medical records, of the patient that the user requests to view.                              |
 | 6  | Upcoming and past appointments list panel | Displays all the appointments, with the top list displaying upcoming appointments, and the bottom list displaying past appointments. |
 
 [Back to Table of Contents](#table-of-contents)
@@ -200,11 +200,10 @@ In the command format, special symbols surrounding prefixes and fields indicate 
 
 <box type="info" seamless>
 
-**Example:**
+#### Examples:
 
 * `n\NAME [t\TAG]` can be used as `n\John Doe t\VIP` or as `n\John Doe`.
-
-* `[t\TAG]…​` can be used as ` ` (i.e. 0 times), `t\VIP`, `t\VIP t\Urgent` etc.
+* `[t\TAG]..`. can be used 0 or more times, e.g., `t\VIP, t\VIP t\Urgent`, or not at all.
 
 </box>
 
@@ -238,18 +237,8 @@ In the command format, special symbols surrounding prefixes and fields indicate 
 Displays a window showing all available commands and how to use them.
 
 Format: `help`
-
 * Opens a help window with a list of all commands and their usage.
-* No additional parameters are required.
 
-Examples:
-* `help` opens the help window displaying all available commands.
-
-**Here is a list of common errors and how to prevent them**
-
-| Error Message                                 | Reason                                                              | Solution                                                                  |
-|-----------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|
-| Unknown command                               | The `help` command may be misspelled or not entirely in lowercase   | Ensure that you use `help` exactly in lowercase.                          |
 
 [Back to Table of Contents](#table-of-contents)
 <br>
@@ -262,18 +251,12 @@ Changes the colour theme of HealthNote.
 Format: `theme THEME_NAME`
 * Available themes: `light`, `dark`, `blue`, `pink`.
 * The theme name **must be exactly one of the available options**.
-* Theme names are non-case-sensitive, both lowercase and uppercase letters are accepted.
+* Theme names are case-insensitive, both lowercase and uppercase letters are accepted.
 
-Examples:
+#### Examples:
 * `theme dark` changes the application to dark mode.
 * `theme pink` changes the application to pink mode.
 
-**Here is a list of common errors and how to prevent them**
-
-| Error Message      | Reason                                                             | Solution                                                               |
-|--------------------|--------------------------------------------------------------------|------------------------------------------------------------------------|
-| Unknown command    | The `theme` command may be misspelled or not entirely in lowercase | Ensure that you use `theme` exactly in lowercase.                      |
-| Unknown theme      | The theme name entered is not available                            | Enter one of the available themes: `light`, `dark`, `blue`, or `pink`. |
 
 [Back to Table of Contents](#table-of-contents)
 <br>
@@ -288,14 +271,7 @@ Format: `exit`
 * No additional parameters are required.
 * All data is automatically saved before exiting.
 
-Examples:
-* `exit` closes the HealthNote application.
 
-**Here is a list of common errors and how to prevent them**
-
-| Error Message                                 | Reason                                                              | Solution                                                                  |
-|-----------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|
-| Unknown command                               | The `exit` command may be misspelled or not entirely in lowercase   | Ensure that you use `exit` exactly in lowercase.                          |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -315,9 +291,9 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 | **Field (with Prefix)**      | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                                                                 |
 | ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------|
 | **n\NAME**                   | ✓               | ✗                      | Full legal name of the patient.                                                     | Names can take any values, and it should not be blank                                           |
-| **id\IDENTITY_NUMBER**       | ✓               | ✗                      | Unique identification number (e.g., national ID, passport number, or hospital ID).  | Identity number should only contain alphanumeric characters and/or "-", without spaces          |
+| **id\IDENTITY_NUMBER**       | ✓               | ✗                      | Unique identification number (e.g., national ID, passport number, or hospital ID).  | Identity number should only contain alphanumeric characters and/or "-" and ".", without spaces  |
 | **p\PHONE_NUMBER**           | ✓               | ✗                      | Primary phone number for reaching the patient.                                      | Must contain at least 2 consecutive digits                                                      |
-| **e\EMAIL**                  | ✓               | ✗                      | Patient’s active email address for communication.                                   | Emails should be of the format local-part@domain                                                |
+| **e\EMAIL**                  | ✓               | ✗                      | Patient’s active email address for communication.                                   | Emails should be of the format local-part@domain1                                               |
 | **addr\HOME_ADDRESS**        | ✓               | ✗                      | Current residential address of the patient.                                         | Addresses can take any values, and it should not be blank                                       |
 | **ec\EMERGENCY_CONTACT**     | ✓               | ✗                      | Name and contact details of a patient to call in case of emergency.                 | Must be in the form [{relationship}] {phone} where phone contains at least 2 consecutive digits |
 | **dob\DATE_OF_BIRTH**        | ✓               | ✗                      | Patient’s date of birth.                                                            | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                  |
@@ -334,7 +310,7 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 <div markdown="block" class="alert alert-info">
 
 **ℹ️ Info:**<br>
-* When adding patients without using the optional fields `ALCOHOLIC_RECORD`, `SMOKING_RECORD` and `PAST_MEDICAL_HISTORY`, they will have default values "None" for these fields . 
+* When adding patients without using the optional fields `ALCOHOLIC_RECORD`, `SMOKING_RECORD` and `PAST_MEDICAL_HISTORY`, they will have default values "None" for these fields. 
 * You can enter any number of tags, allergies, medicines (including 0).
 </div>
 
@@ -343,7 +319,7 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 **Tip:** The fields can be entered in any order.
 </box>
 
-Examples:
+#### Examples:
 * `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567
  b\AB ar\Social drinker g\M dob\01-01-2000 sr\Heavy smoker al\nuts t\priorityHigh t\diabetesFollowUp pmh\Diabetes
  m\100mg painkillers/day m\100mg Panadol/day`
@@ -355,7 +331,7 @@ Examples:
 
 | Error Message                                  | Reason                                                           | Solution                                                             |
 |------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------|
-| The patient already exists in the address book | You are adding a patient with the same id as an existing patient | Ensure that you do not enter a patient with the same id as an existing patient. |
+| This person already exists in the address book | You are adding a patient with the same id as an existing patient | Ensure that you do not enter a patient with the same id as an existing patient. |
 | Invalid command format!                        | Some of the essential prefixes could be missing or misspelled    | Refer to the [command format](#adding-a-patient-add)                 |
 | Unknown command                                | The `add` command may be misspelled or not entirely in lowercase | Ensure that you use `add` exactly in lowercase.                      |
 | Errors relating to invalid field inputs        | You have entered invalid inputs for a field.                     | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table)          |
@@ -378,7 +354,7 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e. adding of tags is not cumulative. This applies to medicines and allergies as well. <br>
+* When editing tags, the existing tags of the patient will be removed i.e., adding of tags is not cumulative. This applies to medicines and allergies as well. <br>
   e.g. If a patient at `INDEX` 3 has the allergies "nuts" and "eggs", performing `edit 3 al\Penicillin` will replace all that patient's allergies with "Penicillin" only.
 
 <div markdown="block" class="alert alert-info">
@@ -391,8 +367,8 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
 * You can remove all the patient’s allergies by typing `al\` without
   specifying any allergies after it.
 * Typing `pmh\` without specifying any past medical history after it will 
-cause it the patient's past medical history to default to the value "None". <br>
-  The same applies to `ar\`, `sr\` for alcoholic and smoking record respectively.
+cause that patient's past medical history to default to the value "None". <br>
+  The same applies to `ar\` and `sr\` for alcoholic and smoking record respectively.
 </div>
 
 **Input Constraints Table**
@@ -401,7 +377,7 @@ cause it the patient's past medical history to default to the value "None". <br>
 | ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------|
 | **INDEX**                    | ✓               | ✗                      | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the patient list.                                  |
 | **n\NAME**                   | ✗               | ✗                      | Full legal name of the patient.                                                     | Names can take any values, and it should not be blank                                           |
-| **id\IDENTITY_NUMBER**       | ✗               | ✗                      | Identification number (e.g., national ID, passport number, or hospital ID).         | Identity number should only contain alphanumeric characters and/or "-", without spaces          |
+| **id\IDENTITY_NUMBER**       | ✗               | ✗                      | Identification number (e.g., national ID, passport number, or hospital ID).         | Identity number should only contain alphanumeric characters and/or "-" and ".", without spaces. |
 | **p\PHONE_NUMBER**           | ✗               | ✗                      | Primary phone number for reaching the patient.                                      | Must contain at least 2 consecutive digits                                                      |
 | **e\EMAIL**                  | ✗               | ✗                      | Patient’s email address for communication.                                          | Emails should be of the format local-part@domain                                                |
 | **addr\HOME_ADDRESS**        | ✗               | ✗                      | Current residential address of the patient.                                         | Addresses can take any values, and it should not be blank                                       |
@@ -417,46 +393,35 @@ cause it the patient's past medical history to default to the value "None". <br>
 | **m\MEDICINE**               | ✗               | ✓                      | List of current medications prescribed to the patient.                              | Medicine field can take any values, and it should not be blank                                  |
 
 
-Examples:
-*  `edit 1 p\91234567 e\johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n\Betsy Crower t\` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+#### Examples:
+*  `edit 1 p\91234567 e\johndoe@example.com` Edits the phone number and email address of the first patient to `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n\Betsy Crower t\` Edits the name of the second patient to `Betsy Crower` and clears all existing tags.
 
 **Here is a list of common errors and how to prevent them**
 
 | Error Message                                                           | Reason                                                                                      | Solution                                                                                                       |
 |-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| The patient already exists in the address book                          | You are editing a patient to have the same id as an existing patient                        | Ensure that you do not enter a patient with the same id as an existing patient.                                |
-| Invalid command format!                                                 | Some of the prefixes could be missing or misspelled.                                        | Refer to the [command format](#editing-a-patient-edit)                                                         |
-| Unknown command                                                         | The `edit` command may be misspelled or not entirely in lowercase                           | Ensure that you use `edit` exactly in lowercase.                                                               |
+| This person already exists in the address book                          | You are editing a patient to have the same id as an existing patient.                       | Ensure that you do not enter a patient with the same id as an existing patient.                                |
+| Unknown command                                                         | The `edit` command may be misspelled or not entirely in lowercase.                          | Ensure that you use `edit` exactly in lowercase.                                                               |
 | Errors relating to invalid field inputs                                 | You have entered invalid inputs for a field.                                                | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table) |
-| The patient index provided is invalid                                   | You have entered an invalid index                                                           | Ensure that the index not more than the number of patients in HealthNote.                                      |
+| The patient index provided is invalid                                   | You have entered an invalid index                                                           | Ensure that the index is not more than the number of patients in the application.                              |
 | At least one field to edit must be provided.                            | You have not entered any fields to edit.                                                    | Enter at least one field to edit.                                                                              |
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer. | Enter an unsigned non-zero integer as `INDEX`.                       |
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer. | Enter an unsigned non-zero integer as `INDEX`.                                                                 |
 
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting a patient: `delete`
 
-Purpose: Removes the specified patient from the patient list.
-
-Command: `delete`
-
-Usage: Type `delete` followed by the index number of the patient to be removed.
+Removes the specified patient from the patient list.
 
 Format: `delete INDEX`
-
-<div markdown="block" class="alert alert-info">
-
-**ℹ️ Info:**<br>
 * Deletes the patient at the specified `INDEX`.
 * The `INDEX` refers to the index number shown in the currently displayed patient list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​ , and should not exceed the number of patients in the currently displayed list.
-</div>
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the full patient list.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+#### Example:
+* `delete 2` deletes the second patient in the patient list panel (if they exist).
 
 **Here is a list of common errors and how to prevent them**
 
@@ -475,25 +440,16 @@ Examples:
 
 ### View a patient's medical information: `view`
 
-Purpose: Displays the medical information of the patient at the specified `INDEX`.
-
-Command: `view`
-
-Usage: Type `view` followed by the index number of the patient whose medical information you want to see.
+Displays the medical information of the patient at the specified `INDEX`.
 
 Format: `view INDEX`
-
-<div markdown="block" class="alert alert-info">
-
-**ℹ️ Info:**<br>
-* Displays the patient at the specified `INDEX` on the view panel.
+* Displays the information of the patient at the specified `INDEX` on the view panel.
 * The index refers to the index number shown in the currently displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​ , and should not exceed the number of patients in the currently displayed list.
-</div>
+* The index **must be a positive integer** 1, 2, 3, …​.
 
-Example:
-- `list` followed by `view 1` displays the medical information of the 1st patient in the full patient list on the view panel.
-- `find Betsy` followed by `view 2` displays the medical information of the 2nd patient in the results of the `find` command on the view panel.
+
+#### Example:
+- `view 1` displays the full information of the first patient in the patient list panel.
 
 **Here is a list of common errors and how to prevent them:**
 
@@ -505,59 +461,38 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
+
 ### Listing all patients: `list`
 
-Purpose: Shows a list of all patients stored in the patient list.
-
-Command: `list`
-
-Usage: Type `list` to display all patients.
-
-Format: `list`
-
-<div markdown="block" class="alert alert-info">
-
-**ℹ️ Info:**<br>
-
+Shows a list of all patients stored in the patient list.
 * The list will be refreshed to show all patients when the `list` command is used.
 * Patients are displayed in the order they were added, with the most recently added patients appearing at the end of the list.
-</div>
 
 <box type="tip" seamless>
 
 **Tip:** You can use the `list` command to reset the patient list view after using the `find` command.
 </box>
 
-Examples:
-- `list` displays all patients in the patient list.<br>
-- `list 123` will displays same as `list` with the below warning message.<br>
-  `Note: Additional arguments detected. You may provide extra arguments, but they will be ignored.`
 
 [Back to Table of Contents](#table-of-contents)
 
 
-### Locating patients by name or identity: `find`
+### Locating patients by name or identity number: `find`
 
-Purpose: Search for patients in the patient list by name or identity number.
-
-Command: `find`
-
-Usage: Type `find` followed by at least one keyword.
+Find patients whose Name or Identity Number match a given keyword, or given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-<div markdown="block" class="alert alert-info">
-
-**ℹ️ Matching criteria:**<br>
+**Matching criteria:**
 * **Case-insensitive** for both name and identity. <br>
   Example: `hans` matches `Hans`, `a1234567X` matches `A1234567x`
 * **Name** matches if any of the keywords is part of the patient's name.<br>
   Example: keyword `Hans` matches patient with name `Hans Andersen` and `Joanne Hans`, but not `JHans Doe`
 * **Identity** matches if any of the keywords matches exactly the patient's identity.<br>
   Example: keyword `S1234567A` matches patient with identity `s1234567a` but not `S12345678A`
-* **Inclusive search**: <br>
-  A patient is listed if any of the keywords match either the patient's name or identity.
-</div>
+* The search is **inclusive**, if any of the keywords match either a part of a patient's name or identity, they are displayed. <br>
+* **Keywords are seperated by spaces** and a symbol is **not** treated as a separator, it will be considered part of a keyword itself.
+
 
 <box type="tip" seamless>
 
@@ -565,16 +500,16 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `find John Alex` returns the same results as `find Alex John`<br>
 </box>
 
-Examples:
+#### Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                         | Reason                                                            | Solution                                                                      |
-|---------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Invalid command format!               | You may not have provided any keyword                             | Add at least one keyword, e.g. `John`.                                        |
-| Unknown command                       | The `find` command may be misspelled or not entirely in lowercase | Ensure that you use `find` exactly in lowercase.                              |
+| Error Message                              | Reason                                                            | Solution                                                                      |
+|--------------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Error! Please provide at least one keyword | You may not have provided any keyword                             | Add at least one keyword, e.g. `John`.                                        |
+| Unknown command                            | The `find` command may be misspelled or not entirely in lowercase | Ensure that you use `find` exactly in lowercase.                              |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -584,9 +519,12 @@ Examples:
 
 ### Scheduling an appointment: `schedule` 
 
-**Purpose:** Adds the appointment for the patient specified by `INDEX` shown in the displayed patient list.
+Adds an appointment for a specific patient at a certain time.
 
 **Format:** `schedule INDEX adt\APPOINTMENT_DATE_TIME [note\APPOINTMENT_NOTE]`
+* Adds an appointment to the appointments list for the patient at the specified `INDEX` at the given date and time.
+* The added appointment may appear at the "upcoming" list or "past" list depending on the date and time. 
+* Appointment date & time should be of the following formats: d-M-yyyy HH:mm, d.M.yyyy HH:mm, or d/M/yyyy HH:mm
 
 **Input Constraints Table**
 
@@ -597,47 +535,37 @@ Examples:
 | **note\APPOINTMENT_NOTE**     | &cross;         | &cross;                | Any additional notes for this particular appointment                                | Any string                                                  |
 
 #### Example:
-* To schedule an appointment with the first patient in the displayed list, you can enter:
-```
-schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip
-```
+* To schedule an appointment with the first patient in the displayed list, you can enter: `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`.
 
-#### Tips:
-* Appointment notes are optional. Hence, the following is a perfectly valid command:
-```
-schedule 1 adt\13-10-2025 10:00
-```
-Example:
-* `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`
+
+<box type="tip" seamless>
+
+**Tip:** Appointment notes are optional. Hence, this is a perfectly valid command: `schedule 1 adt\13-10-2025 10:00`.
+
+</box>
   
 **Here is a list of common errors and how to prevent them**
 
 | Error Message                                                           | Reason                                                                                      | Solution                                                             |
 |-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| Invalid command format!                                                 | You may not have provided the necessary arguments                                           | Ensure `INDEX` and `adt\` are provided.                              |
-| Unknown command                                                         | The `schedule` command may be misspelled or not entirely in lowercase                       | Ensure that you use `schedule` exactly in lowercase.                 |
-| The patient index provided is invalid                                   | You have entered an invalid index                                                           | Ensure that the `INDEX` provided is a valid index in the shown list. |
+| Invalid command format!                                                 | Some of the essential prefixes could be missing or misspelled.                              | Ensure `INDEX` and `adt\` are provided.                              |
+| Unknown command                                                         | The `schedule` command may be misspelled or not entirely in lowercase.                      | Ensure that you use `schedule` exactly in lowercase.                 |
+| The patient index provided is invalid                                   | You have entered an invalid index.                                                          | Ensure that the `INDEX` provided is a valid index in the shown list. |
 | You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned non-zero integer. | Enter an unsigned non-zero integer as `INDEX`.                       |
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting upcoming appointment: `unschedule`
+### Deleting an upcoming appointment: `unschedule`
 
-Deletes the upcoming appointment specified by `INDEX` shown in the displayed upcoming appointment list.
+Deletes an upcoming appointment from the displayed upcoming appointments list.
 
 **Format:** `unschedule INDEX`
-
-**Input Constraints Table**
-
-| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
-|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+* Deletes an appointment from the upcoming appointments list at the specified INDEX.
 
 #### Example:
-* To delete the first upcoming appointment in the displayed list, you can enter:
-```
-unschedule 1
-```
+* To delete the first upcoming appointment in the displayed list, you can enter: `unschedule 1`
+
+
 **Here is a list of common errors and how to prevent them**
 
 | Error Message                             | Reason                                                                                      | Solution                                                             |
@@ -648,21 +576,13 @@ unschedule 1
 
 ### Delete past appointment: `forget`
 
-Deletes the past appointment specified by `INDEX` shown in the displayed past appointment list.
+Deletes a past appointment from the displayed past appointments list.
 
-Format: `forget INDEX`
-
-**Input Constraints Table**
-
-| **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
-|----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
+**Format:** `forget INDEX`
+* Deletes an appointment from the past appointments list at the specified INDEX.
 
 #### Example:
-* To delete the first past appointment in the displayed list, you can enter:
-```
-forget 1
-```
+* To delete the first past appointment in the displayed list, you can enter: `forget 1`
 
 **Here is a list of common errors and how to prevent them**
 
@@ -699,22 +619,19 @@ Format: `clear CONFIRM`
 
 ### Saving the data
 
-HealthNote data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HealthNote data is saved locally in the user's computer automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-HealthNote data are saved automatically as a JSON file `[JAR file location]/data/healthnote.json`. Advanced users are welcome to update data directly by editing that data file.
+HealthNote data is saved automatically as a JSON file `[JAR file location]/data/healthnote.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **❗Caution:**
-If your changes to the data file makes its format invalid, HealthNote will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the HealthNote to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If the changes made to the data file makes its format invalid, HealthNote will discard all data and start with an empty data file at the next run.  Hence, it is recommended to make a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the HealthNote application to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can do so correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -770,6 +687,9 @@ _Details coming soon ..._
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will be focused, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **If a tag element is made to hold a large number of characters**, its UI could overflow the panel, causing it to be cut off or the panel to start horizontal scroll. 
+Specifically, adding a very long `tag` to a patient will cause the tag to be cut off by the border of the `Patient List`. Adding a very long `Allergy` or `Medicine` will cause
+the `Patient View Panel` to horizontal scroll. The remedy to this is to avoid creating overly long tag elements. 
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -821,12 +741,12 @@ Summary of all the commands.
 | **Field (with Prefix)**        | **Valid Input(s)**                                      | **Invalid Input(s)**           | **Requirement(s)**                                                                                            |
 |--------------------------------|---------------------------------------------------------|--------------------------------|---------------------------------------------------------------------------------------------------------------|
 | **n\\NAME**                    | Alex the 3rd, John Doe, Damith s/o Sankar Ashish        | (Empty)                        | Names can take any values, and it should not be blank                                                         |
-| **id\\IDENTITY_NUMBER**        | S1234567A, T7654321B, 060402-06-6767                    | %&!, 12 3-4                    | Identity number should only contain alphanumeric characters and/or "-", without spaces                        |
+| **id\\IDENTITY_NUMBER**        | S1234567A, T7654321B, 060402-06-6767                    | %&!, 12 3-4                    | Identity number should only contain alphanumeric characters and/or "-" and ".", without spaces                |
 | **p\\PHONE_NUMBER**            | 9888-3333 (Office)                                      | abcdefg, 3 3 3                 | Must contain at least 2 consecutive digits                                                                    |
 | **e\\EMAIL**                   | e01234567@u.nus.edu, jinHeng@gmail.com                  | joe@, asd@@@asd                | Emails should be of the format local-part@domain                                                              |
 | **addr\\HOME_ADDRESS**         | 123 Main St                                             | (Empty)                        | Addresses can take any values, and it should not be blank                                                     |
 | **ec\\EMERGENCY_CONTACT**      | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa            | Must be in the form [{relationship}] {phone} where phone contains at least 2 consecutive digits               |
-| **dob\\DATE_OF_BIRTH**         | 05-23-1967, 12/10/1987                                  | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                                |
+| **dob\\DATE_OF_BIRTH**         | 23-05-1967, 12/10/1987                                  | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                                |
 | **b\\BLOOD_TYPE**              | A+, O-, AB, Bombay (hh), A Rh(D) negative               | (Empty)                        | Blood types can take any values, and it should not be blank                                                   |
 | **g\\GENDER**                  | Male, Female, Non-binary, Genderqueer                   | (Empty)                        | Genders can take any values, and it should not be blank                                                       |
 | **ar\\ALCOHOLIC_RECORD**       | None, Occasionally, Heavy                               | (Empty)                        | Alcoholic Record can take any values, and it should not be blank                                              |
